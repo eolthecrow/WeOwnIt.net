@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="VA network symbol">
+  <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M18 24 L49 104 L80 24" stroke="#f2f1e8" stroke-width="13"/>
+    <path d="M68 104 L96 24 L118 104" stroke="#f2f1e8" stroke-width="13"/>
+    <path d="M32 25 L55 72 L78 72 L92 72 L106 104" stroke="#6ce2c7" stroke-width="7"/>
+    <circle cx="78" cy="72" r="11" stroke="#6ce2c7" stroke-width="7"/>
+  </g>
+</svg>
