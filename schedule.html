@@ -223,7 +223,6 @@ Cal.ns["30min"]("ui", {
     const brand=document.querySelector("[data-brand]"); if(brand) brand.textContent=d.brand;
     document.querySelectorAll("[data-k]").forEach(el=>{const k=el.dataset.k;if(d[k]!==undefined)el.innerHTML=d[k]});
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
-    try{localStorage.setItem("site-language",lang)}catch(_){}
   }
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
   apply("en");
