@@ -304,6 +304,7 @@
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
   }
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
+  try{localStorage.removeItem("site-language")}catch(_){}
   apply("en");
 })();
 </script>
