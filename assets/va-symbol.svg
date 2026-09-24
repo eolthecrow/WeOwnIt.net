@@ -1,8 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="VA network symbol">
-  <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
-    <path d="M18 24 L49 104 L80 24" stroke="#f2f1e8" stroke-width="13"/>
-    <path d="M68 104 L96 24 L118 104" stroke="#f2f1e8" stroke-width="13"/>
-    <path d="M32 25 L55 72 L78 72 L92 72 L106 104" stroke="#6ce2c7" stroke-width="7"/>
-    <circle cx="78" cy="72" r="11" stroke="#6ce2c7" stroke-width="7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1142 629" role="img" aria-label="VA network symbol">
+  <defs>
+    <radialGradient id="cyan" cx="53%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1bf4f2"/>
+      <stop offset="58%" stop-color="#17e2e2"/>
+      <stop offset="100%" stop-color="#058a9c"/>
+    </radialGradient>
+  </defs>
+  <g fill="#fbfaf7" fill-rule="evenodd">
+    <path d="M 601,423 L 576,417 L 545,397 L 478,450 L 356,628 L 464,628 Z"/>
+    <path d="M 788,0 L 632,229 L 662,240 L 694,264 L 748,222 L 794,158 L 1033,627 L 1141,628 L 819,0 Z"/>
+    <path d="M 741,0 L 619,0 L 429,281 L 519,281 L 550,246 L 584,230 Z"/>
+    <path d="M 0,0 L 337,603 L 397,513 L 116,0 Z"/>
+  </g>
+  <g fill="url(#cyan)" fill-rule="evenodd">
+    <path d="M 167,2 L 357,358 L 526,358 L 538,384 L 556,404 L 598,422 L 630,420 L 659,406 L 679,385 L 691,358 L 793,358 L 930,625 L 983,627 L 823,316 L 690,316 L 681,295 L 662,273 L 620,255 L 592,256 L 567,266 L 543,287 L 528,316 L 389,316 L 219,3 Z M 603,292 L 635,300 L 649,315 L 655,331 L 647,365 L 618,384 L 599,384 L 582,376 L 563,347 L 569,314 L 587,297 Z"/>
   </g>
 </svg>
