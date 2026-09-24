@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a151c">
+  <meta name="description" content="Schedule a 30-minute discussion with Vladimir Arjoca about network and cybersecurity challenges.">
+  <title>Schedule a Discussion — Vladimir Arjoca</title>
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#0a151c;--bg2:#0e1d25;--panel:#12232b;--line:#29404a;
+      --line-strong:#507078;--ink:#f2f1e8;--muted:#a6b8ba;
+      --accent:#6ce2c7;--light:#f7f8f7;--light-ink:#162126;--light-muted:#647277;
+      --font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1240px;margin:0 auto;padding:0 1.4rem}
+    header{position:sticky;top:0;z-index:20;background:rgba(10,21,28,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:750;letter-spacing:-.035em}
+    .mark{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--accent);color:var(--accent);font-family:var(--mono);font-size:.82rem}
+    .nav-right{display:flex;align-items:center;gap:1rem}
+    .back{color:var(--muted);font-size:.9rem}
+    .back:hover{color:var(--accent)}
+    .lang-switch{display:inline-flex;border:1px solid var(--line-strong);padding:2px}
+    .lang-switch button{border:0;background:transparent;color:var(--muted);padding:.35rem .5rem;font-family:var(--mono);font-size:.68rem;cursor:pointer}
+    .lang-switch button[aria-pressed="true"]{background:var(--accent);color:var(--bg);font-weight:800}
+    main{min-height:calc(100vh - 69px)}
+    .booking-shell{display:grid;grid-template-columns:minmax(310px,.82fr) minmax(520px,1.35fr);min-height:calc(100vh - 69px)}
+    .intro{display:flex;align-items:center;background:
+      radial-gradient(circle at 0 100%,rgba(108,226,199,.15),transparent 36%),
+      linear-gradient(145deg,#0a151c,#0d1d24 70%,#102c29);border-right:1px solid var(--line)}
+    .intro-inner{width:min(100%,560px);padding:clamp(3rem,7vw,7rem) clamp(1.5rem,5vw,5rem);margin-left:auto}
+    .eyebrow{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.13em;color:var(--accent)}
+    h1{font-size:clamp(2.8rem,5vw,5.5rem);line-height:.96;letter-spacing:-.065em;margin:1rem 0 1.4rem}
+    .lead{font-size:clamp(1.05rem,1.35vw,1.22rem);color:var(--muted);max-width:620px;margin:0}
+    .benefits{display:grid;gap:1rem;margin:2.4rem 0 2rem;padding:0;list-style:none}
+    .benefits li{display:grid;grid-template-columns:42px 1fr;gap:.85rem;align-items:start}
+    .check{width:42px;height:42px;border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--accent);font-family:var(--mono)}
+    .benefits strong{display:block;margin:.05rem 0 .2rem;font-size:1rem}
+    .benefits span{display:block;color:var(--muted);font-size:.9rem}
+    .meta{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:2rem}
+    .pill{border:1px solid var(--line-strong);padding:.48rem .7rem;color:#cad8d6;font-family:var(--mono);font-size:.72rem}
+    .fallback{margin-top:1.4rem;color:var(--muted);font-size:.82rem}
+    .fallback a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+    .scheduler{background:var(--light);color:var(--light-ink);display:flex;align-items:stretch;min-width:0}
+    .scheduler-inner{width:100%;max-width:900px;margin:auto;padding:clamp(1.3rem,3vw,2.4rem)}
+    .scheduler-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1rem}
+    .scheduler-head h2{margin:.3rem 0 0;font-size:clamp(1.5rem,2.5vw,2.2rem);letter-spacing:-.04em}
+    .scheduler-head p{margin:0;color:var(--light-muted);font-size:.88rem}
+    .cal-wrap{height:760px;min-height:680px;width:100%;overflow:hidden;background:#fff;border:1px solid #dfe5e3;box-shadow:0 22px 60px rgba(18,33,38,.08)}
+    #my-cal-inline-30min{width:100%;height:100%;overflow:auto}
+    footer{display:none}
+    @media(max-width:980px){
+      header{position:relative}
+      .booking-shell{grid-template-columns:1fr;min-height:0}
+      .intro{border-right:0;border-bottom:1px solid var(--line)}
+      .intro-inner{margin:0;width:100%;max-width:none;padding:3.2rem 1.4rem}
+      .scheduler-inner{padding:1rem}
+      .cal-wrap{height:780px}
+    }
+    @media(max-width:620px){
+      .back{display:none}
+      .nav-right{gap:.5rem}
+      h1{font-size:clamp(2.5rem,15vw,4rem)}
+      .scheduler-head{display:block}
+      .scheduler-head p{margin-top:.45rem}
+      .cal-wrap{height:830px;border-left:0;border-right:0}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="mark">VA</span><span>Security Field Notes</span></a>
+    <div class="nav-right">
+      <a class="back" href="contact.html" data-k="back">← Back to contact</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="booking-shell">
+  <section class="intro">
+    <div class="intro-inner">
+      <div class="eyebrow" data-k="eyebrow">Schedule a discussion</div>
+      <h1 data-k="title">30-minute<br>security discussion.</h1>
+      <p class="lead" data-k="lead">A focused conversation about a network, cybersecurity, infrastructure, or operational challenge you are working through.</p>
+
+      <ul class="benefits">
+        <li>
+          <span class="check">✓</span>
+          <div><strong data-k="b1t">Focused on your situation</strong><span data-k="b1d">Bring a real problem, design question, assessment need, or troubleshooting scenario.</span></div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div><strong data-k="b2t">Practical next steps</strong><span data-k="b2d">We will focus on useful options and what would make sense to investigate next.</span></div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div><strong data-k="b3t">Online and straightforward</strong><span data-k="b3d">Choose an available slot and Cal.com will handle the booking confirmation.</span></div>
+        </li>
+      </ul>
+
+      <div class="meta">
+        <span class="pill" data-k="duration">30 minutes</span>
+        <span class="pill" data-k="online">Online meeting</span>
+        <span class="pill" data-k="timezone">Your timezone</span>
+      </div>
+
+      <p class="fallback" data-k="fallback">If the calendar does not load, <a href="https://cal.com/vladimirarjoca/30min" target="_blank" rel="noopener noreferrer">open the booking page directly ↗</a></p>
+    </div>
+  </section>
+
+  <section class="scheduler">
+    <div class="scheduler-inner">
+      <div class="scheduler-head">
+        <div>
+          <div class="eyebrow" style="color:#0f766e" data-k="select">Select a time</div>
+          <h2 data-k="calendarTitle">Choose a day and available slot</h2>
+        </div>
+        <p data-k="calendarNote">Availability is provided live by Cal.com.</p>
+      </div>
+      <div class="cal-wrap">
+        <div id="my-cal-inline-30min"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function (C, A, L) {
+  let p = function (a, ar) { a.q.push(ar); };
+  let d = C.document;
+  C.Cal = C.Cal || function () {
+    let cal = C.Cal;
+    let ar = arguments;
+    if (!cal.loaded) {
+      cal.ns = {};
+      cal.q = cal.q || [];
+      d.head.appendChild(d.createElement("script")).src = A;
+      cal.loaded = true;
+    }
+    if (ar[0] === L) {
+      const api = function () { p(api, arguments); };
+      const namespace = ar[1];
+      api.q = api.q || [];
+      if (typeof namespace === "string") {
+        cal.ns[namespace] = cal.ns[namespace] || api;
+        p(cal.ns[namespace], ar);
+        p(cal, ["initNamespace", namespace]);
+      } else p(cal, ar);
+      return;
+    }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", "30min", {origin:"https://cal.com"});
+Cal.ns["30min"]("inline", {
+  elementOrSelector:"#my-cal-inline-30min",
+  config:{"layout":"month_view","theme":"light"},
+  calLink:"vladimirarjoca/30min"
+});
+Cal.ns["30min"]("ui", {
+  "theme":"light",
+  "cssVarsPerTheme":{
+    "light":{"cal-brand":"#0f766e"},
+    "dark":{"cal-brand":"#6ce2c7"}
+  },
+  "hideEventTypeDetails":true,
+  "layout":"month_view"
+});
+
+(() => {
+  const t = {
+    en:{
+      back:"← Back to contact",eyebrow:"Schedule a discussion",title:"30-minute<br>security discussion.",
+      lead:"A focused conversation about a network, cybersecurity, infrastructure, or operational challenge you are working through.",
+      b1t:"Focused on your situation",b1d:"Bring a real problem, design question, assessment need, or troubleshooting scenario.",
+      b2t:"Practical next steps",b2d:"We will focus on useful options and what would make sense to investigate next.",
+      b3t:"Online and straightforward",b3d:"Choose an available slot and Cal.com will handle the booking confirmation.",
+      duration:"30 minutes",online:"Online meeting",timezone:"Your timezone",
+      fallback:'If the calendar does not load, <a href="https://cal.com/vladimirarjoca/30min" target="_blank" rel="noopener noreferrer">open the booking page directly ↗</a>',
+      select:"Select a time",calendarTitle:"Choose a day and available slot",calendarNote:"Availability is provided live by Cal.com."
+    },
+    fr:{
+      back:"← Retour au contact",eyebrow:"Planifier une discussion",title:"Discussion sécurité<br>de 30 minutes.",
+      lead:"Une conversation ciblée sur un défi réseau, cybersécurité, infrastructure ou opérationnel sur lequel vous travaillez.",
+      b1t:"Centrée sur votre situation",b1d:"Apportez un problème réel, une question de conception, un besoin d’évaluation ou un scénario de dépannage.",
+      b2t:"Prochaines étapes pratiques",b2d:"Nous nous concentrerons sur les options utiles et sur ce qu’il serait pertinent d’examiner ensuite.",
+      b3t:"En ligne et simple",b3d:"Choisissez un créneau disponible et Cal.com gérera la confirmation de réservation.",
+      duration:"30 minutes",online:"Réunion en ligne",timezone:"Votre fuseau horaire",
+      fallback:'Si le calendrier ne se charge pas, <a href="https://cal.com/vladimirarjoca/30min" target="_blank" rel="noopener noreferrer">ouvrez directement la page de réservation ↗</a>',
+      select:"Choisir un horaire",calendarTitle:"Choisissez un jour et un créneau disponible",calendarNote:"Les disponibilités sont fournies en direct par Cal.com."
+    },
+    ro:{
+      back:"← Înapoi la contact",eyebrow:"Programează o discuție",title:"Discuție de securitate<br>de 30 de minute.",
+      lead:"O conversație concentrată pe o provocare de rețea, cybersecurity, infrastructură sau operațională la care lucrezi.",
+      b1t:"Concentrată pe situația ta",b1d:"Poți aduce o problemă reală, o întrebare de design, o nevoie de assessment sau un scenariu de troubleshooting.",
+      b2t:"Pași următori practici",b2d:"Ne vom concentra pe opțiuni utile și pe ceea ce ar avea sens să investighezi în continuare.",
+      b3t:"Online și simplu",b3d:"Alege un interval disponibil, iar Cal.com va gestiona confirmarea programării.",
+      duration:"30 de minute",online:"Întâlnire online",timezone:"Fusul tău orar",
+      fallback:'Dacă nu se încarcă calendarul, <a href="https://cal.com/vladimirarjoca/30min" target="_blank" rel="noopener noreferrer">deschide direct pagina de programare ↗</a>',
+      select:"Alege ora",calendarTitle:"Alege o zi și un interval disponibil",calendarNote:"Disponibilitatea este furnizată live de Cal.com."
+    }
+  };
+  function apply(lang){
+    const d=t[lang]||t.en;
+    document.documentElement.lang=lang;
+    document.querySelectorAll("[data-k]").forEach(el=>{const k=el.dataset.k;if(d[k]!==undefined)el.innerHTML=d[k]});
+    document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
+    try{localStorage.setItem("site-language",lang)}catch(_){}
+  }
+  document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
+  let initial="en";
+  try{const saved=localStorage.getItem("site-language");if(["en","fr","ro"].includes(saved))initial=saved}catch(_){}
+  apply(initial);
+})();
+</script>
+</body>
+</html>
