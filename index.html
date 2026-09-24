@@ -107,12 +107,18 @@
     .contact p { margin:0; max-width:560px; font-size:1rem; color:#24544f }
     .contact .button { color:var(--ink); background:var(--bg); border-color:var(--bg); flex:none }
     .contact .button:hover { background:#1a3938 }
+    .tools-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line) }
+    .tool-group { background:var(--bg2); border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:1.6rem }
+    .tool-group .tool-index { display:block; font-family:var(--mono); color:var(--accent); font-size:.72rem; letter-spacing:.08em; margin-bottom:.8rem }
+    .tool-group h3 { margin:0 0 1rem; font-size:1.18rem; letter-spacing:-.03em }
+    .tool-list { display:flex; flex-wrap:wrap; gap:.5rem }
+    .tool-list span { border:1px solid var(--line-strong); padding:.4rem .62rem; font-family:var(--mono); font-size:.7rem; color:#c8d8d5; background:#0b171e }
     .footer { padding:2.5rem clamp(1.3rem,4vw,4rem) 2rem; display:grid; grid-template-columns:1fr auto; gap:1.5rem; color:var(--quiet); font-size:.82rem }
     .footer .sources { grid-column:1/-1; border-top:1px solid var(--line); padding-top:1.3rem; display:flex; flex-wrap:wrap; column-gap:1.7rem; row-gap:.4rem }
     .sources a { text-decoration:underline; text-underline-offset:3px; color:var(--muted) }
     .sources a:hover,.footer a:hover { color:var(--accent) }
     @media(max-width:1100px) { .shell { grid-template-columns:190px minmax(0,1fr) } .rail { padding:1.5rem 1rem } .hero { grid-template-columns:1fr } .hero-aside { max-width:none; display:none } }
-    @media(max-width:780px) { .shell { display:block } .rail { position:static; height:auto; min-height:0; padding:1rem 1.25rem; border-right:0; border-bottom:1px solid var(--line); display:block } .brand { font-size:.96rem } .mark { width:34px; height:34px } .rail-nav { margin-top:.9rem; display:flex; gap:1rem; overflow-x:auto; scrollbar-width:none } .rail-nav a { white-space:nowrap; padding:.25rem 0; font-size:.82rem } .rail-nav span,.rail-foot { display:none } .topline { height:auto; min-height:52px; padding:.55rem 1.25rem; font-size:.66rem; gap:.8rem } .topline-tools { gap:.55rem } .topline-right { display:none } .lang-switch button { font-size:.64rem; padding:.3rem .42rem } .hero { padding:3.3rem 1.25rem 3.6rem; display:block } h1 { font-size:clamp(3.15rem,10vw,5.3rem) } .section { padding:3.5rem 1.25rem } .section-head { display:block } .section-head > p { margin-top:1rem } .resource-grid { grid-template-columns:1fr } .resource.featured { grid-column:span 1; display:block } .resource.featured .feature-side { border:0; border-top:1px solid #42736e; padding:1.1rem 0 0; margin-top:1rem } .resource { min-height:0 } .resource .list { margin:0 0 1.2rem } .resource-top { margin-bottom:1.4rem } .sample-strip,.details-wrap,.about-grid { grid-template-columns:1fr } .contact { display:block; padding:3.7rem 1.25rem } .contact .button { margin-top:1.7rem } .footer { grid-template-columns:1fr } }
+    @media(max-width:780px) { .tools-grid { grid-template-columns:1fr } .shell { display:block } .rail { position:static; height:auto; min-height:0; padding:1rem 1.25rem; border-right:0; border-bottom:1px solid var(--line); display:block } .brand { font-size:.96rem } .mark { width:34px; height:34px } .rail-nav { margin-top:.9rem; display:flex; gap:1rem; overflow-x:auto; scrollbar-width:none } .rail-nav a { white-space:nowrap; padding:.25rem 0; font-size:.82rem } .rail-nav span,.rail-foot { display:none } .topline { height:auto; min-height:52px; padding:.55rem 1.25rem; font-size:.66rem; gap:.8rem } .topline-tools { gap:.55rem } .topline-right { display:none } .lang-switch button { font-size:.64rem; padding:.3rem .42rem } .hero { padding:3.3rem 1.25rem 3.6rem; display:block } h1 { font-size:clamp(3.15rem,10vw,5.3rem) } .section { padding:3.5rem 1.25rem } .section-head { display:block } .section-head > p { margin-top:1rem } .resource-grid { grid-template-columns:1fr } .resource.featured { grid-column:span 1; display:block } .resource.featured .feature-side { border:0; border-top:1px solid #42736e; padding:1.1rem 0 0; margin-top:1rem } .resource { min-height:0 } .resource .list { margin:0 0 1.2rem } .resource-top { margin-bottom:1.4rem } .sample-strip,.details-wrap,.about-grid { grid-template-columns:1fr } .contact { display:block; padding:3.7rem 1.25rem } .contact .button { margin-top:1.7rem } .footer { grid-template-columns:1fr } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto } *,*::before,*::after { transition:none!important } }
   </style>
   <link rel="stylesheet" href="assets/chatbox.css?v=4">
@@ -124,9 +130,10 @@
       <a class="brand" href="#top" aria-label="Network & Security Advisory, top of page"><span class="mark" aria-hidden="true"><img src="assets/va-symbol.svg?v=2" alt=""></span><span>Network &amp; Security<br>Advisory</span></a>
       <nav class="rail-nav" aria-label="Main navigation">
         <a href="#resources"><span>01</span> Resources</a>
-        <a href="#approach"><span>02</span> Approach</a>
+        <a href="#approach"><span>02</span> Methodology</a>
         <a href="about.html"><span>03</span> About</a>
         <a href="contact.html"><span>04</span> Contact</a>
+        <a href="#tools"><span>05</span> Tools</a>
       </nav>
       <div class="rail-foot"><b>Vladimir Arjoca</b><br>Network &amp; Security engineering<br>Bucharest, Romania</div>
     </aside>
@@ -162,6 +169,18 @@
       <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">Advisory methodology</span><h2 id="approach-title">From findings to action.</h2></div><p>A structured way to understand the environment, prioritize what matters, and implement improvements that can be validated and maintained.</p></div><div class="sample-strip"><article><span>01 / ASSESS</span><h3>Understand the environment</h3><p>Review architecture, exposure, controls, operational dependencies, evidence, and the current security posture before recommending change.</p></article><article><span>02 / PRIORITIZE</span><h3>Focus on what matters</h3><p>Translate findings into clear risks, priorities, owners, and practical remediation actions based on impact and feasibility.</p></article><article><span>03 / IMPROVE</span><h3>Implement &amp; validate</h3><p>Strengthen controls, verify the outcome, document the change, and make improvements repeatable wherever possible.</p></article></div><div class="details-wrap"><details><summary>What should an advisory review produce?</summary><p>Clear findings supported by evidence, risk and impact context, an agreed priority, a named owner, a practical recommendation, and validation criteria.</p></details><details><summary>How does the methodology apply to the resources?</summary><p>The same cycle applies across incident response, security assessments, firewall hardening, segmentation, diagnostics, and automation: understand the current state, prioritize the gap, implement the change, and verify the result.</p></details></div></section>
       <section id="about" class="section" aria-labelledby="about-title"><div class="about-grid"><div><span class="micro">About</span><h2 id="about-title">Vladimir Arjoca.</h2></div><div><p class="lead">Network &amp; Security Engineer with 10+ years of hands-on experience across enterprise and service-provider environments.</p><p>I work with network security, firewalls, data-center infrastructure, monitoring, automation, and incident response. This site turns that experience into practical resources.</p><div class="expertise" aria-label="Areas of experience"><span>FortiGate / FortiManager</span><span>Palo Alto / Panorama</span><span>Cisco networking</span><span>Observability</span><span>Ansible / CI</span></div></div></div></section>
       <section id="contact" class="contact" aria-labelledby="contact-title"><div><span class="micro">Get in touch</span><h2 id="contact-title">Have a real-world problem to solve?</h2><p>Tell me which resource would help your team most, or suggest a scenario for a future playbook.</p></div><a class="button" href="mailto:vladimir.arjoca@outlook.com?subject=Network%20%26%20Security%20Advisory">Email Vladimir <span class="arrow" aria-hidden="true">↗</span></a></section>
+      <section id="tools" class="section" aria-labelledby="tools-title">
+        <div class="section-head">
+          <div><span class="micro">Technical toolkit</span><h2 id="tools-title">Tools I work with.</h2></div>
+          <p>Platforms and tooling used across network engineering, security operations, automation, monitoring, and lab environments.</p>
+        </div>
+        <div class="tools-grid">
+          <article class="tool-group"><span class="tool-index">01 / NETWORK &amp; SECURITY</span><h3>Platforms</h3><div class="tool-list"><span>Cisco</span><span>Fortinet</span><span>Palo Alto Networks</span><span>Juniper</span></div></article>
+          <article class="tool-group"><span class="tool-index">02 / AUTOMATION &amp; DELIVERY</span><h3>Engineering</h3><div class="tool-list"><span>Ansible</span><span>Python</span><span>GitLab CI/CD</span><span>Jenkins</span></div></article>
+          <article class="tool-group"><span class="tool-index">03 / MONITORING &amp; OPERATIONS</span><h3>Observability</h3><div class="tool-list"><span>Grafana</span><span>Prometheus</span><span>Checkmk</span><span>Graylog</span></div></article>
+          <article class="tool-group"><span class="tool-index">04 / INFRASTRUCTURE &amp; LABS</span><h3>Platforms</h3><div class="tool-list"><span>VMware vSphere</span><span>GNS3</span><span>Docker / WSL2</span><span>Hyper-V</span></div></article>
+        </div>
+      </section>
       <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">NIST Zero Trust Architecture</a><a href="https://www.cisecurity.org/controls/v8-1" target="_blank" rel="noopener noreferrer">CIS Controls v8.1</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Palo Alto Networks best practices</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
     </main>
   </div>
@@ -173,7 +192,7 @@
           description: "Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.",
           skip: "Skip to content",
           brand: "Network &amp; Security<br>Advisory",
-          nav: ["Resources", "Methodology", "About", "Contact"],
+          nav: ["Resources", "Methodology", "About", "Contact", "Tools"],
           railFoot: "<b>Vladimir Arjoca</b><br>Network &amp; Security engineering<br>Bucharest, Romania",
           topLabel: "NETWORK & SECURITY / PRACTICAL GUIDANCE",
           topRight: "TECHNICAL RESOURCES & INSIGHTS",
@@ -253,6 +272,15 @@
           contactTitle: "Have a real-world problem to solve?",
           contactText: "Tell me which resource would help your team most, or suggest a scenario for a future playbook.",
           contactButton: "Email Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
+          toolsMicro: "Technical toolkit",
+          toolsTitle: "Tools I work with.",
+          toolsIntro: "Platforms and tooling used across network engineering, security operations, automation, monitoring, and lab environments.",
+          toolsGroups: [
+            ["01 / NETWORK & SECURITY", "Platforms", ["Cisco","Fortinet","Palo Alto Networks","Juniper"]],
+            ["02 / AUTOMATION & DELIVERY", "Engineering", ["Ansible","Python","GitLab CI/CD","Jenkins"]],
+            ["03 / MONITORING & OPERATIONS", "Observability", ["Grafana","Prometheus","Checkmk","Graylog"]],
+            ["04 / INFRASTRUCTURE & LABS", "Platforms", ["VMware vSphere","GNS3","Docker / WSL2","Hyper-V"]]
+          ],
           footer: "© 2026 Vladimir Arjoca · Bucharest, Romania",
           sources: "Primary references:"
         },
@@ -261,7 +289,7 @@
           description: "Guides pratiques pour la réponse aux incidents, l’évaluation de la sécurité réseau, le durcissement des firewalls, la segmentation, le dépannage, l’automatisation et la conformité de Vladimir Arjoca.",
           skip: "Aller au contenu",
           brand: "Conseil en Réseaux<br>&amp; Sécurité",
-          nav: ["Ressources", "Méthodologie", "À propos", "Contact"],
+          nav: ["Ressources", "Méthodologie", "À propos", "Contact", "Outils"],
           railFoot: "<b>Vladimir Arjoca</b><br>Ingénierie réseau &amp; sécurité<br>Bucarest, Roumanie",
           topLabel: "RÉSEAUX & SÉCURITÉ / CONSEILS PRATIQUES",
           topRight: "RESSOURCES TECHNIQUES & ANALYSES",
@@ -341,6 +369,15 @@
           contactTitle: "Vous avez un problème concret à résoudre ?",
           contactText: "Indiquez-moi quelle ressource aiderait le plus votre équipe ou proposez un scénario pour un futur playbook.",
           contactButton: "Envoyer un e-mail à Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
+          toolsMicro: "Boîte à outils technique",
+          toolsTitle: "Outils que j’utilise.",
+          toolsIntro: "Plateformes et outils utilisés pour l’ingénierie réseau, les opérations de sécurité, l’automatisation, la supervision et les environnements de laboratoire.",
+          toolsGroups: [
+            ["01 / RÉSEAU & SÉCURITÉ", "Plateformes", ["Cisco","Fortinet","Palo Alto Networks","Juniper"]],
+            ["02 / AUTOMATISATION & DELIVERY", "Ingénierie", ["Ansible","Python","GitLab CI/CD","Jenkins"]],
+            ["03 / SUPERVISION & OPÉRATIONS", "Observabilité", ["Grafana","Prometheus","Checkmk","Graylog"]],
+            ["04 / INFRASTRUCTURE & LABS", "Plateformes", ["VMware vSphere","GNS3","Docker / WSL2","Hyper-V"]]
+          ],
           footer: "© 2026 Vladimir Arjoca · Bucarest, Roumanie",
           sources: "Références principales :"
         },
@@ -349,7 +386,7 @@
           description: "Ghiduri practice pentru incident response, evaluarea securității rețelei, firewall hardening, segmentare, troubleshooting, automatizare și conformitate de la Vladimir Arjoca.",
           skip: "Sari la conținut",
           brand: "Consultanță în Rețele<br>&amp; Securitate",
-          nav: ["Resurse", "Metodologie", "Despre", "Contact"],
+          nav: ["Resurse", "Metodologie", "Despre", "Contact", "Instrumente"],
           railFoot: "<b>Vladimir Arjoca</b><br>Inginerie de rețea &amp; securitate<br>București, România",
           topLabel: "REȚELE & SECURITATE / GHIDARE PRACTICĂ",
           topRight: "RESURSE TEHNICE & PERSPECTIVE",
@@ -429,6 +466,15 @@
           contactTitle: "Ai o problemă reală de rezolvat?",
           contactText: "Spune-mi ce resursă ar ajuta cel mai mult echipa ta sau propune un scenariu pentru un viitor playbook.",
           contactButton: "Trimite email lui Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
+          toolsMicro: "Toolkit tehnic",
+          toolsTitle: "Instrumente cu care lucrez.",
+          toolsIntro: "Platforme și instrumente utilizate în inginerie de rețea, operațiuni de securitate, automatizare, monitorizare și medii de laborator.",
+          toolsGroups: [
+            ["01 / REȚEA & SECURITATE", "Platforme", ["Cisco","Fortinet","Palo Alto Networks","Juniper"]],
+            ["02 / AUTOMATIZARE & DELIVERY", "Engineering", ["Ansible","Python","GitLab CI/CD","Jenkins"]],
+            ["03 / MONITORIZARE & OPERAȚIUNI", "Observabilitate", ["Grafana","Prometheus","Checkmk","Graylog"]],
+            ["04 / INFRASTRUCTURĂ & LABS", "Platforme", ["VMware vSphere","GNS3","Docker / WSL2","Hyper-V"]]
+          ],
           footer: "© 2026 Vladimir Arjoca · București, România",
           sources: "Referințe principale:"
         }
@@ -530,6 +576,21 @@
         setText("#contact-title", t.contactTitle);
         setText("#contact p", t.contactText);
         setHTML("#contact .button", t.contactButton);
+
+        setText("#tools .section-head .micro", t.toolsMicro);
+        setText("#tools-title", t.toolsTitle);
+        setText("#tools .section-head > p", t.toolsIntro);
+        document.querySelectorAll("#tools .tool-group").forEach((el, i) => {
+          const row = t.toolsGroups[i];
+          if (!row) return;
+          const idx = el.querySelector(".tool-index");
+          const h3 = el.querySelector("h3");
+          if (idx) idx.textContent = row[0];
+          if (h3) h3.textContent = row[1];
+          el.querySelectorAll(".tool-list span").forEach((tag, j) => {
+            if (row[2][j] !== undefined) tag.textContent = row[2][j];
+          });
+        });
 
         setText(".footer > span", t.footer);
         setText(".footer .sources > span", t.sources);
