@@ -32,6 +32,12 @@
     .topline { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding:0 clamp(1.3rem,4vw,4rem); color:var(--muted); font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.13em }
     .topline-right { display:flex; align-items:center; gap:.62rem; color:var(--accent) }
     .topline-right::before { content:""; display:block; width:7px; height:7px; border-radius:50%; background:var(--accent) }
+    .topline-tools { display:flex; align-items:center; gap:1rem }
+    .lang-switch { display:inline-flex; align-items:center; border:1px solid var(--line-strong); padding:2px }
+    .lang-switch button { appearance:none; border:0; background:transparent; color:var(--muted); font:inherit; font-size:.68rem; letter-spacing:.08em; padding:.34rem .48rem; cursor:pointer; transition:background .2s,color .2s }
+    .lang-switch button:hover { color:var(--ink) }
+    .lang-switch button[aria-pressed="true"] { background:var(--accent); color:var(--bg); font-weight:750 }
+    .lang-switch button:focus-visible { outline:2px solid var(--accent); outline-offset:3px }
     .hero { padding:clamp(3.4rem,7vw,7.5rem) clamp(1.3rem,4vw,4rem) clamp(3.6rem,6vw,6rem); display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); gap:clamp(2rem,5vw,5rem); position:relative; overflow:hidden; border-bottom:1px solid var(--line) }
     .hero::before { content:""; position:absolute; inset:0 0 auto auto; width:32%; height:100%; opacity:.22; pointer-events:none; background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px); background-size:40px 40px; mask-image:linear-gradient(to left,#000,transparent) }
     .hero > * { position:relative }
@@ -105,7 +111,7 @@
     .sources a { text-decoration:underline; text-underline-offset:3px; color:var(--muted) }
     .sources a:hover,.footer a:hover { color:var(--accent) }
     @media(max-width:1100px) { .shell { grid-template-columns:190px minmax(0,1fr) } .rail { padding:1.5rem 1rem } .hero { grid-template-columns:1fr } .hero-aside { max-width:none; display:none } }
-    @media(max-width:780px) { .shell { display:block } .rail { position:static; height:auto; min-height:0; padding:1rem 1.25rem; border-right:0; border-bottom:1px solid var(--line); display:block } .brand { font-size:.96rem } .mark { width:34px; height:34px } .rail-nav { margin-top:.9rem; display:flex; gap:1rem; overflow-x:auto; scrollbar-width:none } .rail-nav a { white-space:nowrap; padding:.25rem 0; font-size:.82rem } .rail-nav span,.rail-foot { display:none } .topline { height:46px; padding:0 1.25rem; font-size:.66rem } .hero { padding:3.3rem 1.25rem 3.6rem; display:block } h1 { font-size:clamp(3.15rem,10vw,5.3rem) } .section { padding:3.5rem 1.25rem } .section-head { display:block } .section-head > p { margin-top:1rem } .resource-grid { grid-template-columns:1fr } .resource.featured { grid-column:span 1; display:block } .resource.featured .feature-side { border:0; border-top:1px solid #42736e; padding:1.1rem 0 0; margin-top:1rem } .resource { min-height:0 } .resource .list { margin:0 0 1.2rem } .resource-top { margin-bottom:1.4rem } .sample-strip,.details-wrap,.about-grid { grid-template-columns:1fr } .contact { display:block; padding:3.7rem 1.25rem } .contact .button { margin-top:1.7rem } .footer { grid-template-columns:1fr } }
+    @media(max-width:780px) { .shell { display:block } .rail { position:static; height:auto; min-height:0; padding:1rem 1.25rem; border-right:0; border-bottom:1px solid var(--line); display:block } .brand { font-size:.96rem } .mark { width:34px; height:34px } .rail-nav { margin-top:.9rem; display:flex; gap:1rem; overflow-x:auto; scrollbar-width:none } .rail-nav a { white-space:nowrap; padding:.25rem 0; font-size:.82rem } .rail-nav span,.rail-foot { display:none } .topline { height:auto; min-height:52px; padding:.55rem 1.25rem; font-size:.66rem; gap:.8rem } .topline-tools { gap:.55rem } .topline-right { display:none } .lang-switch button { font-size:.64rem; padding:.3rem .42rem } .hero { padding:3.3rem 1.25rem 3.6rem; display:block } h1 { font-size:clamp(3.15rem,10vw,5.3rem) } .section { padding:3.5rem 1.25rem } .section-head { display:block } .section-head > p { margin-top:1rem } .resource-grid { grid-template-columns:1fr } .resource.featured { grid-column:span 1; display:block } .resource.featured .feature-side { border:0; border-top:1px solid #42736e; padding:1.1rem 0 0; margin-top:1rem } .resource { min-height:0 } .resource .list { margin:0 0 1.2rem } .resource-top { margin-bottom:1.4rem } .sample-strip,.details-wrap,.about-grid { grid-template-columns:1fr } .contact { display:block; padding:3.7rem 1.25rem } .contact .button { margin-top:1.7rem } .footer { grid-template-columns:1fr } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto } *,*::before,*::after { transition:none!important } }
   </style>
 </head>
@@ -123,7 +129,7 @@
       <div class="rail-foot"><b>Vladimir Arjoca</b><br>Network &amp; security engineering<br>Bucharest, Romania</div>
     </aside>
     <main id="main" class="main">
-      <div class="topline" id="top"><span>Practical security / Field notes</span><span class="topline-right">Independent resources</span></div>
+      <div class="topline" id="top"><span class="topline-label">Practical security / Field notes</span><div class="topline-tools"><span class="topline-right">Independent resources</span><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ro" aria-pressed="false">RO</button></div></div></div>
       <section class="hero" aria-labelledby="hero-title">
         <div>
           <p class="eyebrow">Built from operational experience</p>
@@ -157,5 +163,302 @@
       <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng" target="_blank" rel="noopener noreferrer">NIS2 directive</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
     </main>
   </div>
+  <script>
+    (() => {
+      const translations = {
+        en: {
+          title: "Security Field Notes — Vladimir Arjoca",
+          description: "Practical cybersecurity templates, network security checklists, FortiGate guidance, troubleshooting playbooks, and automation resources from Vladimir Arjoca.",
+          skip: "Skip to content",
+          brand: "Security<br>Field Notes",
+          nav: ["Resources", "Approach", "About", "Contact"],
+          railFoot: "<b>Vladimir Arjoca</b><br>Network &amp; security engineering<br>Bucharest, Romania",
+          topLabel: "Practical security / Field notes",
+          topRight: "Independent resources",
+          eyebrow: "Built from operational experience",
+          heroTitle: "Security work, <em>made usable.</em>",
+          heroCopy: "Templates, checklists, and playbooks for the people who run networks and respond when something breaks. Start with a clear question, collect the right evidence, and leave with a plan your team can use.",
+          heroActions: ["Explore resources <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Meet Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>"],
+          asideLabel: "The field guide / 01—06",
+          asideText: "From the first alert to the next safer change.",
+          asideRows: ["Respond &amp; assess", "Harden &amp; prepare", "Troubleshoot &amp; automate"],
+          resourcesMicro: "The resource library",
+          resourcesTitle: "Find a starting point.",
+          resourcesIntro: "Six practical areas. Start with a sample action, then choose the next review your team needs.",
+          cards: {
+            "incident-response": {
+              kind: "Plan template",
+              title: "Incident response plan",
+              desc: "A usable plan for small and medium teams: who decides, who investigates, what to preserve, and how to communicate during an incident.",
+              list: ["Roles, contacts, and escalation paths", "First-hour actions and evidence log", "Scenario playbooks and recovery handoff"],
+              sample: "Sample action: confirm who can declare an incident before one occurs.",
+              featureMicro: "Start with this question",
+              quote: "When an alert becomes an incident, who has the authority to act?",
+              link: "Read NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
+            },
+            "network-assessment": {
+              kind: "Assessment checklist",
+              title: "Network security assessment",
+              desc: "Walk through the network from the outside in, then turn observations into a prioritized remediation list.",
+              list: ["Asset inventory and exposed services", "Segmentation and privileged access", "Logging, backups, and ownership"],
+              sample: "Sample action: trace one critical service from user to workload."
+            },
+            "fortigate-hardening": {
+              kind: "Hardening checklist",
+              title: "FortiGate hardening",
+              desc: "A review path for administrator access, management exposure, policy hygiene, telemetry, and recovery readiness.",
+              list: ["Restrict management to trusted sources", "Review accounts, MFA, and firmware", "Verify logs and configuration backups"],
+              sample: "Compare with Fortinet guidance ↗"
+            },
+            "nis2-readiness": {
+              kind: "Readiness checklist",
+              title: "NIS2 readiness for SMBs",
+              desc: "A planning checklist to identify gaps in risk ownership, incident handling, supplier oversight, and continuity.",
+              list: ["Check entity scope and responsibilities", "Record risks and evidence of controls", "Exercise reporting and recovery paths"],
+              sample: "Read the EU directive ↗"
+            },
+            "troubleshooting": {
+              kind: "Playbooks",
+              title: "Troubleshooting playbooks",
+              desc: "Repeatable investigations for outages and security control failures, built around symptoms, evidence, and decisions.",
+              list: ["VPN tunnel down or unstable", "SD-WAN path or failover issue", "Missing logs or unreachable device"],
+              sample: "Sample action: capture the last known good state before changing anything."
+            },
+            "automation": {
+              kind: "Automation templates",
+              title: "Ansible network automation",
+              desc: "Small, reviewable automations for the everyday work that should be consistent across devices.",
+              list: ["Inventory and connection patterns", "Configuration collection and backup", "Validation before and after changes"],
+              sample: "Explore Ansible network docs ↗"
+            }
+          },
+          approachMicro: "How these resources are built",
+          approachTitle: "Useful under pressure.",
+          approachIntro: "Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.",
+          approachCards: [
+            ["01 / OBSERVE", "Start with evidence", "Record the scope, symptoms, timestamps, and known good state before drawing conclusions."],
+            ["02 / DECIDE", "Make ownership clear", "Define who approves changes, who communicates, and when to escalate."],
+            ["03 / VERIFY", "Close the loop", "Test the outcome, keep a record, and turn the lesson into a repeatable control."]
+          ],
+          details: [
+            ["What should a good checklist produce?", "A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced."],
+            ["How should I use the NIS2 checklist?", "Use it to organize an internal gap review. Applicability and reporting obligations depend on your sector, size, and national implementation; confirm them with qualified legal or compliance advice."]
+          ],
+          aboutMicro: "About the author",
+          aboutLead: "I work at the point where network reliability and security operations meet.",
+          aboutText: "I bring more than ten years of experience in enterprise and service-provider networks, including firewall operations, data center networking, monitoring, incident escalation, and leading engineering teams. These field notes turn that hands-on work into clear resources for other teams.",
+          contactMicro: "Get in touch",
+          contactTitle: "Have a real-world problem to solve?",
+          contactText: "Tell me which resource would help your team most, or suggest a scenario for a future playbook.",
+          contactButton: "Email Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
+          footer: "© 2026 Vladimir Arjoca · Bucharest, Romania",
+          sources: "Primary references:"
+        },
+        ro: {
+          title: "Note de teren în securitate — Vladimir Arjoca",
+          description: "Șabloane practice de securitate cibernetică, checklist-uri de securitate a rețelei, ghiduri FortiGate, playbook-uri de troubleshooting și resurse de automatizare de la Vladimir Arjoca.",
+          skip: "Sari la conținut",
+          brand: "Note de teren<br>în securitate",
+          nav: ["Resurse", "Abordare", "Despre", "Contact"],
+          railFoot: "<b>Vladimir Arjoca</b><br>Inginerie de rețea &amp; securitate<br>București, România",
+          topLabel: "Securitate practică / Note de teren",
+          topRight: "Resurse independente",
+          eyebrow: "Construit din experiență operațională",
+          heroTitle: "Securitate, <em>pusă în practică.</em>",
+          heroCopy: "Șabloane, checklist-uri și playbook-uri pentru cei care administrează rețele și intervin atunci când ceva nu funcționează. Pornește de la o întrebare clară, colectează dovezile potrivite și încheie cu un plan pe care echipa îl poate folosi.",
+          heroActions: ["Explorează resursele <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Despre Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>"],
+          asideLabel: "Ghid practic / 01—06",
+          asideText: "De la prima alertă până la următoarea schimbare mai sigură.",
+          asideRows: ["Răspuns &amp; evaluare", "Hardening &amp; pregătire", "Diagnostic &amp; automatizare"],
+          resourcesMicro: "Biblioteca de resurse",
+          resourcesTitle: "Alege punctul de plecare.",
+          resourcesIntro: "Șase arii practice. Începe cu o acțiune concretă, apoi alege următoarea evaluare de care are nevoie echipa ta.",
+          cards: {
+            "incident-response": {
+              kind: "Șablon de plan",
+              title: "Plan de răspuns la incidente",
+              desc: "Un plan utilizabil pentru echipe mici și medii: cine decide, cine investighează, ce trebuie păstrat și cum se comunică în timpul unui incident.",
+              list: ["Roluri, contacte și căi de escaladare", "Acțiuni din prima oră și jurnal de dovezi", "Playbook-uri pe scenarii și predare către recovery"],
+              sample: "Acțiune exemplu: stabilește cine poate declara un incident înainte ca acesta să se producă.",
+              featureMicro: "Începe cu această întrebare",
+              quote: "Când o alertă devine incident, cine are autoritatea de a acționa?",
+              link: "Citește NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
+            },
+            "network-assessment": {
+              kind: "Checklist de evaluare",
+              title: "Evaluarea securității rețelei",
+              desc: "Analizează rețeaua din exterior spre interior, apoi transformă observațiile într-o listă de remediere prioritizată.",
+              list: ["Inventarul activelor și serviciile expuse", "Segmentarea și accesul privilegiat", "Logare, backup-uri și responsabilități"],
+              sample: "Acțiune exemplu: urmărește traseul unui serviciu critic de la utilizator până la workload."
+            },
+            "fortigate-hardening": {
+              kind: "Checklist de hardening",
+              title: "Hardening FortiGate",
+              desc: "Un traseu de verificare pentru accesul administratorilor, expunerea managementului, igiena politicilor, telemetrie și pregătirea pentru recovery.",
+              list: ["Restricționează managementul la surse de încredere", "Verifică conturile, MFA și firmware-ul", "Verifică logurile și backup-urile configurației"],
+              sample: "Compară cu recomandările Fortinet ↗"
+            },
+            "nis2-readiness": {
+              kind: "Checklist de pregătire",
+              title: "Pregătire NIS2 pentru IMM-uri",
+              desc: "Un checklist de planificare pentru identificarea lacunelor privind responsabilitatea riscurilor, gestionarea incidentelor, furnizorii și continuitatea.",
+              list: ["Verifică încadrarea entității și responsabilitățile", "Documentează riscurile și dovezile controalelor", "Testează fluxurile de raportare și recovery"],
+              sample: "Citește directiva UE ↗"
+            },
+            "troubleshooting": {
+              kind: "Playbook-uri",
+              title: "Playbook-uri de troubleshooting",
+              desc: "Investigații repetabile pentru întreruperi și probleme ale controalelor de securitate, construite în jurul simptomelor, dovezilor și deciziilor.",
+              list: ["Tunel VPN căzut sau instabil", "Problemă de cale sau failover SD-WAN", "Loguri lipsă sau echipament inaccesibil"],
+              sample: "Acțiune exemplu: capturează ultima stare cunoscută ca fiind bună înainte de orice modificare."
+            },
+            "automation": {
+              kind: "Șabloane de automatizare",
+              title: "Automatizare de rețea cu Ansible",
+              desc: "Automatizări mici și ușor de revizuit pentru activitățile zilnice care trebuie executate consecvent pe toate echipamentele.",
+              list: ["Inventar și modele de conectare", "Colectarea configurațiilor și backup", "Validare înainte și după schimbări"],
+              sample: "Explorează documentația Ansible pentru rețele ↗"
+            }
+          },
+          approachMicro: "Cum sunt construite aceste resurse",
+          approachTitle: "Utile sub presiune.",
+          approachIntro: "Fiecare resursă urmărește să facă următorul pas clar pentru operator, reviewer și persoana responsabilă de rezultat.",
+          approachCards: [
+            ["01 / OBSERVĂ", "Pornește de la dovezi", "Înregistrează scopul, simptomele, marcajele de timp și ultima stare cunoscută ca fiind bună înainte de concluzii."],
+            ["02 / DECIDE", "Clarifică responsabilitatea", "Definește cine aprobă schimbările, cine comunică și când se escaladează."],
+            ["03 / VERIFICĂ", "Închide bucla", "Testează rezultatul, păstrează o evidență și transformă lecția într-un control repetabil."]
+          ],
+          details: [
+            ["Ce ar trebui să producă un checklist bun?", "Un responsabil nominalizat, o constatare înregistrată, dovezi, o prioritate și următoarea acțiune. O simplă bifă nu arată dacă riscul a fost redus."],
+            ["Cum ar trebui să folosesc checklist-ul NIS2?", "Folosește-l pentru organizarea unei analize interne de gap. Aplicabilitatea și obligațiile de raportare depind de sector, dimensiune și implementarea națională; confirmă-le cu specialiști juridici sau de conformitate calificați."]
+          ],
+          aboutMicro: "Despre autor",
+          aboutLead: "Lucrez la intersecția dintre fiabilitatea rețelelor și operațiunile de securitate.",
+          aboutText: "Am peste zece ani de experiență în rețele enterprise și service-provider, incluzând operațiuni firewall, networking în data center, monitorizare, escaladarea incidentelor și coordonarea echipelor de inginerie. Aceste note de teren transformă experiența practică în resurse clare pentru alte echipe.",
+          contactMicro: "Contact",
+          contactTitle: "Ai o problemă reală de rezolvat?",
+          contactText: "Spune-mi ce resursă ar ajuta cel mai mult echipa ta sau propune un scenariu pentru un viitor playbook.",
+          contactButton: "Trimite email lui Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
+          footer: "© 2026 Vladimir Arjoca · București, România",
+          sources: "Referințe principale:"
+        }
+      };
+
+      const setText = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = value;
+      };
+      const setHTML = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.innerHTML = value;
+      };
+
+      function applyLanguage(lang) {
+        const t = translations[lang] || translations.en;
+        document.documentElement.lang = lang;
+        document.title = t.title;
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", t.description);
+
+        setText(".skip", t.skip);
+        setHTML(".brand span:last-child", t.brand);
+        document.querySelectorAll(".rail-nav a").forEach((el, i) => {
+          const number = el.querySelector("span")?.outerHTML || "";
+          el.innerHTML = number + " " + t.nav[i];
+        });
+        setHTML(".rail-foot", t.railFoot);
+        setText(".topline-label", t.topLabel);
+        setText(".topline-right", t.topRight);
+        setText(".hero .eyebrow", t.eyebrow);
+        setHTML("#hero-title", t.heroTitle);
+        setText(".hero-copy", t.heroCopy);
+        document.querySelectorAll(".actions .button").forEach((el, i) => el.innerHTML = t.heroActions[i]);
+        setText(".hero-aside .aside-label", t.asideLabel);
+        setText(".hero-aside > p", t.asideText);
+        document.querySelectorAll(".hero-aside li span:last-child").forEach((el, i) => el.innerHTML = t.asideRows[i]);
+
+        setText("#resources .section-head .micro", t.resourcesMicro);
+        setText("#resources-title", t.resourcesTitle);
+        setText("#resources .section-head > p", t.resourcesIntro);
+
+        Object.entries(t.cards).forEach(([id, card]) => {
+          const root = document.getElementById(id);
+          if (!root) return;
+          const kind = root.querySelector(".kind");
+          const title = root.querySelector("h3");
+          const desc = root.querySelector(".desc");
+          if (kind) kind.textContent = card.kind;
+          if (title) title.textContent = card.title;
+          if (desc) desc.textContent = card.desc;
+          root.querySelectorAll(".list li").forEach((el, i) => el.textContent = card.list[i]);
+          const sample = root.querySelector(".sample");
+          if (sample) {
+            const a = sample.querySelector("a");
+            if (a) a.textContent = card.sample;
+            else sample.textContent = card.sample;
+          }
+          if (id === "incident-response") {
+            setText("#incident-response .feature-side .micro", card.featureMicro);
+            setText("#incident-response blockquote", card.quote);
+            setHTML("#incident-response .feature-side a", card.link);
+          }
+        });
+
+        setText("#approach .section-head .micro", t.approachMicro);
+        setText("#approach-title", t.approachTitle);
+        setText("#approach .section-head > p", t.approachIntro);
+        document.querySelectorAll("#approach .sample-strip article").forEach((el, i) => {
+          const row = t.approachCards[i];
+          if (!row) return;
+          const span = el.querySelector("span");
+          const h3 = el.querySelector("h3");
+          const p = el.querySelector("p");
+          if (span) span.textContent = row[0];
+          if (h3) h3.textContent = row[1];
+          if (p) p.textContent = row[2];
+        });
+        document.querySelectorAll("#approach details").forEach((el, i) => {
+          const row = t.details[i];
+          if (!row) return;
+          const summary = el.querySelector("summary");
+          const p = el.querySelector("p");
+          if (summary) summary.textContent = row[0];
+          if (p) p.textContent = row[1];
+        });
+
+        setText("#about .micro", t.aboutMicro);
+        setText("#about .lead", t.aboutLead);
+        const aboutParagraphs = document.querySelectorAll("#about .about-grid > div:last-child > p");
+        if (aboutParagraphs[1]) aboutParagraphs[1].textContent = t.aboutText;
+
+        setText("#contact .micro", t.contactMicro);
+        setText("#contact-title", t.contactTitle);
+        setText("#contact p", t.contactText);
+        setHTML("#contact .button", t.contactButton);
+
+        setText(".footer > span", t.footer);
+        setText(".footer .sources > span", t.sources);
+
+        document.querySelectorAll(".lang-switch button").forEach(button => {
+          const active = button.dataset.lang === lang;
+          button.setAttribute("aria-pressed", String(active));
+        });
+
+        try { localStorage.setItem("site-language", lang); } catch (_) {}
+      }
+
+      document.querySelectorAll(".lang-switch button").forEach(button => {
+        button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+      });
+
+      let initial = "en";
+      try {
+        const saved = localStorage.getItem("site-language");
+        if (saved === "ro" || saved === "en") initial = saved;
+      } catch (_) {}
+      applyLanguage(initial);
+    })();
+  </script>
+
 </body>
 </html>
