@@ -38,7 +38,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="index.html"><span class="mark">VA</span><span>Network & Security Advisory</span></a>
+    <a class="brand" href="index.html"><span class="mark">VA</span><span data-brand>Network & Security Advisory</span></a>
     <div class="nav-right">
       <a class="back" href="index.html">← Back to resources</a>
       <div class="lang-switch" role="group" aria-label="Language">
@@ -102,7 +102,7 @@
 (() => {
   const translations = {
     en: {
-      pageTitle:"Contact — Network & Security Advisory", back:"← Back to resources", eyebrow:"Contact", hero:"Let’s talk.",
+      pageTitle:"Contact — Network & Security Advisory", brand:"Network & Security Advisory", back:"← Back to resources", eyebrow:"Contact", hero:"Let’s talk.",
       heroText:"The best way to start is a focused conversation about your current situation, what is blocking you, and what a practical next step could look like.",
       cta:"Schedule a Consultation ↗", best:"Best for",
       bestText:"Network security assessments, incident response planning, FortiGate reviews, troubleshooting, automation, and practical security guidance.",
@@ -113,7 +113,7 @@
       privacy:"This static website does not store form data on a server. Submitting the form opens your email application with the details you entered."
     },
     fr: {
-      pageTitle:"Contact — Notes de terrain en cybersécurité", back:"← Retour aux ressources", eyebrow:"Contact", hero:"Parlons-en.",
+      pageTitle:"Contact — Conseil en Réseaux & Sécurité", brand:"Conseil en Réseaux & Sécurité", back:"← Retour aux ressources", eyebrow:"Contact", hero:"Parlons-en.",
       heroText:"Le meilleur point de départ est une discussion ciblée sur votre situation actuelle, ce qui vous bloque et la prochaine étape pratique à envisager.",
       cta:"Planifier une consultation ↗", best:"Idéal pour",
       bestText:"Évaluations de sécurité réseau, planification de réponse aux incidents, revues FortiGate, dépannage, automatisation et conseils pratiques en cybersécurité.",
@@ -124,7 +124,7 @@
       privacy:"Ce site statique ne stocke pas les données du formulaire sur un serveur. L’envoi ouvre votre application de messagerie avec les informations saisies."
     },
     ro: {
-      pageTitle:"Contact — Note de teren în securitate", back:"← Înapoi la resurse", eyebrow:"Contact", hero:"Hai să discutăm.",
+      pageTitle:"Contact — Consultanță în Rețele & Securitate", brand:"Consultanță în Rețele & Securitate", back:"← Înapoi la resurse", eyebrow:"Contact", hero:"Hai să discutăm.",
       heroText:"Cel mai bun punct de plecare este o discuție concentrată pe situația ta actuală, ce te blochează și care ar putea fi următorul pas practic.",
       cta:"Programează o sesiune de consultanță ↗", best:"Potrivit pentru",
       bestText:"Evaluări de securitate a rețelei, planuri de răspuns la incidente, review-uri FortiGate, troubleshooting, automatizare și ghidare practică de securitate.",
@@ -140,6 +140,7 @@
   function apply(lang){
     const t = translations[lang] || translations.en;
     document.documentElement.lang = lang; document.title=t.pageTitle;
+    const brand=qs("[data-brand]"); if(brand) brand.textContent=t.brand;
     qs(".back").textContent=t.back; qs(".hero .eyebrow").textContent=t.eyebrow; qs("h1").textContent=t.hero;
     qs(".hero p").textContent=t.heroText; qs(".cta").textContent=t.cta; qs(".hero-note strong").textContent=t.best; qs(".hero-note p").textContent=t.bestText;
     qs(".intro .eyebrow").textContent=t.write; qs(".intro h2").textContent=t.prefer; qs(".intro p").textContent=t.intro;
