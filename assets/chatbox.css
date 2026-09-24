@@ -9,6 +9,8 @@
   transition:transform .2s ease,border-color .2s ease,background .2s ease;
 }
 .va-chat-launcher:hover{transform:translateY(-2px);border-color:#6ce2c7;background:#163038}
+.va-chat-launcher svg{width:25px;height:25px;display:block;color:#f2f1e8}
+
 .va-chat-launcher:focus-visible,.va-chat button:focus-visible,.va-chat textarea:focus-visible{outline:2px solid #6ce2c7;outline-offset:3px}
 .va-chat{
   position:fixed;right:22px;bottom:92px;z-index:1001;
