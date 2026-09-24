@@ -158,7 +158,7 @@
           <article class="resource" id="network-automation"><div class="resource-top"><span class="index">06 / AUTOMATE</span><span class="kind">Automation &amp; compliance</span></div><h3>Network automation &amp; compliance</h3><p class="desc">Use repeatable automation to standardize configuration, validate changes, collect evidence, and identify configuration drift.</p><ul class="list"><li>Inventory, reusable roles, and configuration backup</li><li>Pre-change and post-change validation</li><li>Compliance checks, reporting, and drift detection</li></ul><div class="sample"><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Explore Ansible network automation ↗</a></div></article>
           </div>
       </section>
-      <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">How these resources are built</span><h2 id="approach-title">Useful under pressure.</h2></div><p>Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.</p></div><div class="sample-strip"><article><span>01 / OBSERVE</span><h3>Start with evidence</h3><p>Record the scope, symptoms, timestamps, and known good state before drawing conclusions.</p></article><article><span>02 / DECIDE</span><h3>Make ownership clear</h3><p>Define who approves changes, who communicates, and when to escalate.</p></article><article><span>03 / VERIFY</span><h3>Close the loop</h3><p>Test the outcome, keep a record, and turn the lesson into a repeatable control.</p></article></div><div class="details-wrap"><details><summary>What should a good checklist produce?</summary><p>A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced.</p></details><details><summary>Where should I start?</summary><p>Start with the resource closest to the problem you need to solve: respond to an incident, assess the environment, harden controls, improve segmentation, diagnose failures, or automate repeatable work.</p></details></div></section>
+      <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">Advisory methodology</span><h2 id="approach-title">From findings to action.</h2></div><p>A structured way to understand the environment, prioritize what matters, and implement improvements that can be validated and maintained.</p></div><div class="sample-strip"><article><span>01 / ASSESS</span><h3>Understand the environment</h3><p>Review architecture, exposure, controls, operational dependencies, evidence, and the current security posture before recommending change.</p></article><article><span>02 / PRIORITIZE</span><h3>Focus on what matters</h3><p>Translate findings into clear risks, priorities, owners, and practical remediation actions based on impact and feasibility.</p></article><article><span>03 / IMPROVE</span><h3>Implement &amp; validate</h3><p>Strengthen controls, verify the outcome, document the change, and make improvements repeatable wherever possible.</p></article></div><div class="details-wrap"><details><summary>What should an advisory review produce?</summary><p>Clear findings supported by evidence, risk and impact context, an agreed priority, a named owner, a practical recommendation, and validation criteria.</p></details><details><summary>How does the methodology apply to the resources?</summary><p>The same cycle applies across incident response, security assessments, firewall hardening, segmentation, diagnostics, and automation: understand the current state, prioritize the gap, implement the change, and verify the result.</p></details></div></section>
       <section id="about" class="section" aria-labelledby="about-title"><div class="about-grid"><div><span class="micro">About</span><h2 id="about-title">Vladimir Arjoca.</h2></div><div><p class="lead">Network &amp; Security Engineer with 10+ years of hands-on experience across enterprise and service-provider environments.</p><p>I work with network security, firewalls, data-center infrastructure, monitoring, automation, and incident response. This site turns that experience into practical resources.</p><div class="expertise" aria-label="Areas of experience"><span>FortiGate / FortiManager</span><span>Palo Alto / Panorama</span><span>Cisco networking</span><span>Observability</span><span>Ansible / CI</span></div></div></div></section>
       <section id="contact" class="contact" aria-labelledby="contact-title"><div><span class="micro">Get in touch</span><h2 id="contact-title">Have a real-world problem to solve?</h2><p>Tell me which resource would help your team most, or suggest a scenario for a future playbook.</p></div><a class="button" href="mailto:vladimir.arjoca@outlook.com?subject=Network%20%26%20Security%20Advisory">Email Vladimir <span class="arrow" aria-hidden="true">↗</span></a></section>
       <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">NIST Zero Trust Architecture</a><a href="https://www.cisecurity.org/controls/v8-1" target="_blank" rel="noopener noreferrer">CIS Controls v8.1</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Palo Alto Networks best practices</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
@@ -172,7 +172,7 @@
           description: "Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.",
           skip: "Skip to content",
           brand: "Network &amp; Security<br>Advisory",
-          nav: ["Resources", "Approach", "About", "Contact"],
+          nav: ["Resources", "Methodology", "About", "Contact"],
           railFoot: "<b>Vladimir Arjoca</b><br>Network &amp; Security engineering<br>Bucharest, Romania",
           topLabel: "NETWORK & SECURITY / PRACTICAL GUIDANCE",
           topRight: "TECHNICAL RESOURCES & INSIGHTS",
@@ -233,17 +233,17 @@
               sample: "Explore Ansible network automation ↗"
             }
           },
-          approachMicro: "How these resources are built",
-          approachTitle: "Useful under pressure.",
-          approachIntro: "Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.",
+          approachMicro: "Advisory methodology",
+          approachTitle: "From findings to action.",
+          approachIntro: "A structured way to understand the environment, prioritize what matters, and implement improvements that can be validated and maintained.",
           approachCards: [
-            ["01 / OBSERVE", "Start with evidence", "Record the scope, symptoms, timestamps, and known good state before drawing conclusions."],
-            ["02 / DECIDE", "Make ownership clear", "Define who approves changes, who communicates, and when to escalate."],
-            ["03 / VERIFY", "Close the loop", "Test the outcome, keep a record, and turn the lesson into a repeatable control."]
+            ["01 / ASSESS", "Understand the environment", "Review architecture, exposure, controls, operational dependencies, evidence, and the current security posture before recommending change."],
+            ["02 / PRIORITIZE", "Focus on what matters", "Translate findings into clear risks, priorities, owners, and practical remediation actions based on impact and feasibility."],
+            ["03 / IMPROVE", "Implement & validate", "Strengthen controls, verify the outcome, document the change, and make improvements repeatable wherever possible."]
           ],
           details: [
-            ["What should a good checklist produce?", "A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced."],
-            ["Where should I start?", "Start with the resource closest to the problem you need to solve: respond to an incident, assess the environment, harden controls, improve segmentation, diagnose failures, or automate repeatable work."]
+            ["What should an advisory review produce?", "Clear findings supported by evidence, risk and impact context, an agreed priority, a named owner, a practical recommendation, and validation criteria."],
+            ["How does the methodology apply to the resources?", "The same cycle applies across incident response, security assessments, firewall hardening, segmentation, diagnostics, and automation: understand the current state, prioritize the gap, implement the change, and verify the result."]
           ],
           aboutMicro: "About",
           aboutLead: "Network & Security Engineer with 10+ years of hands-on experience across enterprise and service-provider environments.",
@@ -260,7 +260,7 @@
           description: "Guides pratiques pour la réponse aux incidents, l’évaluation de la sécurité réseau, le durcissement des firewalls, la segmentation, le dépannage, l’automatisation et la conformité de Vladimir Arjoca.",
           skip: "Aller au contenu",
           brand: "Conseil en Réseaux<br>&amp; Sécurité",
-          nav: ["Ressources", "Approche", "À propos", "Contact"],
+          nav: ["Ressources", "Méthodologie", "À propos", "Contact"],
           railFoot: "<b>Vladimir Arjoca</b><br>Ingénierie réseau &amp; sécurité<br>Bucarest, Roumanie",
           topLabel: "RÉSEAUX & SÉCURITÉ / CONSEILS PRATIQUES",
           topRight: "RESSOURCES TECHNIQUES & ANALYSES",
@@ -321,17 +321,17 @@
               sample: "Explorer l’automatisation réseau avec Ansible ↗"
             }
           },
-          approachMicro: "Comment ces ressources sont construites",
-          approachTitle: "Utiles sous pression.",
-          approachIntro: "Chaque ressource vise à rendre l’étape suivante claire pour l’opérateur, le réviseur et la personne responsable du résultat.",
+          approachMicro: "Méthodologie de conseil",
+          approachTitle: "Des constats à l’action.",
+          approachIntro: "Une méthode structurée pour comprendre l’environnement, prioriser ce qui compte et mettre en œuvre des améliorations pouvant être validées et maintenues.",
           approachCards: [
-            ["01 / OBSERVER", "Commencer par les preuves", "Consignez le périmètre, les symptômes, les horodatages et le dernier état connu comme fonctionnel avant de tirer des conclusions."],
-            ["02 / DÉCIDER", "Clarifier les responsabilités", "Définissez qui approuve les changements, qui communique et à quel moment escalader."],
-            ["03 / VÉRIFIER", "Boucler la boucle", "Testez le résultat, conservez une trace et transformez la leçon en contrôle reproductible."]
+            ["01 / ÉVALUER", "Comprendre l’environnement", "Examinez l’architecture, l’exposition, les contrôles, les dépendances opérationnelles, les preuves et la posture de sécurité actuelle avant de recommander un changement."],
+            ["02 / PRIORISER", "Se concentrer sur l’essentiel", "Transformez les constats en risques, priorités, responsables et actions de remédiation clairs selon l’impact et la faisabilité."],
+            ["03 / AMÉLIORER", "Mettre en œuvre & valider", "Renforcez les contrôles, vérifiez le résultat, documentez le changement et rendez les améliorations reproductibles lorsque cela est possible."]
           ],
           details: [
-            ["Que doit produire une bonne liste de contrôle ?", "Un responsable nommé, une constatation enregistrée, des preuves, une priorité et une prochaine action. Une simple case cochée ne montre pas si le risque a été réduit."],
-            ["Par où commencer ?", "Commencez par la ressource la plus proche du problème à résoudre : répondre à un incident, évaluer l’environnement, renforcer les contrôles, améliorer la segmentation, diagnostiquer les défaillances ou automatiser les tâches répétables."]
+            ["Que doit produire une revue de conseil ?", "Des constats clairs étayés par des preuves, le contexte de risque et d’impact, une priorité convenue, un responsable, une recommandation pratique et des critères de validation."],
+            ["Comment la méthodologie s’applique-t-elle aux ressources ?", "Le même cycle s’applique à la réponse aux incidents, aux évaluations de sécurité, au durcissement des firewalls, à la segmentation, au diagnostic et à l’automatisation : comprendre l’état actuel, prioriser l’écart, mettre en œuvre le changement et vérifier le résultat."]
           ],
           aboutMicro: "À propos",
           aboutLead: "Ingénieur réseau et sécurité avec plus de 10 ans d’expérience pratique dans des environnements d’entreprise et de fournisseurs de services.",
@@ -348,7 +348,7 @@
           description: "Ghiduri practice pentru incident response, evaluarea securității rețelei, firewall hardening, segmentare, troubleshooting, automatizare și conformitate de la Vladimir Arjoca.",
           skip: "Sari la conținut",
           brand: "Consultanță în Rețele<br>&amp; Securitate",
-          nav: ["Resurse", "Abordare", "Despre", "Contact"],
+          nav: ["Resurse", "Metodologie", "Despre", "Contact"],
           railFoot: "<b>Vladimir Arjoca</b><br>Inginerie de rețea &amp; securitate<br>București, România",
           topLabel: "REȚELE & SECURITATE / GHIDARE PRACTICĂ",
           topRight: "RESURSE TEHNICE & PERSPECTIVE",
@@ -409,17 +409,17 @@
               sample: "Explorează automatizarea de rețea cu Ansible ↗"
             }
           },
-          approachMicro: "Cum sunt construite aceste resurse",
-          approachTitle: "Utile sub presiune.",
-          approachIntro: "Fiecare resursă urmărește să facă următorul pas clar pentru operator, reviewer și persoana responsabilă de rezultat.",
+          approachMicro: "Metodologie de consultanță",
+          approachTitle: "De la constatări la acțiune.",
+          approachIntro: "O metodă structurată pentru a înțelege mediul, a prioritiza ceea ce contează și a implementa îmbunătățiri care pot fi validate și menținute.",
           approachCards: [
-            ["01 / OBSERVĂ", "Pornește de la dovezi", "Înregistrează scopul, simptomele, marcajele de timp și ultima stare cunoscută ca fiind bună înainte de concluzii."],
-            ["02 / DECIDE", "Clarifică responsabilitatea", "Definește cine aprobă schimbările, cine comunică și când se escaladează."],
-            ["03 / VERIFICĂ", "Închide bucla", "Testează rezultatul, păstrează o evidență și transformă lecția într-un control repetabil."]
+            ["01 / EVALUEAZĂ", "Înțelege mediul", "Analizează arhitectura, expunerea, controalele, dependențele operaționale, dovezile și postura actuală de securitate înainte de a recomanda schimbări."],
+            ["02 / PRIORITIZEAZĂ", "Concentrează-te pe ceea ce contează", "Transformă constatările în riscuri, priorități, responsabili și acțiuni practice de remediere în funcție de impact și fezabilitate."],
+            ["03 / ÎMBUNĂTĂȚEȘTE", "Implementează & validează", "Întărește controalele, verifică rezultatul, documentează schimbarea și transformă îmbunătățirile în practici repetabile acolo unde este posibil."]
           ],
           details: [
-            ["Ce ar trebui să producă un checklist bun?", "Un responsabil nominalizat, o constatare înregistrată, dovezi, o prioritate și următoarea acțiune. O simplă bifă nu arată dacă riscul a fost redus."],
-            ["De unde ar trebui să încep?", "Începe cu resursa cea mai apropiată de problema pe care trebuie să o rezolvi: răspuns la incident, evaluarea mediului, hardening, segmentare, diagnosticarea problemelor sau automatizarea activităților repetitive."]
+            ["Ce ar trebui să producă o evaluare de consultanță?", "Constatări clare susținute de dovezi, context de risc și impact, o prioritate agreată, un responsabil, o recomandare practică și criterii de validare."],
+            ["Cum se aplică metodologia resurselor?", "Același ciclu se aplică pentru incident response, security assessments, firewall hardening, segmentare, diagnostic și automatizare: înțelege starea actuală, prioritizează gap-ul, implementează schimbarea și verifică rezultatul."]
           ],
           aboutMicro: "Despre",
           aboutLead: "Network & Security Engineer cu peste 10 ani de experiență practică în medii enterprise și service-provider.",
