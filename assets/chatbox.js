@@ -77,7 +77,7 @@
   launcher.className="va-chat-launcher";
   launcher.type="button";
   launcher.setAttribute("aria-label","Open Network & Security Assistant");
-  launcher.textContent="VA";
+  launcher.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.75 5.75A2.75 2.75 0 0 1 7.5 3h9A2.75 2.75 0 0 1 19.25 5.75v7.5A2.75 2.75 0 0 1 16.5 16h-5.2l-4.42 3.68a.75.75 0 0 1-1.23-.58V16.9A2.75 2.75 0 0 1 4.75 14V5.75Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 8.5h8M8 11.75h5.25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
   const panel=document.createElement("section");
   panel.className="va-chat";
