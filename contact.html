@@ -155,8 +155,7 @@
   }
 
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
-  let initial="en"; try{const saved=localStorage.getItem("site-language"); if(["en","fr","ro"].includes(saved)) initial=saved}catch(_){}
-  apply(initial);
+  apply("en");
 
   qs("#contact-form").addEventListener("submit", e => {
     e.preventDefault();
