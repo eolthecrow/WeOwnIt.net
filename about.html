@@ -172,7 +172,7 @@
   </section>
 </main>
 
-<footer><div class="wrap">© 2026 Vladimir Arjoca · Network & Security Advisory</div></footer>
+<footer><div class="wrap">© 2026 Vladimir Arjoca · <span data-footer-brand>Network & Security Advisory</span></div></footer>
 
 <script>
 (() => {
@@ -265,6 +265,7 @@
     document.documentElement.lang=lang;
     document.title=d.pageTitle;
     const brand=document.querySelector("[data-brand]"); if(brand) brand.textContent=d.brand;
+    const footerBrand=document.querySelector("[data-footer-brand]"); if(footerBrand) footerBrand.textContent=d.brand;
     document.querySelectorAll("[data-k]").forEach(el=>{
       const key=el.dataset.k;
       if(d[key]!==undefined) el.innerHTML=d[key];
