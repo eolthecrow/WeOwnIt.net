@@ -23,7 +23,7 @@
     header{position:sticky;top:0;z-index:20;background:rgba(10,21,28,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
     .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .brand{display:flex;align-items:center;gap:.75rem;font-weight:750;letter-spacing:-.035em}
-    .mark{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--accent);color:var(--accent);font-family:var(--mono);font-size:.82rem}
+    .mark{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--accent);color:var(--accent);font-family:var(--mono);font-size:.82rem}.mark img{width:30px;height:30px;display:block}
     .nav-right{display:flex;align-items:center;gap:1rem}
     .back{color:var(--muted);font-size:.9rem}
     .back:hover{color:var(--accent)}
@@ -78,7 +78,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="index.html"><span class="mark">VA</span><span data-brand>Network & Security Advisory</span></a>
+    <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><img src="assets/va-symbol.svg" alt=""></span><span data-brand>Network & Security Advisory</span></a>
     <div class="nav-right">
       <a class="back" href="contact.html" data-k="back">← Back to contact</a>
       <div class="lang-switch" role="group" aria-label="Language">
