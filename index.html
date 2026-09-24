@@ -77,6 +77,7 @@
     .resource .list li::before { content:"/"; font-family:var(--mono); color:var(--accent) }
     .resource .sample { border-top:1px solid var(--line-strong); padding-top:1rem; color:var(--amber); font-size:.83rem; font-weight:650; margin-top:auto }
     .resource .sample a:hover { text-decoration:underline; text-underline-offset:4px }
+    .vendor-links { display:flex; flex-direction:column; gap:.45rem }
     .resource.featured .list { margin:0 0 1.5rem }
     .resource.featured .feature-side { border-left:1px solid #42736e; padding-left:clamp(1.5rem,3vw,3rem); display:flex; flex-direction:column; justify-content:center }
     .feature-side .micro { color:var(--amber) }
@@ -151,7 +152,7 @@
             <div class="feature-side"><span class="micro">Start with this question</span><blockquote>When an alert becomes an incident, who has the authority to act?</blockquote><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">Read NIST SP 800-61 Rev. 3 <span aria-hidden="true">↗</span></a></div>
           </article>
           <article class="resource" id="network-assessment"><div class="resource-top"><span class="index">02 / ASSESS</span><span class="kind">Assessment framework</span></div><h3>Network security assessment</h3><p class="desc">Review the network from exposure and access through segmentation, management, logging, resilience, and operational ownership.</p><ul class="list"><li>Assets, exposed services, and management planes</li><li>Segmentation, privileged access, and trust boundaries</li><li>Logging, backups, resilience, and remediation priorities</li></ul><div class="sample">Sample action: trace one critical service from user to workload and document every trust boundary.</div></article>
-          <article class="resource" id="firewall-hardening"><div class="resource-top"><span class="index">03 / HARDEN</span><span class="kind">Security checklist</span></div><h3>Firewall security &amp; hardening</h3><p class="desc">A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.</p><ul class="list"><li>Management exposure, accounts, MFA, and trusted access</li><li>Policy review, object hygiene, and least privilege</li><li>Firmware, logging, backups, and recovery controls</li></ul><div class="sample"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Example: compare with Fortinet best practices ↗</a></div></article>
+          <article class="resource" id="firewall-hardening"><div class="resource-top"><span class="index">03 / HARDEN</span><span class="kind">Security checklist</span></div><h3>Firewall security &amp; hardening</h3><p class="desc">A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.</p><ul class="list"><li>Management exposure, accounts, MFA, and trusted access</li><li>Policy review, object hygiene, and least privilege</li><li>Firmware, logging, backups, and recovery controls</li></ul><div class="sample"><div class="vendor-links"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Compare with Fortinet best practices ↗</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Compare with Palo Alto Networks best practices ↗</a></div></div></article>
           <article class="resource" id="network-architecture"><div class="resource-top"><span class="index">04 / SEGMENT</span><span class="kind">Architecture guidance</span></div><h3>Network architecture &amp; segmentation</h3><p class="desc">Design and review trust boundaries so critical services, users, management systems, and external connectivity are separated intentionally.</p><ul class="list"><li>Security zones, VLANs, VRFs, and trust boundaries</li><li>North-south and east-west traffic paths</li><li>Management, user, server, and third-party segmentation</li></ul><div class="sample"><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">Review NIST Zero Trust Architecture ↗</a></div></article>
           <article class="resource" id="incident-diagnostics"><div class="resource-top"><span class="index">05 / DIAGNOSE</span><span class="kind">Diagnostic playbooks</span></div><h3>Troubleshooting &amp; incident diagnostics</h3><p class="desc">Repeatable investigations for outages and security-control failures, structured around symptoms, evidence, hypotheses, and verification.</p><ul class="list"><li>VPN, routing, SD-WAN, and connectivity failures</li><li>Missing logs, unreachable devices, and control-plane issues</li><li>Known-good baselines, packet evidence, and validation</li></ul><div class="sample">Sample action: capture the last known good state before changing anything.</div></article>
           <article class="resource" id="network-automation"><div class="resource-top"><span class="index">06 / AUTOMATE</span><span class="kind">Automation &amp; compliance</span></div><h3>Network automation &amp; compliance</h3><p class="desc">Use repeatable automation to standardize configuration, validate changes, collect evidence, and identify configuration drift.</p><ul class="list"><li>Inventory, reusable roles, and configuration backup</li><li>Pre-change and post-change validation</li><li>Compliance checks, reporting, and drift detection</li></ul><div class="sample"><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Explore Ansible network automation ↗</a></div></article>
@@ -160,7 +161,7 @@
       <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">How these resources are built</span><h2 id="approach-title">Useful under pressure.</h2></div><p>Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.</p></div><div class="sample-strip"><article><span>01 / OBSERVE</span><h3>Start with evidence</h3><p>Record the scope, symptoms, timestamps, and known good state before drawing conclusions.</p></article><article><span>02 / DECIDE</span><h3>Make ownership clear</h3><p>Define who approves changes, who communicates, and when to escalate.</p></article><article><span>03 / VERIFY</span><h3>Close the loop</h3><p>Test the outcome, keep a record, and turn the lesson into a repeatable control.</p></article></div><div class="details-wrap"><details><summary>What should a good checklist produce?</summary><p>A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced.</p></details><details><summary>Where should I start?</summary><p>Start with the resource closest to the problem you need to solve: respond to an incident, assess the environment, harden controls, improve segmentation, diagnose failures, or automate repeatable work.</p></details></div></section>
       <section id="about" class="section" aria-labelledby="about-title"><div class="about-grid"><div><span class="micro">About</span><h2 id="about-title">Vladimir Arjoca.</h2></div><div><p class="lead">Network &amp; Security Engineer with 10+ years of hands-on experience across enterprise and service-provider environments.</p><p>I work with network security, firewalls, data-center infrastructure, monitoring, automation, and incident response. This site turns that experience into practical resources.</p><div class="expertise" aria-label="Areas of experience"><span>FortiGate / FortiManager</span><span>Palo Alto / Panorama</span><span>Cisco networking</span><span>Observability</span><span>Ansible / CI</span></div></div></div></section>
       <section id="contact" class="contact" aria-labelledby="contact-title"><div><span class="micro">Get in touch</span><h2 id="contact-title">Have a real-world problem to solve?</h2><p>Tell me which resource would help your team most, or suggest a scenario for a future playbook.</p></div><a class="button" href="mailto:vladimir.arjoca@outlook.com?subject=Network%20%26%20Security%20Advisory">Email Vladimir <span class="arrow" aria-hidden="true">↗</span></a></section>
-      <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">NIST Zero Trust Architecture</a><a href="https://www.cisecurity.org/controls/v8-1" target="_blank" rel="noopener noreferrer">CIS Controls v8.1</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
+      <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">NIST Zero Trust Architecture</a><a href="https://www.cisecurity.org/controls/v8-1" target="_blank" rel="noopener noreferrer">CIS Controls v8.1</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Palo Alto Networks best practices</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
     </main>
   </div>
   <script>
@@ -208,7 +209,7 @@
               title: "Firewall security & hardening",
               desc: "A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.",
               list: ["Management exposure, accounts, MFA, and trusted access", "Policy review, object hygiene, and least privilege", "Firmware, logging, backups, and recovery controls"],
-              sample: "Example: compare with Fortinet best practices ↗"
+              links: ["Compare with Fortinet best practices ↗", "Compare with Palo Alto Networks best practices ↗"]
             },
             "network-architecture": {
               kind: "Architecture guidance",
@@ -296,7 +297,7 @@
               title: "Sécurité & durcissement des firewalls",
               desc: "Une revue indépendante du fournisseur couvrant la gestion des firewalls, l’hygiène des politiques, l’administration sécurisée, la télémétrie, le cycle de vie et la récupération.",
               list: ["Exposition de la gestion, comptes, MFA et accès de confiance", "Revue des politiques, hygiène des objets et moindre privilège", "Firmware, journalisation, sauvegardes et contrôles de récupération"],
-              sample: "Exemple : comparer avec les bonnes pratiques Fortinet ↗"
+              links: ["Comparer avec les bonnes pratiques Fortinet ↗", "Comparer avec les bonnes pratiques Palo Alto Networks ↗"]
             },
             "network-architecture": {
               kind: "Guide d’architecture",
@@ -384,7 +385,7 @@
               title: "Securitate & hardening pentru firewall",
               desc: "O evaluare vendor-neutral pentru managementul firewall-urilor, igiena politicilor, administrare securizată, telemetrie, lifecycle și pregătirea pentru recovery.",
               list: ["Expunerea managementului, conturi, MFA și acces de încredere", "Revizuirea politicilor, igiena obiectelor și least privilege", "Firmware, logare, backup-uri și controale de recovery"],
-              sample: "Exemplu: compară cu bunele practici Fortinet ↗"
+              links: ["Compară cu bunele practici Fortinet ↗", "Compară cu bunele practici Palo Alto Networks ↗"]
             },
             "network-architecture": {
               kind: "Ghid de arhitectură",
@@ -481,9 +482,14 @@
           root.querySelectorAll(".list li").forEach((el, i) => el.textContent = card.list[i]);
           const sample = root.querySelector(".sample");
           if (sample) {
-            const a = sample.querySelector("a");
-            if (a) a.textContent = card.sample;
-            else sample.textContent = card.sample;
+            const links = sample.querySelectorAll("a");
+            if (card.links && links.length) {
+              links.forEach((a, i) => { if (card.links[i] !== undefined) a.textContent = card.links[i]; });
+            } else {
+              const a = sample.querySelector("a");
+              if (a) a.textContent = card.sample;
+              else sample.textContent = card.sample;
+            }
           }
           if (id === "incident-response") {
             setText("#incident-response .feature-side .micro", card.featureMicro);
