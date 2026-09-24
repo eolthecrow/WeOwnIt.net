@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a151c">
+  <meta name="description" content="Practical cybersecurity templates, network security checklists, FortiGate guidance, troubleshooting playbooks, and automation resources from Vladimir Arjoca.">
+  <title>Security Field Notes — Vladimir Arjoca</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a151c'/%3E%3Cpath d='M13 17h38v30H13z' fill='none' stroke='%236ce2c7' stroke-width='4'/%3E%3Cpath d='m22 27 10 12 10-12' fill='none' stroke='%23f2f1e8' stroke-width='4'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; --bg:#0a151c; --bg2:#0e1d25; --panel:#12232b; --line:#29404a; --line-strong:#507078; --ink:#f2f1e8; --muted:#a6b8ba; --quiet:#81969a; --accent:#6ce2c7; --accent-dark:#123b39; --amber:#f4bc79; --font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace }
+    * { box-sizing:border-box }
+    html { scroll-behavior:smooth }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:16px; line-height:1.55 }
+    a { color:inherit; text-decoration:none }
+    a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px }
+    ::selection { background:var(--accent); color:var(--bg) }
+    .skip { position:absolute; z-index:10; top:-5rem; left:1rem; padding:.65rem 1rem; background:var(--accent); color:var(--bg) }
+    .skip:focus { top:1rem }
+    .shell { max-width:1510px; margin:0 auto; display:grid; grid-template-columns:255px minmax(0,1fr); min-height:100vh }
+    .rail { border-right:1px solid var(--line); padding:2.2rem 1.55rem 1.8rem; display:flex; flex-direction:column; gap:3.4rem; position:sticky; top:0; height:100vh; min-height:630px; background:var(--bg); z-index:3 }
+    .brand { display:flex; align-items:center; gap:.75rem; line-height:1.1; font-weight:750; letter-spacing:-.035em; font-size:1.05rem }
+    .mark { width:41px; height:41px; display:grid; place-items:center; color:var(--accent); border:1px solid var(--accent); font-family:var(--mono); font-size:.82rem; letter-spacing:-.08em; flex:none }
+    .brand span:last-child { max-width:135px }
+    .rail-nav { display:grid; gap:.12rem }
+    .rail-nav a { display:flex; align-items:baseline; gap:.7rem; padding:.64rem .25rem; color:var(--muted); font-size:.91rem; transition:color .2s,transform .2s }
+    .rail-nav a:hover { color:var(--accent); transform:translateX(3px) }
+    .rail-nav span { font-family:var(--mono); font-size:.72rem; color:var(--quiet) }
+    .rail-foot { margin-top:auto; border-top:1px solid var(--line); padding-top:1.2rem; color:var(--quiet); font-size:.78rem; line-height:1.5 }
+    .rail-foot b { color:var(--muted); font-weight:600 }
+    .main { min-width:0 }
+    .topline { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding:0 clamp(1.3rem,4vw,4rem); color:var(--muted); font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.13em }
+    .topline-right { display:flex; align-items:center; gap:.62rem; color:var(--accent) }
+    .topline-right::before { content:""; display:block; width:7px; height:7px; border-radius:50%; background:var(--accent) }
+    .hero { padding:clamp(3.4rem,7vw,7.5rem) clamp(1.3rem,4vw,4rem) clamp(3.6rem,6vw,6rem); display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); gap:clamp(2rem,5vw,5rem); position:relative; overflow:hidden; border-bottom:1px solid var(--line) }
+    .hero::before { content:""; position:absolute; inset:0 0 auto auto; width:32%; height:100%; opacity:.22; pointer-events:none; background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px); background-size:40px 40px; mask-image:linear-gradient(to left,#000,transparent) }
+    .hero > * { position:relative }
+    .eyebrow { font-family:var(--mono); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:.75rem; margin:0 0 1.5rem }
+    .eyebrow::before { content:""; width:25px; height:1px; background:currentColor; flex:none }
+    h1,h2,h3,p { margin-top:0 }
+    h1 { max-width:840px; font-size:clamp(3.25rem,6.8vw,7.4rem); line-height:.99; letter-spacing:-.075em; font-weight:670; margin:0 0 1.8rem }
+    h1 em { font-style:normal; color:var(--accent) }
+    .hero-copy { max-width:670px; color:var(--muted); font-size:clamp(1.05rem,1.35vw,1.27rem); line-height:1.65; margin-bottom:2.15rem }
+    .actions { display:flex; flex-wrap:wrap; gap:.75rem }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:1.8rem; min-height:47px; padding:.7rem 1rem; background:var(--accent); border:1px solid var(--accent); color:#07211f; font-weight:700; font-size:.9rem; transition:background .2s,color .2s,transform .2s }
+    .button:hover { background:#a1f0de; transform:translateY(-2px) }
+    .button.secondary { color:var(--ink); background:transparent; border-color:var(--line-strong) }
+    .button.secondary:hover { border-color:var(--accent); color:var(--accent); background:transparent }
+    .arrow { font-size:1.12rem; line-height:1 }
+    .hero-aside { align-self:end; background:var(--bg2); border:1px solid var(--line-strong); padding:1.35rem; max-width:370px; width:100%; box-shadow:10px 10px 0 rgba(7,16,21,.5) }
+    .aside-label,.micro { color:var(--accent); font-family:var(--mono); text-transform:uppercase; letter-spacing:.11em; font-size:.75rem }
+    .hero-aside p { font-size:1.38rem; line-height:1.27; font-weight:600; letter-spacing:-.035em; margin:1.05rem 0 1.35rem }
+    .hero-aside ul { margin:0; padding:0; list-style:none; border-top:1px solid var(--line) }
+    .hero-aside li { display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; border-bottom:1px solid var(--line); font-size:.82rem; color:var(--muted) }
+    .hero-aside li span:first-child { font-family:var(--mono); color:var(--accent) }
+    .section { padding:clamp(3.2rem,6vw,6rem) clamp(1.3rem,4vw,4rem); border-bottom:1px solid var(--line); scroll-margin-top:1rem }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:2rem; margin-bottom:2.1rem }
+    .section-head h2 { font-size:clamp(2.3rem,4vw,4.4rem); letter-spacing:-.065em; line-height:1.06; margin:.65rem 0 0; font-weight:640 }
+    .section-head > p { color:var(--muted); max-width:320px; font-size:.94rem; margin:0 }
+    .resource-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line) }
+    .resource { min-width:0; background:var(--bg2); padding:clamp(1.4rem,2.5vw,2.55rem); border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column; min-height:375px; transition:background .2s }
+    .resource:hover { background:#13262e }
+    .resource.featured { grid-column:span 2; background:#14302f; min-height:350px; display:grid; grid-template-columns:minmax(0,1.12fr) minmax(230px,.88fr); gap:clamp(1.5rem,4vw,4rem) }
+    .resource-top { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:2rem }
+    .resource .index { font-family:var(--mono); color:var(--accent); font-size:.83rem }
+    .resource .kind { color:var(--quiet); text-transform:uppercase; font-family:var(--mono); font-size:.69rem; letter-spacing:.11em; text-align:right }
+    .resource h3 { font-size:clamp(1.55rem,2.45vw,2.35rem); line-height:1.12; letter-spacing:-.055em; font-weight:630; margin:0 0:.85rem }
+    .resource .desc { color:var(--muted); font-size:.94rem; max-width:560px; margin:0 0:1.5rem }
+    .resource .list { list-style:none; padding:0; margin:auto 0 1.55rem; display:grid; gap:.48rem; color:#d4dedb; font-size:.88rem }
+    .resource .list li { display:flex; gap:.55rem; align-items:baseline }
+    .resource .list li::before { content:"/"; font-family:var(--mono); color:var(--accent) }
+    .resource .sample { border-top:1px solid var(--line-strong); padding-top:1rem; color:var(--amber); font-size:.83rem; font-weight:650; margin-top:auto }
+    .resource .sample a:hover { text-decoration:underline; text-underline-offset:4px }
+    .resource.featured .list { margin:0 0 1.5rem }
+    .resource.featured .feature-side { border-left:1px solid #42736e; padding-left:clamp(1.5rem,3vw,3rem); display:flex; flex-direction:column; justify-content:center }
+    .feature-side .micro { color:var(--amber) }
+    .feature-side blockquote { margin:1.1rem 0 1.5rem; font-size:1.25rem; line-height:1.4; letter-spacing:-.035em }
+    .feature-side a { align-self:flex-start; color:var(--accent); font-size:.89rem; font-weight:650; border-bottom:1px solid currentColor; padding-bottom:.2rem }
+    .sample-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line) }
+    .sample-strip article { background:var(--bg); padding:1.55rem }
+    .sample-strip span { font-family:var(--mono); color:var(--accent); font-size:.73rem }
+    .sample-strip h3 { font-size:1.23rem; letter-spacing:-.035em; margin:.8rem 0 .55rem }
+    .sample-strip p { color:var(--muted); font-size:.88rem; margin:0 }
+    .details-wrap { margin-top:2.2rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem }
+    details { border:1px solid var(--line); background:var(--bg2); padding:0 1.1rem }
+    summary { cursor:pointer; list-style:none; padding:1rem 1.75rem 1rem 0; font-size:.94rem; font-weight:600; position:relative }
+    summary::-webkit-details-marker { display:none }
+    summary::after { content:"+"; position:absolute; right:0; color:var(--accent); font-size:1.25rem; top:.75rem }
+    details[open] summary::after { content:"−" }
+    details p { color:var(--muted); font-size:.88rem; padding-bottom:1rem; margin:0 }
+    .about-grid { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:clamp(2rem,5vw,6rem); align-items:start }
+    .about-grid h2 { font-size:clamp(2.3rem,4vw,4.4rem); line-height:1.08; letter-spacing:-.065em; margin:.7rem 0 0 }
+    .about-grid .lead { font-size:1.25rem; color:var(--ink); line-height:1.5; margin:0 0:1.5rem; max-width:690px }
+    .about-grid p { color:var(--muted); max-width:690px }
+    .expertise { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.7rem }
+    .expertise span { border:1px solid var(--line-strong); padding:.37rem .65rem; font-family:var(--mono); font-size:.71rem; color:#c8d8d5 }
+    .contact { background:var(--accent); color:#092321; padding:clamp(3.2rem,6vw,6rem) clamp(1.3rem,4vw,4rem); display:flex; justify-content:space-between; align-items:end; gap:2rem }
+    .contact .micro { color:#195750 }
+    .contact h2 { max-width:780px; font-size:clamp(2.55rem,5vw,5.45rem); line-height:1.03; letter-spacing:-.07em; margin:.7rem 0 1rem }
+    .contact p { margin:0; max-width:560px; font-size:1rem; color:#24544f }
+    .contact .button { color:var(--ink); background:var(--bg); border-color:var(--bg); flex:none }
+    .contact .button:hover { background:#1a3938 }
+    .footer { padding:2.5rem clamp(1.3rem,4vw,4rem) 2rem; display:grid; grid-template-columns:1fr auto; gap:1.5rem; color:var(--quiet); font-size:.82rem }
+    .footer .sources { grid-column:1/-1; border-top:1px solid var(--line); padding-top:1.3rem; display:flex; flex-wrap:wrap; column-gap:1.7rem; row-gap:.4rem }
+    .sources a { text-decoration:underline; text-underline-offset:3px; color:var(--muted) }
+    .sources a:hover,.footer a:hover { color:var(--accent) }
+    @media(max-width:1100px) { .shell { grid-template-columns:190px minmax(0,1fr) } .rail { padding:1.5rem 1rem } .hero { grid-template-columns:1fr } .hero-aside { max-width:none; display:none } }
+    @media(max-width:780px) { .shell { display:block } .rail { position:static; height:auto; min-height:0; padding:1rem 1.25rem; border-right:0; border-bottom:1px solid var(--line); display:block } .brand { font-size:.96rem } .mark { width:34px; height:34px } .rail-nav { margin-top:.9rem; display:flex; gap:1rem; overflow-x:auto; scrollbar-width:none } .rail-nav a { white-space:nowrap; padding:.25rem 0; font-size:.82rem } .rail-nav span,.rail-foot { display:none } .topline { height:46px; padding:0 1.25rem; font-size:.66rem } .hero { padding:3.3rem 1.25rem 3.6rem; display:block } h1 { font-size:clamp(3.15rem,10vw,5.3rem) } .section { padding:3.5rem 1.25rem } .section-head { display:block } .section-head > p { margin-top:1rem } .resource-grid { grid-template-columns:1fr } .resource.featured { grid-column:span 1; display:block } .resource.featured .feature-side { border:0; border-top:1px solid #42736e; padding:1.1rem 0 0; margin-top:1rem } .resource { min-height:0 } .resource .list { margin:0 0 1.2rem } .resource-top { margin-bottom:1.4rem } .sample-strip,.details-wrap,.about-grid { grid-template-columns:1fr } .contact { display:block; padding:3.7rem 1.25rem } .contact .button { margin-top:1.7rem } .footer { grid-template-columns:1fr } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto } *,*::before,*::after { transition:none!important } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <aside class="rail" aria-label="Site navigation">
+      <a class="brand" href="#top" aria-label="Security Field Notes, top of page"><span class="mark" aria-hidden="true">VA</span><span>Security<br>Field Notes</span></a>
+      <nav class="rail-nav" aria-label="Main navigation">
+        <a href="#resources"><span>01</span> Resources</a>
+        <a href="#approach"><span>02</span> Approach</a>
+        <a href="#about"><span>03</span> About</a>
+        <a href="#contact"><span>04</span> Contact</a>
+      </nav>
+      <div class="rail-foot"><b>Vladimir Arjoca</b><br>Network &amp; security engineering<br>Bucharest, Romania</div>
+    </aside>
+    <main id="main" class="main">
+      <div class="topline" id="top"><span>Practical security / Field notes</span><span class="topline-right">Independent resources</span></div>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Built from operational experience</p>
+          <h1 id="hero-title">Security work, <em>made usable.</em></h1>
+          <p class="hero-copy">Templates, checklists, and playbooks for the people who run networks and respond when something breaks. Start with a clear question, collect the right evidence, and leave with a plan your team can use.</p>
+          <div class="actions"><a class="button" href="#resources">Explore resources <span class="arrow" aria-hidden="true">↗</span></a><a class="button secondary" href="#about">Meet Vladimir <span class="arrow" aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="hero-aside" aria-label="Resource overview">
+          <span class="aside-label">The field guide / 01—06</span>
+          <p>From the first alert to the next safer change.</p>
+          <ul><li><span>01—02</span><span>Respond &amp; assess</span></li><li><span>03—04</span><span>Harden &amp; prepare</span></li><li><span>05—06</span><span>Troubleshoot &amp; automate</span></li></ul>
+        </div>
+      </section>
+      <section id="resources" class="section" aria-labelledby="resources-title">
+        <div class="section-head"><div><span class="micro">The resource library</span><h2 id="resources-title">Find a starting point.</h2></div><p>Six practical areas. Start with a sample action, then choose the next review your team needs.</p></div>
+        <div class="resource-grid">
+          <article class="resource featured" id="incident-response">
+            <div><div class="resource-top"><span class="index">01 / RESPONSE</span><span class="kind">Plan template</span></div><h3>Incident response plan</h3><p class="desc">A usable plan for small and medium teams: who decides, who investigates, what to preserve, and how to communicate during an incident.</p><ul class="list"><li>Roles, contacts, and escalation paths</li><li>First-hour actions and evidence log</li><li>Scenario playbooks and recovery handoff</li></ul><div class="sample">Sample action: confirm who can declare an incident before one occurs.</div></div>
+            <div class="feature-side"><span class="micro">Start with this question</span><blockquote>When an alert becomes an incident, who has the authority to act?</blockquote><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">Read NIST SP 800-61 Rev. 3 <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="resource" id="network-assessment"><div class="resource-top"><span class="index">02 / VISIBILITY</span><span class="kind">Assessment checklist</span></div><h3>Network security assessment</h3><p class="desc">Walk through the network from the outside in, then turn observations into a prioritized remediation list.</p><ul class="list"><li>Asset inventory and exposed services</li><li>Segmentation and privileged access</li><li>Logging, backups, and ownership</li></ul><div class="sample">Sample action: trace one critical service from user to workload.</div></article>
+          <article class="resource" id="fortigate-hardening"><div class="resource-top"><span class="index">03 / CONTROL</span><span class="kind">Hardening checklist</span></div><h3>FortiGate hardening</h3><p class="desc">A review path for administrator access, management exposure, policy hygiene, telemetry, and recovery readiness.</p><ul class="list"><li>Restrict management to trusted sources</li><li>Review accounts, MFA, and firmware</li><li>Verify logs and configuration backups</li></ul><div class="sample"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Compare with Fortinet guidance ↗</a></div></article>
+          <article class="resource" id="nis2-readiness"><div class="resource-top"><span class="index">04 / GOVERNANCE</span><span class="kind">Readiness checklist</span></div><h3>NIS2 readiness for SMBs</h3><p class="desc">A planning checklist to identify gaps in risk ownership, incident handling, supplier oversight, and continuity.</p><ul class="list"><li>Check entity scope and responsibilities</li><li>Record risks and evidence of controls</li><li>Exercise reporting and recovery paths</li></ul><div class="sample"><a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng" target="_blank" rel="noopener noreferrer">Read the EU directive ↗</a></div></article>
+          <article class="resource" id="troubleshooting"><div class="resource-top"><span class="index">05 / DIAGNOSIS</span><span class="kind">Playbooks</span></div><h3>Troubleshooting playbooks</h3><p class="desc">Repeatable investigations for outages and security control failures, built around symptoms, evidence, and decisions.</p><ul class="list"><li>VPN tunnel down or unstable</li><li>SD-WAN path or failover issue</li><li>Missing logs or unreachable device</li></ul><div class="sample">Sample action: capture the last known good state before changing anything.</div></article>
+          <article class="resource" id="automation"><div class="resource-top"><span class="index">06 / SCALE</span><span class="kind">Automation templates</span></div><h3>Ansible network automation</h3><p class="desc">Small, reviewable automations for the everyday work that should be consistent across devices.</p><ul class="list"><li>Inventory and connection patterns</li><li>Configuration collection and backup</li><li>Validation before and after changes</li></ul><div class="sample"><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Explore Ansible network docs ↗</a></div></article>
+        </div>
+      </section>
+      <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">How these resources are built</span><h2 id="approach-title">Useful under pressure.</h2></div><p>Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.</p></div><div class="sample-strip"><article><span>01 / OBSERVE</span><h3>Start with evidence</h3><p>Record the scope, symptoms, timestamps, and known good state before drawing conclusions.</p></article><article><span>02 / DECIDE</span><h3>Make ownership clear</h3><p>Define who approves changes, who communicates, and when to escalate.</p></article><article><span>03 / VERIFY</span><h3>Close the loop</h3><p>Test the outcome, keep a record, and turn the lesson into a repeatable control.</p></article></div><div class="details-wrap"><details><summary>What should a good checklist produce?</summary><p>A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced.</p></details><details><summary>How should I use the NIS2 checklist?</summary><p>Use it to organize an internal gap review. Applicability and reporting obligations depend on your sector, size, and national implementation; confirm them with qualified legal or compliance advice.</p></details></div></section>
+      <section id="about" class="section" aria-labelledby="about-title"><div class="about-grid"><div><span class="micro">About the author</span><h2 id="about-title">Vladimir Arjoca.</h2></div><div><p class="lead">I work at the point where network reliability and security operations meet.</p><p>I bring more than ten years of experience in enterprise and service-provider networks, including firewall operations, data center networking, monitoring, incident escalation, and leading engineering teams. These field notes turn that hands-on work into clear resources for other teams.</p><div class="expertise" aria-label="Areas of experience"><span>FortiGate / FortiManager</span><span>Palo Alto / Panorama</span><span>Cisco networking</span><span>Observability</span><span>Ansible / CI</span></div></div></div></section>
+      <section id="contact" class="contact" aria-labelledby="contact-title"><div><span class="micro">Get in touch</span><h2 id="contact-title">Have a real-world problem to solve?</h2><p>Tell me which resource would help your team most, or suggest a scenario for a future playbook.</p></div><a class="button" href="mailto:vladimir.arjoca@outlook.com?subject=Security%20Field%20Notes">Email Vladimir <span class="arrow" aria-hidden="true">↗</span></a></section>
+      <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng" target="_blank" rel="noopener noreferrer">NIS2 directive</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
+    </main>
+  </div>
+</body>
+</html>
