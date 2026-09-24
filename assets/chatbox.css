@@ -22,7 +22,7 @@
 }
 .va-chat.is-open{display:grid}
 .va-chat-head{padding:16px 17px;background:#12232b;border-bottom:1px solid #29404a;display:flex;align-items:center;gap:12px}
-.va-chat-avatar{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:#123b39;border:1px solid #507078;color:#6ce2c7;font-weight:850;letter-spacing:.04em}
+.va-chat-avatar{width:30px;height:30px;display:grid;place-items:center;background:transparent;border:0;border-radius:0;box-shadow:none;padding:0;flex:none}.va-chat-avatar img{width:28px;height:auto;max-height:28px;display:block;object-fit:contain}
 .va-chat-title{min-width:0;flex:1}
 .va-chat-title strong{display:block;font-size:14px;line-height:1.2}
 .va-chat-title span{display:block;margin-top:3px;color:#a6b8ba;font-size:11px;letter-spacing:.03em}
