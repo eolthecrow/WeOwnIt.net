@@ -537,20 +537,13 @@
           const active = button.dataset.lang === lang;
           button.setAttribute("aria-pressed", String(active));
         });
-
-        try { localStorage.setItem("site-language", lang); } catch (_) {}
       }
 
       document.querySelectorAll(".lang-switch button").forEach(button => {
         button.addEventListener("click", () => applyLanguage(button.dataset.lang));
       });
 
-      let initial = "en";
-      try {
-        const saved = localStorage.getItem("site-language");
-        if (saved === "ro" || saved === "fr" || saved === "en") initial = saved;
-      } catch (_) {}
-      applyLanguage(initial);
+      applyLanguage("en");
     })();
   </script>
 
