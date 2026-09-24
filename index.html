@@ -129,7 +129,7 @@
       <div class="rail-foot"><b>Vladimir Arjoca</b><br>Network &amp; security engineering<br>Bucharest, Romania</div>
     </aside>
     <main id="main" class="main">
-      <div class="topline" id="top"><span class="topline-label">Practical security / Field notes</span><div class="topline-tools"><span class="topline-right">Independent resources</span><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ro" aria-pressed="false">RO</button></div></div></div>
+      <div class="topline" id="top"><span class="topline-label">Practical security / Field notes</span><div class="topline-tools"><span class="topline-right">Independent resources</span><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="fr" aria-pressed="false">FR</button><button type="button" data-lang="ro" aria-pressed="false">RO</button></div></div></div>
       <section class="hero" aria-labelledby="hero-title">
         <div>
           <p class="eyebrow">Built from operational experience</p>
@@ -253,6 +253,94 @@
           contactButton: "Email Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
           footer: "© 2026 Vladimir Arjoca · Bucharest, Romania",
           sources: "Primary references:"
+        },
+        fr: {
+          title: "Notes de terrain en cybersécurité — Vladimir Arjoca",
+          description: "Modèles pratiques de cybersécurité, listes de contrôle de sécurité réseau, guides FortiGate, playbooks de dépannage et ressources d’automatisation de Vladimir Arjoca.",
+          skip: "Aller au contenu",
+          brand: "Notes de terrain<br>en cybersécurité",
+          nav: ["Ressources", "Approche", "À propos", "Contact"],
+          railFoot: "<b>Vladimir Arjoca</b><br>Ingénierie réseau &amp; sécurité<br>Bucarest, Roumanie",
+          topLabel: "Sécurité pratique / Notes de terrain",
+          topRight: "Ressources indépendantes",
+          eyebrow: "Issu de l’expérience opérationnelle",
+          heroTitle: "La sécurité, <em>rendue pratique.</em>",
+          heroCopy: "Des modèles, listes de contrôle et playbooks pour celles et ceux qui exploitent des réseaux et interviennent lorsqu’un problème survient. Commencez par une question claire, recueillez les bonnes preuves et repartez avec un plan que votre équipe peut réellement utiliser.",
+          heroActions: ["Explorer les ressources <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Découvrir Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>"],
+          asideLabel: "Le guide pratique / 01—06",
+          asideText: "De la première alerte jusqu’au prochain changement plus sûr.",
+          asideRows: ["Répondre &amp; évaluer", "Renforcer &amp; préparer", "Dépanner &amp; automatiser"],
+          resourcesMicro: "La bibliothèque de ressources",
+          resourcesTitle: "Choisissez un point de départ.",
+          resourcesIntro: "Six domaines pratiques. Commencez par une action concrète, puis choisissez la prochaine revue dont votre équipe a besoin.",
+          cards: {
+            "incident-response": {
+              kind: "Modèle de plan",
+              title: "Plan de réponse aux incidents",
+              desc: "Un plan utilisable pour les petites et moyennes équipes : qui décide, qui enquête, quoi préserver et comment communiquer pendant un incident.",
+              list: ["Rôles, contacts et chemins d’escalade", "Actions de la première heure et journal des preuves", "Playbooks par scénario et passage à la récupération"],
+              sample: "Action exemple : définir qui peut déclarer un incident avant qu’il ne survienne.",
+              featureMicro: "Commencez par cette question",
+              quote: "Lorsqu’une alerte devient un incident, qui a l’autorité pour agir ?",
+              link: "Lire NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
+            },
+            "network-assessment": {
+              kind: "Liste de contrôle",
+              title: "Évaluation de la sécurité réseau",
+              desc: "Analysez le réseau de l’extérieur vers l’intérieur, puis transformez les observations en une liste de remédiation priorisée.",
+              list: ["Inventaire des actifs et services exposés", "Segmentation et accès privilégiés", "Journalisation, sauvegardes et responsabilités"],
+              sample: "Action exemple : suivre un service critique depuis l’utilisateur jusqu’à la charge de travail."
+            },
+            "fortigate-hardening": {
+              kind: "Liste de durcissement",
+              title: "Durcissement FortiGate",
+              desc: "Un parcours de revue pour l’accès administrateur, l’exposition de la gestion, l’hygiène des politiques, la télémétrie et la préparation à la récupération.",
+              list: ["Restreindre la gestion aux sources de confiance", "Vérifier les comptes, la MFA et le firmware", "Vérifier les journaux et les sauvegardes de configuration"],
+              sample: "Comparer avec les recommandations Fortinet ↗"
+            },
+            "nis2-readiness": {
+              kind: "Liste de préparation",
+              title: "Préparation NIS2 pour les PME",
+              desc: "Une liste de contrôle pour identifier les écarts liés à la responsabilité des risques, à la gestion des incidents, aux fournisseurs et à la continuité.",
+              list: ["Vérifier le périmètre de l’entité et les responsabilités", "Documenter les risques et les preuves de contrôle", "Tester les parcours de notification et de récupération"],
+              sample: "Lire la directive de l’UE ↗"
+            },
+            "troubleshooting": {
+              kind: "Playbooks",
+              title: "Playbooks de dépannage",
+              desc: "Des investigations reproductibles pour les pannes et les défaillances de contrôles de sécurité, structurées autour des symptômes, des preuves et des décisions.",
+              list: ["Tunnel VPN indisponible ou instable", "Problème de chemin ou de bascule SD-WAN", "Journaux manquants ou équipement inaccessible"],
+              sample: "Action exemple : capturer le dernier état connu comme fonctionnel avant toute modification."
+            },
+            "automation": {
+              kind: "Modèles d’automatisation",
+              title: "Automatisation réseau avec Ansible",
+              desc: "De petites automatisations faciles à relire pour les tâches quotidiennes qui doivent rester cohérentes sur l’ensemble des équipements.",
+              list: ["Inventaire et modèles de connexion", "Collecte des configurations et sauvegarde", "Validation avant et après les changements"],
+              sample: "Explorer la documentation réseau Ansible ↗"
+            }
+          },
+          approachMicro: "Comment ces ressources sont construites",
+          approachTitle: "Utiles sous pression.",
+          approachIntro: "Chaque ressource vise à rendre l’étape suivante claire pour l’opérateur, le réviseur et la personne responsable du résultat.",
+          approachCards: [
+            ["01 / OBSERVER", "Commencer par les preuves", "Consignez le périmètre, les symptômes, les horodatages et le dernier état connu comme fonctionnel avant de tirer des conclusions."],
+            ["02 / DÉCIDER", "Clarifier les responsabilités", "Définissez qui approuve les changements, qui communique et à quel moment escalader."],
+            ["03 / VÉRIFIER", "Boucler la boucle", "Testez le résultat, conservez une trace et transformez la leçon en contrôle reproductible."]
+          ],
+          details: [
+            ["Que doit produire une bonne liste de contrôle ?", "Un responsable nommé, une constatation enregistrée, des preuves, une priorité et une prochaine action. Une simple case cochée ne montre pas si le risque a été réduit."],
+            ["Comment utiliser la liste de contrôle NIS2 ?", "Utilisez-la pour structurer une analyse interne des écarts. L’applicabilité et les obligations de notification dépendent du secteur, de la taille et de la mise en œuvre nationale ; confirmez-les avec des spécialistes juridiques ou de conformité qualifiés."]
+          ],
+          aboutMicro: "À propos de l’auteur",
+          aboutLead: "Je travaille à l’intersection de la fiabilité des réseaux et des opérations de sécurité.",
+          aboutText: "J’apporte plus de dix ans d’expérience dans les réseaux d’entreprise et de fournisseurs de services, notamment les opérations firewall, les réseaux de data center, la supervision, l’escalade d’incidents et la coordination d’équipes d’ingénierie. Ces notes de terrain transforment cette expérience pratique en ressources claires pour d’autres équipes.",
+          contactMicro: "Contact",
+          contactTitle: "Vous avez un problème concret à résoudre ?",
+          contactText: "Indiquez-moi quelle ressource aiderait le plus votre équipe ou proposez un scénario pour un futur playbook.",
+          contactButton: "Envoyer un e-mail à Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
+          footer: "© 2026 Vladimir Arjoca · Bucarest, Roumanie",
+          sources: "Références principales :"
         },
         ro: {
           title: "Note de teren în securitate — Vladimir Arjoca",
@@ -454,7 +542,7 @@
       let initial = "en";
       try {
         const saved = localStorage.getItem("site-language");
-        if (saved === "ro" || saved === "en") initial = saved;
+        if (saved === "ro" || saved === "fr" || saved === "en") initial = saved;
       } catch (_) {}
       applyLanguage(initial);
     })();
