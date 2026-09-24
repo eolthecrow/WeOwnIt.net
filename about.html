@@ -23,7 +23,7 @@
     .timeline{display:grid;gap:0;border-top:1px solid var(--line)}.role{display:grid;grid-template-columns:210px minmax(0,1fr);gap:2rem;padding:2rem 0;border-bottom:1px solid var(--line)}.role-date{font-family:var(--mono);font-size:.75rem;color:var(--accent)}.role h3{font-size:1.35rem;margin:0 0 .25rem;letter-spacing:-.025em}.company{color:var(--muted);margin-bottom:.9rem}.role ul{margin:0;padding-left:1.1rem;color:#c9d5d2}.role li+li{margin-top:.45rem}
     .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.skill{background:var(--bg2);padding:1.5rem}.skill h3{margin:0 0 .9rem;font-size:1.08rem}.tags{display:flex;flex-wrap:wrap;gap:.45rem}.tag{border:1px solid var(--line-strong);padding:.35rem .55rem;color:#c8d8d5;font-family:var(--mono);font-size:.7rem}
     .achievements{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.achievement{border:1px solid var(--line);background:var(--bg2);padding:1.5rem}.achievement .number{font-family:var(--mono);color:var(--accent);font-size:.72rem}.achievement h3{font-size:1.2rem;margin:.65rem 0 .55rem}.achievement p{color:var(--muted);margin:0}
-    .training-marquee{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--bg2);padding:1.65rem 0}
+    .training-marquee{position:relative;overflow:hidden;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);padding:1.65rem 0}
     .training-marquee::before,.training-marquee::after{content:"";position:absolute;top:0;bottom:0;width:70px;z-index:2;pointer-events:none}
     .training-marquee::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent)}
     .training-marquee::after{right:0;background:linear-gradient(270deg,var(--bg2),transparent)}
@@ -37,7 +37,7 @@
     .education-card strong{display:block}.education-card span{display:block;color:var(--muted);font-size:.9rem;margin-top:.35rem}
     .contact-strip{background:var(--accent);color:#08211f}.contact-inner{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:3rem 0}.contact-inner h2{font-size:clamp(2rem,4vw,3.7rem);letter-spacing:-.055em;margin:0}.contact-inner p{color:#24544f;margin:.6rem 0 0}.contact-strip .button{background:var(--bg);border-color:var(--bg);color:var(--ink);flex:none}
     footer{padding:2rem 0;color:var(--quiet);font-size:.82rem}
-    @media(max-width:850px){.hero-grid,.section-head{grid-template-columns:1fr}.portrait-card{margin:0;max-width:330px}.metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0}.role{grid-template-columns:1fr;gap:.5rem}.skills{grid-template-columns:1fr}.achievements{grid-template-columns:1fr}.training-marquee{margin-left:-1.4rem;margin-right:-1.4rem;border-left:0;border-right:0}.contact-inner{display:block}.contact-inner .button{margin-top:1.4rem}.back{display:none}}
+    @media(max-width:850px){.hero-grid,.section-head{grid-template-columns:1fr}.portrait-card{margin:0;max-width:330px}.metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0}.role{grid-template-columns:1fr;gap:.5rem}.skills{grid-template-columns:1fr}.achievements{grid-template-columns:1fr}.contact-inner{display:block}.contact-inner .button{margin-top:1.4rem}.back{display:none}}
     @media(prefers-reduced-motion:reduce){.training-track{animation:none}}
   </style>
 </head>
@@ -163,7 +163,7 @@
     <div class="wrap">
       <div class="section-head">
         <div><div class="micro" data-k="certMicro">Professional development</div><h2 data-k="certTitle">Training &amp; Certifications</h2></div>
-        <p data-k="certText">Technology vendors and certification organizations represented in my training and credentials.</p>
+        <p data-k="certText">Technology vendors, certification organizations, and cybersecurity standards and frameworks represented in my professional development.</p>
       </div>
 
       <div class="training-marquee" aria-label="Training and certification organizations">
@@ -174,6 +174,7 @@
             <span class="training-item">Fortinet</span>
             <span class="training-item">Amazon Web Services</span>
             <span class="training-item">CertiProf</span>
+            <span class="training-item">NIST</span>
           </div>
           <div class="training-group" aria-hidden="true">
             <span class="training-item">Cisco</span>
@@ -181,6 +182,7 @@
             <span class="training-item">Fortinet</span>
             <span class="training-item">Amazon Web Services</span>
             <span class="training-item">CertiProf</span>
+            <span class="training-item">NIST</span>
           </div>
         </div>
       </div>
@@ -227,7 +229,7 @@
       ach2Title:"Engineering leadership", ach2Text:"Led and mentored 9 network engineers, 1 supervisor, and 2 interns.",
       ach3Title:"PoP & traffic engineering", ach3Text:"Supported Point of Presence deployments and traffic-engineering initiatives in a large-scale service-provider and Anti-DDoS environment.",
       ach4Title:"Secure infrastructure projects", ach4Text:"Contributed to PEPS, a data-center platform migration, and the Propolis Project through secure network and infrastructure changes.",
-      certMicro:"Professional development", certTitle:"Training & Certifications", certText:"Technology vendors and certification organizations represented in my training and credentials.", educationLabel:"Education",
+      certMicro:"Professional development", certTitle:"Training & Certifications", certText:"Technology vendors, certification organizations, and cybersecurity standards and frameworks represented in my professional development.", educationLabel:"Education",
       education:"B.Sc. in Business Administration and Management — Dimitrie Cantemir Christian University, Bucharest (2007–2011)",
       contactTitle:"Have a network or security problem to solve?", contactText:"Tell me what you are working on and where the challenge is.", contactButton:"Contact me ↗",
       brand:"Network & Security Advisory", pageTitle:"About Vladimir Arjoca — Network & Security Advisory", back:"← Back to resources"
@@ -254,7 +256,7 @@
       ach2Title:"Leadership d’ingénierie", ach2Text:"Encadrement et mentorat de 9 ingénieurs réseau, 1 superviseur et 2 stagiaires.",
       ach3Title:"PoP & traffic engineering", ach3Text:"Contribution aux déploiements de Points of Presence et aux initiatives de traffic engineering dans un environnement service-provider et Anti-DDoS à grande échelle.",
       ach4Title:"Projets d’infrastructure sécurisée", ach4Text:"Contribution à PEPS, à une migration de plateforme entre data centers et au projet Propolis via des changements réseau et infrastructure sécurisés.",
-      certMicro:"Développement professionnel", certTitle:"Formations & Certifications", certText:"Les principaux fournisseurs technologiques et organismes de certification représentés dans mes formations et certifications.", educationLabel:"Formation académique",
+      certMicro:"Développement professionnel", certTitle:"Formations & Certifications", certText:"Les principaux fournisseurs technologiques, organismes de certification, standards et référentiels de cybersécurité représentés dans mon développement professionnel.", educationLabel:"Formation académique",
       education:"Licence en administration et gestion des affaires — Université Chrétienne Dimitrie Cantemir, Bucarest (2007–2011)",
       contactTitle:"Vous avez un problème réseau ou sécurité à résoudre ?", contactText:"Dites-moi sur quoi vous travaillez et où se situe la difficulté.", contactButton:"Me contacter ↗",
       brand:"Conseil en Réseaux & Sécurité", pageTitle:"À propos de Vladimir Arjoca — Conseil en Réseaux & Sécurité", back:"← Retour aux ressources"
@@ -281,7 +283,7 @@
       ach2Title:"Leadership tehnic", ach2Text:"Am coordonat și mentorat 9 network engineers, 1 supervisor și 2 interni.",
       ach3Title:"PoP & traffic engineering", ach3Text:"Am contribuit la implementări de Points of Presence și inițiative de traffic engineering într-un mediu service-provider și Anti-DDoS la scară largă.",
       ach4Title:"Proiecte de infrastructură securizată", ach4Text:"Am contribuit la PEPS, la o migrare de platformă între data centere și la Propolis Project prin schimbări securizate de rețea și infrastructură.",
-      certMicro:"Dezvoltare profesională", certTitle:"Training & Certificări", certText:"Principalii vendori tehnologici și organizații de certificare reprezentați în cursurile și certificările mele.", educationLabel:"Educație",
+      certMicro:"Dezvoltare profesională", certTitle:"Training & Certificări", certText:"Principalii vendori tehnologici, organizații de certificare, standarde și framework-uri de cybersecurity reprezentate în dezvoltarea mea profesională.", educationLabel:"Educație",
       education:"Licență în Business Administration and Management — Universitatea Creștină Dimitrie Cantemir, București (2007–2011)",
       contactTitle:"Ai o problemă de rețea sau securitate de rezolvat?", contactText:"Spune-mi la ce lucrezi și unde este provocarea.", contactButton:"Contactează-mă ↗",
       brand:"Consultanță în Rețele & Securitate", pageTitle:"Despre Vladimir Arjoca — Consultanță în Rețele & Securitate", back:"← Înapoi la resurse"
