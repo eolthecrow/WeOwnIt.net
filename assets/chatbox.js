@@ -84,7 +84,7 @@
   panel.setAttribute("aria-label","Network & Security Assistant");
   panel.innerHTML=`
     <div class="va-chat-head">
-      <div class="va-chat-avatar">VA</div>
+      <div class="va-chat-avatar" aria-hidden="true"><img src="assets/va-symbol.svg?v=2" alt=""></div>
       <div class="va-chat-title"><strong></strong><span></span></div>
       <button class="va-chat-close" type="button" aria-label="Close chat">×</button>
     </div>
