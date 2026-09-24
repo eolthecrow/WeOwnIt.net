@@ -30,8 +30,18 @@
     .status-card p{margin:0;color:var(--muted)}
     .status-line{display:flex;align-items:center;gap:.65rem;margin-top:1.25rem;font-family:var(--mono);font-size:.7rem;color:var(--quiet);text-transform:uppercase;letter-spacing:.09em}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(108,226,199,.08)}
+    .tools-section{padding:4.5rem 0 5rem;border-top:1px solid var(--line);background:var(--bg)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2rem}
+    .section-head h2{font-size:clamp(2.2rem,4vw,4.2rem);letter-spacing:-.06em;line-height:1.05;margin:.6rem 0 0}
+    .section-head p{max-width:420px;color:var(--muted);margin:0}
+    .tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .tool-group{background:var(--bg2);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.7rem}
+    .tool-index{display:block;font-family:var(--mono);color:var(--accent);font-size:.72rem;letter-spacing:.08em;margin-bottom:.8rem}
+    .tool-group h3{margin:0 0 1rem;font-size:1.2rem;letter-spacing:-.03em}
+    .tool-list{display:flex;flex-wrap:wrap;gap:.5rem}
+    .tool-list span{border:1px solid var(--line-strong);padding:.42rem .64rem;font-family:var(--mono);font-size:.7rem;color:#c8d8d5;background:#0b171e}
     footer{border-top:1px solid var(--line);padding:1.7rem 0;color:var(--quiet);font-size:.8rem}
-    @media(max-width:780px){.nav{align-items:flex-start;padding:1rem 0}.nav-right{gap:.6rem}.back{display:none}.hero-inner{grid-template-columns:1fr;gap:2.2rem;padding:4rem 0}.lang-switch button{padding:.32rem .44rem}}
+    @media(max-width:780px){.nav{align-items:flex-start;padding:1rem 0}.nav-right{gap:.6rem}.back{display:none}.hero-inner{grid-template-columns:1fr;gap:2.2rem;padding:4rem 0}.lang-switch button{padding:.32rem .44rem}.section-head{display:block}.section-head p{margin-top:1rem}.tools-grid{grid-template-columns:1fr}}
   </style>
   <link rel="stylesheet" href="assets/chatbox.css?v=4">
 </head>
@@ -55,14 +65,45 @@
     <div class="wrap hero-inner">
       <div>
         <div class="eyebrow">Tools</div>
-        <h1>In progress.</h1>
-        <p class="lead">A curated technical toolkit is being prepared for this section, covering the platforms and tools used across network engineering, security operations, automation, monitoring, and lab environments.</p>
+        <h1>Technical toolkit.</h1>
+        <p class="lead">Platforms and tooling used across network engineering, security operations, automation, monitoring, and lab environments.</p>
       </div>
       <aside class="status-card">
-        <strong>Coming soon</strong>
-        <p>The final page will group tools by purpose and show where they fit in practical network and security workflows.</p>
+        <strong>In progress</strong>
+        <p>This page is being expanded with additional tools, context, and practical usage examples.</p>
         <div class="status-line"><span class="dot"></span><span>Page under development</span></div>
       </aside>
+    </div>
+  </section>
+
+  <section class="tools-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow">Technical toolkit</div><h2>Tools I work with.</h2></div>
+        <p>Core platforms and engineering tools used across network, security, automation, observability, and lab workflows.</p>
+      </div>
+      <div class="tools-grid">
+        <article class="tool-group">
+          <span class="tool-index">01 / NETWORK &amp; SECURITY</span>
+          <h3>Platforms</h3>
+          <div class="tool-list"><span>Cisco</span><span>Fortinet</span><span>Palo Alto Networks</span><span>Juniper</span></div>
+        </article>
+        <article class="tool-group">
+          <span class="tool-index">02 / AUTOMATION &amp; DELIVERY</span>
+          <h3>Engineering</h3>
+          <div class="tool-list"><span>Ansible</span><span>Python</span><span>GitLab CI/CD</span><span>Jenkins</span></div>
+        </article>
+        <article class="tool-group">
+          <span class="tool-index">03 / MONITORING &amp; OPERATIONS</span>
+          <h3>Observability</h3>
+          <div class="tool-list"><span>Grafana</span><span>Prometheus</span><span>Checkmk</span><span>Graylog</span></div>
+        </article>
+        <article class="tool-group">
+          <span class="tool-index">04 / INFRASTRUCTURE &amp; LABS</span>
+          <h3>Platforms</h3>
+          <div class="tool-list"><span>VMware vSphere</span><span>GNS3</span><span>Docker / WSL2</span><span>Hyper-V</span></div>
+        </article>
+      </div>
     </div>
   </section>
 </main>
@@ -77,33 +118,60 @@
       brand:"Network & Security Advisory",
       back:"← Back to resources",
       eyebrow:"Tools",
-      title:"In progress.",
-      lead:"A curated technical toolkit is being prepared for this section, covering the platforms and tools used across network engineering, security operations, automation, monitoring, and lab environments.",
-      status:"Coming soon",
-      statusText:"The final page will group tools by purpose and show where they fit in practical network and security workflows.",
-      development:"Page under development"
+      title:"Technical toolkit.",
+      lead:"Platforms and tooling used across network engineering, security operations, automation, monitoring, and lab environments.",
+      status:"In progress",
+      statusText:"This page is being expanded with additional tools, context, and practical usage examples.",
+      development:"Page under development",
+      sectionMicro:"Technical toolkit",
+      sectionTitle:"Tools I work with.",
+      sectionText:"Core platforms and engineering tools used across network, security, automation, observability, and lab workflows.",
+      groups:[
+        ["01 / NETWORK & SECURITY","Platforms",["Cisco","Fortinet","Palo Alto Networks","Juniper"]],
+        ["02 / AUTOMATION & DELIVERY","Engineering",["Ansible","Python","GitLab CI/CD","Jenkins"]],
+        ["03 / MONITORING & OPERATIONS","Observability",["Grafana","Prometheus","Checkmk","Graylog"]],
+        ["04 / INFRASTRUCTURE & LABS","Platforms",["VMware vSphere","GNS3","Docker / WSL2","Hyper-V"]]
+      ]
     },
     ro: {
       pageTitle:"Instrumente — Consultanță în Rețele & Securitate",
       brand:"Consultanță în Rețele & Securitate",
       back:"← Înapoi la resurse",
       eyebrow:"Instrumente",
-      title:"În lucru.",
-      lead:"Pregătesc pentru această secțiune un toolkit tehnic organizat, care va acoperi platformele și instrumentele folosite în inginerie de rețea, operațiuni de securitate, automatizare, monitorizare și medii de laborator.",
-      status:"În curând",
-      statusText:"Pagina finală va grupa instrumentele după scop și va arăta unde se integrează în fluxuri practice de rețea și securitate.",
-      development:"Pagină în dezvoltare"
+      title:"Toolkit tehnic.",
+      lead:"Platforme și instrumente utilizate în inginerie de rețea, operațiuni de securitate, automatizare, monitorizare și medii de laborator.",
+      status:"În lucru",
+      statusText:"Această pagină este extinsă cu instrumente suplimentare, context și exemple practice de utilizare.",
+      development:"Pagină în dezvoltare",
+      sectionMicro:"Toolkit tehnic",
+      sectionTitle:"Instrumente cu care lucrez.",
+      sectionText:"Platforme și instrumente de bază folosite în rețea, securitate, automatizare, observabilitate și medii de laborator.",
+      groups:[
+        ["01 / REȚEA & SECURITATE","Platforme",["Cisco","Fortinet","Palo Alto Networks","Juniper"]],
+        ["02 / AUTOMATIZARE & DELIVERY","Engineering",["Ansible","Python","GitLab CI/CD","Jenkins"]],
+        ["03 / MONITORIZARE & OPERAȚIUNI","Observabilitate",["Grafana","Prometheus","Checkmk","Graylog"]],
+        ["04 / INFRASTRUCTURĂ & LABS","Platforme",["VMware vSphere","GNS3","Docker / WSL2","Hyper-V"]]
+      ]
     },
     fr: {
       pageTitle:"Outils — Conseil en Réseaux & Sécurité",
       brand:"Conseil en Réseaux & Sécurité",
       back:"← Retour aux ressources",
       eyebrow:"Outils",
-      title:"En cours.",
-      lead:"Une boîte à outils technique organisée est en préparation pour cette section, couvrant les plateformes et outils utilisés en ingénierie réseau, opérations de sécurité, automatisation, supervision et environnements de laboratoire.",
-      status:"Bientôt disponible",
-      statusText:"La page finale regroupera les outils par usage et montrera leur place dans des workflows pratiques de réseau et de sécurité.",
-      development:"Page en cours de développement"
+      title:"Boîte à outils technique.",
+      lead:"Plateformes et outils utilisés en ingénierie réseau, opérations de sécurité, automatisation, supervision et environnements de laboratoire.",
+      status:"En cours",
+      statusText:"Cette page est enrichie avec des outils supplémentaires, du contexte et des exemples pratiques d’utilisation.",
+      development:"Page en cours de développement",
+      sectionMicro:"Boîte à outils technique",
+      sectionTitle:"Outils que j’utilise.",
+      sectionText:"Plateformes et outils principaux utilisés pour le réseau, la sécurité, l’automatisation, l’observabilité et les environnements de laboratoire.",
+      groups:[
+        ["01 / RÉSEAU & SÉCURITÉ","Plateformes",["Cisco","Fortinet","Palo Alto Networks","Juniper"]],
+        ["02 / AUTOMATISATION & DELIVERY","Ingénierie",["Ansible","Python","GitLab CI/CD","Jenkins"]],
+        ["03 / SUPERVISION & OPÉRATIONS","Observabilité",["Grafana","Prometheus","Checkmk","Graylog"]],
+        ["04 / INFRASTRUCTURE & LABS","Plateformes",["VMware vSphere","GNS3","Docker / WSL2","Hyper-V"]]
+      ]
     }
   };
 
@@ -120,6 +188,16 @@
     document.querySelector(".status-card strong").textContent=d.status;
     document.querySelector(".status-card p").textContent=d.statusText;
     document.querySelector(".status-line span:last-child").textContent=d.development;
+    document.querySelector(".tools-section .section-head .eyebrow").textContent=d.sectionMicro;
+    document.querySelector(".tools-section h2").textContent=d.sectionTitle;
+    document.querySelector(".tools-section .section-head p").textContent=d.sectionText;
+    document.querySelectorAll(".tool-group").forEach((el,i)=>{
+      const row=d.groups[i];
+      if(!row)return;
+      el.querySelector(".tool-index").textContent=row[0];
+      el.querySelector("h3").textContent=row[1];
+      el.querySelectorAll(".tool-list span").forEach((tag,j)=>{if(row[2][j]!==undefined)tag.textContent=row[2][j];});
+    });
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
   }
 
