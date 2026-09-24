@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a151c">
-  <meta name="description" content="Practical cybersecurity templates, network security checklists, FortiGate guidance, troubleshooting playbooks, and automation resources from Vladimir Arjoca.">
+  <meta name="description" content="Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.">
   <title>Network & Security Advisory — Vladimir Arjoca</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a151c'/%3E%3Cpath d='M13 17h38v30H13z' fill='none' stroke='%236ce2c7' stroke-width='4'/%3E%3Cpath d='m22 27 10 12 10-12' fill='none' stroke='%23f2f1e8' stroke-width='4'/%3E%3C/svg%3E">
   <style>
@@ -140,27 +140,27 @@
         <div class="hero-aside" aria-label="Resource overview">
           <span class="aside-label">The field guide / 01—06</span>
           <p>From the first alert to the next safer change.</p>
-          <ul><li><span>01—02</span><span>Respond &amp; assess</span></li><li><span>03—04</span><span>Harden &amp; prepare</span></li><li><span>05—06</span><span>Troubleshoot &amp; automate</span></li></ul>
+          <ul><li><span>01—02</span><span>Respond &amp; assess</span></li><li><span>03—04</span><span>Harden &amp; segment</span></li><li><span>05—06</span><span>Diagnose &amp; automate</span></li></ul>
         </div>
       </section>
       <section id="resources" class="section" aria-labelledby="resources-title">
         <div class="section-head"><div><span class="micro">The resource library</span><h2 id="resources-title">Find a starting point.</h2></div><p>Six practical areas. Start with a sample action, then choose the next review your team needs.</p></div>
         <div class="resource-grid">
           <article class="resource featured" id="incident-response">
-            <div><div class="resource-top"><span class="index">01 / RESPONSE</span><span class="kind">Plan template</span></div><h3>Incident response plan</h3><p class="desc">A usable plan for small and medium teams: who decides, who investigates, what to preserve, and how to communicate during an incident.</p><ul class="list"><li>Roles, contacts, and escalation paths</li><li>First-hour actions and evidence log</li><li>Scenario playbooks and recovery handoff</li></ul><div class="sample">Sample action: confirm who can declare an incident before one occurs.</div></div>
+            <div><div class="resource-top"><span class="index">01 / RESPONSE</span><span class="kind">Response framework</span></div><h3>Cybersecurity incident response</h3><p class="desc">A practical response framework for handling security incidents from initial triage through containment, recovery, and lessons learned.</p><ul class="list"><li>Roles, escalation paths, and decision authority</li><li>Evidence preservation and incident timeline</li><li>Containment, recovery, and post-incident review</li></ul><div class="sample">Sample action: confirm who can declare an incident and authorize containment.</div></div>
             <div class="feature-side"><span class="micro">Start with this question</span><blockquote>When an alert becomes an incident, who has the authority to act?</blockquote><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">Read NIST SP 800-61 Rev. 3 <span aria-hidden="true">↗</span></a></div>
           </article>
-          <article class="resource" id="network-assessment"><div class="resource-top"><span class="index">02 / VISIBILITY</span><span class="kind">Assessment checklist</span></div><h3>Network security assessment</h3><p class="desc">Walk through the network from the outside in, then turn observations into a prioritized remediation list.</p><ul class="list"><li>Asset inventory and exposed services</li><li>Segmentation and privileged access</li><li>Logging, backups, and ownership</li></ul><div class="sample">Sample action: trace one critical service from user to workload.</div></article>
-          <article class="resource" id="fortigate-hardening"><div class="resource-top"><span class="index">03 / CONTROL</span><span class="kind">Hardening checklist</span></div><h3>FortiGate hardening</h3><p class="desc">A review path for administrator access, management exposure, policy hygiene, telemetry, and recovery readiness.</p><ul class="list"><li>Restrict management to trusted sources</li><li>Review accounts, MFA, and firmware</li><li>Verify logs and configuration backups</li></ul><div class="sample"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Compare with Fortinet guidance ↗</a></div></article>
-          <article class="resource" id="nis2-readiness"><div class="resource-top"><span class="index">04 / GOVERNANCE</span><span class="kind">Readiness checklist</span></div><h3>NIS2 readiness for SMBs</h3><p class="desc">A planning checklist to identify gaps in risk ownership, incident handling, supplier oversight, and continuity.</p><ul class="list"><li>Check entity scope and responsibilities</li><li>Record risks and evidence of controls</li><li>Exercise reporting and recovery paths</li></ul><div class="sample"><a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng" target="_blank" rel="noopener noreferrer">Read the EU directive ↗</a></div></article>
-          <article class="resource" id="troubleshooting"><div class="resource-top"><span class="index">05 / DIAGNOSIS</span><span class="kind">Playbooks</span></div><h3>Troubleshooting playbooks</h3><p class="desc">Repeatable investigations for outages and security control failures, built around symptoms, evidence, and decisions.</p><ul class="list"><li>VPN tunnel down or unstable</li><li>SD-WAN path or failover issue</li><li>Missing logs or unreachable device</li></ul><div class="sample">Sample action: capture the last known good state before changing anything.</div></article>
-          <article class="resource" id="automation"><div class="resource-top"><span class="index">06 / SCALE</span><span class="kind">Automation templates</span></div><h3>Ansible network automation</h3><p class="desc">Small, reviewable automations for the everyday work that should be consistent across devices.</p><ul class="list"><li>Inventory and connection patterns</li><li>Configuration collection and backup</li><li>Validation before and after changes</li></ul><div class="sample"><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Explore Ansible network docs ↗</a></div></article>
-        </div>
+          <article class="resource" id="network-assessment"><div class="resource-top"><span class="index">02 / ASSESS</span><span class="kind">Assessment framework</span></div><h3>Network security assessment</h3><p class="desc">Review the network from exposure and access through segmentation, management, logging, resilience, and operational ownership.</p><ul class="list"><li>Assets, exposed services, and management planes</li><li>Segmentation, privileged access, and trust boundaries</li><li>Logging, backups, resilience, and remediation priorities</li></ul><div class="sample">Sample action: trace one critical service from user to workload and document every trust boundary.</div></article>
+          <article class="resource" id="firewall-hardening"><div class="resource-top"><span class="index">03 / HARDEN</span><span class="kind">Security checklist</span></div><h3>Firewall security &amp; hardening</h3><p class="desc">A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.</p><ul class="list"><li>Management exposure, accounts, MFA, and trusted access</li><li>Policy review, object hygiene, and least privilege</li><li>Firmware, logging, backups, and recovery controls</li></ul><div class="sample"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Example: compare with Fortinet best practices ↗</a></div></article>
+          <article class="resource" id="network-architecture"><div class="resource-top"><span class="index">04 / SEGMENT</span><span class="kind">Architecture guidance</span></div><h3>Network architecture &amp; segmentation</h3><p class="desc">Design and review trust boundaries so critical services, users, management systems, and external connectivity are separated intentionally.</p><ul class="list"><li>Security zones, VLANs, VRFs, and trust boundaries</li><li>North-south and east-west traffic paths</li><li>Management, user, server, and third-party segmentation</li></ul><div class="sample"><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">Review NIST Zero Trust Architecture ↗</a></div></article>
+          <article class="resource" id="incident-diagnostics"><div class="resource-top"><span class="index">05 / DIAGNOSE</span><span class="kind">Diagnostic playbooks</span></div><h3>Troubleshooting &amp; incident diagnostics</h3><p class="desc">Repeatable investigations for outages and security-control failures, structured around symptoms, evidence, hypotheses, and verification.</p><ul class="list"><li>VPN, routing, SD-WAN, and connectivity failures</li><li>Missing logs, unreachable devices, and control-plane issues</li><li>Known-good baselines, packet evidence, and validation</li></ul><div class="sample">Sample action: capture the last known good state before changing anything.</div></article>
+          <article class="resource" id="network-automation"><div class="resource-top"><span class="index">06 / AUTOMATE</span><span class="kind">Automation &amp; compliance</span></div><h3>Network automation &amp; compliance</h3><p class="desc">Use repeatable automation to standardize configuration, validate changes, collect evidence, and identify configuration drift.</p><ul class="list"><li>Inventory, reusable roles, and configuration backup</li><li>Pre-change and post-change validation</li><li>Compliance checks, reporting, and drift detection</li></ul><div class="sample"><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Explore Ansible network automation ↗</a></div></article>
+          </div>
       </section>
-      <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">How these resources are built</span><h2 id="approach-title">Useful under pressure.</h2></div><p>Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.</p></div><div class="sample-strip"><article><span>01 / OBSERVE</span><h3>Start with evidence</h3><p>Record the scope, symptoms, timestamps, and known good state before drawing conclusions.</p></article><article><span>02 / DECIDE</span><h3>Make ownership clear</h3><p>Define who approves changes, who communicates, and when to escalate.</p></article><article><span>03 / VERIFY</span><h3>Close the loop</h3><p>Test the outcome, keep a record, and turn the lesson into a repeatable control.</p></article></div><div class="details-wrap"><details><summary>What should a good checklist produce?</summary><p>A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced.</p></details><details><summary>How should I use the NIS2 checklist?</summary><p>Use it to organize an internal gap review. Applicability and reporting obligations depend on your sector, size, and national implementation; confirm them with qualified legal or compliance advice.</p></details></div></section>
+      <section id="approach" class="section" aria-labelledby="approach-title"><div class="section-head"><div><span class="micro">How these resources are built</span><h2 id="approach-title">Useful under pressure.</h2></div><p>Each resource aims to make the next step clear for the operator, the reviewer, and the person accountable for the result.</p></div><div class="sample-strip"><article><span>01 / OBSERVE</span><h3>Start with evidence</h3><p>Record the scope, symptoms, timestamps, and known good state before drawing conclusions.</p></article><article><span>02 / DECIDE</span><h3>Make ownership clear</h3><p>Define who approves changes, who communicates, and when to escalate.</p></article><article><span>03 / VERIFY</span><h3>Close the loop</h3><p>Test the outcome, keep a record, and turn the lesson into a repeatable control.</p></article></div><div class="details-wrap"><details><summary>What should a good checklist produce?</summary><p>A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced.</p></details><details><summary>Where should I start?</summary><p>Start with the resource closest to the problem you need to solve: respond to an incident, assess the environment, harden controls, improve segmentation, diagnose failures, or automate repeatable work.</p></details></div></section>
       <section id="about" class="section" aria-labelledby="about-title"><div class="about-grid"><div><span class="micro">About</span><h2 id="about-title">Vladimir Arjoca.</h2></div><div><p class="lead">Network &amp; Security Engineer with 10+ years of hands-on experience across enterprise and service-provider environments.</p><p>I work with network security, firewalls, data-center infrastructure, monitoring, automation, and incident response. This site turns that experience into practical resources.</p><div class="expertise" aria-label="Areas of experience"><span>FortiGate / FortiManager</span><span>Palo Alto / Panorama</span><span>Cisco networking</span><span>Observability</span><span>Ansible / CI</span></div></div></div></section>
-      <section id="contact" class="contact" aria-labelledby="contact-title"><div><span class="micro">Get in touch</span><h2 id="contact-title">Have a real-world problem to solve?</h2><p>Tell me which resource would help your team most, or suggest a scenario for a future playbook.</p></div><a class="button" href="mailto:vladimir.arjoca@outlook.com?subject=Security%20Field%20Notes">Email Vladimir <span class="arrow" aria-hidden="true">↗</span></a></section>
-      <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng" target="_blank" rel="noopener noreferrer">NIS2 directive</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
+      <section id="contact" class="contact" aria-labelledby="contact-title"><div><span class="micro">Get in touch</span><h2 id="contact-title">Have a real-world problem to solve?</h2><p>Tell me which resource would help your team most, or suggest a scenario for a future playbook.</p></div><a class="button" href="mailto:vladimir.arjoca@outlook.com?subject=Network%20%26%20Security%20Advisory">Email Vladimir <span class="arrow" aria-hidden="true">↗</span></a></section>
+      <footer class="footer"><span>© 2026 Vladimir Arjoca · Bucharest, Romania</span><a href="https://www.linkedin.com/in/vladimir-arjoca-194397126" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><div class="sources"><span>Primary references:</span><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">NIST incident response</a><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet best practices</a><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">NIST Zero Trust Architecture</a><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Ansible network documentation</a></div></footer>
     </main>
   </div>
   <script>
@@ -168,7 +168,7 @@
       const translations = {
         en: {
           title: "Network & Security Advisory — Vladimir Arjoca",
-          description: "Practical cybersecurity templates, network security checklists, FortiGate guidance, troubleshooting playbooks, and automation resources from Vladimir Arjoca.",
+          description: "Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.",
           skip: "Skip to content",
           brand: "Network &amp; Security<br>Advisory",
           nav: ["Resources", "Approach", "About", "Contact"],
@@ -181,55 +181,55 @@
           heroActions: ["Explore resources <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Meet Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Schedule a Consultation <span class=\"arrow\" aria-hidden=\"true\">↗</span>"],
           asideLabel: "The field guide / 01—06",
           asideText: "From the first alert to the next safer change.",
-          asideRows: ["Respond &amp; assess", "Harden &amp; prepare", "Troubleshoot &amp; automate"],
+          asideRows: ["Respond &amp; assess", "Harden &amp; segment", "Diagnose &amp; automate"],
           resourcesMicro: "The resource library",
           resourcesTitle: "Find a starting point.",
           resourcesIntro: "Six practical areas. Start with a sample action, then choose the next review your team needs.",
           cards: {
             "incident-response": {
-              kind: "Plan template",
-              title: "Incident response plan",
-              desc: "A usable plan for small and medium teams: who decides, who investigates, what to preserve, and how to communicate during an incident.",
-              list: ["Roles, contacts, and escalation paths", "First-hour actions and evidence log", "Scenario playbooks and recovery handoff"],
-              sample: "Sample action: confirm who can declare an incident before one occurs.",
+              kind: "Response framework",
+              title: "Cybersecurity incident response",
+              desc: "A practical response framework for handling security incidents from initial triage through containment, recovery, and lessons learned.",
+              list: ["Roles, escalation paths, and decision authority", "Evidence preservation and incident timeline", "Containment, recovery, and post-incident review"],
+              sample: "Sample action: confirm who can declare an incident and authorize containment.",
               featureMicro: "Start with this question",
               quote: "When an alert becomes an incident, who has the authority to act?",
               link: "Read NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
             },
             "network-assessment": {
-              kind: "Assessment checklist",
+              kind: "Assessment framework",
               title: "Network security assessment",
-              desc: "Walk through the network from the outside in, then turn observations into a prioritized remediation list.",
-              list: ["Asset inventory and exposed services", "Segmentation and privileged access", "Logging, backups, and ownership"],
-              sample: "Sample action: trace one critical service from user to workload."
+              desc: "Review the network from exposure and access through segmentation, management, logging, resilience, and operational ownership.",
+              list: ["Assets, exposed services, and management planes", "Segmentation, privileged access, and trust boundaries", "Logging, backups, resilience, and remediation priorities"],
+              sample: "Sample action: trace one critical service from user to workload and document every trust boundary."
             },
-            "fortigate-hardening": {
-              kind: "Hardening checklist",
-              title: "FortiGate hardening",
-              desc: "A review path for administrator access, management exposure, policy hygiene, telemetry, and recovery readiness.",
-              list: ["Restrict management to trusted sources", "Review accounts, MFA, and firmware", "Verify logs and configuration backups"],
-              sample: "Compare with Fortinet guidance ↗"
+            "firewall-hardening": {
+              kind: "Security checklist",
+              title: "Firewall security & hardening",
+              desc: "A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.",
+              list: ["Management exposure, accounts, MFA, and trusted access", "Policy review, object hygiene, and least privilege", "Firmware, logging, backups, and recovery controls"],
+              sample: "Example: compare with Fortinet best practices ↗"
             },
-            "nis2-readiness": {
-              kind: "Readiness checklist",
-              title: "NIS2 readiness for SMBs",
-              desc: "A planning checklist to identify gaps in risk ownership, incident handling, supplier oversight, and continuity.",
-              list: ["Check entity scope and responsibilities", "Record risks and evidence of controls", "Exercise reporting and recovery paths"],
-              sample: "Read the EU directive ↗"
+            "network-architecture": {
+              kind: "Architecture guidance",
+              title: "Network architecture & segmentation",
+              desc: "Design and review trust boundaries so critical services, users, management systems, and external connectivity are separated intentionally.",
+              list: ["Security zones, VLANs, VRFs, and trust boundaries", "North-south and east-west traffic paths", "Management, user, server, and third-party segmentation"],
+              sample: "Review NIST Zero Trust Architecture ↗"
             },
-            "troubleshooting": {
-              kind: "Playbooks",
-              title: "Troubleshooting playbooks",
-              desc: "Repeatable investigations for outages and security control failures, built around symptoms, evidence, and decisions.",
-              list: ["VPN tunnel down or unstable", "SD-WAN path or failover issue", "Missing logs or unreachable device"],
+            "incident-diagnostics": {
+              kind: "Diagnostic playbooks",
+              title: "Troubleshooting & incident diagnostics",
+              desc: "Repeatable investigations for outages and security-control failures, structured around symptoms, evidence, hypotheses, and verification.",
+              list: ["VPN, routing, SD-WAN, and connectivity failures", "Missing logs, unreachable devices, and control-plane issues", "Known-good baselines, packet evidence, and validation"],
               sample: "Sample action: capture the last known good state before changing anything."
             },
-            "automation": {
-              kind: "Automation templates",
-              title: "Ansible network automation",
-              desc: "Small, reviewable automations for the everyday work that should be consistent across devices.",
-              list: ["Inventory and connection patterns", "Configuration collection and backup", "Validation before and after changes"],
-              sample: "Explore Ansible network docs ↗"
+            "network-automation": {
+              kind: "Automation & compliance",
+              title: "Network automation & compliance",
+              desc: "Use repeatable automation to standardize configuration, validate changes, collect evidence, and identify configuration drift.",
+              list: ["Inventory, reusable roles, and configuration backup", "Pre-change and post-change validation", "Compliance checks, reporting, and drift detection"],
+              sample: "Explore Ansible network automation ↗"
             }
           },
           approachMicro: "How these resources are built",
@@ -242,7 +242,7 @@
           ],
           details: [
             ["What should a good checklist produce?", "A named owner, a recorded finding, evidence, a priority, and a next action. A tick alone does not explain whether the risk was reduced."],
-            ["How should I use the NIS2 checklist?", "Use it to organize an internal gap review. Applicability and reporting obligations depend on your sector, size, and national implementation; confirm them with qualified legal or compliance advice."]
+            ["Where should I start?", "Start with the resource closest to the problem you need to solve: respond to an incident, assess the environment, harden controls, improve segmentation, diagnose failures, or automate repeatable work."]
           ],
           aboutMicro: "About",
           aboutLead: "Network & Security Engineer with 10+ years of hands-on experience across enterprise and service-provider environments.",
@@ -256,7 +256,7 @@
         },
         fr: {
           title: "Conseil en Réseaux & Sécurité — Vladimir Arjoca",
-          description: "Modèles pratiques de cybersécurité, listes de contrôle de sécurité réseau, guides FortiGate, playbooks de dépannage et ressources d’automatisation de Vladimir Arjoca.",
+          description: "Guides pratiques pour la réponse aux incidents, l’évaluation de la sécurité réseau, le durcissement des firewalls, la segmentation, le dépannage, l’automatisation et la conformité de Vladimir Arjoca.",
           skip: "Aller au contenu",
           brand: "Conseil en Réseaux<br>&amp; Sécurité",
           nav: ["Ressources", "Approche", "À propos", "Contact"],
@@ -269,55 +269,55 @@
           heroActions: ["Explorer les ressources <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Découvrir Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Planifier une consultation <span class=\"arrow\" aria-hidden=\"true\">↗</span>"],
           asideLabel: "Le guide pratique / 01—06",
           asideText: "De la première alerte jusqu’au prochain changement plus sûr.",
-          asideRows: ["Répondre &amp; évaluer", "Renforcer &amp; préparer", "Dépanner &amp; automatiser"],
+          asideRows: ["Répondre &amp; évaluer", "Renforcer &amp; segmenter", "Diagnostiquer &amp; automatiser"],
           resourcesMicro: "La bibliothèque de ressources",
           resourcesTitle: "Choisissez un point de départ.",
           resourcesIntro: "Six domaines pratiques. Commencez par une action concrète, puis choisissez la prochaine revue dont votre équipe a besoin.",
           cards: {
             "incident-response": {
-              kind: "Modèle de plan",
-              title: "Plan de réponse aux incidents",
-              desc: "Un plan utilisable pour les petites et moyennes équipes : qui décide, qui enquête, quoi préserver et comment communiquer pendant un incident.",
-              list: ["Rôles, contacts et chemins d’escalade", "Actions de la première heure et journal des preuves", "Playbooks par scénario et passage à la récupération"],
-              sample: "Action exemple : définir qui peut déclarer un incident avant qu’il ne survienne.",
+              kind: "Cadre de réponse",
+              title: "Réponse aux incidents de cybersécurité",
+              desc: "Un cadre pratique pour gérer les incidents de sécurité, du triage initial jusqu’au confinement, à la récupération et au retour d’expérience.",
+              list: ["Rôles, escalade et autorité de décision", "Préservation des preuves et chronologie de l’incident", "Confinement, récupération et revue post-incident"],
+              sample: "Action exemple : confirmer qui peut déclarer un incident et autoriser le confinement.",
               featureMicro: "Commencez par cette question",
               quote: "Lorsqu’une alerte devient un incident, qui a l’autorité pour agir ?",
               link: "Lire NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
             },
             "network-assessment": {
-              kind: "Liste de contrôle",
+              kind: "Cadre d’évaluation",
               title: "Évaluation de la sécurité réseau",
-              desc: "Analysez le réseau de l’extérieur vers l’intérieur, puis transformez les observations en une liste de remédiation priorisée.",
-              list: ["Inventaire des actifs et services exposés", "Segmentation et accès privilégiés", "Journalisation, sauvegardes et responsabilités"],
-              sample: "Action exemple : suivre un service critique depuis l’utilisateur jusqu’à la charge de travail."
+              desc: "Évaluez le réseau depuis l’exposition et les accès jusqu’à la segmentation, la gestion, la journalisation, la résilience et les responsabilités opérationnelles.",
+              list: ["Actifs, services exposés et plans de gestion", "Segmentation, accès privilégiés et frontières de confiance", "Journalisation, sauvegardes, résilience et priorités de remédiation"],
+              sample: "Action exemple : suivre un service critique de l’utilisateur à la charge de travail et documenter chaque frontière de confiance."
             },
-            "fortigate-hardening": {
-              kind: "Liste de durcissement",
-              title: "Durcissement FortiGate",
-              desc: "Un parcours de revue pour l’accès administrateur, l’exposition de la gestion, l’hygiène des politiques, la télémétrie et la préparation à la récupération.",
-              list: ["Restreindre la gestion aux sources de confiance", "Vérifier les comptes, la MFA et le firmware", "Vérifier les journaux et les sauvegardes de configuration"],
-              sample: "Comparer avec les recommandations Fortinet ↗"
+            "firewall-hardening": {
+              kind: "Checklist de sécurité",
+              title: "Sécurité & durcissement des firewalls",
+              desc: "Une revue indépendante du fournisseur couvrant la gestion des firewalls, l’hygiène des politiques, l’administration sécurisée, la télémétrie, le cycle de vie et la récupération.",
+              list: ["Exposition de la gestion, comptes, MFA et accès de confiance", "Revue des politiques, hygiène des objets et moindre privilège", "Firmware, journalisation, sauvegardes et contrôles de récupération"],
+              sample: "Exemple : comparer avec les bonnes pratiques Fortinet ↗"
             },
-            "nis2-readiness": {
-              kind: "Liste de préparation",
-              title: "Préparation NIS2 pour les PME",
-              desc: "Une liste de contrôle pour identifier les écarts liés à la responsabilité des risques, à la gestion des incidents, aux fournisseurs et à la continuité.",
-              list: ["Vérifier le périmètre de l’entité et les responsabilités", "Documenter les risques et les preuves de contrôle", "Tester les parcours de notification et de récupération"],
-              sample: "Lire la directive de l’UE ↗"
+            "network-architecture": {
+              kind: "Guide d’architecture",
+              title: "Architecture réseau & segmentation",
+              desc: "Concevez et révisez les frontières de confiance afin de séparer volontairement les services critiques, les utilisateurs, la gestion et les accès externes.",
+              list: ["Zones de sécurité, VLAN, VRF et frontières de confiance", "Flux nord-sud et est-ouest", "Segmentation de la gestion, des utilisateurs, des serveurs et des tiers"],
+              sample: "Consulter NIST Zero Trust Architecture ↗"
             },
-            "troubleshooting": {
-              kind: "Playbooks",
-              title: "Playbooks de dépannage",
-              desc: "Des investigations reproductibles pour les pannes et les défaillances de contrôles de sécurité, structurées autour des symptômes, des preuves et des décisions.",
-              list: ["Tunnel VPN indisponible ou instable", "Problème de chemin ou de bascule SD-WAN", "Journaux manquants ou équipement inaccessible"],
+            "incident-diagnostics": {
+              kind: "Playbooks de diagnostic",
+              title: "Dépannage & diagnostic d’incidents",
+              desc: "Des investigations reproductibles pour les pannes et les défaillances de contrôles de sécurité, structurées autour des symptômes, preuves, hypothèses et validations.",
+              list: ["VPN, routage, SD-WAN et problèmes de connectivité", "Journaux manquants, équipements inaccessibles et problèmes de plan de contrôle", "États de référence, preuves paquet et validation"],
               sample: "Action exemple : capturer le dernier état connu comme fonctionnel avant toute modification."
             },
-            "automation": {
-              kind: "Modèles d’automatisation",
-              title: "Automatisation réseau avec Ansible",
-              desc: "De petites automatisations faciles à relire pour les tâches quotidiennes qui doivent rester cohérentes sur l’ensemble des équipements.",
-              list: ["Inventaire et modèles de connexion", "Collecte des configurations et sauvegarde", "Validation avant et après les changements"],
-              sample: "Explorer la documentation réseau Ansible ↗"
+            "network-automation": {
+              kind: "Automatisation & conformité",
+              title: "Automatisation réseau & conformité",
+              desc: "Utilisez une automatisation reproductible pour standardiser les configurations, valider les changements, collecter les preuves et détecter la dérive de configuration.",
+              list: ["Inventaire, rôles réutilisables et sauvegarde des configurations", "Validation avant et après les changements", "Contrôles de conformité, reporting et détection de dérive"],
+              sample: "Explorer l’automatisation réseau avec Ansible ↗"
             }
           },
           approachMicro: "Comment ces ressources sont construites",
@@ -330,7 +330,7 @@
           ],
           details: [
             ["Que doit produire une bonne liste de contrôle ?", "Un responsable nommé, une constatation enregistrée, des preuves, une priorité et une prochaine action. Une simple case cochée ne montre pas si le risque a été réduit."],
-            ["Comment utiliser la liste de contrôle NIS2 ?", "Utilisez-la pour structurer une analyse interne des écarts. L’applicabilité et les obligations de notification dépendent du secteur, de la taille et de la mise en œuvre nationale ; confirmez-les avec des spécialistes juridiques ou de conformité qualifiés."]
+            ["Par où commencer ?", "Commencez par la ressource la plus proche du problème à résoudre : répondre à un incident, évaluer l’environnement, renforcer les contrôles, améliorer la segmentation, diagnostiquer les défaillances ou automatiser les tâches répétables."]
           ],
           aboutMicro: "À propos",
           aboutLead: "Ingénieur réseau et sécurité avec plus de 10 ans d’expérience pratique dans des environnements d’entreprise et de fournisseurs de services.",
@@ -344,7 +344,7 @@
         },
         ro: {
           title: "Consultanță în Rețele & Securitate — Vladimir Arjoca",
-          description: "Șabloane practice de securitate cibernetică, checklist-uri de securitate a rețelei, ghiduri FortiGate, playbook-uri de troubleshooting și resurse de automatizare de la Vladimir Arjoca.",
+          description: "Ghiduri practice pentru incident response, evaluarea securității rețelei, firewall hardening, segmentare, troubleshooting, automatizare și conformitate de la Vladimir Arjoca.",
           skip: "Sari la conținut",
           brand: "Consultanță în Rețele<br>&amp; Securitate",
           nav: ["Resurse", "Abordare", "Despre", "Contact"],
@@ -357,55 +357,55 @@
           heroActions: ["Explorează resursele <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Despre Vladimir <span class=\"arrow\" aria-hidden=\"true\">↗</span>", "Programează o sesiune de consultanță <span class=\"arrow\" aria-hidden=\"true\">↗</span>"],
           asideLabel: "Ghid practic / 01—06",
           asideText: "De la prima alertă până la următoarea schimbare mai sigură.",
-          asideRows: ["Răspuns &amp; evaluare", "Hardening &amp; pregătire", "Diagnostic &amp; automatizare"],
+          asideRows: ["Răspuns &amp; evaluare", "Hardening &amp; segmentare", "Diagnostic &amp; automatizare"],
           resourcesMicro: "Biblioteca de resurse",
           resourcesTitle: "Alege punctul de plecare.",
           resourcesIntro: "Șase arii practice. Începe cu o acțiune concretă, apoi alege următoarea evaluare de care are nevoie echipa ta.",
           cards: {
             "incident-response": {
-              kind: "Șablon de plan",
-              title: "Plan de răspuns la incidente",
-              desc: "Un plan utilizabil pentru echipe mici și medii: cine decide, cine investighează, ce trebuie păstrat și cum se comunică în timpul unui incident.",
-              list: ["Roluri, contacte și căi de escaladare", "Acțiuni din prima oră și jurnal de dovezi", "Playbook-uri pe scenarii și predare către recovery"],
-              sample: "Acțiune exemplu: stabilește cine poate declara un incident înainte ca acesta să se producă.",
+              kind: "Cadru de răspuns",
+              title: "Răspuns la incidente de cybersecurity",
+              desc: "Un cadru practic pentru gestionarea incidentelor de securitate, de la trierea inițială până la containment, recovery și analiza post-incident.",
+              list: ["Roluri, escaladare și autoritate de decizie", "Păstrarea dovezilor și cronologia incidentului", "Containment, recovery și review post-incident"],
+              sample: "Acțiune exemplu: confirmă cine poate declara un incident și autoriza containment-ul.",
               featureMicro: "Începe cu această întrebare",
               quote: "Când o alertă devine incident, cine are autoritatea de a acționa?",
               link: "Citește NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
             },
             "network-assessment": {
-              kind: "Checklist de evaluare",
+              kind: "Cadru de evaluare",
               title: "Evaluarea securității rețelei",
-              desc: "Analizează rețeaua din exterior spre interior, apoi transformă observațiile într-o listă de remediere prioritizată.",
-              list: ["Inventarul activelor și serviciile expuse", "Segmentarea și accesul privilegiat", "Logare, backup-uri și responsabilități"],
-              sample: "Acțiune exemplu: urmărește traseul unui serviciu critic de la utilizator până la workload."
+              desc: "Evaluează rețeaua de la expunere și acces până la segmentare, management, logare, reziliență și responsabilitate operațională.",
+              list: ["Active, servicii expuse și plane de management", "Segmentare, acces privilegiat și zone de încredere", "Logare, backup, reziliență și priorități de remediere"],
+              sample: "Acțiune exemplu: urmărește un serviciu critic de la utilizator la workload și documentează fiecare zonă de încredere."
             },
-            "fortigate-hardening": {
-              kind: "Checklist de hardening",
-              title: "Hardening FortiGate",
-              desc: "Un traseu de verificare pentru accesul administratorilor, expunerea managementului, igiena politicilor, telemetrie și pregătirea pentru recovery.",
-              list: ["Restricționează managementul la surse de încredere", "Verifică conturile, MFA și firmware-ul", "Verifică logurile și backup-urile configurației"],
-              sample: "Compară cu recomandările Fortinet ↗"
+            "firewall-hardening": {
+              kind: "Checklist de securitate",
+              title: "Securitate & hardening pentru firewall",
+              desc: "O evaluare vendor-neutral pentru managementul firewall-urilor, igiena politicilor, administrare securizată, telemetrie, lifecycle și pregătirea pentru recovery.",
+              list: ["Expunerea managementului, conturi, MFA și acces de încredere", "Revizuirea politicilor, igiena obiectelor și least privilege", "Firmware, logare, backup-uri și controale de recovery"],
+              sample: "Exemplu: compară cu bunele practici Fortinet ↗"
             },
-            "nis2-readiness": {
-              kind: "Checklist de pregătire",
-              title: "Pregătire NIS2 pentru IMM-uri",
-              desc: "Un checklist de planificare pentru identificarea lacunelor privind responsabilitatea riscurilor, gestionarea incidentelor, furnizorii și continuitatea.",
-              list: ["Verifică încadrarea entității și responsabilitățile", "Documentează riscurile și dovezile controalelor", "Testează fluxurile de raportare și recovery"],
-              sample: "Citește directiva UE ↗"
+            "network-architecture": {
+              kind: "Ghid de arhitectură",
+              title: "Arhitectură de rețea & segmentare",
+              desc: "Proiectează și verifică zonele de încredere astfel încât serviciile critice, utilizatorii, managementul și conectivitatea externă să fie separate intenționat.",
+              list: ["Zone de securitate, VLAN-uri, VRF-uri și trust boundaries", "Fluxuri north-south și east-west", "Segmentarea managementului, utilizatorilor, serverelor și terților"],
+              sample: "Consultă NIST Zero Trust Architecture ↗"
             },
-            "troubleshooting": {
-              kind: "Playbook-uri",
-              title: "Playbook-uri de troubleshooting",
-              desc: "Investigații repetabile pentru întreruperi și probleme ale controalelor de securitate, construite în jurul simptomelor, dovezilor și deciziilor.",
-              list: ["Tunel VPN căzut sau instabil", "Problemă de cale sau failover SD-WAN", "Loguri lipsă sau echipament inaccesibil"],
+            "incident-diagnostics": {
+              kind: "Playbook-uri de diagnostic",
+              title: "Troubleshooting & diagnosticarea incidentelor",
+              desc: "Investigații repetabile pentru întreruperi și probleme ale controalelor de securitate, structurate în jurul simptomelor, dovezilor, ipotezelor și validării.",
+              list: ["VPN, routing, SD-WAN și probleme de conectivitate", "Loguri lipsă, echipamente inaccesibile și probleme de control plane", "Baseline cunoscut ca bun, dovezi de pachete și validare"],
               sample: "Acțiune exemplu: capturează ultima stare cunoscută ca fiind bună înainte de orice modificare."
             },
-            "automation": {
-              kind: "Șabloane de automatizare",
-              title: "Automatizare de rețea cu Ansible",
-              desc: "Automatizări mici și ușor de revizuit pentru activitățile zilnice care trebuie executate consecvent pe toate echipamentele.",
-              list: ["Inventar și modele de conectare", "Colectarea configurațiilor și backup", "Validare înainte și după schimbări"],
-              sample: "Explorează documentația Ansible pentru rețele ↗"
+            "network-automation": {
+              kind: "Automatizare & conformitate",
+              title: "Automatizare de rețea & conformitate",
+              desc: "Folosește automatizare repetabilă pentru standardizarea configurațiilor, validarea schimbărilor, colectarea dovezilor și identificarea configuration drift.",
+              list: ["Inventar, roluri reutilizabile și backup de configurație", "Validare înainte și după schimbări", "Verificări de conformitate, raportare și detectarea drift-ului"],
+              sample: "Explorează automatizarea de rețea cu Ansible ↗"
             }
           },
           approachMicro: "Cum sunt construite aceste resurse",
@@ -418,7 +418,7 @@
           ],
           details: [
             ["Ce ar trebui să producă un checklist bun?", "Un responsabil nominalizat, o constatare înregistrată, dovezi, o prioritate și următoarea acțiune. O simplă bifă nu arată dacă riscul a fost redus."],
-            ["Cum ar trebui să folosesc checklist-ul NIS2?", "Folosește-l pentru organizarea unei analize interne de gap. Aplicabilitatea și obligațiile de raportare depind de sector, dimensiune și implementarea națională; confirmă-le cu specialiști juridici sau de conformitate calificați."]
+            ["De unde ar trebui să încep?", "Începe cu resursa cea mai apropiată de problema pe care trebuie să o rezolvi: răspuns la incident, evaluarea mediului, hardening, segmentare, diagnosticarea problemelor sau automatizarea activităților repetitive."]
           ],
           aboutMicro: "Despre",
           aboutLead: "Network & Security Engineer cu peste 10 ani de experiență practică în medii enterprise și service-provider.",
