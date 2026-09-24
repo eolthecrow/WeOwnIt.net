@@ -32,7 +32,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="index.html"><span class="mark">VA</span><span>Network & Security Advisory</span></a>
+    <a class="brand" href="index.html"><span class="mark">VA</span><span data-brand>Network & Security Advisory</span></a>
     <div class="nav-right">
       <a class="back" href="index.html">← Back to resources</a>
       <div class="lang-switch" role="group" aria-label="Language">
@@ -202,7 +202,7 @@
       certMicro:"Certifications & education", certTitle:"Continuous learning.", certText:"Selected certifications, training, and formal education listed in my CV.",
       education:"B.Sc. in Business Administration and Management — Dimitrie Cantemir Christian University, Bucharest (2007–2011)",
       contactTitle:"Have a network or security problem to solve?", contactText:"Tell me what you are working on and where the challenge is.", contactButton:"Contact me ↗",
-      back:"← Back to resources"
+      brand:"Network & Security Advisory", pageTitle:"About Vladimir Arjoca — Network & Security Advisory", back:"← Back to resources"
     },
     fr: {
       heroEyebrow:"À propos",
@@ -229,7 +229,7 @@
       certMicro:"Certifications & formation", certTitle:"Apprentissage continu.", certText:"Une sélection des certifications, formations et études figurant dans mon CV.",
       education:"Licence en administration et gestion des affaires — Université Chrétienne Dimitrie Cantemir, Bucarest (2007–2011)",
       contactTitle:"Vous avez un problème réseau ou sécurité à résoudre ?", contactText:"Dites-moi sur quoi vous travaillez et où se situe la difficulté.", contactButton:"Me contacter ↗",
-      back:"← Retour aux ressources"
+      brand:"Conseil en Réseaux & Sécurité", pageTitle:"À propos de Vladimir Arjoca — Conseil en Réseaux & Sécurité", back:"← Retour aux ressources"
     },
     ro: {
       heroEyebrow:"Despre",
@@ -256,13 +256,15 @@
       certMicro:"Certificări & educație", certTitle:"Învățare continuă.", certText:"O selecție de certificări, cursuri și studii menționate în CV-ul meu.",
       education:"Licență în Business Administration and Management — Universitatea Creștină Dimitrie Cantemir, București (2007–2011)",
       contactTitle:"Ai o problemă de rețea sau securitate de rezolvat?", contactText:"Spune-mi la ce lucrezi și unde este provocarea.", contactButton:"Contactează-mă ↗",
-      back:"← Înapoi la resurse"
+      brand:"Consultanță în Rețele & Securitate", pageTitle:"Despre Vladimir Arjoca — Consultanță în Rețele & Securitate", back:"← Înapoi la resurse"
     }
   };
 
   function apply(lang){
     const d=t[lang]||t.en;
     document.documentElement.lang=lang;
+    document.title=d.pageTitle;
+    const brand=document.querySelector("[data-brand]"); if(brand) brand.textContent=d.brand;
     document.querySelectorAll("[data-k]").forEach(el=>{
       const key=el.dataset.k;
       if(d[key]!==undefined) el.innerHTML=d[key];
