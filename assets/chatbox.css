@@ -1,0 +1,45 @@
+/* Network & Security Assistant */
+.va-chat-launcher{
+  position:fixed;right:22px;bottom:22px;z-index:1000;
+  width:58px;height:58px;border-radius:50%;
+  border:1px solid #507078;background:#12232b;color:#f2f1e8;
+  display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 14px 34px rgba(0,0,0,.34);
+  font:800 15px/1 Inter,ui-sans-serif,system-ui,sans-serif;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.va-chat-launcher:hover{transform:translateY(-2px);border-color:#6ce2c7;background:#163038}
+.va-chat-launcher:focus-visible,.va-chat button:focus-visible,.va-chat textarea:focus-visible{outline:2px solid #6ce2c7;outline-offset:3px}
+.va-chat{
+  position:fixed;right:22px;bottom:92px;z-index:1001;
+  width:min(390px,calc(100vw - 28px));height:min(610px,calc(100vh - 120px));
+  border:1px solid #29404a;border-radius:18px;overflow:hidden;
+  background:#0e1d25;color:#f2f1e8;box-shadow:0 22px 55px rgba(0,0,0,.46);
+  display:none;grid-template-rows:auto 1fr auto;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.va-chat.is-open{display:grid}
+.va-chat-head{padding:16px 17px;background:#12232b;border-bottom:1px solid #29404a;display:flex;align-items:center;gap:12px}
+.va-chat-avatar{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:#123b39;border:1px solid #507078;color:#6ce2c7;font-weight:850;letter-spacing:.04em}
+.va-chat-title{min-width:0;flex:1}
+.va-chat-title strong{display:block;font-size:14px;line-height:1.2}
+.va-chat-title span{display:block;margin-top:3px;color:#a6b8ba;font-size:11px;letter-spacing:.03em}
+.va-chat-close{border:0;background:transparent;color:#a6b8ba;font-size:24px;line-height:1;cursor:pointer;padding:4px}
+.va-chat-messages{overflow:auto;padding:18px 16px 20px;display:flex;flex-direction:column;gap:12px;background:#0a151c}
+.va-msg{max-width:87%;padding:11px 13px;border-radius:14px;font-size:13.5px;line-height:1.48;white-space:pre-wrap}
+.va-msg.bot{align-self:flex-start;background:#12232b;border:1px solid #29404a;color:#f2f1e8;border-bottom-left-radius:5px}
+.va-msg.user{align-self:flex-end;background:#123b39;border:1px solid #2b6660;color:#f2f1e8;border-bottom-right-radius:5px}
+.va-msg-note{color:#81969a;font-size:10.5px;margin-top:-5px;align-self:flex-start}
+.va-chat-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
+.va-chat-suggestions button{border:1px solid #29404a;background:#0e1d25;color:#a6b8ba;border-radius:999px;padding:7px 9px;font-size:11px;cursor:pointer}
+.va-chat-suggestions button:hover{border-color:#6ce2c7;color:#f2f1e8}
+.va-chat-form{border-top:1px solid #29404a;background:#0e1d25;padding:11px;display:grid;grid-template-columns:1fr 42px;gap:8px;align-items:end}
+.va-chat textarea{width:100%;min-height:42px;max-height:110px;resize:none;border:1px solid #29404a;border-radius:12px;background:#0a151c;color:#f2f1e8;padding:11px 12px;font:13px/1.4 inherit}
+.va-chat textarea::placeholder{color:#81969a}
+.va-chat-send{width:42px;height:42px;border-radius:50%;border:1px solid #507078;background:#6ce2c7;color:#0a151c;cursor:pointer;font-size:18px;font-weight:800}
+.va-chat-send:disabled{opacity:.5;cursor:wait}
+@media(max-width:640px){
+  .va-chat-launcher{right:14px;bottom:14px}
+  .va-chat{right:14px;bottom:82px;width:calc(100vw - 28px);height:min(610px,calc(100vh - 100px))}
+}
+@media(prefers-reduced-motion:reduce){.va-chat-launcher{transition:none}}
