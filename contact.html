@@ -151,7 +151,6 @@
     qs('label[for="message"]').textContent=t.message; qs(".consent span").innerHTML=t.consent; qs(".submit").textContent=t.send;
     qs(".response-note").textContent=t.reply; qs("#status").textContent=t.status; qs(".privacy").textContent=t.privacy;
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
-    try{localStorage.setItem("site-language",lang)}catch(_){}
   }
 
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
