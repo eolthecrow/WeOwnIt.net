@@ -14,6 +14,7 @@
     section{margin-top:2.6rem;padding-top:2rem;border-top:1px solid var(--line)}h2{font-size:1.4rem;margin:0 0 .8rem}p{color:var(--muted)}code{font-family:var(--mono);color:var(--accent)}
     .langs{display:flex;gap:.4rem}.langs button{border:1px solid var(--line);background:transparent;color:var(--muted);padding:.35rem .5rem;cursor:pointer}.langs button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
   </style>
+  <link rel="stylesheet" href="assets/chatbox.css">
 </head>
 <body>
 <header><div class="wrap nav"><div class="brand" data-brand>Network & Security Advisory</div><div style="display:flex;align-items:center;gap:1rem"><a href="contact.html">← Contact</a><div class="langs"><button data-lang="ro" aria-pressed="false">RO</button><button data-lang="en" aria-pressed="true">EN</button><button data-lang="fr" aria-pressed="false">FR</button></div></div></div></header>
@@ -34,5 +35,6 @@ ro:{brand:"Consultanță în Rețele & Securitate",title:"Politica de confidenț
 };
 function apply(l){const t=copy[l]||copy.en;document.documentElement.lang=l;document.title=t.title;document.querySelector("[data-brand]").textContent=t.brand;document.querySelector(".eyebrow").textContent=t.e;document.querySelector("h1").textContent=t.h;document.querySelector(".lead").textContent=t.lead;document.querySelectorAll("main section").forEach((x,i)=>{x.querySelector("h2").textContent=t.s[i][0];x.querySelector("p").textContent=t.s[i][1]});document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===l)));}document.querySelectorAll(".langs button").forEach(b=>b.onclick=()=>apply(b.dataset.lang));apply("en");
 </script>
+  <script src="assets/chatbox.js" defer></script>
 </body>
 </html>
