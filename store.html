@@ -184,6 +184,12 @@
 
 <script>
 (() => {
+  const LEMON_CHECKOUT_URLS={
+    incidentResponse:"",
+    fortinetHardening:"",
+    paloAltoHardening:"",
+    checkPointHardening:""
+  };
   const SUPPORTED_LANGUAGES=["en","fr","ro"];
   function normalizeLanguage(lang){
     return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
