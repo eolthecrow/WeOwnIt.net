@@ -101,28 +101,15 @@
 
 <script>
 (() => {
-  const LANGUAGE_STORAGE_KEY="site-language";
   const SUPPORTED_LANGUAGES=["en","fr","ro"];
   function normalizeLanguage(lang){
     return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
   }
-  function getSavedLanguage(){
-    try{return normalizeLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY));}
-    catch(_){return null;}
-  }
-  function saveLanguage(lang){
-    const normalized=normalizeLanguage(lang);
-    if(!normalized)return;
-    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,normalized);}catch(_){}
-  }
   function getInitialLanguage(){
-    const fromUrl=normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
-    if(fromUrl){saveLanguage(fromUrl);return fromUrl;}
-    return getSavedLanguage()||"en";
+    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"))||"en";
   }
   function syncInternalLanguageLinks(lang){
-    const normalized=normalizeLanguage(lang);
-    if(!normalized)return;
+    const normalized=normalizeLanguage(lang)||"en";
     document.querySelectorAll('a[href]').forEach(link=>{
       const raw=link.getAttribute("href");
       if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
@@ -130,7 +117,8 @@
         const url=new URL(raw,window.location.href);
         if(url.origin!==window.location.origin)return;
         if(!url.pathname.includes("/WeOwnIt.net/"))return;
-        url.searchParams.set("lang",normalized);
+        if(normalized==="en") url.searchParams.delete("lang");
+        else url.searchParams.set("lang",normalized);
         link.setAttribute("href",url.pathname+url.search+url.hash);
       }catch(_){}
     });
@@ -190,8 +178,7 @@
   }
 
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>{
-    saveLanguage(b.dataset.lang);
-    apply(b.dataset.lang);
+          apply(b.dataset.lang);
   }));
   apply(getInitialLanguage());
 
