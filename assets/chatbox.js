@@ -9,7 +9,9 @@
       status:isLive?"AI assistant":"",
       welcome:"Hi — ask me about network security assessments, incident response, firewall hardening, segmentation, troubleshooting, or automation.",
       placeholder:"Enter your question...",
-      suggestions:["Firewall review","Incident response","Network assessment"],
+      quickLabel:"Quick links",
+      quickActions:["Contact","Schedule","Store","Services","About","Tools"],
+      quickHint:"Or ask any technical question below.",
       thinking:"Thinking…",
       error:"I couldn't reach the assistant right now. Please try again."
     },
@@ -19,7 +21,9 @@
       status:isLive?"Asistent AI":"",
       welcome:"Salut — întreabă-mă despre evaluări de securitate, incident response, firewall hardening, segmentare, troubleshooting sau automatizare.",
       placeholder:"Scrie întrebarea...",
-      suggestions:["Review firewall","Incident response","Evaluare rețea"],
+      quickLabel:"Acces rapid",
+      quickActions:["Contact","Programare","Magazin","Servicii","Despre","Instrumente"],
+      quickHint:"Sau scrie mai jos orice întrebare tehnică.",
       thinking:"Analizez…",
       error:"Nu pot contacta asistentul momentan. Încearcă din nou."
     },
@@ -29,7 +33,9 @@
       status:isLive?"Assistant IA":"",
       welcome:"Bonjour — posez une question sur les évaluations de sécurité réseau, la réponse aux incidents, le durcissement des firewalls, la segmentation, le dépannage ou l’automatisation.",
       placeholder:"Votre question...",
-      suggestions:["Revue firewall","Réponse incident","Évaluation réseau"],
+      quickLabel:"Accès rapide",
+      quickActions:["Contact","Rendez-vous","Boutique","Services","À propos","Outils"],
+      quickHint:"Ou posez ci-dessous toute question technique.",
       thinking:"Analyse…",
       error:"Impossible de joindre l’assistant pour le moment. Réessayez."
     }
@@ -74,6 +80,40 @@
     if(/automat|ansible|compliance|drift|ci\/cd/.test(s)) return a.automat;
     if(/troubleshoot|diagnos|vpn|routing|sd-wan|outage/.test(s)) return a.troubleshoot;
     return a.default;
+  };
+
+  const routeWithLanguage=(path,language=lang())=>{
+    const [base,hash=""]=path.split("#");
+    const separator=base.includes("?")?"&":"?";
+    return base+separator+"lang="+encodeURIComponent(language)+(hash?"#"+hash:"");
+  };
+
+  const quickTargets=[
+    "contact.html",
+    "schedule.html",
+    "store.html",
+    "index.html#resources",
+    "about.html",
+    "tools.html"
+  ];
+
+  const localIntentTarget=(value,language)=>{
+    const q=value.trim().toLowerCase();
+    const patterns={
+      contact:/^(contact|contact me|get in touch|how can i contact you|i want to contact you|vreau sa te contactez|vreau să te contactez|cum te contactez|contacteaza-ma|contactează-mă|je veux vous contacter|comment vous contacter|prendre contact)$/i,
+      schedule:/^(schedule|book|book a call|schedule a call|book a discussion|schedule discussion|programare|programeaza|programează|vreau o programare|programeaza o discutie|programează o discuție|rendez-vous|prendre rendez-vous|planifier un appel)$/i,
+      store:/^(store|shop|products|buy|buy a product|magazin|produse|cumpar|cumpăr|vreau sa cumpar|vreau să cumpăr|boutique|produits|acheter)$/i,
+      services:/^(services|your services|what services do you offer|servicii|ce servicii oferi|ce servicii oferiti|ce servicii oferiți|vos services|quels services proposez-vous)$/i,
+      about:/^(about|about you|about vladimir|who are you|despre|despre tine|despre vladimir|qui êtes-vous|a propos|à propos)$/i,
+      tools:/^(tools|your tools|instrumente|unelte|outils|vos outils)$/i
+    };
+    if(patterns.contact.test(q)) return routeWithLanguage("contact.html",language);
+    if(patterns.schedule.test(q)) return routeWithLanguage("schedule.html",language);
+    if(patterns.store.test(q)) return routeWithLanguage("store.html",language);
+    if(patterns.services.test(q)) return routeWithLanguage("index.html#resources",language);
+    if(patterns.about.test(q)) return routeWithLanguage("about.html",language);
+    if(patterns.tools.test(q)) return routeWithLanguage("tools.html",language);
+    return null;
   };
 
   const launcher=document.createElement("button");
@@ -123,6 +163,8 @@
   };
   let welcome;
   let suggestions;
+  let quickLabel;
+  let quickHint;
   const refresh=()=>{
     const t=copy[lang()]||copy.en;
     panel.setAttribute("aria-label",t.title);
@@ -135,16 +177,22 @@
     input.placeholder=t.placeholder;
     if(!welcome){
       welcome=add(t.welcome,"bot");
+      quickLabel=document.createElement("div");
+      quickLabel.className="va-chat-quick-label";
       suggestions=document.createElement("div");suggestions.className="va-chat-suggestions";
-      t.suggestions.forEach((_,index)=>{
+      quickTargets.forEach((target,index)=>{
         const b=document.createElement("button");b.type="button";
-        b.onclick=()=>{input.value=copy[lang()].suggestions[index];panel.querySelector("form").requestSubmit();};
+        b.onclick=()=>{window.location.href=routeWithLanguage(target);};
         suggestions.appendChild(b);
       });
-      messages.appendChild(suggestions);
+      quickHint=document.createElement("div");
+      quickHint.className="va-chat-quick-hint";
+      messages.append(quickLabel,suggestions,quickHint);
     }
     welcome.textContent=t.welcome;welcome.lang=lang();
-    [...suggestions.children].forEach((button,index)=>button.textContent=t.suggestions[index]);
+    quickLabel.textContent=t.quickLabel;
+    quickHint.textContent=t.quickHint;
+    [...suggestions.children].forEach((button,index)=>button.textContent=t.quickActions[index]);
   };
   const close=()=>{panel.classList.remove("is-open");launcher.setAttribute("aria-expanded","false");launcher.focus();};
   launcher.onclick=()=>{
@@ -159,8 +207,14 @@
   panel.querySelector("form").addEventListener("submit",async e=>{
     e.preventDefault();
     const q=input.value.trim();if(!q || send.disabled)return;
+    const language=lang();
+    const localTarget=localIntentTarget(q,language);
+    if(localTarget){
+      window.location.href=localTarget;
+      return;
+    }
     input.value="";add(q,"user");send.disabled=true;
-    const t=copy[lang()]||copy.en;
+    const t=copy[language]||copy.en;
     const pending=add(t.thinking,"bot");
     try{
       let answer;
