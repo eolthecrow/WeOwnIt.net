@@ -4,6 +4,7 @@
 
   const copy = {
     en:{
+      open:'Open Network & Security Assistant', close:'Close chat', send:'Send message', input:'Your question',
       title:"Network & Security Assistant",
       status:isLive?"AI assistant":"Demo · local guidance",
       welcome:"Hi — ask me about network security assessments, incident response, firewall hardening, segmentation, troubleshooting, or automation.",
@@ -13,6 +14,7 @@
       error:"I couldn't reach the assistant right now. Please try again."
     },
     ro:{
+      open:'Deschide asistentul de rețele și securitate', close:'Închide conversația', send:'Trimite mesajul', input:'Întrebarea ta',
       title:"Asistent Rețele & Securitate",
       status:isLive?"Asistent AI":"Demo · ghidare locală",
       welcome:"Salut — întreabă-mă despre evaluări de securitate, incident response, firewall hardening, segmentare, troubleshooting sau automatizare.",
@@ -22,6 +24,7 @@
       error:"Nu pot contacta asistentul momentan. Încearcă din nou."
     },
     fr:{
+      open:'Ouvrir l’assistant réseaux et sécurité', close:'Fermer la conversation', send:'Envoyer le message', input:'Votre question',
       title:"Assistant Réseaux & Sécurité",
       status:isLive?"Assistant IA":"Démo · guide local",
       welcome:"Bonjour — posez une question sur les évaluations de sécurité réseau, la réponse aux incidents, le durcissement des firewalls, la segmentation, le dépannage ou l’automatisation.",
@@ -81,6 +84,9 @@
 
   const panel=document.createElement("section");
   panel.className="va-chat";
+  panel.id="va-chat-panel";
+  launcher.setAttribute("aria-controls",panel.id);
+  launcher.setAttribute("aria-expanded","false");
   panel.setAttribute("aria-label","Network & Security Assistant");
   panel.innerHTML=`
     <div class="va-chat-head">
@@ -106,6 +112,7 @@
     const el=document.createElement("div");
     el.className=`va-msg ${role}`;
     el.textContent=text;
+    el.lang=lang();
     messages.appendChild(el);
     if(note){
       const n=document.createElement("div");
@@ -114,30 +121,44 @@
     messages.scrollTop=messages.scrollHeight;
     return el;
   };
+  let welcome;
+  let suggestions;
   const refresh=()=>{
     const t=copy[lang()]||copy.en;
+    panel.setAttribute("aria-label",t.title);
+    launcher.setAttribute("aria-label",t.open);
+    panel.querySelector(".va-chat-close").setAttribute("aria-label",t.close);
+    send.setAttribute("aria-label",t.send);
+    input.setAttribute("aria-label",t.input);
     panel.querySelector(".va-chat-title strong").textContent=t.title;
     panel.querySelector(".va-chat-title span").textContent=t.status;
     input.placeholder=t.placeholder;
-    if(!messages.dataset.ready){
-      add(t.welcome,"bot");
-      const wrap=document.createElement("div");wrap.className="va-chat-suggestions";
-      t.suggestions.forEach(label=>{
-        const b=document.createElement("button");b.type="button";b.textContent=label;
-        b.onclick=()=>{input.value=label;panel.querySelector("form").requestSubmit();};
-        wrap.appendChild(b);
+    if(!welcome){
+      welcome=add(t.welcome,"bot");
+      suggestions=document.createElement("div");suggestions.className="va-chat-suggestions";
+      t.suggestions.forEach((_,index)=>{
+        const b=document.createElement("button");b.type="button";
+        b.onclick=()=>{input.value=copy[lang()].suggestions[index];panel.querySelector("form").requestSubmit();};
+        suggestions.appendChild(b);
       });
-      messages.appendChild(wrap);
-      messages.dataset.ready="1";
+      messages.appendChild(suggestions);
     }
+    welcome.textContent=t.welcome;welcome.lang=lang();
+    [...suggestions.children].forEach((button,index)=>button.textContent=t.suggestions[index]);
   };
-
-  launcher.onclick=()=>{panel.classList.toggle("is-open");refresh();if(panel.classList.contains("is-open"))input.focus();};
-  panel.querySelector(".va-chat-close").onclick=()=>panel.classList.remove("is-open");
+  const close=()=>{panel.classList.remove("is-open");launcher.setAttribute("aria-expanded","false");launcher.focus();};
+  launcher.onclick=()=>{
+    const open=panel.classList.toggle("is-open");
+    launcher.setAttribute("aria-expanded",String(open));refresh();
+    if(open) input.focus();
+  };
+  panel.querySelector(".va-chat-close").onclick=close;
+  panel.addEventListener("keydown",event=>{if(event.key==="Escape"){event.preventDefault();close();}});
+  document.addEventListener("site:languagechange",refresh);
 
   panel.querySelector("form").addEventListener("submit",async e=>{
     e.preventDefault();
-    const q=input.value.trim();if(!q)return;
+    const q=input.value.trim();if(!q || send.disabled)return;
     input.value="";add(q,"user");send.disabled=true;
     const t=copy[lang()]||copy.en;
     const pending=add(t.thinking,"bot");
@@ -166,7 +187,7 @@
   });
 
   input.addEventListener("keydown",e=>{
-    if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();panel.querySelector("form").requestSubmit();}
+    if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();panel.querySelector("form").requestSubmit();}
   });
 
   refresh();

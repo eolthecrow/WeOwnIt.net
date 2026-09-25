@@ -6,6 +6,17 @@
   <meta name="theme-color" content="#0a151c">
   <meta name="description" content="Contact Vladimir Arjoca about cybersecurity, network security, incident response, FortiGate, troubleshooting, and automation.">
   <title>Contact — Network & Security Advisory</title>
+  <link rel="canonical" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en">
+  <link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en">
+  <link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=ro">
+  <link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=fr">
+  <link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Network &amp; Security Advisory">
+  <meta property="og:description" content="Contact Vladimir Arjoca about network security, incident response, firewall reviews, troubleshooting, and automation.">
+  <meta property="og:url" content="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Network &amp; Security Advisory">
   <style>
     :root{color-scheme:dark;--bg:#0a151c;--bg2:#0e1d25;--panel:#12232b;--line:#29404a;--line-strong:#507078;--ink:#f2f1e8;--muted:#a6b8ba;--quiet:#81969a;--accent:#6ce2c7;--accent2:#163a50;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
@@ -34,9 +45,12 @@
     footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--quiet);font-size:.82rem}
     @media(max-width:800px){.hero-inner,.content-inner{grid-template-columns:1fr}.hero-inner{gap:2rem;padding:3.4rem 0}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav-right{gap:.5rem}.back{display:none}}
   </style>
-  <link rel="stylesheet" href="assets/chatbox.css?v=4">
+  <link rel="stylesheet" href="assets/chatbox.css?v=5">
+  <link rel="stylesheet" href="assets/site.css?v=1">
+  <script src="assets/i18n.js?v=1"></script>
 </head>
 <body>
+<a class="site-skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><img src="assets/va-symbol.svg?v=2" alt=""></span><span data-brand>Network & Security Advisory</span></a>
@@ -51,6 +65,7 @@
   </div>
 </header>
 
+<main id="main" tabindex="-1">
 <section class="hero">
   <div class="wrap hero-inner">
     <div>
@@ -86,62 +101,24 @@
       <label class="consent"><input id="consent" type="checkbox" required><span>I agree that the information submitted in this form may be used to respond to my request. <a href="privacy.html">Privacy notice</a>.</span></label>
 
       <div class="actions">
-        <button class="submit" type="submit">Send</button>
+        <button class="submit" type="submit">Open email app</button>
         <span class="response-note">I usually reply within 2 to 3 business days.</span>
       </div>
-      <div class="status" id="status">Your email application should open with the message pre-filled.</div>
+      <div class="status" id="status" role="status">Your email application should open with the message pre-filled.</div>
       <div class="privacy">This static website does not store form data on a server. Submitting the form opens your email application with the details you entered.</div>
     </form>
   </div>
 </section>
 
+</main>
 <footer>
   <div class="wrap">© 2026 Vladimir Arjoca · <span data-footer-brand>Network & Security Advisory</span></div>
-</footer>
+<a class="site-privacy" data-privacy-link href="privacy.html">Privacy notice</a></footer>
 
 <script>
 (() => {
-  const SUPPORTED_LANGUAGES=["en","fr","ro"];
-  function normalizeLanguage(lang){
-    return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
-  }
-  function getInitialLanguage(){
-    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"))||normalizeLanguage(localStorage.getItem("siteLanguage"))||"en";
-  }
-  function syncInternalLanguageLinks(lang){
-    const normalized=normalizeLanguage(lang)||"en";
-    document.querySelectorAll('a[href]').forEach(link=>{
-      const raw=link.getAttribute("href");
-      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
-      try{
-        const url=new URL(raw,window.location.href);
-        if(url.origin!==window.location.origin)return;
-        if(!url.pathname.includes("/WeOwnIt.net/"))return;
-        if(normalized==="en") url.searchParams.delete("lang");
-        else url.searchParams.set("lang",normalized);
-        link.setAttribute("href",url.pathname+url.search+url.hash);
-      }catch(_){}
-    });
-  }
-  function installLanguageNavigation(){
-    document.addEventListener("click",event=>{
-      if(event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;
-      const link=event.target.closest("a[href]");
-      if(!link || link.target==="_blank" || link.hasAttribute("download"))return;
-      const raw=link.getAttribute("href");
-      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
-      try{
-        const url=new URL(raw,window.location.href);
-        if(url.origin!==window.location.origin)return;
-        if(!url.pathname.includes("/WeOwnIt.net/"))return;
-        const lang=normalizeLanguage(document.documentElement.lang)||"en";
-        if(lang==="en")url.searchParams.delete("lang");
-        else url.searchParams.set("lang",lang);
-        event.preventDefault();
-        window.location.assign(url.pathname+url.search+url.hash);
-      }catch(_){}
-    });
-  }
+  const {normalizeLanguage,getInitialLanguage,syncInternalLanguageLinks,installLanguageNavigation}=SiteI18n;
+
   
   const translations = {
     en: {
@@ -152,7 +129,7 @@
       write:"Write directly", prefer:"Prefer to send a message?", intro:"Share the context you think matters. Keep it brief or detailed — the goal is simply to understand what you need help with.",
       name:"Name *", email:"Email *", company:"Company", phone:"Phone", optional:"(optional)", message:"Your message *",
       consent:'I agree that the information submitted in this form may be used to respond to my request. <a href="privacy.html">Privacy notice</a>.',
-      send:"Send", reply:"I usually reply within 2 to 3 business days.", status:"Your email application should open with the message pre-filled.",
+      send:"Open email app", reply:"I usually reply within 2 to 3 business days.", status:"Your email application should open with the message pre-filled.",
       privacy:"This static website does not store form data on a server. Submitting the form opens your email application with the details you entered."
     },
     fr: {
@@ -163,7 +140,7 @@
       write:"Écrire directement", prefer:"Vous préférez nous écrire ?", intro:"Partagez le contexte qui vous semble utile. Le message peut être bref ou détaillé — l’objectif est simplement de comprendre votre besoin.",
       name:"Nom *", email:"E-mail *", company:"Entreprise", phone:"Téléphone", optional:"(optionnel)", message:"Votre message *",
       consent:'J’accepte que les informations envoyées via ce formulaire soient utilisées pour répondre à ma demande. <a href="privacy.html">Politique de confidentialité</a>.',
-      send:"Envoyer", reply:"Je réponds généralement sous 2 à 3 jours ouvrés.", status:"Votre application de messagerie devrait s’ouvrir avec le message prérempli.",
+      send:"Ouvrir la messagerie", reply:"Je réponds généralement sous 2 à 3 jours ouvrés.", status:"Votre application de messagerie devrait s’ouvrir avec le message prérempli.",
       privacy:"Ce site statique ne stocke pas les données du formulaire sur un serveur. L’envoi ouvre votre application de messagerie avec les informations saisies."
     },
     ro: {
@@ -174,7 +151,7 @@
       write:"Scrie direct", prefer:"Preferi să trimiți un mesaj?", intro:"Spune-mi contextul pe care îl consideri relevant. Poate fi scurt sau detaliat — scopul este doar să înțeleg de ce ai nevoie.",
       name:"Nume *", email:"Email *", company:"Companie", phone:"Telefon", optional:"(opțional)", message:"Mesajul tău *",
       consent:'Sunt de acord ca informațiile trimise prin acest formular să fie folosite pentru a răspunde solicitării mele. <a href="privacy.html">Politica de confidențialitate</a>.',
-      send:"Trimite", reply:"Răspund de regulă în 2 până la 3 zile lucrătoare.", status:"Aplicația ta de email ar trebui să se deschidă cu mesajul completat.",
+      send:"Deschide aplicația de email", reply:"Răspund de regulă în 2 până la 3 zile lucrătoare.", status:"Aplicația ta de email ar trebui să se deschidă cu mesajul completat.",
       privacy:"Acest site static nu stochează datele formularului pe un server. Trimiterea formularului deschide aplicația ta de email cu informațiile completate."
     }
   };
@@ -182,7 +159,7 @@
   const qs = s => document.querySelector(s);
   function apply(lang){
     const t = translations[lang] || translations.en;
-    document.documentElement.lang = lang; localStorage.setItem("siteLanguage",lang); const currentUrl=new URL(window.location.href); if(lang==="en") currentUrl.searchParams.delete("lang"); else currentUrl.searchParams.set("lang",lang); history.replaceState(null,"",currentUrl.pathname+currentUrl.search+currentUrl.hash); document.title=t.pageTitle;
+    SiteI18n.setLanguage(lang); document.title=t.pageTitle;
     const brand=qs("[data-brand]"); if(brand) brand.textContent=t.brand;
     const footerBrand=qs("[data-footer-brand]"); if(footerBrand) footerBrand.textContent=t.brand;
     qs(".back").textContent=t.back; qs(".hero .eyebrow").textContent=t.eyebrow; qs("h1").textContent=t.hero;
@@ -221,6 +198,6 @@
   });
 })();
 </script>
-  <script src="assets/chatbox.js?v=4" defer></script>
+  <script src="assets/chatbox.js?v=5" defer></script>
 </body>
 </html>

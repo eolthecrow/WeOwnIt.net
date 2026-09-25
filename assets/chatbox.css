@@ -45,3 +45,10 @@
   .va-chat{right:14px;bottom:82px;width:calc(100vw - 28px);height:min(610px,calc(100vh - 100px))}
 }
 @media(prefers-reduced-motion:reduce){.va-chat-launcher{transition:none}}
+
+/* Readable text and keyboard/touch targets. */
+.va-chat-close{min-width:44px;min-height:44px}
+.va-chat-suggestions button{font-size:14px;min-height:44px}
+.va-chat-title span{font-size:12px}
+.va-msg{font-size:15px}
+.va-chat textarea{font-family:inherit;font-size:16px;line-height:1.4}

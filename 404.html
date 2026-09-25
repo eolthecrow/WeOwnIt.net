@@ -15,11 +15,15 @@
     .code{font-family:var(--mono);color:var(--accent);font-size:.75rem;letter-spacing:.13em;margin:3rem 0 .8rem}
     h1{font-size:clamp(3rem,9vw,6.5rem);line-height:.95;letter-spacing:-.07em;margin:0 0 1.2rem}p{max-width:600px;color:var(--muted);font-size:1.05rem}
     .links{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}.links a{color:#06201e;background:var(--accent);border:1px solid var(--accent);padding:.75rem 1rem;text-decoration:none;font-weight:800}.links a.secondary{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+    .lang-switch{margin-top:1.5rem}.lang-switch button{border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}.lang-switch button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
   </style>
+<link rel="stylesheet" href="/WeOwnIt.net/assets/site.css?v=1">
+<script src="/WeOwnIt.net/assets/i18n.js?v=1"></script>
 </head>
 <body>
   <main class="card">
     <a class="brand" href="https://eolthecrow.github.io/WeOwnIt.net/"><img src="https://eolthecrow.github.io/WeOwnIt.net/assets/va-symbol.svg?v=2" alt=""><span>Network &amp; Security Advisory</span></a>
+    <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="ro">RO</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></div>
     <div class="code">404 / ROUTE NOT FOUND</div>
     <h1>Wrong path.<br>Useful way back.</h1>
     <p>The page you requested does not exist or has moved. Return to the resource library, explore the technical toolkit, or open the store.</p>
@@ -29,5 +33,19 @@
       <a class="secondary" href="https://eolthecrow.github.io/WeOwnIt.net/store.html">Store</a>
     </div>
   </main>
-</body>
+<script>
+(()=>{
+const copy={"en": ["Page not found", "Network & Security Advisory", "404 / PAGE NOT FOUND", "Wrong path. Useful way back.", "The page you requested does not exist or has moved. Return to the resources, explore the tools, or open the store.", "Back to resources", "Tools", "Store"], "ro": ["Pagina nu a fost găsită", "Consultanță în Rețele & Securitate", "404 / PAGINĂ INEXISTENTĂ", "Înapoi la resurse.", "Pagina solicitată nu există sau a fost mutată. Revino la resurse, explorează instrumentele sau deschide magazinul.", "Înapoi la resurse", "Instrumente", "Magazin"], "fr": ["Page introuvable", "Conseil en Réseaux & Sécurité", "404 / PAGE INTROUVABLE", "Retrouvez les ressources.", "La page demandée n’existe pas ou a été déplacée. Retrouvez les ressources, explorez les outils ou ouvrez la boutique.", "Retour aux ressources", "Outils", "Boutique"]};
+function apply(lang){
+ const t=copy[lang];SiteI18n.setLanguage(lang);
+ document.title=t[0]+" — "+t[1];document.querySelector(".brand span").textContent=t[1];
+ document.querySelector(".code").textContent=t[2];document.querySelector("h1").textContent=t[3];document.querySelector("main p").textContent=t[4];
+ document.querySelectorAll(".links a").forEach((a,i)=>a.textContent=t[i+5]);
+ document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
+ SiteI18n.syncInternalLanguageLinks(lang);
+}
+document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
+SiteI18n.installLanguageNavigation();apply(SiteI18n.getInitialLanguage());
+})();
+</script></body>
 </html>

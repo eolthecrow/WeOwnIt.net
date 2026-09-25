@@ -1,0 +1,22 @@
+/* Shared usability improvements, preserving each page's visual design. */
+:focus-visible{outline:3px solid #6ce2c7;outline-offset:4px}
+.content :focus-visible{outline-color:#173cff}
+.site-skip{position:fixed;top:-100px;left:16px;z-index:2000;padding:12px 18px;background:#6ce2c7;color:#06201e;font-weight:700}
+.site-skip:focus{top:12px}
+.site-privacy{display:inline-block;margin:1rem 1.4rem 0;text-decoration:underline;color:inherit;font-size:.875rem}
+.lang-switch button,.langs button{min-width:44px;min-height:44px;font-size:.875rem}
+header .brand{min-width:0}header .mark{flex-shrink:0}
+header .nav-right{flex-shrink:0}
+@media(max-width:600px){
+  header .nav{flex-wrap:wrap;padding-top:.75rem;padding-bottom:.75rem;gap:.7rem}
+  header .nav-right{margin-left:auto}
+  header .brand{font-size:.95rem}
+  .langs button{flex-shrink:0}
+  .topline{flex-wrap:wrap}
+  .topline-tools{margin-left:auto}
+  h1{overflow-wrap:break-word}
+  .grid,.field{min-width:0}
+  input,textarea{max-width:100%}
+  .product{min-width:0}.product>*{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}

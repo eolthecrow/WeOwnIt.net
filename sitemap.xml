@@ -1,10 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/</loc></url>
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/about.html</loc></url>
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/contact.html</loc></url>
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/schedule.html</loc></url>
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/tools.html</loc></url>
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/store.html</loc></url>
-  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/privacy.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/about.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/contact.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/privacy.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/schedule.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/store.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=ro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en"/>
+  </url>
+  <url><loc>https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eolthecrow.github.io/WeOwnIt.net/tools.html?lang=en"/>
+  </url>
 </urlset>
