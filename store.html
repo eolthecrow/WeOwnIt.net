@@ -106,7 +106,6 @@
             <li>Management access, administrator security, and trusted access controls</li>
             <li>Policy, object, logging, firmware, backup, and recovery review</li>
             <li>Practical remediation guidance and repeatable verification</li>
-            <li class="delivery-item" hidden>Digital delivery after successful checkout</li>
           </ul>
           <div class="notice"><strong>Secure checkout.</strong> Purchasing will be enabled when this product launches. Checkout and digital delivery will be handled through Lemon Squeezy.</div>
           <div class="next-release">Next vendor edition · Palo Alto Networks</div>
@@ -204,7 +203,7 @@
     const fortinet=q("#fortinet-hardening-toolkit");
     fortinet.querySelector(".tag:nth-child(1)").textContent=t.fortinetTags[0];fortinet.querySelector(".tag:nth-child(2)").textContent=t.fortinetTags[1];
     fortinet.querySelector("h2").textContent=t.fortinetProduct;fortinet.querySelector(".desc").textContent=t.fortinetDesc;
-    fortinet.querySelectorAll(".features li:not([hidden])").forEach((el,i)=>el.textContent=t.fortinetFeatures[i]);
+    fortinet.querySelectorAll(".features li").forEach((el,i)=>el.textContent=t.fortinetFeatures[i]);
     fortinet.querySelector(".status").textContent=t.fortinetType;fortinet.querySelector(".price").textContent=t.fortinetPrice;
     fortinet.querySelector(".notice").innerHTML="<strong>"+t.notice+"</strong>"+t.noticeText;
     fortinet.querySelector(".next-release").textContent=t.fortinetNext;
