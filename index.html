@@ -209,16 +209,40 @@
   <script>
     (() => {
       const LANGUAGE_STORAGE_KEY="site-language";
+  const SUPPORTED_LANGUAGES=["en","fr","ro"];
+  function normalizeLanguage(lang){
+    return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
+  }
   function getSavedLanguage(){
-    try{
-      const saved=localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      return ["en","fr","ro"].includes(saved)?saved:"en";
-    }catch(_){return "en";}
+    try{return normalizeLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY));}
+    catch(_){return null;}
   }
   function saveLanguage(lang){
-    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,lang);}catch(_){}
+    const normalized=normalizeLanguage(lang);
+    if(!normalized)return;
+    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,normalized);}catch(_){}
   }
-        const translations = {
+  function getInitialLanguage(){
+    const fromUrl=normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
+    if(fromUrl){saveLanguage(fromUrl);return fromUrl;}
+    return getSavedLanguage()||"en";
+  }
+  function syncInternalLanguageLinks(lang){
+    const normalized=normalizeLanguage(lang);
+    if(!normalized)return;
+    document.querySelectorAll('a[href]').forEach(link=>{
+      const raw=link.getAttribute("href");
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
+      try{
+        const url=new URL(raw,window.location.href);
+        if(url.origin!==window.location.origin)return;
+        if(!url.pathname.includes("/WeOwnIt.net/"))return;
+        url.searchParams.set("lang",normalized);
+        link.setAttribute("href",url.pathname+url.search+url.hash);
+      }catch(_){}
+    });
+  }
+  const translations = {
         en: {
           title: "Network & Security Advisory — Vladimir Arjoca",
           description: "Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.",
@@ -642,6 +666,7 @@
           const active = button.dataset.lang === lang;
           button.setAttribute("aria-pressed", String(active));
         });
+        syncInternalLanguageLinks(lang);
       }
 
       document.querySelectorAll(".lang-switch button").forEach(button => {
@@ -651,7 +676,7 @@
         });
       });
 
-      applyLanguage(getSavedLanguage());
+      applyLanguage(getInitialLanguage());
     })();
   </script>
 

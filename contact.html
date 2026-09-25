@@ -102,16 +102,40 @@
 <script>
 (() => {
   const LANGUAGE_STORAGE_KEY="site-language";
+  const SUPPORTED_LANGUAGES=["en","fr","ro"];
+  function normalizeLanguage(lang){
+    return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
+  }
   function getSavedLanguage(){
-    try{
-      const saved=localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      return ["en","fr","ro"].includes(saved)?saved:"en";
-    }catch(_){return "en";}
+    try{return normalizeLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY));}
+    catch(_){return null;}
   }
   function saveLanguage(lang){
-    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,lang);}catch(_){}
+    const normalized=normalizeLanguage(lang);
+    if(!normalized)return;
+    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,normalized);}catch(_){}
   }
-    const translations = {
+  function getInitialLanguage(){
+    const fromUrl=normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
+    if(fromUrl){saveLanguage(fromUrl);return fromUrl;}
+    return getSavedLanguage()||"en";
+  }
+  function syncInternalLanguageLinks(lang){
+    const normalized=normalizeLanguage(lang);
+    if(!normalized)return;
+    document.querySelectorAll('a[href]').forEach(link=>{
+      const raw=link.getAttribute("href");
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
+      try{
+        const url=new URL(raw,window.location.href);
+        if(url.origin!==window.location.origin)return;
+        if(!url.pathname.includes("/WeOwnIt.net/"))return;
+        url.searchParams.set("lang",normalized);
+        link.setAttribute("href",url.pathname+url.search+url.hash);
+      }catch(_){}
+    });
+  }
+  const translations = {
     en: {
       pageTitle:"Contact — Network & Security Advisory", brand:"Network & Security Advisory", back:"← Back to resources", eyebrow:"Contact", hero:"Let’s talk.",
       heroText:"The best way to start is a focused conversation about your current situation, what is blocking you, and what a practical next step could look like.",
@@ -162,13 +186,14 @@
     qs('label[for="message"]').textContent=t.message; qs(".consent span").innerHTML=t.consent; qs(".submit").textContent=t.send;
     qs(".response-note").textContent=t.reply; qs("#status").textContent=t.status; qs(".privacy").textContent=t.privacy;
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
+    syncInternalLanguageLinks(lang);
   }
 
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>{
     saveLanguage(b.dataset.lang);
     apply(b.dataset.lang);
   }));
-  apply(getSavedLanguage());
+  apply(getInitialLanguage());
 
   qs("#contact-form").addEventListener("submit", e => {
     e.preventDefault();

@@ -208,16 +208,40 @@
 <script>
 (() => {
   const LANGUAGE_STORAGE_KEY="site-language";
+  const SUPPORTED_LANGUAGES=["en","fr","ro"];
+  function normalizeLanguage(lang){
+    return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
+  }
   function getSavedLanguage(){
-    try{
-      const saved=localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      return ["en","fr","ro"].includes(saved)?saved:"en";
-    }catch(_){return "en";}
+    try{return normalizeLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY));}
+    catch(_){return null;}
   }
   function saveLanguage(lang){
-    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,lang);}catch(_){}
+    const normalized=normalizeLanguage(lang);
+    if(!normalized)return;
+    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,normalized);}catch(_){}
   }
-    const t = {
+  function getInitialLanguage(){
+    const fromUrl=normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
+    if(fromUrl){saveLanguage(fromUrl);return fromUrl;}
+    return getSavedLanguage()||"en";
+  }
+  function syncInternalLanguageLinks(lang){
+    const normalized=normalizeLanguage(lang);
+    if(!normalized)return;
+    document.querySelectorAll('a[href]').forEach(link=>{
+      const raw=link.getAttribute("href");
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
+      try{
+        const url=new URL(raw,window.location.href);
+        if(url.origin!==window.location.origin)return;
+        if(!url.pathname.includes("/WeOwnIt.net/"))return;
+        url.searchParams.set("lang",normalized);
+        link.setAttribute("href",url.pathname+url.search+url.hash);
+      }catch(_){}
+    });
+  }
+  const t = {
     en: {
       heroEyebrow:"About",
       heroLead:"Network and Security Engineer with 10+ years of experience designing, operating, and securing enterprise and service-provider network infrastructures.",
@@ -313,12 +337,13 @@
     });
     document.querySelector(".back").textContent=d.back;
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
+    syncInternalLanguageLinks(lang);
   }
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>{
     saveLanguage(b.dataset.lang);
     apply(b.dataset.lang);
   }));
-  apply(getSavedLanguage());
+  apply(getInitialLanguage());
 })();
 </script>
   <script src="assets/chatbox.js?v=4" defer></script>
