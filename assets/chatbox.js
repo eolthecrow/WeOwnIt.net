@@ -7,7 +7,7 @@
       open:'Open Network & Security Assistant', close:'Close chat', send:'Send message', input:'Your question',
       title:"Network & Security Assistant",
       status:isLive?"AI assistant":"",
-      welcome:"Hi — ask me about network security assessments, incident response, firewall hardening, segmentation, troubleshooting, or automation.",
+      greetingReply:"Hello! How can I help you today?",
       placeholder:"Enter your question...",
       quickLabel:"Quick links",
       quickActions:["Contact","Schedule","Store","Services","About","Tools"],
@@ -19,7 +19,7 @@
       open:'Deschide asistentul de rețele și securitate', close:'Închide conversația', send:'Trimite mesajul', input:'Întrebarea ta',
       title:"Asistent Rețele & Securitate",
       status:isLive?"Asistent AI":"",
-      welcome:"Salut — întreabă-mă despre evaluări de securitate, incident response, firewall hardening, segmentare, troubleshooting sau automatizare.",
+      greetingReply:"Salut! Cu ce te pot ajuta astăzi?",
       placeholder:"Scrie întrebarea...",
       quickLabel:"Acces rapid",
       quickActions:["Contact","Programare","Magazin","Servicii","Despre","Instrumente"],
@@ -31,7 +31,7 @@
       open:'Ouvrir l’assistant réseaux et sécurité', close:'Fermer la conversation', send:'Envoyer le message', input:'Votre question',
       title:"Assistant Réseaux & Sécurité",
       status:isLive?"Assistant IA":"",
-      welcome:"Bonjour — posez une question sur les évaluations de sécurité réseau, la réponse aux incidents, le durcissement des firewalls, la segmentation, le dépannage ou l’automatisation.",
+      greetingReply:"Bonjour ! Comment puis-je vous aider aujourd’hui ?",
       placeholder:"Votre question...",
       quickLabel:"Accès rapide",
       quickActions:["Contact","Rendez-vous","Boutique","Services","À propos","Outils"],
@@ -80,6 +80,14 @@
     if(/automat|ansible|compliance|drift|ci\/cd/.test(s)) return a.automat;
     if(/troubleshoot|diagnos|vpn|routing|sd-wan|outage/.test(s)) return a.troubleshoot;
     return a.default;
+  };
+
+  const greetingReply=(value,language)=>{
+    const q=value.trim().toLowerCase().replace(/[!.?]+$/,"").trim();
+    const greetings=/^(hello|hi|hey|salut|buna|bună|bonjour)$/i;
+    if(!greetings.test(q)) return null;
+    const t=copy[language]||copy.en;
+    return t.greetingReply;
   };
 
   const routeWithLanguage=(path,language=lang())=>{
@@ -161,8 +169,7 @@
     messages.scrollTop=messages.scrollHeight;
     return el;
   };
-  let welcome;
-  let suggestions;
+   let suggestions;
   let quickLabel;
   let quickHint;
   const refresh=()=>{
@@ -175,8 +182,7 @@
     panel.querySelector(".va-chat-title strong").textContent=t.title;
     panel.querySelector(".va-chat-title span").textContent=t.status;
     input.placeholder=t.placeholder;
-    if(!welcome){
-      welcome=add(t.welcome,"bot");
+    if(!suggestions){
       quickLabel=document.createElement("div");
       quickLabel.className="va-chat-quick-label";
       suggestions=document.createElement("div");suggestions.className="va-chat-suggestions";
@@ -189,7 +195,6 @@
       quickHint.className="va-chat-quick-hint";
       messages.append(quickLabel,suggestions,quickHint);
     }
-    welcome.textContent=t.welcome;welcome.lang=lang();
     quickLabel.textContent=t.quickLabel;
     quickHint.textContent=t.quickHint;
     [...suggestions.children].forEach((button,index)=>button.textContent=t.quickActions[index]);
@@ -208,6 +213,13 @@
     e.preventDefault();
     const q=input.value.trim();if(!q || send.disabled)return;
     const language=lang();
+    const greeting=greetingReply(q,language);
+    if(greeting){
+      input.value="";
+      add(q,"user");
+      add(greeting,"bot");
+      return;
+    }
     const localTarget=localIntentTarget(q,language);
     if(localTarget){
       window.location.href=localTarget;
