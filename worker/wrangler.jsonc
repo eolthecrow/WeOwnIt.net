@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "network-security-assistant",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-25",
+  "ai": {
+    "binding": "AI"
+  }
+}
