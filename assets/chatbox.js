@@ -169,7 +169,8 @@
     messages.scrollTop=messages.scrollHeight;
     return el;
   };
-   let suggestions;
+  let openingGreeting;
+  let suggestions;
   let quickLabel;
   let quickHint;
   const refresh=()=>{
@@ -183,6 +184,7 @@
     panel.querySelector(".va-chat-title span").textContent=t.status;
     input.placeholder=t.placeholder;
     if(!suggestions){
+      openingGreeting=add(t.greetingReply,"bot");
       quickLabel=document.createElement("div");
       quickLabel.className="va-chat-quick-label";
       suggestions=document.createElement("div");suggestions.className="va-chat-suggestions";
@@ -195,6 +197,8 @@
       quickHint.className="va-chat-quick-hint";
       messages.append(quickLabel,suggestions,quickHint);
     }
+    openingGreeting.textContent=t.greetingReply;
+    openingGreeting.lang=lang();
     quickLabel.textContent=t.quickLabel;
     quickHint.textContent=t.quickHint;
     [...suggestions.children].forEach((button,index)=>button.textContent=t.quickActions[index]);
