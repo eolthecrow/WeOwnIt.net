@@ -134,6 +134,26 @@
       }catch(_){}
     });
   }
+  function installLanguageNavigation(){
+    document.addEventListener("click",event=>{
+      if(event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;
+      const link=event.target.closest("a[href]");
+      if(!link || link.target==="_blank" || link.hasAttribute("download"))return;
+      const raw=link.getAttribute("href");
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:"))return;
+      try{
+        const url=new URL(raw,window.location.href);
+        if(url.origin!==window.location.origin)return;
+        if(!url.pathname.includes("/WeOwnIt.net/"))return;
+        const lang=normalizeLanguage(document.documentElement.lang)||"en";
+        if(lang==="en")url.searchParams.delete("lang");
+        else url.searchParams.set("lang",lang);
+        event.preventDefault();
+        window.location.assign(url.pathname+url.search+url.hash);
+      }catch(_){}
+    });
+  }
+  
   const t = {
     en: {
       pageTitle:"Tools — Network & Security Advisory",
@@ -227,6 +247,7 @@
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>{
           apply(b.dataset.lang);
   }));
+  installLanguageNavigation();
   apply(getInitialLanguage());
 })();
 </script>
