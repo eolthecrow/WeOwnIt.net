@@ -26,7 +26,7 @@
     .hero{padding:5rem 0 3rem;background:linear-gradient(135deg,#0a151c 0%,#0d1e26 62%,#12342f 100%);border-bottom:1px solid var(--line)}
     .eyebrow{font-family:var(--mono);color:var(--accent);font-size:.75rem;text-transform:uppercase;letter-spacing:.13em;margin-bottom:1rem}
     h1{font-size:clamp(3rem,7vw,6rem);line-height:.98;letter-spacing:-.065em;margin:0 0 1.25rem;font-weight:700}.lead{max-width:720px;color:var(--muted);font-size:1.08rem;margin:0}
-    .store{padding:4rem 0 5rem}.product{scroll-margin-top:90px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);border:1px solid var(--line);background:var(--bg2)}
+    .store{padding:4rem 0 5rem}.store>.wrap{display:grid;gap:1.25rem}.product{scroll-margin-top:90px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);border:1px solid var(--line);background:var(--bg2)}
     .product-main{padding:clamp(1.6rem,4vw,3rem)}.product-side{padding:clamp(1.6rem,4vw,2.4rem);border-left:1px solid var(--line);background:#102029;display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
     .tag{display:inline-flex;border:1px solid var(--line-strong);padding:.38rem .62rem;font-family:var(--mono);font-size:.68rem;color:#c8d8d5;margin:0 .35rem .45rem 0}
     h2{font-size:clamp(2rem,4vw,3.8rem);line-height:1.03;letter-spacing:-.055em;margin:.7rem 0 1rem}.desc{color:var(--muted);max-width:700px}
@@ -34,7 +34,7 @@
     .status{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--quiet)}.price{font-size:2rem;font-weight:750;letter-spacing:-.04em;margin:.35rem 0 0}
     .buy{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid var(--accent);background:var(--accent);color:#06201e;font-weight:850;padding:.8rem 1rem;transition:.2s}.buy:hover{background:#a1f0de}.buy.is-disabled{pointer-events:none;opacity:.46;background:transparent;color:var(--muted);border-color:var(--line-strong)}
     .checkout-note{font-size:.78rem;color:var(--quiet);margin:.7rem 0 0}.checkout-note a{text-decoration:underline;text-underline-offset:3px}
-    .notice{margin-top:1.2rem;border:1px solid var(--line);padding:1rem 1.1rem;color:var(--muted);font-size:.88rem;background:#0b171e}.notice strong{color:var(--ink)}
+    .notice{margin-top:1.2rem;border:1px solid var(--line);padding:1rem 1.1rem;color:var(--muted);font-size:.88rem;background:#0b171e}.notice strong{color:var(--ink)}.next-release{margin-top:.8rem;color:var(--quiet);font-family:var(--mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
     footer{border-top:1px solid var(--line);padding:1.7rem 0;color:var(--quiet);font-size:.8rem}
     @media(max-width:780px){.nav{padding:1rem 0;align-items:flex-start}.back{display:none}.product{grid-template-columns:1fr}.product-side{border-left:0;border-top:1px solid var(--line)}}
   </style>
@@ -88,7 +88,35 @@
             <div class="price">Coming soon</div>
           </div>
           <div>
-            <a class="buy is-disabled" data-buy aria-disabled="true">Checkout setup pending</a>
+            <a class="buy is-disabled" data-buy-key="incidentResponse" aria-disabled="true">Checkout setup pending</a>
+            <p class="checkout-note">Secure checkout will be provided by <a href="https://www.lemonsqueezy.com/" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>.</p>
+          </div>
+        </aside>
+      </article>
+
+      <article class="product" id="fortinet-hardening-toolkit">
+        <div class="product-main">
+          <div>
+            <span class="tag">FORTINET</span><span class="tag">FIREWALL HARDENING</span>
+          </div>
+          <h2>Fortinet Firewall Hardening Toolkit 2026</h2>
+          <p class="desc">A Fortinet-focused hardening package for reviewing secure administration, policy hygiene, management exposure, logging, lifecycle, backup, and recovery controls.</p>
+          <ul class="features">
+            <li>FortiGate hardening review and validation checklist</li>
+            <li>Management access, administrator security, and trusted access controls</li>
+            <li>Policy, object, logging, firmware, backup, and recovery review</li>
+            <li>Practical remediation guidance and repeatable verification</li>
+          </ul>
+          <div class="notice"><strong>Secure checkout.</strong> Purchasing will be enabled when this product launches. Checkout and digital delivery will be handled through Lemon Squeezy.</div>
+          <div class="next-release">Next vendor edition · Palo Alto Networks</div>
+        </div>
+        <aside class="product-side">
+          <div>
+            <div class="status">Digital product</div>
+            <div class="price">Coming soon</div>
+          </div>
+          <div>
+            <a class="buy is-disabled" data-buy-key="fortinetHardening" aria-disabled="true">Checkout setup pending</a>
             <p class="checkout-note">Secure checkout will be provided by <a href="https://www.lemonsqueezy.com/" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>.</p>
           </div>
         </aside>
@@ -103,7 +131,11 @@
 (() => {
   // Public shareable checkout URL from Lemon Squeezy.
   // Example format: https://YOURSTORE.lemonsqueezy.com/checkout/buy/VARIANT_ID
-  const LEMON_CHECKOUT_URL = "";
+  const LEMON_CHECKOUT_URLS = {
+    incidentResponse: "",
+    fortinetHardening: "",
+    paloAltoHardening: ""
+  };
 
   const translations = {
     en:{
@@ -114,7 +146,12 @@
       features:["Incident Response Plan and practical response guidance","Operational checklists and incident-specific playbooks","Communication, evidence, tracking, and review templates","Digital delivery after successful checkout"],
       type:"Digital product",price:"Coming soon",pending:"Checkout setup pending",
       notice:"Secure checkout.",noticeText:" Purchasing will be enabled when this product launches. Checkout and digital delivery will be handled through Lemon Squeezy.",
-      checkout:"Secure checkout will be provided by "
+      checkout:"Secure checkout will be provided by ",
+      fortinetTags:["FORTINET","FIREWALL HARDENING"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
+      fortinetDesc:"A Fortinet-focused hardening package for reviewing secure administration, policy hygiene, management exposure, logging, lifecycle, backup, and recovery controls.",
+      fortinetFeatures:["FortiGate hardening review and validation checklist","Management access, administrator security, and trusted access controls","Policy, object, logging, firmware, backup, and recovery review","Practical remediation guidance and repeatable verification"],
+      fortinetType:"Digital product",fortinetPrice:"Coming soon",fortinetPending:"Checkout setup pending",
+      fortinetNext:"Next vendor edition · Palo Alto Networks"
     },
     ro:{
       pageTitle:"Magazin — Consultanță în Rețele & Securitate",brand:"Consultanță în Rețele & Securitate",back:"← Înapoi la resurse",eyebrow:"Magazin",
@@ -124,7 +161,12 @@
       features:["Plan de răspuns la incidente și ghidare practică","Checklist-uri operaționale și playbook-uri specifice incidentelor","Template-uri pentru comunicare, dovezi, tracking și review","Livrare digitală după finalizarea plății"],
       type:"Produs digital",price:"În curând",pending:"Configurarea checkout-ului este în curs",
       notice:"Checkout securizat.",noticeText:" Achiziția va fi activată la lansarea produsului. Checkout-ul și livrarea digitală vor fi gestionate prin Lemon Squeezy.",
-      checkout:"Checkout-ul securizat va fi furnizat de "
+      checkout:"Checkout-ul securizat va fi furnizat de ",
+      fortinetTags:["FORTINET","FIREWALL HARDENING"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
+      fortinetDesc:"Un pachet de hardening orientat pe Fortinet pentru verificarea administrării securizate, igienei politicilor, expunerii managementului, logării, lifecycle-ului, backup-ului și recovery-ului.",
+      fortinetFeatures:["Checklist de review și validare pentru hardening FortiGate","Acces de management, securitatea administratorilor și trusted access","Review pentru politici, obiecte, logare, firmware, backup și recovery","Ghidare practică pentru remediere și verificare repetabilă"],
+      fortinetType:"Produs digital",fortinetPrice:"În curând",fortinetPending:"Configurarea checkout-ului este în curs",
+      fortinetNext:"Următoarea ediție vendor · Palo Alto Networks"
     },
     fr:{
       pageTitle:"Boutique — Conseil en Réseaux & Sécurité",brand:"Conseil en Réseaux & Sécurité",back:"← Retour aux ressources",eyebrow:"Boutique",
@@ -134,7 +176,12 @@
       features:["Plan de réponse aux incidents et guide pratique","Checklists opérationnelles et playbooks spécifiques","Modèles de communication, preuves, suivi et revue","Livraison numérique après paiement"],
       type:"Produit numérique",price:"Bientôt disponible",pending:"Configuration du paiement en cours",
       notice:"Paiement sécurisé.",noticeText:" L’achat sera activé au lancement du produit. Le paiement et la livraison numérique seront gérés via Lemon Squeezy.",
-      checkout:"Le paiement sécurisé sera fourni par "
+      checkout:"Le paiement sécurisé sera fourni par ",
+      fortinetTags:["FORTINET","DURCISSEMENT FIREWALL"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
+      fortinetDesc:"Un package de durcissement axé sur Fortinet pour examiner l’administration sécurisée, l’hygiène des politiques, l’exposition de la gestion, la journalisation, le cycle de vie, les sauvegardes et la récupération.",
+      fortinetFeatures:["Checklist de revue et de validation du durcissement FortiGate","Accès de gestion, sécurité des administrateurs et accès de confiance","Revue des politiques, objets, journaux, firmware, sauvegardes et récupération","Recommandations pratiques de remédiation et vérification répétable"],
+      fortinetType:"Produit numérique",fortinetPrice:"Bientôt disponible",fortinetPending:"Configuration du paiement en cours",
+      fortinetNext:"Prochaine édition fournisseur · Palo Alto Networks"
     }
   };
 
@@ -144,25 +191,39 @@
     document.documentElement.lang=lang;document.title=t.pageTitle;
     q("[data-brand]").textContent=t.brand;q("[data-footer-brand]").textContent=t.brand;q(".back").textContent=t.back;
     q(".hero .eyebrow").textContent=t.eyebrow;q(".hero h1").innerHTML=t.title;q(".hero .lead").textContent=t.lead;
-    q(".product-main .tag:nth-child(1)").textContent=t.tags[0];q(".product-main .tag:nth-child(2)").textContent=t.tags[1];
-    q(".product h2").textContent=t.product;q(".product .desc").textContent=t.desc;
-    q(".features").querySelectorAll("li").forEach((el,i)=>el.textContent=t.features[i]);
-    q(".status").textContent=t.type;q(".price").textContent=t.price;
-    const notice=q(".notice");notice.innerHTML="<strong>"+t.notice+"</strong>"+t.noticeText;
-    const buy=q("[data-buy]");if(!LEMON_CHECKOUT_URL)buy.textContent=t.pending;
-    q(".checkout-note").innerHTML=t.checkout+'<a href="https://www.lemonsqueezy.com/" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>.';
+    const incident=q("#incident-response-toolkit");
+    incident.querySelector(".tag:nth-child(1)").textContent=t.tags[0];incident.querySelector(".tag:nth-child(2)").textContent=t.tags[1];
+    incident.querySelector("h2").textContent=t.product;incident.querySelector(".desc").textContent=t.desc;
+    incident.querySelectorAll(".features li").forEach((el,i)=>el.textContent=t.features[i]);
+    incident.querySelector(".status").textContent=t.type;incident.querySelector(".price").textContent=t.price;
+    incident.querySelector(".notice").innerHTML="<strong>"+t.notice+"</strong>"+t.noticeText;
+    if(!LEMON_CHECKOUT_URLS.incidentResponse)incident.querySelector("[data-buy-key='incidentResponse']").textContent=t.pending;
+    incident.querySelector(".checkout-note").innerHTML=t.checkout+'<a href="https://www.lemonsqueezy.com/" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>.';
+
+    const fortinet=q("#fortinet-hardening-toolkit");
+    fortinet.querySelector(".tag:nth-child(1)").textContent=t.fortinetTags[0];fortinet.querySelector(".tag:nth-child(2)").textContent=t.fortinetTags[1];
+    fortinet.querySelector("h2").textContent=t.fortinetProduct;fortinet.querySelector(".desc").textContent=t.fortinetDesc;
+    fortinet.querySelectorAll(".features li").forEach((el,i)=>el.textContent=t.fortinetFeatures[i]);
+    fortinet.querySelector(".status").textContent=t.fortinetType;fortinet.querySelector(".price").textContent=t.fortinetPrice;
+    fortinet.querySelector(".notice").innerHTML="<strong>"+t.notice+"</strong>"+t.noticeText;
+    fortinet.querySelector(".next-release").textContent=t.fortinetNext;
+    if(!LEMON_CHECKOUT_URLS.fortinetHardening)fortinet.querySelector("[data-buy-key='fortinetHardening']").textContent=t.fortinetPending;
+    fortinet.querySelector(".checkout-note").innerHTML=t.checkout+'<a href="https://www.lemonsqueezy.com/" target="_blank" rel="noopener noreferrer">Lemon Squeezy</a>.';
+
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
   }
 
-  const buy=q("[data-buy]");
-  if(LEMON_CHECKOUT_URL){
-    buy.href=LEMON_CHECKOUT_URL;
+  document.querySelectorAll("[data-buy-key]").forEach(buy=>{
+    const key=buy.dataset.buyKey;
+    const url=LEMON_CHECKOUT_URLS[key];
+    if(!url)return;
+    buy.href=url;
     buy.classList.remove("is-disabled");
     buy.classList.add("lemonsqueezy-button");
     buy.removeAttribute("aria-disabled");
     buy.textContent="Buy securely";
-    window.addEventListener("load",()=>{if(window.createLemonSqueezy)window.createLemonSqueezy();});
-  }
+  });
+  window.addEventListener("load",()=>{if(window.createLemonSqueezy)window.createLemonSqueezy();});
 
   document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>apply(b.dataset.lang)));
   apply("en");
