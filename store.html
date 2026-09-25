@@ -97,7 +97,7 @@
       <article class="product" id="fortinet-hardening-toolkit">
         <div class="product-main">
           <div>
-            <span class="tag">FORTINET</span><span class="tag">FIREWALL HARDENING</span>
+            <span class="tag">FIREWALL HARDENING</span><span class="tag">2026 EDITION</span>
           </div>
           <h2>Fortinet Firewall Hardening Toolkit 2026</h2>
           <p class="desc">A Fortinet-focused hardening package for reviewing secure administration, policy hygiene, management exposure, logging, lifecycle, backup, and recovery controls.</p>
@@ -106,6 +106,7 @@
             <li>Management access, administrator security, and trusted access controls</li>
             <li>Policy, object, logging, firmware, backup, and recovery review</li>
             <li>Practical remediation guidance and repeatable verification</li>
+            <li class="delivery-item" hidden>Digital delivery after successful checkout</li>
           </ul>
           <div class="notice"><strong>Secure checkout.</strong> Purchasing will be enabled when this product launches. Checkout and digital delivery will be handled through Lemon Squeezy.</div>
           <div class="next-release">Next vendor edition · Palo Alto Networks</div>
@@ -147,7 +148,7 @@
       type:"Digital product",price:"Coming soon",pending:"Checkout setup pending",
       notice:"Secure checkout.",noticeText:" Purchasing will be enabled when this product launches. Checkout and digital delivery will be handled through Lemon Squeezy.",
       checkout:"Secure checkout will be provided by ",
-      fortinetTags:["FORTINET","FIREWALL HARDENING"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
+      fortinetTags:["FIREWALL HARDENING","2026 EDITION"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
       fortinetDesc:"A Fortinet-focused hardening package for reviewing secure administration, policy hygiene, management exposure, logging, lifecycle, backup, and recovery controls.",
       fortinetFeatures:["FortiGate hardening review and validation checklist","Management access, administrator security, and trusted access controls","Policy, object, logging, firmware, backup, and recovery review","Practical remediation guidance and repeatable verification"],
       fortinetType:"Digital product",fortinetPrice:"Coming soon",fortinetPending:"Checkout setup pending",
@@ -162,7 +163,7 @@
       type:"Produs digital",price:"În curând",pending:"Configurarea checkout-ului este în curs",
       notice:"Checkout securizat.",noticeText:" Achiziția va fi activată la lansarea produsului. Checkout-ul și livrarea digitală vor fi gestionate prin Lemon Squeezy.",
       checkout:"Checkout-ul securizat va fi furnizat de ",
-      fortinetTags:["FORTINET","FIREWALL HARDENING"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
+      fortinetTags:["FIREWALL HARDENING","EDIȚIA 2026"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
       fortinetDesc:"Un pachet de hardening orientat pe Fortinet pentru verificarea administrării securizate, igienei politicilor, expunerii managementului, logării, lifecycle-ului, backup-ului și recovery-ului.",
       fortinetFeatures:["Checklist de review și validare pentru hardening FortiGate","Acces de management, securitatea administratorilor și trusted access","Review pentru politici, obiecte, logare, firmware, backup și recovery","Ghidare practică pentru remediere și verificare repetabilă"],
       fortinetType:"Produs digital",fortinetPrice:"În curând",fortinetPending:"Configurarea checkout-ului este în curs",
@@ -177,7 +178,7 @@
       type:"Produit numérique",price:"Bientôt disponible",pending:"Configuration du paiement en cours",
       notice:"Paiement sécurisé.",noticeText:" L’achat sera activé au lancement du produit. Le paiement et la livraison numérique seront gérés via Lemon Squeezy.",
       checkout:"Le paiement sécurisé sera fourni par ",
-      fortinetTags:["FORTINET","DURCISSEMENT FIREWALL"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
+      fortinetTags:["DURCISSEMENT FIREWALL","ÉDITION 2026"],fortinetProduct:"Fortinet Firewall Hardening Toolkit 2026",
       fortinetDesc:"Un package de durcissement axé sur Fortinet pour examiner l’administration sécurisée, l’hygiène des politiques, l’exposition de la gestion, la journalisation, le cycle de vie, les sauvegardes et la récupération.",
       fortinetFeatures:["Checklist de revue et de validation du durcissement FortiGate","Accès de gestion, sécurité des administrateurs et accès de confiance","Revue des politiques, objets, journaux, firmware, sauvegardes et récupération","Recommandations pratiques de remédiation et vérification répétable"],
       fortinetType:"Produit numérique",fortinetPrice:"Bientôt disponible",fortinetPending:"Configuration du paiement en cours",
@@ -203,7 +204,7 @@
     const fortinet=q("#fortinet-hardening-toolkit");
     fortinet.querySelector(".tag:nth-child(1)").textContent=t.fortinetTags[0];fortinet.querySelector(".tag:nth-child(2)").textContent=t.fortinetTags[1];
     fortinet.querySelector("h2").textContent=t.fortinetProduct;fortinet.querySelector(".desc").textContent=t.fortinetDesc;
-    fortinet.querySelectorAll(".features li").forEach((el,i)=>el.textContent=t.fortinetFeatures[i]);
+    fortinet.querySelectorAll(".features li:not([hidden])").forEach((el,i)=>el.textContent=t.fortinetFeatures[i]);
     fortinet.querySelector(".status").textContent=t.fortinetType;fortinet.querySelector(".price").textContent=t.fortinetPrice;
     fortinet.querySelector(".notice").innerHTML="<strong>"+t.notice+"</strong>"+t.noticeText;
     fortinet.querySelector(".next-release").textContent=t.fortinetNext;
