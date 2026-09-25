@@ -181,7 +181,12 @@
       pending.textContent=answer;
       history.push({role:"user",content:q},{role:"assistant",content:answer});
     }catch(error){
-      const detail=error?.message&&error.message!=="Failed to fetch"?" "+error.message:"";
+      console.error("Network & Security Assistant request failed",{
+        endpoint:API_ENDPOINT,
+        message:error?.message||String(error),
+        error
+      });
+      const detail=error?.message?" ["+error.message+"]":"";
       pending.textContent=t.error+detail;
     }finally{
       send.disabled=false;messages.scrollTop=messages.scrollHeight;input.focus();
