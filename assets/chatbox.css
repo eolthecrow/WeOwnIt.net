@@ -32,7 +32,9 @@
 .va-msg.bot{align-self:flex-start;background:#12232b;border:1px solid #29404a;color:#f2f1e8;border-bottom-left-radius:5px}
 .va-msg.user{align-self:flex-end;background:#123b39;border:1px solid #2b6660;color:#f2f1e8;border-bottom-right-radius:5px}
 .va-msg-note{color:#81969a;font-size:10.5px;margin-top:-5px;align-self:flex-start}
+.va-chat-quick-label{font-size:11px;line-height:1.3;color:#81969a;text-transform:uppercase;letter-spacing:.08em;margin:2px 0 -5px}
 .va-chat-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
+.va-chat-quick-hint{font-size:11px;line-height:1.4;color:#81969a;margin-top:-3px}
 .va-chat-suggestions button{border:1px solid #29404a;background:#0e1d25;color:#a6b8ba;border-radius:999px;padding:7px 9px;font-size:11px;cursor:pointer}
 .va-chat-suggestions button:hover{border-color:#6ce2c7;color:#f2f1e8}
 .va-chat-form{border-top:1px solid #29404a;background:#0e1d25;padding:11px;display:grid;grid-template-columns:1fr 42px;gap:8px;align-items:end}
