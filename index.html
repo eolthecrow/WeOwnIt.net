@@ -102,16 +102,19 @@
     .vendor-guidance .vendor-links { display:flex; flex-direction:row; flex-wrap:wrap; gap:.45rem .8rem }
     .vendor-guidance .vendor-links a { font-size:.73rem; color:var(--muted) }
     .vendor-guidance .vendor-links a:hover { color:var(--accent) }
-    .vendor-toolkit-shelf { margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--line-strong) }
-    .vendor-toolkit-head { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:.65rem }
-    .vendor-toolkit-head .micro { font-size:.66rem }
-    .toolkit-edition { color:var(--quiet); font-family:var(--mono); font-size:.62rem; letter-spacing:.07em; text-transform:uppercase }
-    .vendor-toolkit-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.55rem }
-    .vendor-toolkit { min-width:0; border:1px solid var(--line); background:#102029; padding:.72rem .7rem; transition:border-color .2s,background .2s,transform .2s }
-    .vendor-toolkit:hover { border-color:var(--accent); background:#132a31; transform:translateY(-1px) }
-    .vendor-toolkit .vendor-name { display:block; color:var(--accent); font-family:var(--mono); font-size:.61rem; letter-spacing:.065em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
-    .vendor-toolkit strong { display:block; margin:.34rem 0 .48rem; font-size:.82rem; line-height:1.22; letter-spacing:-.02em }
-    .vendor-toolkit .vendor-cta { display:block; color:var(--muted); font-family:var(--mono); font-size:.6rem; letter-spacing:.04em; text-transform:uppercase }
+    .vendor-toolkit-shelf { margin-top:1.1rem; padding-top:.35rem }
+    .vendor-toolkit-head { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:.75rem }
+    .vendor-toolkit-head .micro { font-size:.65rem }
+    .toolkit-edition { color:var(--quiet); font-family:var(--mono); font-size:.6rem; letter-spacing:.075em; text-transform:uppercase }
+    .vendor-toolkit-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.45rem }
+    .vendor-toolkit { min-width:0; padding:.45rem .15rem .3rem 0; background:transparent; position:relative; transition:transform .2s,color .2s }
+    .vendor-toolkit::after { content:""; position:absolute; left:0; bottom:0; width:28px; height:1px; background:var(--line-strong); transition:width .2s,background .2s }
+    .vendor-toolkit:hover { transform:translateY(-1px) }
+    .vendor-toolkit:hover::after { width:54px; background:var(--accent) }
+    .vendor-toolkit .vendor-name { display:block; color:var(--accent); font-family:var(--mono); font-size:.61rem; letter-spacing:.07em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+    .vendor-toolkit strong { display:block; margin:.38rem 0 .52rem; font-size:.9rem; line-height:1.22; letter-spacing:-.022em; font-weight:650 }
+    .vendor-toolkit .vendor-cta { display:block; color:var(--muted); font-family:var(--mono); font-size:.59rem; letter-spacing:.045em; text-transform:uppercase }
+    .vendor-toolkit:hover .vendor-cta { color:var(--accent) }
     .sample-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line) }
     .sample-strip article { background:var(--bg); padding:1.55rem }
     .sample-strip span { font-family:var(--mono); color:var(--accent); font-size:.73rem }
@@ -184,7 +187,7 @@
             <div class="feature-side"><span class="micro">Start with this question</span><blockquote>When an alert becomes an incident, who has the authority to act?</blockquote><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">Read NIST SP 800-61 Rev. 3 <span aria-hidden="true">↗</span></a><div class="premium-offer"><span class="premium-label">Professional Toolkit · 2026 Edition</span><strong>Complete incident response pack</strong><p>Plan, playbooks, checklists, communication templates, and practical worksheets.</p><a class="premium-link" href="store.html#incident-response-toolkit">View toolkit <span aria-hidden="true">↗</span></a></div></div>
           </article>
           <article class="resource" id="network-assessment"><div class="resource-top"><span class="index">02 / ASSESS</span><span class="kind">Assessment framework</span></div><h3>Network security assessment</h3><p class="desc">Review the network from exposure and access through segmentation, management, logging, resilience, and operational ownership.</p><ul class="list"><li>Assets, exposed services, and management planes</li><li>Segmentation, privileged access, and trust boundaries</li><li>Logging, backups, resilience, and remediation priorities</li></ul><div class="sample">Sample action: trace one critical service from user to workload and document every trust boundary.</div></article>
-          <article class="resource" id="firewall-hardening"><div class="resource-top"><span class="index">03 / HARDEN</span><span class="kind">Security checklist</span></div><h3>Firewall security &amp; hardening</h3><p class="desc">A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.</p><ul class="list"><li>Management exposure, accounts, MFA, and trusted access</li><li>Policy review, object hygiene, and least privilege</li><li>Firmware, logging, backups, and recovery controls</li></ul><div class="sample vendor-guidance"><span class="guidance-label">Vendor guidance</span><div class="vendor-links"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet ↗</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Palo Alto Networks ↗</a><a href="https://sc1.checkpoint.com/documents/Check_Point_Gateway_and_Management_Hardening/index.html" target="_blank" rel="noopener noreferrer">Check Point ↗</a></div></div><div class="vendor-toolkit-shelf"><div class="vendor-toolkit-head"><span class="micro">Professional vendor toolkits</span><span class="toolkit-edition">2026 editions</span></div><div class="vendor-toolkit-grid"><a class="vendor-toolkit fortinet-toolkit" href="store.html#fortinet-hardening-toolkit"><span class="vendor-name">Fortinet</span><strong>Firewall Hardening Toolkit</strong><span class="vendor-cta">View toolkit ↗</span></a><a class="vendor-toolkit paloalto-toolkit" href="store.html#palo-alto-hardening-toolkit"><span class="vendor-name">Palo Alto Networks</span><strong>Firewall Hardening Toolkit</strong><span class="vendor-cta">View toolkit ↗</span></a><a class="vendor-toolkit checkpoint-toolkit" href="store.html#check-point-hardening-toolkit"><span class="vendor-name">Check Point</span><strong>Firewall Hardening Toolkit</strong><span class="vendor-cta">View toolkit ↗</span></a></div></div></article>
+          <article class="resource" id="firewall-hardening"><div class="resource-top"><span class="index">03 / HARDEN</span><span class="kind">Security checklist</span></div><h3>Firewall security &amp; hardening</h3><p class="desc">A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.</p><ul class="list"><li>Management exposure, accounts, MFA, and trusted access</li><li>Policy review, object hygiene, and least privilege</li><li>Firmware, logging, backups, and recovery controls</li></ul><div class="sample vendor-guidance"><span class="guidance-label">Vendor guidance</span><div class="vendor-links"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Fortinet ↗</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Palo Alto Networks ↗</a><a href="https://sc1.checkpoint.com/documents/Check_Point_Gateway_and_Management_Hardening/index.html" target="_blank" rel="noopener noreferrer">Check Point ↗</a></div></div><div class="vendor-toolkit-shelf"><div class="vendor-toolkit-head"><span class="micro">Platform hardening editions</span><span class="toolkit-edition">2026 professional series</span></div><div class="vendor-toolkit-grid"><a class="vendor-toolkit fortinet-toolkit" href="store.html#fortinet-hardening-toolkit"><span class="vendor-name">Fortinet</span><strong>FortiGate Hardening &amp; Operational Assurance</strong><span class="vendor-cta">Explore edition ↗</span></a><a class="vendor-toolkit paloalto-toolkit" href="store.html#palo-alto-hardening-toolkit"><span class="vendor-name">Palo Alto Networks</span><strong>PAN-OS &amp; Panorama Security Assurance</strong><span class="vendor-cta">Explore edition ↗</span></a><a class="vendor-toolkit checkpoint-toolkit" href="store.html#check-point-hardening-toolkit"><span class="vendor-name">Check Point</span><strong>Gateway &amp; Management Security Assurance</strong><span class="vendor-cta">Explore edition ↗</span></a></div></div></article>
           <article class="resource" id="network-architecture"><div class="resource-top"><span class="index">04 / SEGMENT</span><span class="kind">Architecture guidance</span></div><h3>Network architecture &amp; segmentation</h3><p class="desc">Design and review trust boundaries so critical services, users, management systems, and external connectivity are separated intentionally.</p><ul class="list"><li>Security zones, VLANs, VRFs, and trust boundaries</li><li>North-south and east-west traffic paths</li><li>Management, user, server, and third-party segmentation</li></ul><div class="sample"><a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer">Review NIST Zero Trust Architecture ↗</a></div></article>
           <article class="resource" id="incident-diagnostics"><div class="resource-top"><span class="index">05 / DIAGNOSE</span><span class="kind">Diagnostic playbooks</span></div><h3>Troubleshooting &amp; incident diagnostics</h3><p class="desc">Repeatable investigations for outages and security-control failures, structured around symptoms, evidence, hypotheses, and verification.</p><ul class="list"><li>VPN, routing, SD-WAN, and connectivity failures</li><li>Missing logs, unreachable devices, and control-plane issues</li><li>Known-good baselines, packet evidence, and validation</li></ul><div class="sample">Sample action: capture the last known good state before changing anything.</div></article>
           <article class="resource" id="network-automation"><div class="resource-top"><span class="index">06 / AUTOMATE</span><span class="kind">Automation &amp; compliance</span></div><h3>Network automation &amp; compliance</h3><p class="desc">Use repeatable automation to standardize configuration, validate changes, collect evidence, and identify configuration drift.</p><ul class="list"><li>Inventory, reusable roles, and configuration backup</li><li>Pre-change and post-change validation</li><li>Compliance checks, reporting, and drift detection</li></ul><div class="sample"><a href="https://docs.ansible.com/projects/ansible/latest/network/getting_started/" target="_blank" rel="noopener noreferrer">Explore Ansible network automation ↗</a></div></article>
@@ -247,14 +250,14 @@
               list: ["Management exposure, accounts, MFA, and trusted access", "Policy review, object hygiene, and least privilege", "Firmware, logging, backups, and recovery controls"],
               links: ["Fortinet ↗", "Palo Alto Networks ↗", "Check Point ↗"],
               guidanceLabel: "Vendor guidance",
-              toolkitsLabel: "Professional vendor toolkits",
-              toolkitsEdition: "2026 editions",
-              fortinetTitle: "Firewall Hardening Toolkit",
-              fortinetCta: "View toolkit ↗",
-              paloTitle: "Firewall Hardening Toolkit",
-              paloCta: "View toolkit ↗",
-              checkpointTitle: "Firewall Hardening Toolkit",
-              checkpointCta: "View toolkit ↗"
+              toolkitsLabel: "Platform hardening editions",
+              toolkitsEdition: "2026 professional series",
+              fortinetTitle: "FortiGate Hardening & Operational Assurance",
+              fortinetCta: "Explore edition ↗",
+              paloTitle: "PAN-OS & Panorama Security Assurance",
+              paloCta: "Explore edition ↗",
+              checkpointTitle: "Gateway & Management Security Assurance",
+              checkpointCta: "Explore edition ↗"
             },
             "network-architecture": {
               kind: "Architecture guidance",
@@ -348,14 +351,14 @@
               list: ["Exposition de la gestion, comptes, MFA et accès de confiance", "Revue des politiques, hygiène des objets et moindre privilège", "Firmware, journalisation, sauvegardes et contrôles de récupération"],
               links: ["Fortinet ↗", "Palo Alto Networks ↗", "Check Point ↗"],
               guidanceLabel: "Guides fournisseurs",
-              toolkitsLabel: "Toolkits professionnels par fournisseur",
-              toolkitsEdition: "Éditions 2026",
-              fortinetTitle: "Toolkit de durcissement firewall",
-              fortinetCta: "Voir le toolkit ↗",
-              paloTitle: "Toolkit de durcissement firewall",
-              paloCta: "Voir le toolkit ↗",
-              checkpointTitle: "Toolkit de durcissement firewall",
-              checkpointCta: "Voir le toolkit ↗"
+              toolkitsLabel: "Éditions de durcissement par plateforme",
+              toolkitsEdition: "Série professionnelle 2026",
+              fortinetTitle: "Durcissement FortiGate & assurance opérationnelle",
+              fortinetCta: "Explorer l’édition ↗",
+              paloTitle: "Assurance sécurité PAN-OS & Panorama",
+              paloCta: "Explorer l’édition ↗",
+              checkpointTitle: "Assurance sécurité Gateway & Management",
+              checkpointCta: "Explorer l’édition ↗"
             },
             "network-architecture": {
               kind: "Guide d’architecture",
@@ -449,14 +452,14 @@
               list: ["Expunerea managementului, conturi, MFA și acces de încredere", "Revizuirea politicilor, igiena obiectelor și least privilege", "Firmware, logare, backup-uri și controale de recovery"],
               links: ["Fortinet ↗", "Palo Alto Networks ↗", "Check Point ↗"],
               guidanceLabel: "Ghidare vendor",
-              toolkitsLabel: "Toolkit-uri profesionale pe vendor",
-              toolkitsEdition: "Ediții 2026",
-              fortinetTitle: "Firewall Hardening Toolkit",
-              fortinetCta: "Vezi toolkit-ul ↗",
-              paloTitle: "Firewall Hardening Toolkit",
-              paloCta: "Vezi toolkit-ul ↗",
-              checkpointTitle: "Firewall Hardening Toolkit",
-              checkpointCta: "Vezi toolkit-ul ↗"
+              toolkitsLabel: "Ediții de hardening pe platformă",
+              toolkitsEdition: "Seria profesională 2026",
+              fortinetTitle: "FortiGate Hardening & Operational Assurance",
+              fortinetCta: "Explorează ediția ↗",
+              paloTitle: "PAN-OS & Panorama Security Assurance",
+              paloCta: "Explorează ediția ↗",
+              checkpointTitle: "Gateway & Management Security Assurance",
+              checkpointCta: "Explorează ediția ↗"
             },
             "network-architecture": {
               kind: "Ghid de arhitectură",
