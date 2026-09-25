@@ -25,7 +25,7 @@
     section{margin-top:2.6rem;padding-top:2rem;border-top:1px solid var(--line)}h2{font-size:1.4rem;margin:0 0 .8rem}p{color:var(--muted)}code{font-family:var(--mono);color:var(--accent)}
     .langs{display:flex;gap:.4rem}.langs button{border:1px solid var(--line);background:transparent;color:var(--muted);padding:.35rem .5rem;cursor:pointer}.langs button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
   </style>
-  <link rel="stylesheet" href="assets/chatbox.css?v=5">
+  <link rel="stylesheet" href="assets/chatbox.css?v=6">
   <link rel="stylesheet" href="assets/site.css?v=1">
   <script src="assets/i18n.js?v=1"></script>
 </head>
@@ -163,6 +163,6 @@ const {normalizeLanguage,getInitialLanguage,syncInternalLanguageLinks,installLan
 function apply(l){const t=copy[l]||copy.en;SiteI18n.setLanguage(l);document.title=t.title;document.querySelector("[data-brand]").textContent=t.brand;document.querySelector(".eyebrow").textContent=t.e;document.querySelector("h1").textContent=t.h;document.querySelector(".lead").textContent=t.lead;document.querySelectorAll("main section").forEach((x,i)=>{x.querySelector("h2").textContent=t.s[i][0];x.querySelector("p").textContent=t.s[i][1]});document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===l)));syncInternalLanguageLinks(l);}document.querySelectorAll(".langs button").forEach(b=>b.onclick=()=>apply(b.dataset.lang));installLanguageNavigation();apply(getInitialLanguage());
 </script>
   <script>window.NETWORK_SECURITY_CHAT_ENDPOINT="https://network-security-assistant.vlad-network-security.workers.dev/chat";</script>
-  <script src="assets/chatbox.js?v=8" defer></script>
+  <script src="assets/chatbox.js?v=9" defer></script>
 </body>
 </html>
