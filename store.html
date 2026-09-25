@@ -195,7 +195,7 @@
     return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
   }
   function getInitialLanguage(){
-    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"))||"en";
+    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"))||normalizeLanguage(localStorage.getItem("siteLanguage"))||"en";
   }
   function syncInternalLanguageLinks(lang){
     const normalized=normalizeLanguage(lang)||"en";
@@ -304,7 +304,7 @@
   const q=s=>document.querySelector(s);
   function apply(lang){
     const t=translations[lang]||translations.en;
-    document.documentElement.lang=lang;document.title=t.pageTitle;
+    document.documentElement.lang=lang;localStorage.setItem("siteLanguage",lang);const currentUrl=new URL(window.location.href);if(lang==="en")currentUrl.searchParams.delete("lang");else currentUrl.searchParams.set("lang",lang);history.replaceState(null,"",currentUrl.pathname+currentUrl.search+currentUrl.hash);document.title=t.pageTitle;
     q("[data-brand]").textContent=t.brand;q("[data-footer-brand]").textContent=t.brand;q(".back").textContent=t.back;
     q(".hero .eyebrow").textContent=t.eyebrow;q(".hero h1").innerHTML=t.title;q(".hero .lead").textContent=t.lead;
     const incident=q("#incident-response-toolkit");
