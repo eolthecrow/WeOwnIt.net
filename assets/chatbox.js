@@ -6,7 +6,7 @@
     en:{
       open:'Open Network & Security Assistant', close:'Close chat', send:'Send message', input:'Your question',
       title:"Network & Security Assistant",
-      status:isLive?"AI assistant":"Demo · local guidance",
+      status:isLive?"AI assistant":"",
       welcome:"Hi — ask me about network security assessments, incident response, firewall hardening, segmentation, troubleshooting, or automation.",
       placeholder:"Enter your question...",
       suggestions:["Firewall review","Incident response","Network assessment"],
@@ -16,7 +16,7 @@
     ro:{
       open:'Deschide asistentul de rețele și securitate', close:'Închide conversația', send:'Trimite mesajul', input:'Întrebarea ta',
       title:"Asistent Rețele & Securitate",
-      status:isLive?"Asistent AI":"Demo · ghidare locală",
+      status:isLive?"Asistent AI":"",
       welcome:"Salut — întreabă-mă despre evaluări de securitate, incident response, firewall hardening, segmentare, troubleshooting sau automatizare.",
       placeholder:"Scrie întrebarea...",
       suggestions:["Review firewall","Incident response","Evaluare rețea"],
@@ -26,7 +26,7 @@
     fr:{
       open:'Ouvrir l’assistant réseaux et sécurité', close:'Fermer la conversation', send:'Envoyer le message', input:'Votre question',
       title:"Assistant Réseaux & Sécurité",
-      status:isLive?"Assistant IA":"Démo · guide local",
+      status:isLive?"Assistant IA":"",
       welcome:"Bonjour — posez une question sur les évaluations de sécurité réseau, la réponse aux incidents, le durcissement des firewalls, la segmentation, le dépannage ou l’automatisation.",
       placeholder:"Votre question...",
       suggestions:["Revue firewall","Réponse incident","Évaluation réseau"],
