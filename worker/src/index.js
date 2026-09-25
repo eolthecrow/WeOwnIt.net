@@ -158,7 +158,8 @@ export default {
     try {
       const result = await env.AI.run(MODEL, {
         messages,
-        max_completion_tokens: 700,
+        reasoning_effort: "low",
+        max_completion_tokens: 2048,
         temperature: 0.35,
       });
 
