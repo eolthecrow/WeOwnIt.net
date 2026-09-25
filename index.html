@@ -208,7 +208,17 @@
   </div>
   <script>
     (() => {
-      const translations = {
+      const LANGUAGE_STORAGE_KEY="site-language";
+  function getSavedLanguage(){
+    try{
+      const saved=localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      return ["en","fr","ro"].includes(saved)?saved:"en";
+    }catch(_){return "en";}
+  }
+  function saveLanguage(lang){
+    try{localStorage.setItem(LANGUAGE_STORAGE_KEY,lang);}catch(_){}
+  }
+        const translations = {
         en: {
           title: "Network & Security Advisory — Vladimir Arjoca",
           description: "Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.",
@@ -635,10 +645,13 @@
       }
 
       document.querySelectorAll(".lang-switch button").forEach(button => {
-        button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+        button.addEventListener("click", () => {
+          saveLanguage(button.dataset.lang);
+          applyLanguage(button.dataset.lang);
+        });
       });
 
-      applyLanguage("en");
+      applyLanguage(getSavedLanguage());
     })();
   </script>
 
