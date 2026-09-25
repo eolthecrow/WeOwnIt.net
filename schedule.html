@@ -188,7 +188,7 @@ Cal.ns["30min"]("ui", {
     return SUPPORTED_LANGUAGES.includes(lang)?lang:null;
   }
   function getInitialLanguage(){
-    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"))||"en";
+    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"))||normalizeLanguage(localStorage.getItem("siteLanguage"))||"en";
   }
   function syncInternalLanguageLinks(lang){
     const normalized=normalizeLanguage(lang)||"en";
@@ -262,7 +262,7 @@ Cal.ns["30min"]("ui", {
   };
   function apply(lang){
     const d=t[lang]||t.en;
-    document.documentElement.lang=lang;
+    document.documentElement.lang=lang;localStorage.setItem("siteLanguage",lang);const currentUrl=new URL(window.location.href);if(lang==="en")currentUrl.searchParams.delete("lang");else currentUrl.searchParams.set("lang",lang);history.replaceState(null,"",currentUrl.pathname+currentUrl.search+currentUrl.hash);
     const brand=document.querySelector("[data-brand]"); if(brand) brand.textContent=d.brand;
     document.querySelectorAll("[data-k]").forEach(el=>{const k=el.dataset.k;if(d[k]!==undefined)el.innerHTML=d[k]});
     document.querySelectorAll(".lang-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
