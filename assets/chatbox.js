@@ -170,8 +170,9 @@
           headers:{"Content-Type":"application/json"},
           body:JSON.stringify({message:q,language:lang(),history:history.slice(-6)})
         });
-        if(!res.ok)throw new Error("HTTP "+res.status);
-        const data=await res.json();
+        let data={};
+        try{data=await res.json();}catch(_){}
+        if(!res.ok)throw new Error(data.error||("HTTP "+res.status));
         answer=data.answer||data.response||t.error;
       }else{
         await new Promise(r=>setTimeout(r,300));
@@ -179,8 +180,9 @@
       }
       pending.textContent=answer;
       history.push({role:"user",content:q},{role:"assistant",content:answer});
-    }catch(_){
-      pending.textContent=t.error;
+    }catch(error){
+      const detail=error?.message&&error.message!=="Failed to fetch"?" "+error.message:"";
+      pending.textContent=t.error+detail;
     }finally{
       send.disabled=false;messages.scrollTop=messages.scrollHeight;input.focus();
     }
