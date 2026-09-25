@@ -91,6 +91,12 @@
     .feature-side .micro { color:var(--amber) }
     .feature-side blockquote { margin:1.1rem 0 1.5rem; font-size:1.25rem; line-height:1.4; letter-spacing:-.035em }
     .feature-side a { align-self:flex-start; color:var(--accent); font-size:.89rem; font-weight:650; border-bottom:1px solid currentColor; padding-bottom:.2rem }
+    .premium-offer { margin-top:1.8rem; padding-top:1.45rem; border-top:1px solid #42736e }
+    .premium-offer .premium-label { display:block; font-family:var(--mono); color:var(--amber); font-size:.69rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.6rem }
+    .premium-offer strong { display:block; font-size:1.05rem; letter-spacing:-.025em; margin-bottom:.45rem }
+    .premium-offer p { color:#b7cbc7; font-size:.83rem; line-height:1.5; margin:0 0:.85rem; max-width:360px }
+    .premium-offer .premium-link { color:var(--ink); border:1px solid #5f8b85; padding:.58rem .72rem; font-family:var(--mono); font-size:.71rem; letter-spacing:.05em; text-transform:uppercase; transition:border-color .2s,color .2s,background .2s }
+    .premium-offer .premium-link:hover { border-color:var(--accent); color:var(--accent); background:rgba(108,226,199,.05) }
     .sample-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line) }
     .sample-strip article { background:var(--bg); padding:1.55rem }
     .sample-strip span { font-family:var(--mono); color:var(--accent); font-size:.73rem }
@@ -160,7 +166,7 @@
         <div class="resource-grid">
           <article class="resource featured" id="incident-response">
             <div><div class="resource-top"><span class="index">01 / RESPONSE</span><span class="kind">Response framework</span></div><h3>Cybersecurity incident response</h3><p class="desc">A practical response framework for handling security incidents from initial triage through containment, recovery, and lessons learned.</p><ul class="list"><li>Roles, escalation paths, and decision authority</li><li>Evidence preservation and incident timeline</li><li>Containment, recovery, and post-incident review</li></ul><div class="sample">Sample action: confirm who can declare an incident and authorize containment.</div></div>
-            <div class="feature-side"><span class="micro">Start with this question</span><blockquote>When an alert becomes an incident, who has the authority to act?</blockquote><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">Read NIST SP 800-61 Rev. 3 <span aria-hidden="true">↗</span></a></div>
+            <div class="feature-side"><span class="micro">Start with this question</span><blockquote>When an alert becomes an incident, who has the authority to act?</blockquote><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener noreferrer">Read NIST SP 800-61 Rev. 3 <span aria-hidden="true">↗</span></a><div class="premium-offer"><span class="premium-label">Professional Toolkit · 2026 Edition</span><strong>Complete incident response pack</strong><p>Plan, playbooks, checklists, communication templates, and practical worksheets.</p><a class="premium-link" href="store.html#incident-response-toolkit">View toolkit <span aria-hidden="true">↗</span></a></div></div>
           </article>
           <article class="resource" id="network-assessment"><div class="resource-top"><span class="index">02 / ASSESS</span><span class="kind">Assessment framework</span></div><h3>Network security assessment</h3><p class="desc">Review the network from exposure and access through segmentation, management, logging, resilience, and operational ownership.</p><ul class="list"><li>Assets, exposed services, and management planes</li><li>Segmentation, privileged access, and trust boundaries</li><li>Logging, backups, resilience, and remediation priorities</li></ul><div class="sample">Sample action: trace one critical service from user to workload and document every trust boundary.</div></article>
           <article class="resource" id="firewall-hardening"><div class="resource-top"><span class="index">03 / HARDEN</span><span class="kind">Security checklist</span></div><h3>Firewall security &amp; hardening</h3><p class="desc">A vendor-neutral review of firewall management, policy hygiene, secure administration, telemetry, lifecycle, and recovery readiness.</p><ul class="list"><li>Management exposure, accounts, MFA, and trusted access</li><li>Policy review, object hygiene, and least privilege</li><li>Firmware, logging, backups, and recovery controls</li></ul><div class="sample"><div class="vendor-links"><a href="https://docs.fortinet.com/document/fortigate/7.6.0/best-practices/555436" target="_blank" rel="noopener noreferrer">Compare with Fortinet best practices ↗</a><a href="https://docs.paloaltonetworks.com/best-practices/security-policy-best-practices/security-policy-best-practices" target="_blank" rel="noopener noreferrer">Compare with Palo Alto Networks best practices ↗</a></div></div></article>
@@ -206,7 +212,11 @@
               sample: "Sample action: confirm who can declare an incident and authorize containment.",
               featureMicro: "Start with this question",
               quote: "When an alert becomes an incident, who has the authority to act?",
-              link: "Read NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
+              link: "Read NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>",
+              premiumLabel: "Professional Toolkit · 2026 Edition",
+              premiumTitle: "Complete incident response pack",
+              premiumText: "Plan, playbooks, checklists, communication templates, and practical worksheets.",
+              premiumLink: "View toolkit <span aria-hidden=\"true\">↗</span>"
             },
             "network-assessment": {
               kind: "Assessment framework",
@@ -294,7 +304,11 @@
               sample: "Action exemple : confirmer qui peut déclarer un incident et autoriser le confinement.",
               featureMicro: "Commencez par cette question",
               quote: "Lorsqu’une alerte devient un incident, qui a l’autorité pour agir ?",
-              link: "Lire NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
+              link: "Lire NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>",
+              premiumLabel: "Toolkit professionnel · Édition 2026",
+              premiumTitle: "Pack complet de réponse aux incidents",
+              premiumText: "Plan, playbooks, checklists, modèles de communication et feuilles de travail pratiques.",
+              premiumLink: "Voir le toolkit <span aria-hidden=\"true\">↗</span>"
             },
             "network-assessment": {
               kind: "Cadre d’évaluation",
@@ -382,7 +396,11 @@
               sample: "Acțiune exemplu: confirmă cine poate declara un incident și autoriza containment-ul.",
               featureMicro: "Începe cu această întrebare",
               quote: "Când o alertă devine incident, cine are autoritatea de a acționa?",
-              link: "Citește NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>"
+              link: "Citește NIST SP 800-61 Rev. 3 <span aria-hidden=\"true\">↗</span>",
+              premiumLabel: "Toolkit profesional · Ediția 2026",
+              premiumTitle: "Pachet complet de răspuns la incidente",
+              premiumText: "Plan, playbook-uri, checklist-uri, template-uri de comunicare și worksheet-uri practice.",
+              premiumLink: "Vezi toolkit-ul <span aria-hidden=\"true\">↗</span>"
             },
             "network-assessment": {
               kind: "Cadru de evaluare",
@@ -505,7 +523,11 @@
           if (id === "incident-response") {
             setText("#incident-response .feature-side .micro", card.featureMicro);
             setText("#incident-response blockquote", card.quote);
-            setHTML("#incident-response .feature-side a", card.link);
+            setHTML("#incident-response .feature-side > a", card.link);
+            setText("#incident-response .premium-label", card.premiumLabel);
+            setText("#incident-response .premium-offer strong", card.premiumTitle);
+            setText("#incident-response .premium-offer p", card.premiumText);
+            setHTML("#incident-response .premium-link", card.premiumLink);
           }
         });
 
