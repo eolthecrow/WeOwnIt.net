@@ -12,7 +12,9 @@
       quickLabel:"Quick links",
       quickActions:["Contact","Schedule","Store","Services","About","Tools"],
       quickHint:"Or ask any technical question below.",
+      privacyHint:"Do not share passwords, API keys, private keys, or sensitive customer data.",
       thinking:"Thinking…",
+      unavailable:"The AI assistant is temporarily unavailable. You can still use Contact or Schedule above.",
       error:"I couldn't reach the assistant right now. Please try again."
     },
     ro:{
@@ -24,7 +26,9 @@
       quickLabel:"Acces rapid",
       quickActions:["Contact","Programare","Magazin","Servicii","Despre","Instrumente"],
       quickHint:"Sau scrie mai jos orice întrebare tehnică.",
+      privacyHint:"Nu trimite parole, chei API, chei private sau date sensibile ale clienților.",
       thinking:"Analizez…",
+      unavailable:"Asistentul AI este temporar indisponibil. Poți folosi în continuare Contact sau Programare.",
       error:"Nu pot contacta asistentul momentan. Încearcă din nou."
     },
     fr:{
@@ -36,7 +40,9 @@
       quickLabel:"Accès rapide",
       quickActions:["Contact","Rendez-vous","Boutique","Services","À propos","Outils"],
       quickHint:"Ou posez ci-dessous toute question technique.",
+      privacyHint:"Ne partagez pas de mots de passe, clés API, clés privées ou données client sensibles.",
       thinking:"Analyse…",
+      unavailable:"L’assistant IA est temporairement indisponible. Vous pouvez toujours utiliser Contact ou Rendez-vous.",
       error:"Impossible de joindre l’assistant pour le moment. Réessayez."
     }
   };
@@ -173,6 +179,7 @@
   let suggestions;
   let quickLabel;
   let quickHint;
+  let privacyHint;
   const refresh=()=>{
     const t=copy[lang()]||copy.en;
     panel.setAttribute("aria-label",t.title);
@@ -195,12 +202,15 @@
       });
       quickHint=document.createElement("div");
       quickHint.className="va-chat-quick-hint";
-      messages.append(quickLabel,suggestions,quickHint);
+      privacyHint=document.createElement("div");
+      privacyHint.className="va-chat-privacy-hint";
+      messages.append(quickLabel,suggestions,quickHint,privacyHint);
     }
     openingGreeting.textContent=t.greetingReply;
     openingGreeting.lang=lang();
     quickLabel.textContent=t.quickLabel;
     quickHint.textContent=t.quickHint;
+    privacyHint.textContent=t.privacyHint;
     [...suggestions.children].forEach((button,index)=>button.textContent=t.quickActions[index]);
   };
   const close=()=>{panel.classList.remove("is-open");launcher.setAttribute("aria-expanded","false");launcher.focus();};
@@ -242,7 +252,11 @@
         });
         let data={};
         try{data=await res.json();}catch(_){}
-        if(!res.ok)throw new Error(data.error||("HTTP "+res.status));
+        if(!res.ok){
+          const requestError=new Error(data.error||("HTTP "+res.status));
+          requestError.status=res.status;
+          throw requestError;
+        }
         answer=data.answer||data.response||t.error;
       }else{
         await new Promise(r=>setTimeout(r,300));
@@ -256,8 +270,7 @@
         message:error?.message||String(error),
         error
       });
-      const detail=error?.message?" ["+error.message+"]":"";
-      pending.textContent=t.error+detail;
+      pending.textContent=(error?.status===429||error?.status===503)?t.unavailable:t.error;
     }finally{
       send.disabled=false;messages.scrollTop=messages.scrollHeight;input.focus();
     }
