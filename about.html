@@ -42,7 +42,8 @@
     .training-group{display:flex;align-items:center;gap:clamp(2.8rem,6vw,6rem);padding-right:clamp(2.8rem,6vw,6rem)}
     .training-item{white-space:nowrap;font-size:clamp(1rem,1.8vw,1.35rem);font-weight:700;letter-spacing:-.02em;color:var(--ink)}
     .training-item::before{content:"/";font-family:var(--mono);font-size:.72em;color:var(--accent);margin-right:.7rem}
-    .training-marquee:hover .training-track{animation-play-state:paused}
+    @media (hover:hover) and (pointer:fine){.training-marquee:hover .training-track{animation-play-state:paused}}
+    @media (hover:none), (pointer:coarse){.training-track{animation-play-state:running!important}}
     @keyframes training-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     .education-card{margin-top:1rem;border:1px solid var(--line);padding:1.3rem;background:var(--bg2)}
     .education-card strong{display:block}.education-card span{display:block;color:var(--muted);font-size:.9rem;margin-top:.35rem}
