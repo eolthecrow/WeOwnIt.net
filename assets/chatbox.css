@@ -35,6 +35,7 @@
 .va-chat-quick-label{font-size:11px;line-height:1.3;color:#81969a;text-transform:uppercase;letter-spacing:.08em;margin:2px 0 -5px}
 .va-chat-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
 .va-chat-quick-hint{font-size:11px;line-height:1.4;color:#81969a;margin-top:-3px}
+.va-chat-privacy-hint{font-size:10.5px;line-height:1.45;color:#81969a;border-top:1px solid #29404a;padding-top:9px;margin-top:2px}
 .va-chat-suggestions button{border:1px solid #29404a;background:#0e1d25;color:#a6b8ba;border-radius:999px;padding:7px 9px;font-size:11px;cursor:pointer}
 .va-chat-suggestions button:hover{border-color:#6ce2c7;color:#f2f1e8}
 .va-chat-form{border-top:1px solid #29404a;background:#0e1d25;padding:11px;display:grid;grid-template-columns:1fr 42px;gap:8px;align-items:end}
