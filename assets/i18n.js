@@ -23,9 +23,9 @@
     "Contactez Vladimir Arjoca pour la sécurité réseau, la réponse aux incidents, la revue des pare-feu, le dépannage et l’automatisation."
   ],
   "privacy": [
-    "How this website handles contact details, bookings, language preferences, and third-party services.",
-    "Cum gestionează acest site datele de contact, programările, preferința de limbă și serviciile terților.",
-    "Comment ce site traite les coordonnées, les réservations, la préférence de langue et les services tiers."
+    "How this website handles contact details, bookings, language preferences, the AI assistant, and third-party services.",
+    "Cum gestionează acest site datele de contact, programările, preferința de limbă, asistentul AI și serviciile terților.",
+    "Comment ce site traite les coordonnées, les réservations, la préférence de langue, l’assistant IA et les services tiers."
   ],
   "schedule": [
     "Schedule a 30-minute Network & Security Consultation with Vladimir Arjoca.",
