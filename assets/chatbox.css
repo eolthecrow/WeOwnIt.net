@@ -5,7 +5,7 @@
   border:1px solid #507078;background:#12232b;color:#f2f1e8;
   display:grid;place-items:center;cursor:pointer;
   box-shadow:0 14px 34px rgba(0,0,0,.34);
-  font:800 15px/1 Inter,ui-sans-serif,system-ui,sans-serif;
+  font:800 13.5px/1 Inter,ui-sans-serif,system-ui,sans-serif;
   transition:transform .2s ease,border-color .2s ease,background .2s ease;
 }
 .va-chat-launcher:hover{transform:translateY(-2px);border-color:#6ce2c7;background:#163038}
@@ -39,7 +39,7 @@
 .va-chat-suggestions button{border:1px solid #29404a;background:#0e1d25;color:#a6b8ba;border-radius:999px;padding:7px 9px;font-size:9.9px;cursor:pointer}
 .va-chat-suggestions button:hover{border-color:#6ce2c7;color:#f2f1e8}
 .va-chat-form{border-top:1px solid #29404a;background:#0e1d25;padding:11px;display:grid;grid-template-columns:1fr 42px;gap:8px;align-items:end}
-.va-chat textarea{width:100%;min-height:42px;max-height:110px;resize:none;border:1px solid #29404a;border-radius:12px;background:#0a151c;color:#f2f1e8;padding:11px 12px;font:13px/1.4 inherit}
+.va-chat textarea{width:100%;min-height:42px;max-height:110px;resize:none;border:1px solid #29404a;border-radius:12px;background:#0a151c;color:#f2f1e8;padding:11px 12px;font:11.7px/1.4 inherit}
 .va-chat textarea::placeholder{color:#81969a}
 .va-chat-send{width:42px;height:42px;border-radius:50%;border:1px solid #507078;background:#6ce2c7;color:#0a151c;cursor:pointer;font-size:16.2px;font-weight:800}
 .va-chat-send:disabled{opacity:.5;cursor:wait}
