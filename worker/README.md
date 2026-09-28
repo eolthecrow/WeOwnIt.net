@@ -64,7 +64,7 @@ Once the real Workers URL is known, update the website pages that load the chatb
 
 ## Current safeguards
 
-- CORS restricted to `https://eolthecrow.github.io`
+- CORS allows `https://weownit.net`, `https://www.weownit.net`, and the legacy GitHub Pages origin during migration
 - localhost allowed for development
 - max user message: 4,000 characters
 - max retained history: 8 messages
@@ -98,18 +98,14 @@ The website sends contact-form submissions directly to this endpoint. The Worker
 1. In Cloudflare, open **Compute > Email Service** and onboard a domain that uses Cloudflare DNS.
 2. Under **Email Routing > Destination Addresses**, add and verify:
    `vladimir.arjoca@outlook.com`
-3. Configure a sender address on the onboarded domain, for example:
-   `contact@your-domain.example`
-4. Store that sender address in the Worker environment:
-   ```bash
-   npx wrangler secret put CONTACT_FROM_EMAIL
-   ```
-   Enter the verified/onboarded sender address when prompted.
-5. Deploy the Worker:
+3. Use the configured sender address:
+   `contact@weownit.net`
+   The address is already set in `wrangler.jsonc` as `CONTACT_FROM_EMAIL` and restricted by the email binding.
+4. Deploy the Worker:
    ```bash
    npm run deploy
    ```
-6. Test the contact endpoint from the website or with a POST request from an allowed origin.
+5. Test the contact endpoint from the website or with a POST request from an allowed origin.
 
 The `send_email` binding is restricted to the verified Outlook destination in `wrangler.jsonc`.
 
@@ -125,3 +121,10 @@ The `send_email` binding is restricted to the verified Outlook destination in `w
 - If direct delivery is unavailable, the frontend presents an email fallback instead of discarding the visitor's message.
 
 For broader public traffic, add Cloudflare Turnstile and/or rate limiting.
+
+
+## Custom-domain production setup
+
+The website canonical domain is `https://weownit.net`. The repository root contains a `CNAME` file for GitHub Pages.
+
+Cloudflare DNS should point the apex domain to GitHub Pages and `www` to `eolthecrow.github.io`. Keep the legacy GitHub Pages origin in Worker CORS only during the migration period; remove it after the custom domain is confirmed stable.
