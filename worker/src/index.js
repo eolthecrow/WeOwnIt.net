@@ -67,7 +67,7 @@ function systemPrompt(language) {
     fr: "Réponds en français sauf si l’utilisateur demande une autre langue.",
   }[language];
 
-  return `You are Network & Security Assistant, an AI assistant embedded in the Network & Security Advisory website.
+  return `You are Network & Security Assistant, an AI assistant embedded in the Network & Security Consultant website.
 
 You are a general-purpose assistant with strong expertise in networking, cybersecurity, infrastructure, incident response, firewall security, routing and switching, VPN/IPsec, segmentation, troubleshooting, automation, Fortinet, Palo Alto Networks, Check Point, Cisco, NIST, CIS and MITRE ATT&CK.
 
@@ -91,6 +91,118 @@ function extractAnswer(result) {
   }
 
   return "";
+}
+
+
+const CONTACT_TO_EMAIL = "vladimir.arjoca@outlook.com";
+const MAX_CONTACT_MESSAGE_CHARS = 5000;
+
+function cleanText(value, max) {
+  return typeof value === "string" ? value.trim().slice(0, max) : "";
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
+}
+
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+async function handleContact(request, env, origin) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: "Invalid JSON body." }, 400, origin);
+  }
+
+  const name = cleanText(body?.name, 120);
+  const email = cleanText(body?.email, 254).toLowerCase();
+  const company = cleanText(body?.company, 160);
+  const phone = cleanText(body?.phone, 80);
+  const message = cleanText(body?.message, MAX_CONTACT_MESSAGE_CHARS);
+  const language = normalizeLanguage(body?.language);
+  const consent = body?.consent === true;
+  const website = cleanText(body?.website, 200);
+  const submittedAt = Number(body?.submittedAt || 0);
+
+  // Honeypot + simple timing check. These are lightweight abuse controls, not a substitute for rate limiting.
+  if (website) return json({ ok: true }, 200, origin);
+  if (submittedAt && Date.now() - submittedAt < 1500) {
+    return json({ error: "Please try again." }, 429, origin);
+  }
+
+  if (!name || !isValidEmail(email) || !message || !consent) {
+    return json({ error: "Please complete the required fields." }, 400, origin);
+  }
+
+  if (!env.EMAIL || !env.CONTACT_FROM_EMAIL) {
+    return json({ error: "Contact delivery is not configured yet." }, 503, origin);
+  }
+
+  const subjectPrefix = {
+    en: "Website contact request",
+    ro: "Solicitare de contact de pe site",
+    fr: "Demande de contact depuis le site",
+  }[language];
+
+  const subject = company
+    ? `${subjectPrefix} — ${company.slice(0, 80)}`
+    : `${subjectPrefix} — ${name.slice(0, 80)}`;
+
+  const textBody = [
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Company: ${company || "-"}`,
+    `Phone: ${phone || "-"}`,
+    `Language: ${language.toUpperCase()}`,
+    "",
+    message,
+  ].join("\n");
+
+  const htmlBody = `
+    <h2>Website contact request</h2>
+    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+    <p><strong>Company:</strong> ${escapeHtml(company || "-")}</p>
+    <p><strong>Phone:</strong> ${escapeHtml(phone || "-")}</p>
+    <p><strong>Language:</strong> ${escapeHtml(language.toUpperCase())}</p>
+    <hr>
+    <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
+  `;
+
+  try {
+    const result = await env.EMAIL.send({
+      to: CONTACT_TO_EMAIL,
+      from: {
+        email: env.CONTACT_FROM_EMAIL,
+        name: "Network & Security Consultant",
+      },
+      replyTo: {
+        email,
+        name,
+      },
+      subject,
+      text: textBody,
+      html: htmlBody,
+    });
+
+    return json(
+      { ok: true, messageId: result?.messageId || null },
+      200,
+      origin
+    );
+  } catch (error) {
+    console.error("Contact email error", error?.code, error?.message);
+    const status = error?.code === "E_RATE_LIMIT_EXCEEDED" ? 429 : 503;
+    return json({ error: "Message delivery failed. Please try again later." }, status, origin);
+  }
 }
 
 export default {
@@ -120,6 +232,10 @@ export default {
         200,
         origin
       );
+    }
+
+    if (request.method === "POST" && url.pathname === "/contact") {
+      return handleContact(request, env, origin);
     }
 
     if (request.method !== "POST" || url.pathname !== "/chat") {
