@@ -4,6 +4,8 @@ const MAX_HISTORY_MESSAGES = 8;
 const MAX_HISTORY_CHARS = 12000;
 
 const ALLOWED_ORIGINS = new Set([
+  "https://weownit.net",
+  "https://www.weownit.net",
   "https://eolthecrow.github.io",
 ]);
 
@@ -15,7 +17,7 @@ function isAllowedOrigin(origin) {
 
 function corsHeaders(origin) {
   return {
-    "Access-Control-Allow-Origin": origin || "https://eolthecrow.github.io",
+    "Access-Control-Allow-Origin": origin || "https://weownit.net",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
@@ -211,7 +213,7 @@ export default {
     const origin = request.headers.get("Origin");
 
     if (!isAllowedOrigin(origin)) {
-      return json({ error: "Origin not allowed." }, 403, "https://eolthecrow.github.io");
+      return json({ error: "Origin not allowed." }, 403, "https://weownit.net");
     }
 
     if (request.method === "OPTIONS") {
