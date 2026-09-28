@@ -81,3 +81,47 @@ Before substantial public traffic, add:
 - analytics for errors and usage
 - optional AI Gateway observability
 - a graceful message when the daily Workers AI free allocation is exhausted
+
+
+## Direct contact form
+
+The same Worker now exposes:
+
+```text
+POST /contact
+```
+
+The website sends contact-form submissions directly to this endpoint. The Worker validates the request and sends it to the fixed destination configured in `wrangler.jsonc` using Cloudflare Email Service. The submitted email address is set as `replyTo`, so replying from the inbox goes directly to the visitor.
+
+### One-time Cloudflare email setup
+
+1. In Cloudflare, open **Compute > Email Service** and onboard a domain that uses Cloudflare DNS.
+2. Under **Email Routing > Destination Addresses**, add and verify:
+   `vladimir.arjoca@outlook.com`
+3. Configure a sender address on the onboarded domain, for example:
+   `contact@your-domain.example`
+4. Store that sender address in the Worker environment:
+   ```bash
+   npx wrangler secret put CONTACT_FROM_EMAIL
+   ```
+   Enter the verified/onboarded sender address when prompted.
+5. Deploy the Worker:
+   ```bash
+   npm run deploy
+   ```
+6. Test the contact endpoint from the website or with a POST request from an allowed origin.
+
+The `send_email` binding is restricted to the verified Outlook destination in `wrangler.jsonc`.
+
+### Contact-form safeguards
+
+- CORS restricted to the website origin and localhost development.
+- Required-field and email-format validation.
+- 5,000-character message limit.
+- Consent required.
+- Hidden honeypot field.
+- Lightweight submission-timing check.
+- No contact submission is intentionally written to a website database.
+- If direct delivery is unavailable, the frontend presents an email fallback instead of discarding the visitor's message.
+
+For broader public traffic, add Cloudflare Turnstile and/or rate limiting.
