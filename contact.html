@@ -235,7 +235,7 @@
         "",
         payload.message
       ].join("\n");
-      const fallbackHref="mailto:vladimir.arjoca@outlook.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+      const fallbackHref="mailto:contact@weownit.net?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
       status.classList.add("is-error");
       status.innerHTML=t.error+' <a href="'+fallbackHref+'">'+t.fallback+' ↗</a>';
       status.style.display="block";
