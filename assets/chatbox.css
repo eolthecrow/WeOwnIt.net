@@ -24,24 +24,24 @@
 .va-chat-head{padding:16px 17px;background:#12232b;border-bottom:1px solid #29404a;display:flex;align-items:center;gap:12px}
 .va-chat-avatar{width:30px;height:30px;display:grid;place-items:center;background:transparent;border:0;border-radius:0;box-shadow:none;padding:0;flex:none}.va-chat-avatar img{width:28px;height:auto;max-height:28px;display:block;object-fit:contain}
 .va-chat-title{min-width:0;flex:1}
-.va-chat-title strong{display:block;font-size:14px;line-height:1.2}
-.va-chat-title span{display:block;margin-top:3px;color:#a6b8ba;font-size:11px;letter-spacing:.03em}
-.va-chat-close{border:0;background:transparent;color:#a6b8ba;font-size:24px;line-height:1;cursor:pointer;padding:4px}
+.va-chat-title strong{display:block;font-size:12.6px;line-height:1.2}
+.va-chat-title span{display:block;margin-top:3px;color:#a6b8ba;font-size:9.9px;letter-spacing:.03em}
+.va-chat-close{border:0;background:transparent;color:#a6b8ba;font-size:21.6px;line-height:1;cursor:pointer;padding:4px}
 .va-chat-messages{overflow:auto;padding:18px 16px 20px;display:flex;flex-direction:column;gap:12px;background:#0a151c}
-.va-msg{max-width:87%;padding:11px 13px;border-radius:14px;font-size:13.5px;line-height:1.48;white-space:pre-wrap}
+.va-msg{max-width:87%;padding:11px 13px;border-radius:14px;font-size:12.15px;line-height:1.48;white-space:pre-wrap}
 .va-msg.bot{align-self:flex-start;background:#12232b;border:1px solid #29404a;color:#f2f1e8;border-bottom-left-radius:5px}
 .va-msg.user{align-self:flex-end;background:#123b39;border:1px solid #2b6660;color:#f2f1e8;border-bottom-right-radius:5px}
-.va-msg-note{color:#81969a;font-size:10.5px;margin-top:-5px;align-self:flex-start}
-.va-chat-quick-label{font-size:11px;line-height:1.3;color:#81969a;text-transform:uppercase;letter-spacing:.08em;margin:2px 0 -5px}
+.va-msg-note{color:#81969a;font-size:9.45px;margin-top:-5px;align-self:flex-start}
+.va-chat-quick-label{font-size:9.9px;line-height:1.3;color:#81969a;text-transform:uppercase;letter-spacing:.08em;margin:2px 0 -5px}
 .va-chat-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
-.va-chat-quick-hint{font-size:11px;line-height:1.4;color:#81969a;margin-top:-3px}
-.va-chat-privacy-hint{font-size:10.5px;line-height:1.45;color:#81969a;border-top:1px solid #29404a;padding-top:9px;margin-top:2px}
-.va-chat-suggestions button{border:1px solid #29404a;background:#0e1d25;color:#a6b8ba;border-radius:999px;padding:7px 9px;font-size:11px;cursor:pointer}
+.va-chat-quick-hint{font-size:9.9px;line-height:1.4;color:#81969a;margin-top:-3px}
+.va-chat-privacy-hint{font-size:9.45px;line-height:1.45;color:#81969a;border-top:1px solid #29404a;padding-top:9px;margin-top:2px}
+.va-chat-suggestions button{border:1px solid #29404a;background:#0e1d25;color:#a6b8ba;border-radius:999px;padding:7px 9px;font-size:9.9px;cursor:pointer}
 .va-chat-suggestions button:hover{border-color:#6ce2c7;color:#f2f1e8}
 .va-chat-form{border-top:1px solid #29404a;background:#0e1d25;padding:11px;display:grid;grid-template-columns:1fr 42px;gap:8px;align-items:end}
 .va-chat textarea{width:100%;min-height:42px;max-height:110px;resize:none;border:1px solid #29404a;border-radius:12px;background:#0a151c;color:#f2f1e8;padding:11px 12px;font:13px/1.4 inherit}
 .va-chat textarea::placeholder{color:#81969a}
-.va-chat-send{width:42px;height:42px;border-radius:50%;border:1px solid #507078;background:#6ce2c7;color:#0a151c;cursor:pointer;font-size:18px;font-weight:800}
+.va-chat-send{width:42px;height:42px;border-radius:50%;border:1px solid #507078;background:#6ce2c7;color:#0a151c;cursor:pointer;font-size:16.2px;font-weight:800}
 .va-chat-send:disabled{opacity:.5;cursor:wait}
 @media(max-width:640px){
   .va-chat-launcher{right:14px;bottom:14px}
@@ -51,7 +51,7 @@
 
 /* Readable text and keyboard/touch targets. */
 .va-chat-close{min-width:44px;min-height:44px}
-.va-chat-suggestions button{font-size:14px;min-height:44px}
-.va-chat-title span{font-size:12px}
-.va-msg{font-size:15px}
-.va-chat textarea{font-family:inherit;font-size:16px;line-height:1.4}
+.va-chat-suggestions button{font-size:12.6px;min-height:44px}
+.va-chat-title span{font-size:10.8px}
+.va-msg{font-size:13.5px}
+.va-chat textarea{font-family:inherit;font-size:14.4px;line-height:1.4}
