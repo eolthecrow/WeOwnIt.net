@@ -35,12 +35,12 @@
     header{position:sticky;top:0;z-index:20;background:rgba(10,21,28,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
     .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .brand{display:flex;align-items:center;gap:.75rem;font-weight:750;letter-spacing:-.035em}
-    .mark{width:40px;height:40px;display:grid;place-items:center;border:0;background:transparent;box-shadow:none;outline:none;color:var(--accent);font-family:var(--mono);font-size:.82rem}.mark img{width:34px;height:auto;max-height:34px;display:block;object-fit:contain}
+    .mark{width:40px;height:40px;display:grid;place-items:center;border:0;background:transparent;box-shadow:none;outline:none;color:var(--accent);font-family:var(--mono);font-size:.738rem}.mark img{width:34px;height:auto;max-height:34px;display:block;object-fit:contain}
     .nav-right{display:flex;align-items:center;gap:1rem}
-    .back{color:var(--muted);font-size:.9rem}
+    .back{color:var(--muted);font-size:.81rem}
     .back:hover{color:var(--accent)}
     .lang-switch{display:inline-flex;border:1px solid var(--line-strong);padding:2px}
-    .lang-switch button{border:0;background:transparent;color:var(--muted);padding:.35rem .5rem;font-family:var(--mono);font-size:.68rem;cursor:pointer}
+    .lang-switch button{border:0;background:transparent;color:var(--muted);padding:.35rem .5rem;font-family:var(--mono);font-size:.612rem;cursor:pointer}
     .lang-switch button[aria-pressed="true"]{background:var(--accent);color:var(--bg);font-weight:800}
     main{min-height:calc(100vh - 69px)}
     .booking-shell{display:grid;grid-template-columns:minmax(310px,.82fr) minmax(520px,1.35fr);min-height:calc(100vh - 69px)}
@@ -48,23 +48,23 @@
       radial-gradient(circle at 0 100%,rgba(108,226,199,.15),transparent 36%),
       linear-gradient(145deg,#0a151c,#0d1d24 70%,#102c29);border-right:1px solid var(--line)}
     .intro-inner{width:min(100%,560px);padding:clamp(3rem,7vw,7rem) clamp(1.5rem,5vw,5rem);margin-left:auto}
-    .eyebrow{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.13em;color:var(--accent)}
-    h1{font-size:clamp(2.15rem,3.2vw,3.35rem);line-height:1.02;letter-spacing:-.045em;margin:1rem 0 1.4rem;max-width:560px}
-    .lead{font-size:clamp(1.05rem,1.35vw,1.22rem);color:var(--muted);max-width:620px;margin:0}
+    .eyebrow{font-family:var(--mono);font-size:.666rem;text-transform:uppercase;letter-spacing:.13em;color:var(--accent)}
+    h1{font-size:clamp(1.935rem,2.88vw,3.015rem);line-height:1.02;letter-spacing:-.045em;margin:1rem 0 1.4rem;max-width:560px}
+    .lead{font-size:clamp(.945rem,1.215vw,1.098rem);color:var(--muted);max-width:620px;margin:0}
     .benefits{display:grid;gap:1rem;margin:2.4rem 0 2rem;padding:0;list-style:none}
     .benefits li{display:grid;grid-template-columns:42px 1fr;gap:.85rem;align-items:start}
     .check{width:42px;height:42px;border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--accent);font-family:var(--mono)}
-    .benefits strong{display:block;margin:.05rem 0 .2rem;font-size:1rem}
-    .benefits span{display:block;color:var(--muted);font-size:.9rem}
+    .benefits strong{display:block;margin:.05rem 0 .2rem;font-size:.9rem}
+    .benefits span{display:block;color:var(--muted);font-size:.81rem}
     .meta{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:2rem}
-    .pill{border:1px solid var(--line-strong);padding:.48rem .7rem;color:#cad8d6;font-family:var(--mono);font-size:.72rem}
-    .fallback{margin-top:1.4rem;color:var(--muted);font-size:.82rem}
+    .pill{border:1px solid var(--line-strong);padding:.48rem .7rem;color:#cad8d6;font-family:var(--mono);font-size:.648rem}
+    .fallback{margin-top:1.4rem;color:var(--muted);font-size:.738rem}
     .fallback a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
     .scheduler{background:var(--light);color:var(--light-ink);display:flex;align-items:stretch;min-width:0}
     .scheduler-inner{width:100%;max-width:900px;margin:auto;padding:clamp(1.3rem,3vw,2.4rem)}
     .scheduler-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1rem}
-    .scheduler-head h2{margin:.3rem 0 0;font-size:clamp(1.5rem,2.5vw,2.2rem);letter-spacing:-.04em}
-    .scheduler-head p{margin:0;color:var(--light-muted);font-size:.88rem}
+    .scheduler-head h2{margin:.3rem 0 0;font-size:clamp(1.35rem,2.25vw,1.98rem);letter-spacing:-.04em}
+    .scheduler-head p{margin:0;color:var(--light-muted);font-size:.792rem}
     .cal-wrap{height:760px;min-height:680px;width:100%;overflow:hidden;background:#fff;border:1px solid #dfe5e3;box-shadow:0 22px 60px rgba(18,33,38,.08)}
     #my-cal-inline-30min{width:100%;height:100%;overflow:auto}
     footer{display:none}
@@ -79,7 +79,7 @@
     @media(max-width:620px){
       .back{display:none}
       .nav-right{gap:.5rem}
-      h1{font-size:clamp(2.05rem,10vw,3rem)}
+      h1{font-size:clamp(1.845rem,9vw,2.7rem)}
       .scheduler-head{display:block}
       .scheduler-head p{margin-top:.45rem}
       .cal-wrap{height:830px;border-left:0;border-right:0}
