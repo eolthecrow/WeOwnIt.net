@@ -1,11 +1,13 @@
 const ALLOWED_ORIGINS = new Set([
+  "https://weownit.net",
+  "https://www.weownit.net",
   "https://eolthecrow.github.io",
   "http://localhost:8000",
   "http://127.0.0.1:8000"
 ]);
 
 const SYSTEM_PROMPT = `
-You are the Network & Security Assistant for Vladimir Arjoca's Network & Security Advisory website.
+You are the Network & Security Assistant for Vladimir Arjoca's Network & Security Consultant website.
 
 Scope:
 - Cybersecurity incident response
