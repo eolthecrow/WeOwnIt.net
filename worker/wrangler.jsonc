@@ -3,13 +3,19 @@
   "name": "network-security-assistant",
   "main": "src/index.js",
   "compatibility_date": "2026-09-25",
+  "vars": {
+    "CONTACT_FROM_EMAIL": "contact@weownit.net"
+  },
   "ai": {
     "binding": "AI"
   },
   "send_email": [
     {
       "name": "EMAIL",
-      "destination_address": "vladimir.arjoca@outlook.com"
+      "destination_address": "vladimir.arjoca@outlook.com",
+      "allowed_sender_addresses": [
+        "contact@weownit.net"
+      ]
     }
   ]
 }
