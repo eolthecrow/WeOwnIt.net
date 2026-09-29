@@ -1,0 +1,227 @@
+{
+  "lang": "RO",
+  "badge": "SAMPLE GRATUIT / EDIȚIA 2026",
+  "cover": "EVALUAREA SECURITĂȚII REȚELEI",
+  "sub": "Exemplu de raport executiv & tehnic",
+  "footer": "Organizație fictivă. Dovezi sintetice. Exclusiv pentru demonstrație. Nu este reprezentat niciun mediu de client sau de producție.",
+  "pages": [
+    {
+      "title": "Sumar executiv al evaluării",
+      "subtitle": "De la constatări tehnice la risc de business și remediere validată.",
+      "items": [
+        [
+          "Concluzia evaluării",
+          "Mediul sintetic prezintă slăbiciuni frecvente privind protecția planului de management, segmentarea rețelei, accesul privilegiat și vizibilitatea de securitate. Riscul principal rezultă din combinația dintre reachability extins, expunere privilegiată și monitorizare incompletă."
+        ],
+        [
+          "Risc pentru business",
+          "Un endpoint compromis din zona de utilizatori poate crea o cale către controlul privilegiat al rețelei. Accesul east-west excesiv crește posibilitatea de lateral movement, iar logarea incompletă poate reduce capacitatea de detecție și investigație."
+        ],
+        [
+          "Rezultat",
+          "Exemplul arată cum WeOwnIT leagă dovezile de impactul de business, ownership-ul remedierii, criteriile de validare și riscul rezidual - nu doar de o listă de finding-uri."
+        ]
+      ]
+    },
+    {
+      "title": "Context de business & active critice",
+      "subtitle": "Deciziile de securitate pornesc de la ceea ce susține business-ul.",
+      "items": [
+        [
+          "Context",
+          "ACME Manufacturing este o organizație fictivă cu 250 de utilizatori, sediu central, două filiale, ERP critic, servicii interne, conectivitate remote și management centralizat de securitate."
+        ],
+        [
+          "Active critice",
+          "Firewall de Internet; rețea de management; servere ERP și aplicații; conectivitate VPN; logare centralizată; identități administrative."
+        ],
+        [
+          "Obiective de securitate",
+          "Disponibilitatea conectivității, integritatea configurațiilor privilegiate, confidențialitatea datelor, segmentarea trust zones și trasabilitatea acțiunilor administrative."
+        ]
+      ]
+    },
+    {
+      "title": "Scope, ipoteze & metodologie",
+      "subtitle": "Model repetabil pentru engineering bazat pe risc.",
+      "items": [
+        [
+          "Scope",
+          "Arhitectură, trust boundaries, expunere administrativă, segmentare, politici firewall, logare, acces privilegiat, backup și recovery."
+        ],
+        [
+          "Metodă",
+          "CONTEXT -> ASSESS -> ANALYZE -> PRIORITIZE -> REMEDIATE -> VALIDATE -> PROVE"
+        ],
+        [
+          "Încrederea în dovezi",
+          "Acest sample folosește dovezi SINTETICE / INFERATE. Într-un engagement real, dovezile sunt clasificate Confirmed, Observed, Inferred sau Not Tested."
+        ]
+      ]
+    },
+    {
+      "title": "Arhitectură & trust boundaries",
+      "subtitle": "Unde zonele cu încredere redusă pot ajunge la control privilegiat.",
+      "diagram": "architecture",
+      "items": [
+        [
+          "Trust zones",
+          "Internet / User / Server / Management / Security Management / Branch VPN"
+        ],
+        [
+          "Problemă de trust",
+          "Zona sintetică User poate ajunge la HTTPS/SSH administrativ pe firewall. Astfel apare o cale inutilă de atac de la un segment workstation cu trust redus către un control de securitate privilegiat."
+        ],
+        [
+          "Target state",
+          "Administrarea pornește doar din zona de management sau dintr-un traseu remote aprobat, protejat prin MFA, conturi nominale, least privilege și logare centralizată."
+        ]
+      ]
+    },
+    {
+      "title": "Registru de riscuri & prioritizare",
+      "subtitle": "Prioritizăm scenarii, nu setări izolate.",
+      "diagram": "matrix",
+      "items": [
+        [
+          "R-01 - Expunere management plane",
+          "Likelihood 4/5 | Impact 5/5 | Risc inerent: CRITICAL | Risc rezidual țintă: LOW"
+        ],
+        [
+          "R-02 - Acces east-west excesiv",
+          "Likelihood 4/5 | Impact 4/5 | Risc inerent: HIGH | Risc rezidual țintă: MEDIUM"
+        ],
+        [
+          "R-03 - Logare incompletă",
+          "Likelihood 3/5 | Impact 4/5 | Risc inerent: HIGH | Risc rezidual țintă: LOW"
+        ],
+        [
+          "R-04 - Acces privilegiat fără MFA",
+          "Likelihood 3/5 | Impact 5/5 | Risc inerent: HIGH | Risc rezidual țintă: LOW"
+        ]
+      ]
+    },
+    {
+      "title": "F-001 - Management plane accesibil din zona User",
+      "subtitle": "Finding detaliat - HIGH",
+      "attack": true,
+      "items": [
+        [
+          "Activ afectat",
+          "Edge firewall / management plane"
+        ],
+        [
+          "Observație",
+          "Serviciile administrative HTTPS și SSH sunt accesibile din rețeaua generală de utilizatori."
+        ],
+        [
+          "Scenariu de amenințare",
+          "Un endpoint compromis poate obține conectivitate către management plane. Combinat cu compromiterea credentialelor sau altă slăbiciune de autentificare, acest lucru creează o cale către control privilegiat."
+        ],
+        [
+          "Dovezi ilustrative",
+          "Sursă 10.20.10.25 (USER) -> 10.20.100.1 TCP/443 REACHABLE; TCP/22 REACHABLE."
+        ],
+        [
+          "Impact potențial",
+          "Modificări neautorizate de politici, VPN sau routing; ocolirea controalelor; modificarea logării; întreruperea serviciilor."
+        ]
+      ]
+    },
+    {
+      "title": "F-001 - Strategie de control & validare",
+      "subtitle": "Previne, limitează, detectează, recuperează - apoi demonstrează.",
+      "attack": true,
+      "items": [
+        [
+          "Prevent",
+          "Rețea dedicată de management; surse administrative trusted; MFA; conturi nominale."
+        ],
+        [
+          "Limit",
+          "Roluri administrative RBAC; least privilege; protocoale de management restricționate."
+        ],
+        [
+          "Detect",
+          "Logare autentificări administrative, eșecuri și schimbări de configurație."
+        ],
+        [
+          "Recover",
+          "Backup de configurație validat și cale de recovery documentată."
+        ],
+        [
+          "Risc de implementare",
+          "MEDIUM - modificarea accesului de management fără conectivitate alternativă poate produce lockout. Validează întâi console/OOB."
+        ],
+        [
+          "Dovezi de validare",
+          "MGMT -> HTTPS ALLOW; USER -> HTTPS BLOCK; WAN -> SSH BLOCK; MFA VERIFIED; evenimente administrative vizibile în logarea centrală."
+        ],
+        [
+          "Risc rezidual estimat",
+          "LOW dacă sursele de acces, MFA, conturile nominale și logarea centralizată sunt verificate."
+        ]
+      ]
+    },
+    {
+      "title": "F-002 - Acces east-west excesiv",
+      "subtitle": "Finding detaliat - HIGH",
+      "items": [
+        [
+          "Observație",
+          "O politică largă User-to-Server permite mai multe servicii decât sunt necesare operațional."
+        ],
+        [
+          "Scenariu",
+          "Un workstation compromis poate obține reachability inutilă către workload-uri interne și poate crește posibilitatea de lateral movement."
+        ],
+        [
+          "Stare curentă",
+          "USER -> SERVER : acces larg / any-style"
+        ],
+        [
+          "Target state",
+          "USER -> APP : doar servicii de business necesare; USER -> DB/MGMT : deny fără justificare explicită."
+        ],
+        [
+          "Validare",
+          "Test pozitiv pentru fluxul aplicației și teste negative pentru porturi de database și management; review pe logurile traficului blocat."
+        ],
+        [
+          "Risc rezidual",
+          "MEDIUM după least-privilege și monitorizare, în funcție de dependențe și excepții aprobate."
+        ]
+      ]
+    },
+    {
+      "title": "Roadmap de remediere & dovezi de închidere",
+      "subtitle": "Transformăm finding-urile în acțiuni măsurabile și asumate.",
+      "items": [
+        [
+          "0-7 zile",
+          "F-001 expunere management - Network Security - efort redus / risc de change mediu."
+        ],
+        [
+          "0-30 zile",
+          "F-002 reducere politici - Network Security + Application Owner - efort mediu. Impune MFA pentru conturi privilegiate."
+        ],
+        [
+          "30-60 zile",
+          "Centralizează logarea și verifică acoperirea evenimentelor administrative. Validează backup/recovery."
+        ],
+        [
+          "Criterii de închidere",
+          "OPEN -> REMEDIATION PLANNED -> IMPLEMENTED -> VALIDATION REQUIRED -> VERIFIED -> CLOSED."
+        ],
+        [
+          "Evidence pack",
+          "Configurație, change aprobat, teste pozitive/negative, dovadă în loguri, risc rezidual și acceptare de owner."
+        ],
+        [
+          "Rezultat pentru client",
+          "Executive summary + findings tehnice + remediation backlog + target architecture + validation plan + evidence reutilizabil."
+        ]
+      ]
+    }
+  ]
+}
