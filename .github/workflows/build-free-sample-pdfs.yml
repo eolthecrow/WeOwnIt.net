@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "tools/build_free_sample_pdfs.py"
+      - "tools/free_sample_builder.py"
+      - "tools/free_sample_*.json"
       - ".github/workflows/build-free-sample-pdfs.yml"
   workflow_dispatch:
 
@@ -29,7 +30,7 @@ jobs:
           pip install reportlab
 
       - name: Build EN, RO and FR sample PDFs
-        run: python tools/build_free_sample_pdfs.py
+        run: python tools/free_sample_builder.py
 
       - name: Commit generated PDFs
         run: |
