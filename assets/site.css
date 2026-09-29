@@ -4,7 +4,7 @@
 .site-skip{position:fixed;top:-100px;left:16px;z-index:2000;padding:12px 18px;background:#6ce2c7;color:#06201e;font-weight:700}
 .site-skip:focus{top:12px}
 .site-privacy{display:inline-block;margin:1rem 1.4rem 0;text-decoration:underline;color:inherit;font-size:.7875rem}
-.lang-switch button,.langs button{min-width:27px;min-height:25px;padding:.22rem .34rem;font-size:.625rem;line-height:1}
+.lang-switch button,.langs button{min-width:30px;min-height:28px;padding:.26rem .4rem;font-size:.6875rem;line-height:1}
 header .brand{min-width:0}header .mark{flex-shrink:0}
 header .nav-right{flex-shrink:0}
 @media(max-width:600px){
