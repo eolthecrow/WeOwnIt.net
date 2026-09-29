@@ -31,7 +31,7 @@
     .hero-inner{padding:4.8rem 0 4.4rem;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:4rem;align-items:end}
     .eyebrow{font-family:var(--mono);color:var(--accent);font-size:.675rem;text-transform:uppercase;letter-spacing:.13em;margin-bottom:1rem}
     h1{font-size:clamp(2.7rem,6.3vw,5.76rem);line-height:.97;letter-spacing:-.065em;margin:0 0 1.3rem;font-weight:700}
-    .typing-word{color:var(--accent)}.typing-cursor{display:inline-block;color:var(--accent);font-weight:400;margin-left:.04em;animation:typing-cursor-blink .8s steps(1,end) infinite}@keyframes typing-cursor-blink{0%,45%{opacity:1}46%,100%{opacity:0}}@media(prefers-reduced-motion:reduce){.typing-cursor{display:none;animation:none}}
+    .typing-slot{display:inline-block;width:4.2em;white-space:nowrap;vertical-align:baseline;text-align:left}.typing-word{color:var(--accent)}.typing-cursor{display:inline-block;color:var(--accent);font-weight:400;margin-left:.04em;animation:typing-cursor-blink .8s steps(1,end) infinite}.typing-measure{position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none}@keyframes typing-cursor-blink{0%,45%{opacity:1}46%,100%{opacity:0}}@media(prefers-reduced-motion:reduce){.typing-cursor{display:none;animation:none}}
     .hero p{max-width:660px;color:var(--muted);font-size:.972rem}.cta{display:inline-flex;align-items:center;gap:1rem;background:var(--accent);color:#06201e;font-weight:800;padding:.85rem 1.1rem;border:1px solid var(--accent);margin-top:.8rem}
     .cta:hover{background:#a1f0de}.hero-note{border:1px solid var(--line-strong);background:rgba(14,29,37,.74);padding:1.35rem}.hero-note strong{display:block;color:var(--accent);font-family:var(--mono);font-size:.675rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.65rem}.hero-note p{margin:0;font-size:.855rem}
     .content{background:#f2f3f5;color:#0b1015}.content-inner{padding:4rem 0;display:grid;grid-template-columns:minmax(240px,.65fr) minmax(0,1.35fr);gap:3rem;align-items:start}
@@ -72,7 +72,7 @@
   <div class="wrap hero-inner">
     <div>
       <div class="eyebrow">Contact</div>
-      <h1 aria-label="Let’s talk."><span class="typing-prefix" aria-hidden="true">Let’s </span><span class="typing-word" aria-hidden="true">talk.</span><span class="typing-cursor" aria-hidden="true">|</span></h1>
+      <h1 aria-label="Let’s talk."><span class="typing-prefix" aria-hidden="true">Let’s </span><span class="typing-slot" aria-hidden="true"><span class="typing-word">talk.</span><span class="typing-cursor">|</span></span></h1>
       <p>The best way to start is a focused conversation about your current situation, what is blocking you, and what a practical next step could look like.</p>
       <a class="cta" href="schedule.html">Schedule a Consultation ↗</a>
     </div>
@@ -174,12 +174,29 @@
     const reduceMotion=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     heading.setAttribute("aria-label",prefix+words[0]);
-    heading.innerHTML='<span class="typing-prefix" aria-hidden="true"></span><span class="typing-word" aria-hidden="true"></span><span class="typing-cursor" aria-hidden="true">|</span>';
+    heading.innerHTML='<span class="typing-prefix" aria-hidden="true"></span><span class="typing-slot" aria-hidden="true"><span class="typing-word"></span><span class="typing-cursor">|</span></span>';
 
     const prefixEl=heading.querySelector(".typing-prefix");
+    const slotEl=heading.querySelector(".typing-slot");
     const wordEl=heading.querySelector(".typing-word");
     const cursorEl=heading.querySelector(".typing-cursor");
     prefixEl.textContent=prefix;
+
+    // Reserve the exact width required by the longest word in the active
+    // language. The cursor can move while typing, but the headline itself
+    // keeps the same geometry, preventing layout shift.
+    const measure=document.createElement("span");
+    measure.className="typing-measure";
+    heading.appendChild(measure);
+    let maxWordWidth=0;
+    words.forEach(word=>{
+      measure.textContent=word;
+      maxWordWidth=Math.max(maxWordWidth,measure.getBoundingClientRect().width);
+    });
+    measure.textContent="|";
+    const cursorWidth=measure.getBoundingClientRect().width;
+    measure.remove();
+    slotEl.style.width=Math.ceil(maxWordWidth+cursorWidth+8)+"px";
 
     if(reduceMotion){
       wordEl.textContent=words[0];
