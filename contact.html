@@ -31,6 +31,7 @@
     .hero-inner{padding:4.8rem 0 4.4rem;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:4rem;align-items:end}
     .eyebrow{font-family:var(--mono);color:var(--accent);font-size:.675rem;text-transform:uppercase;letter-spacing:.13em;margin-bottom:1rem}
     h1{font-size:clamp(2.7rem,6.3vw,5.76rem);line-height:.97;letter-spacing:-.065em;margin:0 0 1.3rem;font-weight:700}
+    .typing-word{color:var(--accent)}.typing-cursor{display:inline-block;color:var(--accent);font-weight:400;margin-left:.04em;animation:typing-cursor-blink .8s steps(1,end) infinite}@keyframes typing-cursor-blink{0%,45%{opacity:1}46%,100%{opacity:0}}@media(prefers-reduced-motion:reduce){.typing-cursor{display:none;animation:none}}
     .hero p{max-width:660px;color:var(--muted);font-size:.972rem}.cta{display:inline-flex;align-items:center;gap:1rem;background:var(--accent);color:#06201e;font-weight:800;padding:.85rem 1.1rem;border:1px solid var(--accent);margin-top:.8rem}
     .cta:hover{background:#a1f0de}.hero-note{border:1px solid var(--line-strong);background:rgba(14,29,37,.74);padding:1.35rem}.hero-note strong{display:block;color:var(--accent);font-family:var(--mono);font-size:.675rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.65rem}.hero-note p{margin:0;font-size:.855rem}
     .content{background:#f2f3f5;color:#0b1015}.content-inner{padding:4rem 0;display:grid;grid-template-columns:minmax(240px,.65fr) minmax(0,1.35fr);gap:3rem;align-items:start}
@@ -71,7 +72,7 @@
   <div class="wrap hero-inner">
     <div>
       <div class="eyebrow">Contact</div>
-      <h1>Let’s talk.</h1>
+      <h1 aria-label="Let’s talk."><span class="typing-prefix" aria-hidden="true">Let’s </span><span class="typing-word" aria-hidden="true">talk.</span><span class="typing-cursor" aria-hidden="true">|</span></h1>
       <p>The best way to start is a focused conversation about your current situation, what is blocking you, and what a practical next step could look like.</p>
       <a class="cta" href="schedule.html">Schedule a Consultation ↗</a>
     </div>
@@ -124,7 +125,7 @@
   
   const translations = {
     en: {
-      pageTitle:"Contact — Network & Security Consultant", brand:"Network & Security Consultant", back:"← Back to resources", eyebrow:"Contact", hero:"Let’s talk.",
+      pageTitle:"Contact — Network & Security Consultant", brand:"Network & Security Consultant", back:"← Back to resources", eyebrow:"Contact", heroPrefix:"Let’s ", heroWords:["talk.","plan.","secure.","build."],
       heroText:"The best way to start is a focused conversation about your current situation, what is blocking you, and what a practical next step could look like.",
       cta:"Schedule a Consultation ↗", best:"Best for",
       bestText:"Network security assessments, incident response planning, firewall reviews, troubleshooting, automation, and practical network & security guidance.",
@@ -135,7 +136,7 @@
       privacy:"Form data is sent to a Cloudflare Worker only to deliver your message. This website does not intentionally store contact submissions in its own database."
     },
     fr: {
-      pageTitle:"Contact — Network & Security Consultant", brand:"Network & Security Consultant", back:"← Retour aux ressources", eyebrow:"Contact", hero:"Parlons-en.",
+      pageTitle:"Contact — Network & Security Consultant", brand:"Network & Security Consultant", back:"← Retour aux ressources", eyebrow:"Contact", heroPrefix:"Ensemble, ", heroWords:["parlons.","planifions.","sécurisons.","construisons."],
       heroText:"Le meilleur point de départ est une discussion ciblée sur votre situation actuelle, ce qui vous bloque et la prochaine étape pratique à envisager.",
       cta:"Planifier une consultation ↗", best:"Idéal pour",
       bestText:"Évaluations de sécurité réseau, planification de réponse aux incidents, revues de firewalls, dépannage, automatisation et conseils pratiques en réseau & sécurité.",
@@ -146,7 +147,7 @@
       privacy:"Les données du formulaire sont transmises à un Cloudflare Worker uniquement pour envoyer votre message. Ce site ne stocke pas intentionnellement les demandes de contact dans sa propre base de données."
     },
     ro: {
-      pageTitle:"Contact — Network & Security Consultant", brand:"Network & Security Consultant", back:"← Înapoi la resurse", eyebrow:"Contact", hero:"Hai să discutăm.",
+      pageTitle:"Contact — Network & Security Consultant", brand:"Network & Security Consultant", back:"← Înapoi la resurse", eyebrow:"Contact", heroPrefix:"Hai să ", heroWords:["discutăm.","planificăm.","securizăm.","construim."],
       heroText:"Cel mai bun punct de plecare este o discuție concentrată pe situația ta actuală, ce te blochează și care ar putea fi următorul pas practic.",
       cta:"Programează o sesiune de consultanță ↗", best:"Potrivit pentru",
       bestText:"Evaluări de securitate a rețelei, planuri de răspuns la incidente, review-uri de firewall, troubleshooting, automatizare și ghidare practică pentru rețea & securitate.",
@@ -159,12 +160,79 @@
   };
 
   const qs = s => document.querySelector(s);
+  let typingTimer=null;
+  let typingRun=0;
+
+  function renderTypingHeadline(t){
+    const heading=qs("h1");
+    if(!heading)return;
+
+    if(typingTimer)clearTimeout(typingTimer);
+    const run=++typingRun;
+    const words=Array.isArray(t.heroWords)&&t.heroWords.length?t.heroWords:["talk."];
+    const prefix=t.heroPrefix||"";
+    const reduceMotion=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    heading.setAttribute("aria-label",prefix+words[0]);
+    heading.innerHTML='<span class="typing-prefix" aria-hidden="true"></span><span class="typing-word" aria-hidden="true"></span><span class="typing-cursor" aria-hidden="true">|</span>';
+
+    const prefixEl=heading.querySelector(".typing-prefix");
+    const wordEl=heading.querySelector(".typing-word");
+    const cursorEl=heading.querySelector(".typing-cursor");
+    prefixEl.textContent=prefix;
+
+    if(reduceMotion){
+      wordEl.textContent=words[0];
+      cursorEl.hidden=true;
+      return;
+    }
+
+    let wordIndex=0;
+    let charIndex=0;
+    let deleting=false;
+
+    const typeDelay=105;
+    const deleteDelay=65;
+    const holdDelay=1450;
+    const betweenDelay=320;
+
+    const tick=()=>{
+      if(run!==typingRun)return;
+      const word=words[wordIndex];
+
+      if(!deleting){
+        charIndex+=1;
+        wordEl.textContent=word.slice(0,charIndex);
+        if(charIndex>=word.length){
+          deleting=true;
+          typingTimer=setTimeout(tick,holdDelay);
+        }else{
+          typingTimer=setTimeout(tick,typeDelay);
+        }
+        return;
+      }
+
+      charIndex-=1;
+      wordEl.textContent=word.slice(0,Math.max(0,charIndex));
+      if(charIndex<=0){
+        deleting=false;
+        wordIndex=(wordIndex+1)%words.length;
+        typingTimer=setTimeout(tick,betweenDelay);
+      }else{
+        typingTimer=setTimeout(tick,deleteDelay);
+      }
+    };
+
+    wordEl.textContent="";
+    typingTimer=setTimeout(tick,260);
+  }
+
   function apply(lang){
     const t = translations[lang] || translations.en;
     SiteI18n.setLanguage(lang); document.title=t.pageTitle;
     const brand=qs("[data-brand]"); if(brand) brand.textContent=t.brand;
     const footerBrand=qs("[data-footer-brand]"); if(footerBrand) footerBrand.textContent=t.brand;
-    qs(".back").textContent=t.back; qs(".hero .eyebrow").textContent=t.eyebrow; qs("h1").textContent=t.hero;
+    qs(".back").textContent=t.back; qs(".hero .eyebrow").textContent=t.eyebrow; renderTypingHeadline(t);
     qs(".hero p").textContent=t.heroText; qs(".cta").textContent=t.cta; qs(".hero-note strong").textContent=t.best; qs(".hero-note p").textContent=t.bestText;
     qs(".intro .eyebrow").textContent=t.write; qs(".intro h2").textContent=t.prefer; qs(".intro p").textContent=t.intro;
     qs('label[for="name"]').textContent=t.name; qs('label[for="email"]').textContent=t.email;
