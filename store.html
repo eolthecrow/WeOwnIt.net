@@ -40,6 +40,13 @@
     .buy{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid var(--accent);background:var(--accent);color:#06201e;font-weight:850;padding:.8rem 1rem;transition:.2s}.buy:hover{background:#a1f0de}.buy.is-disabled{pointer-events:none;opacity:.46;background:transparent;color:var(--muted);border-color:var(--line-strong)}
     .checkout-note{font-size:.702rem;color:var(--quiet);margin:.7rem 0 0}.checkout-note a{text-decoration:underline;text-underline-offset:3px}
     .notice{margin-top:1.2rem;border:1px solid var(--line);padding:1rem 1.1rem;color:var(--muted);font-size:.792rem;background:#0b171e}.notice strong{color:var(--ink)}
+    .free-product{border-color:#4b776f;box-shadow:0 0 0 1px rgba(108,226,199,.06)}
+    .free-product .product-side{background:#0d2423}.free-product .price{color:var(--accent)}
+    .download-langs{margin-top:.9rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;color:var(--quiet);font-family:var(--mono);font-size:.612rem}
+    .download-langs a{display:inline-flex;align-items:center;justify-content:center;min-width:34px;border:1px solid var(--line-strong);padding:.25rem .4rem;color:var(--muted);transition:.2s}
+    .download-langs a:hover{border-color:var(--accent);color:var(--accent)}
+    .sample-service-link{display:inline-block;margin-top:.85rem;color:var(--accent);font-size:.702rem;font-weight:700;border-bottom:1px solid currentColor;padding-bottom:.1rem}
+    .sample-service-link:hover{color:var(--ink)}
     footer{border-top:1px solid var(--line);padding:1.7rem 0;color:var(--quiet);font-size:.72rem}
     @media(max-width:780px){.nav{padding:1rem 0;align-items:flex-start}.back{display:none}.product{grid-template-columns:1fr}.product-side{border-left:0;border-top:1px solid var(--line)}}
   </style>
@@ -74,6 +81,40 @@
 
   <section class="store">
     <div class="wrap">
+      <article class="product free-product" id="network-security-assessment-sample">
+        <div class="product-main">
+          <div>
+            <span class="tag">FREE SAMPLE</span><span class="tag">2026 EDITION</span>
+          </div>
+          <h2>Network Security Assessment — Executive &amp; Technical Sample Report</h2>
+          <p class="desc">See what a WeOwnIT network security assessment looks like before starting an engagement. A fictional, evidence-based sample showing how technical findings are translated into business risk, remediation actions, validation criteria, and residual risk.</p>
+          <ul class="features">
+            <li>Executive assessment summary and business context</li>
+            <li>Architecture and trust-boundary review</li>
+            <li>Risk register, prioritization, and attack-path analysis</li>
+            <li>Detailed remediation, residual risk, and validation evidence</li>
+          </ul>
+          <div class="notice"><strong>Frameworks &amp; guidance.</strong> NIST CSF 2.0 · NIST SP 800-115 · CIS Controls · vendor security guidance.</div>
+        </div>
+        <aside class="product-side">
+          <div>
+            <div class="status">Free resource</div>
+            <div class="price">FREE</div>
+          </div>
+          <div>
+            <a class="buy" data-sample-download href="downloads/WeOwnIT_Network_Security_Assessment_Sample_EN_2026.pdf" download>DOWNLOAD FREE SAMPLE</a>
+            <p class="checkout-note" data-sample-note>Direct PDF download · No checkout required.</p>
+            <div class="download-langs">
+              <span data-sample-alt-label>Also available:</span>
+              <a data-sample-lang="en" href="downloads/WeOwnIT_Network_Security_Assessment_Sample_EN_2026.pdf" download>EN</a>
+              <a data-sample-lang="ro" href="downloads/WeOwnIT_Network_Security_Assessment_Sample_RO_2026.pdf" download>RO</a>
+              <a data-sample-lang="fr" href="downloads/WeOwnIT_Network_Security_Assessment_Sample_FR_2026.pdf" download>FR</a>
+            </div>
+            <a class="sample-service-link" href="index.html#contact" data-sample-service-link>Discuss an assessment →</a>
+          </div>
+        </aside>
+      </article>
+
       <article class="product" id="incident-response-toolkit">
         <div class="product-main">
           <div>
@@ -197,6 +238,11 @@
     paloAltoHardening:"",
     checkPointHardening:""
   };
+  const SAMPLE_PDF_URLS={
+    en:"downloads/WeOwnIT_Network_Security_Assessment_Sample_EN_2026.pdf",
+    ro:"downloads/WeOwnIT_Network_Security_Assessment_Sample_RO_2026.pdf",
+    fr:"downloads/WeOwnIT_Network_Security_Assessment_Sample_FR_2026.pdf"
+  };
   const {normalizeLanguage,getInitialLanguage,syncInternalLanguageLinks,installLanguageNavigation}=SiteI18n;
 
   
@@ -205,6 +251,11 @@
       seriesLabel:"Firewall Hardening Series",seriesTitle:"Firewall platform hardening series.",seriesText:"Professional security-hardening and assurance editions tailored to Fortinet, Palo Alto Networks, and Check Point environments.",buy:"Buy securely",
       pageTitle:"Store — Network & Security Consultant",brand:"Network & Security Consultant",back:"← Back to resources",eyebrow:"Store",
       title:"Practical resources.<br>Ready to use.",lead:"Professional network and cybersecurity toolkits designed for practical implementation, review, and operational use.",
+      sampleTags:["FREE SAMPLE","2026 EDITION"],sampleProduct:"Network Security Assessment — Executive & Technical Sample Report",
+      sampleDesc:"See what a WeOwnIT network security assessment looks like before starting an engagement. A fictional, evidence-based sample showing how technical findings are translated into business risk, remediation actions, validation criteria, and residual risk.",
+      sampleFeatures:["Executive assessment summary and business context","Architecture and trust-boundary review","Risk register, prioritization, and attack-path analysis","Detailed remediation, residual risk, and validation evidence"],
+      sampleType:"Free resource",samplePrice:"FREE",sampleDownload:"DOWNLOAD FREE SAMPLE",sampleNote:"Direct PDF download · No checkout required.",sampleAlt:"Also available:",sampleService:"Discuss an assessment →",
+      sampleFrameworkLabel:"Frameworks & guidance.",sampleFrameworkText:" NIST CSF 2.0 · NIST SP 800-115 · CIS Controls · vendor security guidance.",
       tags:["INCIDENT RESPONSE","2026 EDITION"],product:"Cybersecurity Incident Response Toolkit 2026",
       desc:"A structured incident-response package designed around practical preparation, response, evidence handling, communication, and post-incident review.",
       features:["Incident Response Plan and practical response guidance","Operational checklists and incident-specific playbooks","Communication, evidence, tracking, and review templates","Digital delivery after successful checkout"],
@@ -231,6 +282,11 @@
       seriesLabel:"Seria de securizare a firewallurilor",seriesTitle:"Securizarea platformelor firewall.",seriesText:"Ediții profesionale pentru evaluarea și consolidarea securității mediilor Fortinet, Palo Alto Networks și Check Point.",buy:"Cumpără în siguranță",
       pageTitle:"Magazin — Network & Security Consultant",brand:"Network & Security Consultant",back:"← Înapoi la resurse",eyebrow:"Magazin",
       title:"Resurse practice.<br>Gata de utilizare.",lead:"Toolkit-uri profesionale de rețea și securitate cibernetică, concepute pentru implementare, review și utilizare operațională.",
+      sampleTags:["SAMPLE GRATUIT","EDIȚIA 2026"],sampleProduct:"Network Security Assessment — Raport executiv & tehnic — exemplu",
+      sampleDesc:"Vezi cum arată un assessment WeOwnIT înainte de începerea unui engagement. Un exemplu fictiv și transparent care arată cum constatările tehnice sunt transformate în risc de business, acțiuni de remediere, criterii de validare și risc rezidual.",
+      sampleFeatures:["Sumar executiv al evaluării și context de business","Arhitectură și trust boundaries","Registru de riscuri, prioritizare și attack paths","Remediere, risc rezidual și dovezi de validare"],
+      sampleType:"Resursă gratuită",samplePrice:"GRATUIT",sampleDownload:"DESCARCĂ SAMPLE-UL GRATUIT",sampleNote:"Descărcare PDF directă · Fără checkout.",sampleAlt:"Disponibil și în:",sampleService:"Discută un assessment →",
+      sampleFrameworkLabel:"Framework-uri și ghidare.",sampleFrameworkText:" NIST CSF 2.0 · NIST SP 800-115 · CIS Controls · ghidare de securitate vendor.",
       tags:["RĂSPUNS LA INCIDENTE","EDIȚIA 2026"],product:"Cybersecurity Incident Response Toolkit 2026",
       desc:"Un pachet structurat pentru răspuns la incidente, orientat spre pregătire practică, răspuns, gestionarea dovezilor, comunicare și analiza post-incident.",
       features:["Plan de răspuns la incidente și ghidare practică","Checklist-uri operaționale și playbook-uri specifice incidentelor","Template-uri pentru comunicare, dovezi, tracking și review","Livrare digitală după finalizarea plății"],
@@ -257,6 +313,11 @@
       seriesLabel:"Collection de durcissement des pare-feu",seriesTitle:"Durcissement des plateformes pare-feu.",seriesText:"Des éditions professionnelles pour évaluer et renforcer la sécurité des environnements Fortinet, Palo Alto Networks et Check Point.",buy:"Acheter en toute sécurité",
       pageTitle:"Boutique — Network & Security Consultant",brand:"Network & Security Consultant",back:"← Retour aux ressources",eyebrow:"Boutique",
       title:"Ressources pratiques.<br>Prêtes à l’emploi.",lead:"Des toolkits professionnels de réseau et cybersécurité conçus pour l’implémentation, la revue et l’utilisation opérationnelle.",
+      sampleTags:["EXEMPLE GRATUIT","ÉDITION 2026"],sampleProduct:"Évaluation de la sécurité réseau — Exemple de rapport exécutif & technique",
+      sampleDesc:"Découvrez à quoi ressemble une évaluation WeOwnIT avant de démarrer une mission. Cet exemple fictif et transparent montre comment des constats techniques sont traduits en risques métier, actions de remédiation, critères de validation et risque résiduel.",
+      sampleFeatures:["Synthèse exécutive de l’évaluation et contexte métier","Architecture et frontières de confiance","Registre des risques, priorisation et analyse des chemins d’attaque","Remédiation détaillée, risque résiduel et preuves de validation"],
+      sampleType:"Ressource gratuite",samplePrice:"GRATUIT",sampleDownload:"TÉLÉCHARGER L’EXEMPLE GRATUIT",sampleNote:"Téléchargement PDF direct · Aucun paiement requis.",sampleAlt:"Également disponible :",sampleService:"Discuter d’une évaluation →",
+      sampleFrameworkLabel:"Référentiels et recommandations.",sampleFrameworkText:" NIST CSF 2.0 · NIST SP 800-115 · CIS Controls · recommandations de sécurité des éditeurs.",
       tags:["RÉPONSE AUX INCIDENTS","ÉDITION 2026"],product:"Cybersecurity Incident Response Toolkit 2026",
       desc:"Un package structuré de réponse aux incidents, conçu autour de la préparation pratique, de la réponse, de la gestion des preuves, de la communication et de la revue post-incident.",
       features:["Plan de réponse aux incidents et guide pratique","Checklists opérationnelles et playbooks spécifiques","Modèles de communication, preuves, suivi et revue","Livraison numérique après paiement"],
@@ -293,6 +354,20 @@
     document.querySelectorAll("[data-buy-key]").forEach(buy=>{
       if(LEMON_CHECKOUT_URLS[buy.dataset.buyKey]) buy.textContent=t.buy;
     });
+
+    const sample=q("#network-security-assessment-sample");
+    sample.querySelector(".tag:nth-child(1)").textContent=t.sampleTags[0];sample.querySelector(".tag:nth-child(2)").textContent=t.sampleTags[1];
+    sample.querySelector("h2").textContent=t.sampleProduct;sample.querySelector(".desc").textContent=t.sampleDesc;
+    sample.querySelectorAll(".features li").forEach((el,i)=>el.textContent=t.sampleFeatures[i]);
+    sample.querySelector(".status").textContent=t.sampleType;sample.querySelector(".price").textContent=t.samplePrice;
+    sample.querySelector(".notice").innerHTML="<strong>"+t.sampleFrameworkLabel+"</strong>"+t.sampleFrameworkText;
+    const sampleDownload=sample.querySelector("[data-sample-download]");
+    sampleDownload.href=SAMPLE_PDF_URLS[lang]||SAMPLE_PDF_URLS.en;sampleDownload.textContent=t.sampleDownload;
+    sample.querySelector("[data-sample-note]").textContent=t.sampleNote;
+    sample.querySelector("[data-sample-alt-label]").textContent=t.sampleAlt;
+    sample.querySelector("[data-sample-service-link]").textContent=t.sampleService;
+    sample.querySelectorAll("[data-sample-lang]").forEach(link=>{link.href=SAMPLE_PDF_URLS[link.dataset.sampleLang];});
+
     const incident=q("#incident-response-toolkit");
     incident.querySelector(".tag:nth-child(1)").textContent=t.tags[0];incident.querySelector(".tag:nth-child(2)").textContent=t.tags[1];
     incident.querySelector("h2").textContent=t.product;incident.querySelector(".desc").textContent=t.desc;
