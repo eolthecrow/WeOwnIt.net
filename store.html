@@ -412,19 +412,11 @@
   const SAMPLE_DOWNLOAD_EVENT_ENDPOINT="https://network-security-assistant.vlad-network-security.workers.dev/download-event";
   function trackSampleDownload(lang){
     const language=["en","ro","fr"].includes(lang)?lang:"en";
-    const body=JSON.stringify({file:"network-assessment",lang:language,source:"store"});
+    const url=SAMPLE_DOWNLOAD_EVENT_ENDPOINT+
+      "?file=network-assessment&lang="+encodeURIComponent(language)+
+      "&source=store&t="+Date.now();
     try{
-      if(navigator.sendBeacon){
-        const payload=new Blob([body],{type:"text/plain;charset=UTF-8"});
-        navigator.sendBeacon(SAMPLE_DOWNLOAD_EVENT_ENDPOINT,payload);
-      }else{
-        fetch(SAMPLE_DOWNLOAD_EVENT_ENDPOINT,{
-          method:"POST",
-          headers:{"Content-Type":"text/plain;charset=UTF-8"},
-          body,
-          keepalive:true
-        }).catch(()=>{});
-      }
+      fetch(url,{method:"GET",mode:"no-cors",cache:"no-store",keepalive:true}).catch(()=>{});
     }catch(_){}
   }
   const {normalizeLanguage,getInitialLanguage,syncInternalLanguageLinks,installLanguageNavigation}=SiteI18n;
