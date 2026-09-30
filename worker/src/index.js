@@ -130,7 +130,7 @@ function recordDownload(request, env, fileKey, language, source) {
   const referrer = safeHost(request.headers.get("Referer"));
   const timestamp = new Date().toISOString();
 
-  console.log(JSON.stringify({
+  console.log({
     event: "free_sample_download",
     resource: fileKey,
     language,
@@ -138,7 +138,7 @@ function recordDownload(request, env, fileKey, language, source) {
     source,
     referrer,
     timestamp,
-  }));
+  });
 
   if (env.DOWNLOAD_ANALYTICS) {
     env.DOWNLOAD_ANALYTICS.writeDataPoint({
@@ -147,6 +147,29 @@ function recordDownload(request, env, fileKey, language, source) {
       indexes: [fileKey],
     });
   }
+}
+
+async function handleDownloadEvent(request, env, origin) {
+  let body;
+  try {
+    body = JSON.parse(await request.text());
+  } catch {
+    return json({ error: "Invalid download event." }, 400, origin);
+  }
+
+  const fileKey = cleanText(body?.file, 80) || "network-assessment";
+  const language = normalizeLanguage(body?.lang);
+  const source = cleanText(body?.source, 40) || "store";
+
+  if (!DOWNLOADS[fileKey]?.[language]) {
+    return json({ error: "Unknown download." }, 404, origin);
+  }
+
+  recordDownload(request, env, fileKey, language, source);
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders(origin),
+  });
 }
 
 async function handleDownload(request, env) {
@@ -168,12 +191,12 @@ async function handleDownload(request, env) {
     });
 
     if (!upstream.ok || !upstream.body) {
-      console.error(JSON.stringify({
+      console.error({
         event: "free_sample_download_error",
         resource: fileKey,
         language,
         upstream_status: upstream.status,
-      }));
+      });
       return new Response("Download temporarily unavailable.", { status: 502 });
     }
 
@@ -191,12 +214,12 @@ async function handleDownload(request, env) {
       headers,
     });
   } catch (error) {
-    console.error(JSON.stringify({
+    console.error({
       event: "free_sample_download_error",
       resource: fileKey,
       language,
       message: error?.message || String(error),
-    }));
+    });
     return new Response("Download temporarily unavailable.", { status: 503 });
   }
 }
@@ -323,6 +346,10 @@ export default {
         status: 204,
         headers: corsHeaders(origin),
       });
+    }
+
+    if (request.method === "POST" && url.pathname === "/download-event") {
+      return handleDownloadEvent(request, env, origin);
     }
 
     if (request.method === "GET" && url.pathname === "/download") {
