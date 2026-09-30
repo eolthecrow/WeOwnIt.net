@@ -149,13 +149,7 @@ The event records only operational analytics fields:
 
 IP addresses are not intentionally written to custom download logs.
 
-The Worker also writes one data point per event to the Workers Analytics Engine dataset:
-
-```text
-weownit_downloads
-```
-
-The dataset is created automatically after the first event once the Worker has been deployed with the Analytics Engine binding.
+Download tracking uses Cloudflare Workers Observability structured logs. Analytics Engine is not required for this lightweight use case.
 
 ### View downloads in Cloudflare
 
@@ -168,6 +162,8 @@ After deploying the Worker:
 5. Use **Count** to see total download events.
 6. Group by the structured `language` field to compare EN / RO / FR.
 7. Group by `country` when geographic breakdown is useful.
+
+Because the event is written as a structured Worker log, no separate Analytics Engine product needs to be enabled.
 
 For immediate testing, open the Worker's **Logs / Live** view and click the Store download button in another browser tab.
 
