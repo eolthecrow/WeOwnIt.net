@@ -5,7 +5,7 @@
   const normalizeLanguage = value => languages.includes(value) ? value : null;
   const scriptURL = new URL(document.currentScript.src);
   const baseURL = new URL("../", scriptURL);
-  const publicBase = "https://eolthecrow.github.io/WeOwnIt.net/";
+  const publicBase = "https://weownit.net/";
   const descriptions = {
   "index": [
     "Practical guidance for incident response, network security assessment, firewall hardening, segmentation, troubleshooting, automation, and compliance from Vladimir Arjoca.",
