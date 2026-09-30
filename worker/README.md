@@ -176,3 +176,34 @@ npm run deploy
 ```
 
 The Store download itself does not depend on Worker availability, so a tracking outage does not block the PDF.
+
+
+
+## CVE Risk Lens
+
+The Tools page includes CVE Risk Lens in EN / RO / FR. Deploy this Worker to enable server-side official advisory page verification:
+
+```bash
+cd worker
+npm ci
+npm run deploy
+```
+
+Then check `GET /cve-risk?id=CVE-2024-24919` from the allowed website origin. No new API key, paid AI model, or Cloudflare binding is required. The existing chat and contact routes are preserved.
+
+- CVE details, CVSS with attribution, affected-version data and official advisory references: the CVE Program's official `CVEProject/cvelistV5` JSON mirror (CNA and ADP containers).
+- Exploitation probability: FIRST EPSS API, including the observation date.
+- Known exploitation: CISA's official `cisagov/kev-data` mirror, with catalogue release date. Failed reads remain unknown.
+- Fortinet: allowlisted FortiGuard PSIRT references; retrieve linked advisory pages and verify the exact CVE.
+- Palo Alto Networks: official advisory JSON pages; documented `/json/{CVE}` lookup when no CVE-record reference exists.
+- Check Point: allowlisted Support/SecureKnowledge advisory references. A sign-in wall or a JavaScript shell is shown as verification unavailable. CPAI IPS coverage references are labelled protection, never product vulnerability evidence.
+
+This is CVE-specific correlation, not an exhaustive vendor catalogue ingestion or inventory scan. No-reference states never imply that vendor products are unaffected. A linked official page containing the CVE establishes a reference match, not applicability to a particular asset. Version conditions are displayed as supplied by the CNA, including status, default status and changes; fixed versions are never guessed. Follow the current original advisory for fixes and supported upgrade paths.
+
+Successful complete responses are cached for 10 minutes; incomplete reads are retryable. All source checks use bounded timeouts. When the new Worker route is not available, the page falls back to browser public-data reads and explicitly labels advisory-page verification as unavailable; it still correlates official CVE references. Browser restrictions can make individual public sources unavailable.
+
+Run regression checks with Node 22 or later:
+
+```bash
+node --test worker/test/cve-risk.test.mjs
+```

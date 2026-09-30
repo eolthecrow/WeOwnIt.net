@@ -38,9 +38,9 @@
     "Kits, modèles et ressources numériques pour les réseaux et la cybersécurité, proposés par Vladimir Arjoca."
   ],
   "tools": [
-    "Technical tools and platforms used across network and security engineering by Vladimir Arjoca.",
-    "Instrumente și platforme tehnice folosite de Vladimir Arjoca în ingineria rețelelor și a securității.",
-    "Outils et plateformes techniques utilisés par Vladimir Arjoca en ingénierie réseaux et sécurité."
+    "Web-Check and CVE Risk Lens: public website checks, CVSS, EPSS, CISA KEV and Fortinet, Palo Alto Networks and Check Point advisory references.",
+    "Web-Check și CVE Risk Lens: verificări publice, CVSS, EPSS, CISA KEV și referințe către advisoarele Fortinet, Palo Alto Networks și Check Point.",
+    "Web-Check et CVE Risk Lens : vérifications publiques, CVSS, EPSS, CISA KEV et références aux avis Fortinet, Palo Alto Networks et Check Point."
   ]
 };
   const labels = {
@@ -116,3 +116,4 @@
   }
   window.SiteI18n={normalizeLanguage,getInitialLanguage,syncInternalLanguageLinks,installLanguageNavigation,setLanguage};
 })();
+

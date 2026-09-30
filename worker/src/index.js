@@ -1,3 +1,4 @@
+import {handleCveRisk} from "./cve-risk.js";
 const MODEL = "@cf/zai-org/glm-4.7-flash";
 const MAX_MESSAGE_CHARS = 4000;
 const MAX_HISTORY_MESSAGES = 8;
@@ -18,7 +19,7 @@ function isAllowedOrigin(origin) {
 function corsHeaders(origin) {
   return {
     "Access-Control-Allow-Origin": origin || "https://weownit.net",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
     "Vary": "Origin",
@@ -360,7 +361,7 @@ async function handleContact(request, env, origin) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin");
 
@@ -381,6 +382,10 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/download") {
       return handleDownload(request, env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/cve-risk") {
+      return handleCveRisk(request, origin, ctx);
     }
 
     if (request.method === "GET" && url.pathname === "/health") {
@@ -457,3 +462,4 @@ export default {
     }
   },
 };
+
