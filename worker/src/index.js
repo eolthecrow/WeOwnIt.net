@@ -150,22 +150,49 @@ function recordDownload(request, env, fileKey, language, source) {
 }
 
 async function handleDownloadEvent(request, env, origin) {
-  let body;
-  try {
-    body = JSON.parse(await request.text());
-  } catch {
-    return json({ error: "Invalid download event." }, 400, origin);
-  }
+  const url = new URL(request.url);
+  let fileKey;
+  let language;
+  let source;
 
-  const fileKey = cleanText(body?.file, 80) || "network-assessment";
-  const language = normalizeLanguage(body?.lang);
-  const source = cleanText(body?.source, 40) || "store";
+  if (request.method === "GET") {
+    fileKey = cleanText(url.searchParams.get("file"), 80) || "network-assessment";
+    language = normalizeLanguage(url.searchParams.get("lang"));
+    source = cleanText(url.searchParams.get("source"), 40) || "store";
+  } else {
+    let body;
+    try {
+      body = JSON.parse(await request.text());
+    } catch {
+      return json({ error: "Invalid download event." }, 400, origin);
+    }
+
+    fileKey = cleanText(body?.file, 80) || "network-assessment";
+    language = normalizeLanguage(body?.lang);
+    source = cleanText(body?.source, 40) || "store";
+  }
 
   if (!DOWNLOADS[fileKey]?.[language]) {
     return json({ error: "Unknown download." }, 404, origin);
   }
 
   recordDownload(request, env, fileKey, language, source);
+
+  if (request.method === "GET") {
+    return json(
+      {
+        ok: true,
+        tracked: true,
+        event: "free_sample_download",
+        resource: fileKey,
+        language,
+        source,
+      },
+      200,
+      origin
+    );
+  }
+
   return new Response(null, {
     status: 204,
     headers: corsHeaders(origin),
@@ -348,7 +375,7 @@ export default {
       });
     }
 
-    if (request.method === "POST" && url.pathname === "/download-event") {
+    if ((request.method === "GET" || request.method === "POST") && url.pathname === "/download-event") {
       return handleDownloadEvent(request, env, origin);
     }
 
