@@ -32,16 +32,26 @@
     .lang-switch button{border:0;background:transparent;color:var(--muted);padding:.35rem .5rem;font-family:var(--mono);font-size:.612rem;cursor:pointer}
     .lang-switch button[aria-pressed="true"]{background:var(--accent);color:var(--bg);font-weight:800}
     main{min-height:calc(100vh - 67px)}
-    .hero{min-height:calc(100vh - 67px);display:grid;align-items:center;background:linear-gradient(135deg,#0a151c 0%,#0d1e26 62%,#12342f 100%)}
-    .hero-inner{padding:5.5rem 0;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.65fr);gap:4rem;align-items:center}
+    .hero{display:grid;align-items:center;background:linear-gradient(135deg,#0a151c 0%,#0d1e26 62%,#12342f 100%)}
+    .hero-inner{width:100%;padding:4rem 1.4rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);gap:3rem;align-items:center}
     .eyebrow{font-family:var(--mono);color:var(--accent);font-size:.675rem;text-transform:uppercase;letter-spacing:.13em;margin-bottom:1rem}
     h1{font-size:clamp(2.7rem,6.3vw,5.58rem);line-height:.98;letter-spacing:-.065em;margin:0 0 1.4rem;font-weight:700}
     .lead{max-width:690px;color:var(--muted);font-size:.972rem;margin:0}
-    .status-card{border:1px solid var(--line-strong);background:rgba(14,29,37,.78);padding:1.6rem}
-    .status-card strong{display:block;color:var(--accent);font-family:var(--mono);font-size:.675rem;text-transform:uppercase;letter-spacing:.11em;margin-bottom:.75rem}
-    .status-card p{margin:0;color:var(--muted)}
-    .status-line{display:flex;align-items:center;gap:.65rem;margin-top:1.25rem;font-family:var(--mono);font-size:.63rem;color:var(--quiet);text-transform:uppercase;letter-spacing:.09em}
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(108,226,199,.08)}
+    .webcheck-card{border:1px solid var(--line-strong);background:rgba(14,29,37,.9);padding:1.6rem;min-width:0}
+    .webcheck-card h2{font-size:1.25rem;margin:0 0 1.5rem;letter-spacing:-.03em}
+    .webcheck-card label{display:block;margin-bottom:.6rem;font-size:.95rem;font-weight:650}
+    .webcheck-card input{display:block;width:100%;min-height:50px;border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);padding:.85rem;font:1rem var(--mono);border-radius:0}
+    .webcheck-card input[aria-invalid="true"]{border-color:#ffb4a9}
+    .webcheck-card button{display:block;width:100%;min-height:50px;margin-top:1rem;padding:.85rem 1rem;border:1px solid var(--accent);background:var(--accent);color:var(--bg);font:700 1rem var(--font);cursor:pointer}
+    .webcheck-card button:hover{background:#9cebd9}
+    .webcheck-card :is(input,button,a):focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+    .webcheck-card p{color:var(--muted);font-size:.85rem;line-height:1.6;margin:.75rem 0 0}
+    .webcheck-card .webcheck-error{color:#ffb4a9}
+    .webcheck-card a,.webcheck-credit a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+    .webcheck-credit{color:var(--quiet);font-size:.8rem;margin-top:1.5rem}
+    .webcheck-features{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.5rem 0 0;padding:0;list-style:none}
+    .webcheck-features li{border-bottom:1px solid var(--line-strong);color:var(--accent);padding:.35rem 0;margin-right:.65rem;font:.8rem var(--mono)}
+    [hidden]{display:none!important}
     .tools-section{padding:4.5rem 0 5rem;border-top:1px solid var(--line);background:var(--bg)}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2rem}
     .section-head h2{font-size:clamp(1.98rem,3.6vw,3.78rem);letter-spacing:-.06em;line-height:1.05;margin:.6rem 0 0}
@@ -53,7 +63,7 @@
     .tool-list{display:flex;flex-wrap:wrap;gap:.5rem}
     .tool-list span{border:1px solid var(--line-strong);padding:.42rem .64rem;font-family:var(--mono);font-size:.63rem;color:#c8d8d5;background:#0b171e}
     footer{border-top:1px solid var(--line);padding:1.7rem 0;color:var(--quiet);font-size:.72rem}
-    @media(max-width:780px){.nav{align-items:flex-start;padding:1rem 0}.nav-right{gap:.6rem}.back{display:none}.hero-inner{grid-template-columns:1fr;gap:2.2rem;padding:4rem 0}.lang-switch button{padding:.32rem .44rem}.section-head{display:block}.section-head p{margin-top:1rem}.tools-grid{grid-template-columns:1fr}}
+    @media(max-width:780px){.nav{align-items:flex-start;padding:1rem 0}.nav-right{gap:.6rem}.back{display:none}.hero-inner{grid-template-columns:1fr;gap:2.2rem;padding:3rem 1.4rem}.lang-switch button{padding:.32rem .44rem}.section-head{display:block}.section-head p{margin-top:1rem}.tools-grid{grid-template-columns:1fr}}
   </style>
   <link rel="stylesheet" href="assets/chatbox.css?v=8">
   <link rel="stylesheet" href="assets/site.css?v=7">
@@ -76,18 +86,29 @@
 </header>
 
 <main id="main" tabindex="-1">
-  <section class="hero">
+  <section class="hero" id="web-check" aria-labelledby="webcheck-title">
     <div class="wrap hero-inner">
       <div>
-        <div class="eyebrow">Tools</div>
-        <h1>Technical toolkit.</h1>
-        <p class="lead">Platforms and tooling used across network engineering, security operations, automation, monitoring, and lab environments.</p>
+        <div class="eyebrow">01 / OPEN-SOURCE TOOL</div>
+        <h1 id="webcheck-title">Web-Check.</h1>
+        <p class="lead">Explore a website’s public footprint: DNS records, TLS certificates, HTTP headers, hosting and security configuration.</p>
+        <ul class="webcheck-features" aria-label="Checks"><li>DNS</li><li>TLS / SSL</li><li>HTTP headers</li><li>Hosting</li></ul>
+        <p class="webcheck-credit">Web-Check by <a href="https://github.com/Lissy93/web-check" target="_blank" rel="noopener noreferrer">Alicia Sykes</a> · <a href="https://github.com/Lissy93/web-check/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">MIT</a></p>
       </div>
-      <aside class="status-card">
-        <strong>In progress</strong>
-        <p>This page is being expanded with additional tools, context, and practical usage examples.</p>
-        <div class="status-line"><span class="dot"></span><span>Page under development</span></div>
-      </aside>
+      <div class="webcheck-card">
+        <h2 data-webcheck="formTitle">Check your website</h2>
+        <form id="webcheck-form" novalidate>
+          <label for="webcheck-domain" data-webcheck="label">Public domain or website URL</label>
+          <input id="webcheck-domain" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" maxlength="2048" placeholder="example.com" required aria-describedby="webcheck-hint webcheck-error">
+          <p id="webcheck-hint" data-webcheck="hint">Only the domain is sent. URL paths and query parameters are excluded.</p>
+          <p id="webcheck-error" class="webcheck-error" role="alert" hidden></p>
+          <button type="submit" data-webcheck="button">Start analysis</button>
+        </form>
+        <p data-webcheck="external">Opens the official Web-Check application in a new tab. The domain is shared with that service; results and availability depend on it.</p>
+        <p id="webcheck-status" role="status" hidden></p>
+        <p id="webcheck-report-wrap" hidden><a id="webcheck-report" target="_blank" rel="noopener noreferrer" data-webcheck="report">Open analysis</a></p>
+        <p><a href="https://web-check.xyz/" target="_blank" rel="noopener noreferrer" data-webcheck="openTool">Open Web-Check directly</a></p>
+      </div>
     </div>
   </section>
 
@@ -135,12 +156,10 @@
       pageTitle:"Tools — Network & Security Consultant",
       brand:"Network & Security Consultant",
       back:"← Back to resources",
-      eyebrow:"Tools",
-      title:"Technical toolkit.",
-      lead:"Platforms and tooling used across network engineering, security operations, automation, monitoring, and lab environments.",
-      status:"In progress",
-      statusText:"This page is being expanded with additional tools, context, and practical usage examples.",
-      development:"Page under development",
+      eyebrow:"01 / OPEN-SOURCE TOOL",
+      title:"Web-Check.",
+      lead:"Explore a website’s public footprint: DNS records, TLS certificates, HTTP headers, hosting and security configuration.",
+      webcheck:{formTitle:"Check your website",label:"Public domain or website URL",hint:"Only the domain is sent. URL paths and query parameters are excluded.",button:"Start analysis",external:"Opens the official Web-Check application in a new tab. The domain is shared with that service; results and availability depend on it.",report:"Open analysis",openTool:"Open Web-Check directly",invalid:"Enter a valid public domain, such as example.com. Internal addresses, credentials and custom ports are not supported.",opened:"The analysis opens in a new tab. If it did not open, use the link below.",features:["DNS","TLS / SSL","HTTP headers","Hosting"],checks:"Checks"},
       sectionMicro:"Technical toolkit",
       sectionTitle:"Tools I work with.",
       sectionText:"Core platforms and engineering tools used across network, security, automation, observability, and lab workflows.",
@@ -155,12 +174,10 @@
       pageTitle:"Instrumente — Network & Security Consultant",
       brand:"Network & Security Consultant",
       back:"← Înapoi la resurse",
-      eyebrow:"Instrumente",
-      title:"Toolkit tehnic.",
-      lead:"Platforme și instrumente utilizate în inginerie de rețea, operațiuni de securitate, automatizare, monitorizare și medii de laborator.",
-      status:"În lucru",
-      statusText:"Această pagină este extinsă cu instrumente suplimentare, context și exemple practice de utilizare.",
-      development:"Pagină în dezvoltare",
+      eyebrow:"01 / INSTRUMENT OPEN SOURCE",
+      title:"Web-Check.",
+      lead:"Explorează amprenta publică a unui site: înregistrări DNS, certificate TLS, antete HTTP, găzduire și configurația de securitate.",
+      webcheck:{formTitle:"Verifică site-ul tău",label:"Domeniu public sau adresa unui site",hint:"Se trimite doar domeniul. Calea și parametrii din adresă sunt excluși.",button:"Pornește analiza",external:"Deschide aplicația oficială Web-Check într-o filă nouă. Domeniul este transmis acelui serviciu; rezultatele și disponibilitatea depind de acesta.",report:"Deschide analiza",openTool:"Deschide direct Web-Check",invalid:"Introdu un domeniu public valid, de exemplu example.com. Adresele interne, datele de autentificare și porturile personalizate nu sunt acceptate.",opened:"Analiza se deschide într-o filă nouă. Dacă nu s-a deschis, folosește linkul de mai jos.",features:["DNS","TLS / SSL","Antete HTTP","Găzduire"],checks:"Verificări"},
       sectionMicro:"Toolkit tehnic",
       sectionTitle:"Instrumente cu care lucrez.",
       sectionText:"Platforme și instrumente de bază folosite în rețea, securitate, automatizare, observabilitate și medii de laborator.",
@@ -175,12 +192,10 @@
       pageTitle:"Outils — Network & Security Consultant",
       brand:"Network & Security Consultant",
       back:"← Retour aux ressources",
-      eyebrow:"Outils",
-      title:"Boîte à outils technique.",
-      lead:"Plateformes et outils utilisés en ingénierie réseau, opérations de sécurité, automatisation, supervision et environnements de laboratoire.",
-      status:"En cours",
-      statusText:"Cette page est enrichie avec des outils supplémentaires, du contexte et des exemples pratiques d’utilisation.",
-      development:"Page en cours de développement",
+      eyebrow:"01 / OUTIL OPEN SOURCE",
+      title:"Web-Check.",
+      lead:"Explorez l’empreinte publique d’un site : enregistrements DNS, certificats TLS, en-têtes HTTP, hébergement et configuration de sécurité.",
+      webcheck:{formTitle:"Vérifiez votre site",label:"Domaine public ou adresse d’un site",hint:"Seul le domaine est transmis. Le chemin et les paramètres de l’adresse sont exclus.",button:"Lancer l’analyse",external:"Ouvre l’application officielle Web-Check dans un nouvel onglet. Le domaine est transmis à ce service ; les résultats et la disponibilité en dépendent.",report:"Ouvrir l’analyse",openTool:"Ouvrir directement Web-Check",invalid:"Saisissez un domaine public valide, par exemple example.com. Les adresses internes, identifiants et ports personnalisés ne sont pas acceptés.",opened:"L’analyse s’ouvre dans un nouvel onglet. Si elle ne s’est pas ouverte, utilisez le lien ci-dessous.",features:["DNS","TLS / SSL","En-têtes HTTP","Hébergement"],checks:"Vérifications"},
       sectionMicro:"Boîte à outils technique",
       sectionTitle:"Outils que j’utilise.",
       sectionText:"Plateformes et outils principaux utilisés pour le réseau, la sécurité, l’automatisation, l’observabilité et les environnements de laboratoire.",
@@ -193,8 +208,53 @@
     }
   };
 
+  let currentLanguage="en", hasError=false, launched=false;
+  const domainInput=document.getElementById("webcheck-domain");
+  const error=document.getElementById("webcheck-error");
+  const status=document.getElementById("webcheck-status");
+  const report=document.getElementById("webcheck-report");
+  function renderWebCheck(){
+    const d=t[currentLanguage].webcheck;
+    document.querySelectorAll("[data-webcheck]").forEach(el=>el.textContent=d[el.dataset.webcheck]);
+    document.querySelectorAll(".webcheck-features li").forEach((el,i)=>el.textContent=d.features[i]);
+    document.querySelector(".webcheck-features").setAttribute("aria-label",d.checks);
+    error.hidden=!hasError;
+    error.textContent=hasError?d.invalid:"";
+    domainInput.setAttribute("aria-invalid",String(hasError));
+    status.hidden=!launched;
+    status.textContent=launched?d.opened:"";
+    document.getElementById("webcheck-report-wrap").hidden=!launched;
+  }
+  function publicDomain(value){
+    const raw=value.trim();
+    if(!raw || /\s/.test(raw))return null;
+    try{
+      const url=new URL(/^[a-z][a-z0-9+.-]*:\/\//i.test(raw)?raw:"https://"+raw);
+      if(!["http:","https:"].includes(url.protocol)||url.username||url.password||url.port)return null;
+      const host=url.hostname.toLowerCase().replace(/\.$/,"");
+      if(host.length>253||!host.includes(".")||/^\d+(\.\d+){3}$/.test(host))return null;
+      if(host.split(".").some(label=>!/^([a-z0-9]|[a-z0-9][a-z0-9-]{0,61}[a-z0-9])$/.test(label)))return null;
+      const tld=host.split(".").pop();
+      if(!/^([a-z]{2,63}|xn--[a-z0-9-]{2,59})$/.test(tld)||/\.(localhost|local|internal|lan|home|test|invalid|example|onion)$/.test(host))return null;
+      return host;
+    }catch(_){return null;}
+  }
+  document.getElementById("webcheck-form").addEventListener("submit",event=>{
+    event.preventDefault();
+    const host=publicDomain(domainInput.value);
+    hasError=!host;
+    launched=Boolean(host);
+    if(host){
+      report.href="https://web-check.xyz/check/"+encodeURIComponent(host);
+      window.open(report.href,"_blank","noopener,noreferrer");
+    }
+    renderWebCheck();
+    if(hasError)domainInput.focus();
+  });
+  domainInput.addEventListener("input",()=>{hasError=false;launched=false;renderWebCheck();});
   function apply(lang){
     const d=t[lang]||t.en;
+    currentLanguage=t[lang]?lang:"en";
     SiteI18n.setLanguage(lang);
     document.title=d.pageTitle;
     document.querySelector("[data-brand]").textContent=d.brand;
@@ -203,9 +263,7 @@
     document.querySelector(".eyebrow").textContent=d.eyebrow;
     document.querySelector("h1").textContent=d.title;
     document.querySelector(".lead").textContent=d.lead;
-    document.querySelector(".status-card strong").textContent=d.status;
-    document.querySelector(".status-card p").textContent=d.statusText;
-    document.querySelector(".status-line span:last-child").textContent=d.development;
+    renderWebCheck();
     document.querySelector(".tools-section .section-head .eyebrow").textContent=d.sectionMicro;
     document.querySelector(".tools-section h2").textContent=d.sectionTitle;
     document.querySelector(".tools-section .section-head p").textContent=d.sectionText;
