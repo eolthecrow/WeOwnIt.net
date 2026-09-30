@@ -99,6 +99,108 @@ function extractAnswer(result) {
 const CONTACT_TO_EMAIL = "vladimir.arjoca@outlook.com";
 const MAX_CONTACT_MESSAGE_CHARS = 5000;
 
+const DOWNLOADS = {
+  "network-assessment": {
+    en: {
+      url: "https://raw.githubusercontent.com/eolthecrow/WeOwnIt.net/main/downloads/WeOwnIT_Network_Security_Assessment_Sample_EN_2026.pdf",
+      filename: "weownit.net_Network_Security_Assessment_Sample_EN_2026.pdf",
+    },
+    ro: {
+      url: "https://raw.githubusercontent.com/eolthecrow/WeOwnIt.net/main/downloads/WeOwnIT_Network_Security_Assessment_Sample_RO_2026.pdf",
+      filename: "weownit.net_Network_Security_Assessment_Sample_RO_2026.pdf",
+    },
+    fr: {
+      url: "https://raw.githubusercontent.com/eolthecrow/WeOwnIt.net/main/downloads/WeOwnIT_Network_Security_Assessment_Sample_FR_2026.pdf",
+      filename: "weownit.net_Network_Security_Assessment_Sample_FR_2026.pdf",
+    },
+  },
+};
+
+function safeHost(value) {
+  if (!value) return "";
+  try {
+    return new URL(value).hostname.slice(0, 120);
+  } catch {
+    return "";
+  }
+}
+
+function recordDownload(request, env, fileKey, language, source) {
+  const country = request.cf?.country || "unknown";
+  const referrer = safeHost(request.headers.get("Referer"));
+  const timestamp = new Date().toISOString();
+
+  console.log(JSON.stringify({
+    event: "free_sample_download",
+    resource: fileKey,
+    language,
+    country,
+    source,
+    referrer,
+    timestamp,
+  }));
+
+  if (env.DOWNLOAD_ANALYTICS) {
+    env.DOWNLOAD_ANALYTICS.writeDataPoint({
+      blobs: [fileKey, language, country, source, referrer],
+      doubles: [1],
+      indexes: [fileKey],
+    });
+  }
+}
+
+async function handleDownload(request, env) {
+  const url = new URL(request.url);
+  const fileKey = cleanText(url.searchParams.get("file"), 80) || "network-assessment";
+  const language = normalizeLanguage(url.searchParams.get("lang"));
+  const source = cleanText(url.searchParams.get("source"), 40) || "direct";
+  const file = DOWNLOADS[fileKey]?.[language];
+
+  if (!file) {
+    return new Response("Download not found.", { status: 404 });
+  }
+
+  recordDownload(request, env, fileKey, language, source);
+
+  try {
+    const upstream = await fetch(file.url, {
+      headers: { "User-Agent": "weownit.net-download-proxy/1.0" },
+    });
+
+    if (!upstream.ok || !upstream.body) {
+      console.error(JSON.stringify({
+        event: "free_sample_download_error",
+        resource: fileKey,
+        language,
+        upstream_status: upstream.status,
+      }));
+      return new Response("Download temporarily unavailable.", { status: 502 });
+    }
+
+    const headers = new Headers();
+    headers.set("Content-Type", "application/pdf");
+    headers.set("Content-Disposition", 'attachment; filename="' + file.filename + '"');
+    headers.set("Cache-Control", "private, no-store");
+    headers.set("X-Content-Type-Options", "nosniff");
+
+    const length = upstream.headers.get("Content-Length");
+    if (length) headers.set("Content-Length", length);
+
+    return new Response(upstream.body, {
+      status: 200,
+      headers,
+    });
+  } catch (error) {
+    console.error(JSON.stringify({
+      event: "free_sample_download_error",
+      resource: fileKey,
+      language,
+      message: error?.message || String(error),
+    }));
+    return new Response("Download temporarily unavailable.", { status: 503 });
+  }
+}
+
 function cleanText(value, max) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
@@ -221,6 +323,10 @@ export default {
         status: 204,
         headers: corsHeaders(origin),
       });
+    }
+
+    if (request.method === "GET" && url.pathname === "/download") {
+      return handleDownload(request, env);
     }
 
     if (request.method === "GET" && url.pathname === "/health") {
