@@ -128,3 +128,55 @@ For broader public traffic, add Cloudflare Turnstile and/or rate limiting.
 The website canonical domain is `https://weownit.net`. The repository root contains a `CNAME` file for GitHub Pages.
 
 Cloudflare DNS should point the apex domain to GitHub Pages and `www` to `eolthecrow.github.io`. Keep the legacy GitHub Pages origin in Worker CORS only during the migration period; remove it after the custom domain is confirmed stable.
+
+
+## Free sample download analytics
+
+The Store keeps the PDF download direct and sends a non-blocking event to:
+
+```text
+POST /download-event
+```
+
+The event records only operational analytics fields:
+
+- resource key
+- language (EN / RO / FR)
+- country reported by Cloudflare
+- source page
+- referrer hostname
+- timestamp
+
+IP addresses are not intentionally written to custom download logs.
+
+The Worker also writes one data point per event to the Workers Analytics Engine dataset:
+
+```text
+weownit_downloads
+```
+
+The dataset is created automatically after the first event once the Worker has been deployed with the Analytics Engine binding.
+
+### View downloads in Cloudflare
+
+After deploying the Worker:
+
+1. Cloudflare Dashboard → **Workers & Pages**.
+2. Select **network-security-assistant**.
+3. Open **Observability** → **Overview**.
+4. Search for `free_sample_download`.
+5. Use **Count** to see total download events.
+6. Group by the structured `language` field to compare EN / RO / FR.
+7. Group by `country` when geographic breakdown is useful.
+
+For immediate testing, open the Worker's **Logs / Live** view and click the Store download button in another browser tab.
+
+### Deploy after tracking changes
+
+```bash
+cd worker
+npm install
+npm run deploy
+```
+
+The Store download itself does not depend on Worker availability, so a tracking outage does not block the PDF.
