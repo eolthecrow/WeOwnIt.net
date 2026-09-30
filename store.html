@@ -129,7 +129,7 @@
             <div class="price">FREE</div>
           </div>
           <div>
-            <a class="buy" data-sample-download href="downloads/WeOwnIT_Network_Security_Assessment_Sample_EN_2026.pdf" download>DOWNLOAD FREE SAMPLE</a>
+            <a class="buy" data-sample-download href="https://network-security-assistant.vlad-network-security.workers.dev/download?file=network-assessment&lang=en&source=store">DOWNLOAD FREE SAMPLE</a>
             <p class="checkout-note" data-sample-note>Direct PDF download · No checkout required.</p>
             <a class="sample-service-link" href="contact.html" data-sample-service-link>Discuss an assessment →</a>
           </div>
@@ -404,11 +404,11 @@
     incidentDiagnostics:"",
     networkAutomation:""
   };
-  const SAMPLE_PDF_URLS={
-    en:"downloads/WeOwnIT_Network_Security_Assessment_Sample_EN_2026.pdf",
-    ro:"downloads/WeOwnIT_Network_Security_Assessment_Sample_RO_2026.pdf",
-    fr:"downloads/WeOwnIT_Network_Security_Assessment_Sample_FR_2026.pdf"
-  };
+  const SAMPLE_DOWNLOAD_ENDPOINT="https://network-security-assistant.vlad-network-security.workers.dev/download";
+  function sampleDownloadUrl(lang){
+    const language=["en","ro","fr"].includes(lang)?lang:"en";
+    return SAMPLE_DOWNLOAD_ENDPOINT+"?file=network-assessment&lang="+encodeURIComponent(language)+"&source=store";
+  }
   const {normalizeLanguage,getInitialLanguage,syncInternalLanguageLinks,installLanguageNavigation}=SiteI18n;
 
   
@@ -636,7 +636,7 @@
     sample.querySelector(".status").textContent=t.sampleType;sample.querySelector(".price").textContent=t.samplePrice;
     renderFrameworkBox(sample.querySelector(".notice"),t.sampleFrameworkLabel,t.sampleFrameworkText);
     const sampleDownload=sample.querySelector("[data-sample-download]");
-    sampleDownload.href=SAMPLE_PDF_URLS[lang]||SAMPLE_PDF_URLS.en;sampleDownload.textContent=t.sampleDownload;
+    sampleDownload.href=sampleDownloadUrl(lang);sampleDownload.textContent=t.sampleDownload;
     sample.querySelector("[data-sample-note]").textContent=t.sampleNote;
     sample.querySelector("[data-sample-service-link]").textContent=t.sampleService;
 
