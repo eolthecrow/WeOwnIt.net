@@ -35,7 +35,7 @@
     .hero{display:grid;align-items:center;background:linear-gradient(135deg,#0a151c 0%,#0d1e26 62%,#12342f 100%)}
     .hero-inner{width:100%;padding:4rem 1.4rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);gap:3rem;align-items:center}
     .eyebrow{font-family:var(--mono);color:var(--accent);font-size:.675rem;text-transform:uppercase;letter-spacing:.13em;margin-bottom:1rem}
-    h1{font-size:clamp(2.7rem,6.3vw,5.58rem);line-height:.98;letter-spacing:-.065em;margin:0 0 1.4rem;font-weight:700}
+    .tool-title{font-family:var(--font);font-size:clamp(2.7rem,6.3vw,5.58rem);line-height:.98;letter-spacing:-.065em;margin:0 0 1.4rem;font-weight:700;overflow-wrap:break-word}
     .lead{max-width:690px;color:var(--muted);font-size:.972rem;margin:0}
     .webcheck-card{border:1px solid var(--line-strong);background:rgba(14,29,37,.9);padding:1.6rem;min-width:0}
     .webcheck-card h2{font-size:1.25rem;margin:0 0 1.5rem;letter-spacing:-.03em}
@@ -67,7 +67,7 @@
   </style>
   <link rel="stylesheet" href="assets/chatbox.css?v=8">
   <link rel="stylesheet" href="assets/site.css?v=7">
-  <link rel="stylesheet" href="assets/cve-risk-lens.css?v=1">
+  <link rel="stylesheet" href="assets/cve-risk-lens.css?v=2">
   <script src="assets/i18n.js?v=2"></script>
 </head>
 <body>
@@ -76,7 +76,6 @@
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><img src="assets/va-symbol.svg?v=2" alt=""></span><span data-brand>Network & Security Consultant</span></a>
     <div class="nav-right">
-      <a class="risk-jump" href="#cve-risk-lens">CVE Risk Lens</a>
       <a class="back" href="index.html">← Back to resources</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="ro" aria-pressed="false">RO</button>
@@ -92,7 +91,7 @@
     <div class="wrap hero-inner">
       <div>
         <div class="eyebrow">01 / OPEN-SOURCE TOOL</div>
-        <h1 id="webcheck-title">Web-Check.</h1>
+        <h1 class="tool-title" id="webcheck-title">Web-Check.</h1>
         <p class="lead">Explore a website’s public footprint: DNS records, TLS certificates, HTTP headers, hosting and security configuration.</p>
         <ul class="webcheck-features" aria-label="Checks"><li>DNS</li><li>TLS / SSL</li><li>HTTP headers</li><li>Hosting</li></ul>
         <p class="webcheck-credit">Web-Check by <a href="https://github.com/Lissy93/web-check" target="_blank" rel="noopener noreferrer">Alicia Sykes</a> · <a href="https://github.com/Lissy93/web-check/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">MIT</a></p>
@@ -118,7 +117,7 @@
   <section class="risk-section" id="cve-risk-lens" aria-labelledby="risk-title">
     <div class="wrap">
       <div class="eyebrow" data-risk="eyebrow">02 / VULNERABILITY INTELLIGENCE</div>
-      <h2 id="risk-title">CVE Risk Lens.</h2>
+      <h2 class="tool-title" id="risk-title">CVE Risk Lens.</h2>
       <p data-risk="lead">Investigate one CVE using public risk signals and official vendor advisory references.</p>
       <form class="risk-form" novalidate>
         <div style="flex:1;min-width:0"><label class="risk-label" for="risk-cve" data-risk="label">CVE identifier</label><input id="risk-cve" placeholder="CVE-2024-3400" maxlength="28" autocapitalize="characters" autocomplete="off" spellcheck="false" required aria-describedby="risk-status" style="width:100%"></div>
