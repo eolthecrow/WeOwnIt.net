@@ -1,225 +1,240 @@
 {
   "lang": "FR",
+  "pdf_title": "weownit.net - Évaluation de la sécurité réseau - Exemple gratuit 2026",
   "badge": "EXEMPLE GRATUIT / ÉDITION 2026",
   "cover": "ÉVALUATION DE LA SÉCURITÉ RÉSEAU",
-  "sub": "Exemple de rapport exécutif & technique",
-  "footer": "Organisation fictive. Preuves synthétiques. Usage de démonstration uniquement. Aucun environnement client ou de production n'est représenté.",
+  "sub": "Exemple de rapport exécutif et technique",
+  "process": "ÉVALUER  ->  REMÉDIER  ->  VALIDER  ->  PROUVER",
+  "transparency": "Organisation fictive et preuves techniques synthétiques. Cet exemple illustre la structure du reporting, l’analyse du risque, le niveau de détail de la remédiation et la méthode de validation. Aucun environnement client ou de production réel n’est représenté.",
+  "tagline": "Ingénierie de sécurité guidée par le risque · Architecture · Remédiation · Validation",
+  "footer": "Organisation fictive. Preuves synthétiques. Usage de démonstration uniquement. Aucun environnement client réel n’est représenté.",
+  "attack_label": "CHEMIN D’ATTAQUE",
+  "attack_path": "Poste compromis  ->  Réseau utilisateurs  ->  Administration pare-feu  ->  Contrôle privilégié",
+  "admin_path": "CHEMIN D’ADMINISTRATION NON JUSTIFIÉ",
+  "diagram_labels": {
+    "internet": "INTERNET",
+    "edge": "PARE-FEU PÉRIMÈTRE",
+    "user": "UTILISATEURS",
+    "server": "SERVEURS",
+    "mgmt": "ADMIN",
+    "branch": "VPN AGENCE"
+  },
   "pages": [
     {
-      "title": "Synthèse exécutive de l'évaluation",
-      "subtitle": "Des constats techniques au risque métier et à la remédiation validée.",
+      "title": "Synthèse exécutive de l’évaluation",
+      "subtitle": "Des constats techniques au risque métier et à une remédiation validée.",
       "items": [
         [
-          "Conclusion",
-          "L'environnement synthétique présente des faiblesses courantes concernant la protection du plan d'administration, la segmentation réseau, les accès privilégiés et la visibilité sécurité. Le risque principal résulte de la combinaison d'une connectivité trop large, d'une exposition privilégiée et d'une supervision incomplète."
+          "Conclusion de l’évaluation",
+          "L’environnement synthétique présente des faiblesses courantes dans la protection du plan d’administration, la segmentation réseau, les accès privilégiés et la visibilité de sécurité. Le risque principal résulte de la combinaison d’une accessibilité trop large, d’une exposition privilégiée et d’une supervision incomplète."
         ],
         [
-          "Risque métier",
-          "Un poste utilisateur compromis peut créer un chemin vers le contrôle privilégié du réseau. Des flux est-ouest trop permissifs augmentent le potentiel de mouvement latéral, tandis qu'une journalisation incomplète réduit les capacités de détection et d'investigation."
+          "Risque pour l’organisation",
+          "Un poste utilisateur compromis peut créer un chemin vers le contrôle privilégié du réseau. Un accès est-ouest excessif augmente les possibilités de déplacement latéral, tandis qu’une journalisation incomplète peut réduire les capacités de détection et d’investigation."
         ],
         [
           "Résultat",
-          "Cet exemple montre comment WeOwnIT relie les preuves, l'impact métier, la responsabilité de remédiation, les critères de validation et le risque résiduel - au lieu de s'arrêter à une liste de constats."
+          "L’exemple montre comment weownit.net relie les preuves à l’impact métier, à la responsabilité de remédiation, aux critères de validation et au risque résiduel - au lieu de s’arrêter à une liste de constats techniques."
         ]
       ]
     },
     {
       "title": "Contexte métier & actifs critiques",
-      "subtitle": "Les décisions de sécurité commencent par ce dont dépend l'activité.",
+      "subtitle": "Les décisions de sécurité commencent par ce dont dépend l’activité.",
       "items": [
         [
           "Contexte",
-          "ACME Manufacturing est une organisation fictive de 250 utilisateurs, avec un siège, deux agences, un ERP critique, des services internes, une connectivité distante et une gestion centralisée de la sécurité."
+          "ACME Manufacturing est une organisation fictive de 250 utilisateurs, avec un siège, deux agences, un ERP critique, des services internes, des accès distants et une administration réseau centralisée."
         ],
         [
           "Actifs critiques",
-          "Pare-feu Internet; réseau d'administration; serveurs ERP et applicatifs; connectivité VPN; journalisation centralisée; identités administratives."
+          "Pare-feu de périmètre; réseau d’administration; serveurs ERP et applicatifs; connectivité VPN; journalisation de sécurité centralisée; identités administratives privilégiées."
         ],
         [
           "Objectifs de sécurité",
-          "Disponibilité de la connectivité, intégrité des configurations privilégiées, confidentialité des données, segmentation entre zones de confiance et traçabilité des actions d'administration."
+          "Préserver la disponibilité de la connectivité, l’intégrité des configurations privilégiées, la confidentialité des données, la séparation des zones de confiance et la traçabilité des actions d’administration."
         ]
       ]
     },
     {
       "title": "Périmètre, hypothèses & méthodologie",
-      "subtitle": "Un modèle reproductible d'ingénierie guidée par le risque.",
+      "subtitle": "Un modèle reproductible d’évaluation guidée par le risque.",
       "items": [
         [
           "Périmètre",
-          "Architecture, frontières de confiance, exposition administrative, segmentation, politiques de pare-feu, journalisation, accès privilégiés, sauvegarde et préparation à la reprise."
+          "Architecture, frontières de confiance, exposition administrative, segmentation, politiques de pare-feu, journalisation, accès privilégiés, sauvegarde de configuration et capacité de reprise."
         ],
         [
           "Méthode",
-          "CONTEXT -> ASSESS -> ANALYZE -> PRIORITIZE -> REMEDIATE -> VALIDATE -> PROVE"
+          "CONTEXTE -> ÉVALUER -> ANALYSER -> PRIORISER -> REMÉDIER -> VALIDER -> PROUVER"
         ],
         [
-          "Confiance des preuves",
-          "Cet exemple utilise des preuves SYNTHÉTIQUES / INFÉRÉES. En mission réelle, les preuves sont classées Confirmed, Observed, Inferred ou Not Tested."
+          "Niveau de confiance",
+          "Cet exemple utilise des preuves SYNTHÉTIQUES / INFÉRÉES. Lors d’une mission réelle, chaque élément est classé comme observé, confirmé, inféré ou non testé."
         ]
       ]
     },
     {
       "title": "Architecture & frontières de confiance",
-      "subtitle": "Identifier où une zone moins fiable peut atteindre un contrôle privilégié.",
+      "subtitle": "Identifier où une zone de confiance faible peut atteindre un contrôle privilégié.",
       "diagram": "architecture",
       "items": [
         [
           "Zones de confiance",
-          "Internet / User / Server / Management / Security Management / Branch VPN"
+          "Internet / Utilisateurs / Serveurs / Administration / Administration sécurité / VPN agence."
         ],
         [
-          "Problème observé",
-          "La zone User synthétique peut atteindre HTTPS/SSH d'administration du pare-feu. Cela crée un chemin d'attaque inutile depuis un segment poste de travail moins fiable vers un contrôle de sécurité privilégié."
+          "Observation principale",
+          "Le réseau utilisateurs peut atteindre les services d’administration HTTPS/SSH du pare-feu. Cette accessibilité affaiblit la frontière de confiance et crée un chemin inutile d’un poste moins fiable vers un contrôle de sécurité privilégié."
         ],
         [
           "État cible",
-          "L'administration provient uniquement de la zone de management ou d'un chemin distant approuvé, protégé par MFA, comptes nominatifs, moindre privilège et journalisation centralisée."
+          "L’administration est autorisée uniquement depuis la zone de management ou via un chemin distant explicitement approuvé, protégé par MFA, comptes nominatifs, moindre privilège et journalisation centralisée."
         ]
       ]
     },
     {
       "title": "Registre des risques & priorisation",
-      "subtitle": "Prioriser les scénarios, pas les paramètres isolés.",
+      "subtitle": "Prioriser les scénarios de risque, pas les réglages isolés.",
       "diagram": "matrix",
       "items": [
         [
-          "R-01 - Exposition du plan d'administration",
-          "Likelihood 4/5 | Impact 5/5 | Risque inhérent : CRITICAL | Risque résiduel cible : LOW"
+          "R-01 - Exposition du plan d’administration",
+          "Probabilité 4/5 | Impact 5/5 | Risque inhérent : CRITIQUE | Risque résiduel cible : FAIBLE"
         ],
         [
           "R-02 - Accès est-ouest excessif",
-          "Likelihood 4/5 | Impact 4/5 | Risque inhérent : HIGH | Risque résiduel cible : MEDIUM"
+          "Probabilité 4/5 | Impact 4/5 | Risque inhérent : ÉLEVÉ | Risque résiduel cible : MOYEN"
         ],
         [
-          "R-03 - Journalisation incomplète",
-          "Likelihood 3/5 | Impact 4/5 | Risque inhérent : HIGH | Risque résiduel cible : LOW"
+          "R-03 - Journalisation de sécurité incomplète",
+          "Probabilité 3/5 | Impact 4/5 | Risque inhérent : ÉLEVÉ | Risque résiduel cible : FAIBLE"
         ],
         [
           "R-04 - Accès privilégié sans MFA",
-          "Likelihood 3/5 | Impact 5/5 | Risque inhérent : HIGH | Risque résiduel cible : LOW"
+          "Probabilité 3/5 | Impact 5/5 | Risque inhérent : ÉLEVÉ | Risque résiduel cible : FAIBLE"
         ]
       ]
     },
     {
-      "title": "F-001 - Plan d'administration accessible depuis User",
-      "subtitle": "Constat détaillé - HIGH",
+      "title": "F-001 - Plan d’administration accessible depuis la zone utilisateurs",
+      "subtitle": "Constat détaillé - ÉLEVÉ / PRIORITÉ 1",
       "attack": true,
       "items": [
         [
           "Actif concerné",
-          "Pare-feu de périphérie / plan d'administration"
+          "Pare-feu de périmètre / plan d’administration."
         ],
         [
           "Observation",
-          "Les services administratifs HTTPS et SSH sont accessibles depuis le réseau général des utilisateurs."
+          "Les services administratifs HTTPS et SSH sont accessibles depuis le réseau général des utilisateurs, et pas uniquement via le chemin d’administration dédié."
         ],
         [
           "Scénario de menace",
-          "Un endpoint compromis peut établir une connectivité vers le plan d'administration du pare-feu. Combinée à un vol d'identifiants ou à une autre faiblesse d'authentification, cette situation crée un chemin vers un contrôle privilégié."
+          "Un poste compromis peut établir une connectivité vers le plan d’administration du pare-feu. Si l’attaquant obtient des identifiants administratifs ou exploite une autre faiblesse d’authentification, ce chemin peut conduire au contrôle privilégié."
         ],
         [
-          "Preuve illustrative",
-          "Source 10.20.10.25 (USER) -> 10.20.100.1 TCP/443 REACHABLE; TCP/22 REACHABLE."
+          "Preuves illustratives",
+          "Source 10.20.10.25 (USER) -> 10.20.100.1. TCP/443 ACCESSIBLE; TCP/22 ACCESSIBLE. Type de preuve : SYNTHÉTIQUE."
         ],
         [
           "Impact potentiel",
-          "Modification non autorisée des politiques, du VPN ou du routage; contournement de contrôles; modification des logs; interruption de service."
+          "Modification non autorisée des politiques pare-feu, du routage, du VPN ou de la journalisation; interruption de service; perte d’intégrité du contrôle."
         ]
       ]
     },
     {
       "title": "F-001 - Stratégie de contrôle & validation",
-      "subtitle": "Prévenir, limiter, détecter, restaurer - puis démontrer.",
+      "subtitle": "Prévenir, limiter, détecter, rétablir - puis démontrer le résultat.",
       "attack": true,
       "items": [
         [
-          "Prevent",
-          "Réseau d'administration dédié; sources administratives de confiance; MFA; comptes nominatifs."
+          "Prévenir",
+          "Réseau d’administration dédié; sources administratives approuvées; MFA pour l’accès privilégié; comptes administrateur nominatifs."
         ],
         [
-          "Limit",
-          "Profils administrateur fondés sur les rôles; moindre privilège; protocoles d'administration restreints."
+          "Limiter",
+          "Administration fondée sur les rôles; moindre privilège; protocoles nécessaires uniquement; administration via VPN/OOB lorsque pertinent."
         ],
         [
-          "Detect",
-          "Journalisation des connexions administratives, des échecs d'authentification et des changements de configuration."
+          "Détecter",
+          "Journalisation des connexions administratives; surveillance des échecs; audit des changements de configuration; télémétrie centralisée."
         ],
         [
-          "Recover",
-          "Sauvegarde de configuration validée et procédure de restauration documentée."
+          "Rétablir",
+          "Sauvegarde de configuration validée; chemin d’accès d’urgence; procédure de retour arrière; responsabilité claire pour la reprise."
         ],
         [
-          "Risque d'implémentation",
-          "MEDIUM - restreindre l'accès d'administration sans connectivité alternative peut provoquer un verrouillage. Valider d'abord console/OOB."
+          "Risque de mise en œuvre",
+          "MOYEN - restreindre l’accès d’administration avant de confirmer une connectivité alternative peut entraîner un verrouillage. Vérifier d’abord l’accès console/OOB."
         ],
         [
           "Preuves de validation",
-          "MGMT -> HTTPS ALLOW; USER -> HTTPS BLOCK; WAN -> SSH BLOCK; MFA VERIFIED; événements d'administration visibles dans les logs centralisés."
+          "Admin approuvé -> HTTPS AUTORISÉ; USER -> HTTPS/SSH BLOQUÉ; Internet -> management BLOQUÉ; MFA OBLIGATOIRE; changements de configuration JOURNALISÉS."
         ],
         [
           "Risque résiduel attendu",
-          "LOW si les sources autorisées, le MFA, les comptes nominatifs et la journalisation centralisée sont vérifiés."
+          "FAIBLE lorsque les sources d’administration sont restreintes, le MFA et les comptes nominatifs sont imposés, les actions privilégiées sont journalisées et les tests négatifs réussissent."
         ]
       ]
     },
     {
-      "title": "F-002 - Accès réseau est-ouest excessif",
-      "subtitle": "Constat détaillé - HIGH",
+      "title": "F-002 - Accès est-ouest excessif",
+      "subtitle": "Constat détaillé - ÉLEVÉ / PRIORITÉ 1",
       "items": [
         [
           "Observation",
-          "Une politique User-to-Server trop large autorise davantage de services que nécessaire au fonctionnement métier."
+          "Une politique trop large du réseau utilisateurs vers les serveurs autorise davantage de services que nécessaire au fonctionnement normal."
         ],
         [
-          "Scénario",
-          "Un poste compromis peut obtenir une connectivité inutile vers des workloads internes et augmenter les possibilités de mouvement latéral."
+          "Scénario de menace",
+          "Un poste compromis peut sonder ou joindre des services internes sans rapport avec la fonction métier de l’utilisateur, augmentant le nombre de cibles accessibles et le rayon d’impact potentiel."
         ],
         [
           "État actuel",
-          "USER -> SERVER : accès large / type any"
+          "USER -> SERVER : accès large / type ANY."
         ],
         [
           "État cible",
-          "USER -> APP : services métier requis uniquement; USER -> DB/MGMT : refusé sauf justification explicite."
+          "USER -> APP : services nécessaires uniquement. USER -> DB/MGMT : bloqué sans justification explicite."
         ],
         [
           "Validation",
-          "Test positif du flux applicatif requis et tests négatifs vers les ports base de données et management; revue des logs de trafic refusé."
+          "Test positif des flux applicatifs requis et tests négatifs vers les services de base de données et d’administration. Vérification des journaux de trafic refusé."
         ],
         [
           "Risque résiduel",
-          "MEDIUM après politique de moindre privilège et supervision, selon les dépendances applicatives et exceptions approuvées."
+          "MOYEN après application du moindre privilège et de la supervision, selon les dépendances applicatives et les exceptions formellement approuvées."
         ]
       ]
     },
     {
       "title": "Feuille de route & preuves de clôture",
-      "subtitle": "Transformer les constats en actions mesurables et attribuées.",
+      "subtitle": "Transformer les constats en actions mesurables, attribuées et vérifiables.",
       "items": [
         [
           "0-7 jours",
-          "F-001 exposition management - Network Security - faible effort / risque de changement moyen."
+          "Contenir l’exposition privilégiée : restreindre l’accès d’administration, vérifier l’accès d’urgence, imposer le MFA et désigner les responsables."
         ],
         [
           "0-30 jours",
-          "F-002 réduction des règles - Network Security + Application Owner - effort moyen. Imposer le MFA aux comptes privilégiés."
+          "Réduire la confiance inutile : remplacer l’accès utilisateur-vers-serveur trop large par des flux applicatifs approuvés et valider les dépendances avant application."
         ],
         [
           "30-60 jours",
-          "Centraliser les logs et vérifier la couverture des événements d'administration. Valider la sauvegarde et la reprise."
+          "Renforcer la visibilité et la reprise : centraliser la télémétrie pertinente, vérifier la rétention d’audit, tester la restauration de configuration et clarifier la responsabilité de reprise."
         ],
         [
           "Critères de clôture",
-          "OPEN -> REMEDIATION PLANNED -> IMPLEMENTED -> VALIDATION REQUIRED -> VERIFIED -> CLOSED."
+          "OUVERT -> REMÉDIATION PLANIFIÉE -> IMPLÉMENTÉ -> VALIDATION REQUISE -> VÉRIFIÉ -> CLÔTURÉ."
         ],
         [
-          "Evidence pack",
-          "Preuves de configuration, changement approuvé, tests positifs/négatifs, preuve dans les logs, risque résiduel et acceptation du propriétaire."
+          "Dossier de preuves",
+          "Extrait de configuration pertinent, changement approuvé, tests positifs et négatifs, preuve d’audit, risque résiduel et acceptation du responsable."
         ],
         [
           "Résultat client",
-          "Synthèse exécutive + constats techniques + backlog de remédiation + architecture cible + plan de validation + preuves réutilisables."
+          "Synthèse exécutive + registre technique des constats + liste de remédiation priorisée + observations d’architecture + plan de validation + preuves réutilisables pour la clôture."
         ]
       ]
     }

@@ -1,9 +1,24 @@
 {
   "lang": "EN",
+  "pdf_title": "weownit.net - Network Security Assessment - Free Sample 2026",
   "badge": "FREE SAMPLE / 2026 EDITION",
   "cover": "NETWORK SECURITY ASSESSMENT",
   "sub": "Executive & Technical Sample Report",
-  "footer": "Fictional organization. Synthetic evidence. Demonstration use only. No customer or production environment is represented.",
+  "process": "ASSESS  ->  REMEDIATE  ->  VALIDATE  ->  PROVE",
+  "transparency": "Fictional organization and synthetic technical evidence. This sample demonstrates reporting structure, risk reasoning, remediation depth, and validation methodology. No real customer or production environment is represented.",
+  "tagline": "Risk-informed security engineering · Architecture · Remediation · Validation",
+  "footer": "Fictional organization. Synthetic evidence. Demonstration use only. No real customer environment is represented.",
+  "attack_label": "ATTACK PATH",
+  "attack_path": "Compromised workstation  ->  User network  ->  Firewall management  ->  Privileged control",
+  "admin_path": "UNNECESSARY ADMIN PATH",
+  "diagram_labels": {
+    "internet": "INTERNET",
+    "edge": "EDGE FIREWALL",
+    "user": "USER",
+    "server": "SERVER",
+    "mgmt": "MGMT",
+    "branch": "BRANCH VPN"
+  },
   "pages": [
     {
       "title": "Executive assessment summary",
@@ -11,43 +26,43 @@
       "items": [
         [
           "Assessment conclusion",
-          "The synthetic environment shows common weaknesses affecting management-plane protection, network segmentation, privileged access and security visibility. The highest concern is the combination of broad reachability, privileged exposure and incomplete monitoring."
+          "The synthetic environment shows common weaknesses in management-plane protection, network segmentation, privileged access, and security visibility. The principal concern is the combination of broad reachability, privileged exposure, and incomplete monitoring."
         ],
         [
           "Business risk",
-          "A compromised user endpoint could create a path toward privileged network control. Excessive east-west access also increases lateral-movement potential, while incomplete logging can reduce detection and investigation capability."
+          "A compromised user workstation could create a path toward privileged network control. Excessive east-west access also increases lateral-movement opportunity, while incomplete logging can reduce detection and investigation capability."
         ],
         [
           "Outcome",
-          "The sample demonstrates how WeOwnIT connects evidence, business impact, remediation ownership, validation criteria and residual risk - rather than stopping at a list of findings."
+          "The sample shows how weownit.net connects evidence to business impact, remediation ownership, validation criteria, and residual risk - rather than stopping at a list of technical findings."
         ]
       ]
     },
     {
       "title": "Business context & critical assets",
-      "subtitle": "Security decisions start with what the business depends on.",
+      "subtitle": "Security decisions start with what the organization depends on.",
       "items": [
         [
           "Context",
-          "ACME Manufacturing is a fictional 250-user organization with HQ, two branches, business-critical ERP, internal application services, remote connectivity and centralized security management."
+          "ACME Manufacturing is a fictional 250-user organization with a headquarters, two branches, business-critical ERP, internal application services, remote connectivity, and centralized network administration."
         ],
         [
           "Critical assets",
-          "Internet edge firewall; management network; ERP and application servers; branch VPN connectivity; centralized logging; administrative identities."
+          "Internet edge firewall; management network; ERP and application servers; branch VPN connectivity; centralized security logging; privileged administrative identities."
         ],
         [
           "Security objectives",
-          "Protect availability of connectivity, integrity of privileged configuration, confidentiality of business data, segmentation between trust zones and accountability of administrative actions."
+          "Protect connectivity availability, integrity of privileged configuration, confidentiality of business data, segmentation between trust zones, and accountability of administrative actions."
         ]
       ]
     },
     {
       "title": "Scope, assumptions & methodology",
-      "subtitle": "A repeatable assessment model for risk-informed engineering.",
+      "subtitle": "A repeatable assessment model for risk-informed security engineering.",
       "items": [
         [
           "Scope",
-          "Architecture, trust boundaries, administrative exposure, segmentation, firewall policy, logging, privileged access, backup and recovery readiness."
+          "Architecture, trust boundaries, administrative exposure, segmentation, firewall policy, logging, privileged access, configuration backup, and recovery readiness."
         ],
         [
           "Method",
@@ -55,7 +70,7 @@
         ],
         [
           "Evidence confidence",
-          "This sample uses SYNTHETIC / INFERRED evidence. In a client engagement, evidence is classified as Confirmed, Observed, Inferred or Not Tested."
+          "This sample uses SYNTHETIC / INFERRED evidence. In a real engagement, evidence is classified as Observed, Confirmed, Inferred, or Not Tested."
         ]
       ]
     },
@@ -69,18 +84,18 @@
           "Internet / User / Server / Management / Security Management / Branch VPN"
         ],
         [
-          "Observed trust issue",
-          "The synthetic User zone can reach administrative HTTPS/SSH on the edge firewall. That creates an unnecessary attack path from a lower-trust workstation segment to a privileged security control."
+          "Key observation",
+          "The user network can reach administrative HTTPS/SSH services on the edge firewall. This weakens the trust boundary and creates an unnecessary path from a lower-trust workstation segment to privileged security control."
         ],
         [
           "Target state",
-          "Administrative access originates only from the management zone or approved remote-admin path, protected by MFA, named accounts, least privilege and centralized logging."
+          "Administrative access originates only from the management zone or an explicitly approved remote-administration path, protected by MFA, named accounts, least privilege, and centralized audit logging."
         ]
       ]
     },
     {
       "title": "Risk register & prioritization",
-      "subtitle": "Prioritize scenarios, not isolated settings.",
+      "subtitle": "Prioritize risk scenarios, not isolated settings.",
       "diagram": "matrix",
       "items": [
         [
@@ -102,112 +117,112 @@
       ]
     },
     {
-      "title": "F-001 - Management plane reachable from User zone",
-      "subtitle": "Detailed finding - HIGH",
+      "title": "F-001 - Management plane reachable from the user zone",
+      "subtitle": "Detailed finding - HIGH / PRIORITY 1",
       "attack": true,
       "items": [
         [
           "Affected asset",
-          "Edge firewall / management plane"
+          "Edge firewall / management plane."
         ],
         [
           "Observation",
-          "Administrative HTTPS and SSH services are reachable from the general corporate user network."
+          "Administrative HTTPS and SSH services are reachable from the general corporate user network rather than only through the dedicated management path."
         ],
         [
           "Threat scenario",
-          "A compromised endpoint could establish connectivity to the firewall management plane. Combined with credential compromise or another authentication weakness, this creates a path toward privileged control."
+          "A compromised workstation could establish connectivity to the firewall management plane. Combined with credential compromise or another authentication weakness, this creates a credible path toward privileged control."
         ],
         [
           "Illustrative evidence",
-          "Source 10.20.10.25 (USER) -> 10.20.100.1 TCP/443 REACHABLE; TCP/22 REACHABLE."
+          "Source 10.20.10.25 (USER) -> 10.20.100.1. TCP/443 REACHABLE; TCP/22 REACHABLE. Evidence type: SYNTHETIC."
         ],
         [
           "Potential impact",
-          "Unauthorized policy changes, VPN manipulation, routing changes, security-control bypass, logging modification and service disruption."
+          "Unauthorized firewall policy, routing, VPN, or logging changes; service disruption; loss of control integrity."
         ]
       ]
     },
     {
       "title": "F-001 - Control strategy & validation",
-      "subtitle": "Prevent, limit, detect, recover - then prove.",
+      "subtitle": "Prevent, limit, detect, recover - then prove the result.",
       "attack": true,
       "items": [
         [
           "Prevent",
-          "Dedicated management network; trusted administrative sources; MFA; named administrator accounts."
+          "Dedicated management network; approved administrative sources; MFA for privileged access; named administrator accounts."
         ],
         [
           "Limit",
-          "Role-based administrator profiles; least privilege; restricted management protocols."
+          "Role-based administration; least privilege; required management protocols only; VPN/OOB administration where appropriate."
         ],
         [
           "Detect",
-          "Administrative login logging; failed-authentication monitoring; configuration-change logging."
+          "Administrative login logging; failed-authentication monitoring; configuration-change audit trail; centralized security telemetry."
         ],
         [
           "Recover",
-          "Validated configuration backup and documented recovery path."
+          "Validated configuration backup; emergency access path; documented rollback procedure; clear recovery ownership."
         ],
         [
           "Implementation risk",
-          "MEDIUM - changing management access without confirming alternate connectivity can cause administrative lockout. Validate console/OOB access first."
+          "MEDIUM - restricting management access before confirming alternate administrative connectivity can cause lockout. Verify console/OOB access first."
         ],
         [
           "Validation evidence",
-          "MGMT -> HTTPS ALLOW; USER -> HTTPS BLOCK; WAN -> SSH BLOCK; MFA VERIFIED; admin events visible in central logs."
+          "Approved admin -> HTTPS ALLOW; USER -> HTTPS/SSH BLOCK; Internet -> management BLOCK; MFA REQUIRED; configuration changes LOGGED."
         ],
         [
           "Expected residual risk",
-          "LOW, provided that access sources, MFA, named accounts and centralized logging are verified."
+          "LOW when management sources are restricted, MFA and named accounts are enforced, privileged actions are logged, and negative-path testing is successful."
         ]
       ]
     },
     {
       "title": "F-002 - Excessive east-west network access",
-      "subtitle": "Detailed finding - HIGH",
+      "subtitle": "Detailed finding - HIGH / PRIORITY 1",
       "items": [
         [
           "Observation",
-          "A broad User-to-Server security policy permits more services than required for business operation."
+          "A broad User-to-Server security policy permits more services than are required for normal business operation."
         ],
         [
           "Threat scenario",
-          "A compromised workstation may obtain unnecessary reachability toward internal workloads, increasing lateral-movement opportunities."
+          "A compromised workstation can probe or connect to internal services unrelated to the user's business function, increasing the number of reachable targets and potential blast radius."
         ],
         [
           "Current state",
-          "USER -> SERVER : broad / any-style access"
+          "USER -> SERVER: broad / any-style access."
         ],
         [
           "Target state",
-          "USER -> APP : required business services only; USER -> DB/MGMT : denied unless explicitly justified."
+          "USER -> APP: required business services only. USER -> DB/MGMT: blocked unless explicitly justified."
         ],
         [
           "Validation",
-          "Positive test for required application flow plus negative tests for database and management ports. Review logs for denied non-business traffic."
+          "Positive test for required application flows plus negative tests for database and management services. Review denied-traffic logs."
         ],
         [
           "Residual risk",
-          "MEDIUM after least-privilege policy and monitoring, subject to application dependencies and approved exceptions."
+          "MEDIUM after least-privilege policy and monitoring, subject to application dependencies and formally approved exceptions."
         ]
       ]
     },
     {
       "title": "Remediation roadmap & closure evidence",
-      "subtitle": "Turn findings into owned, measurable work.",
+      "subtitle": "Turn findings into owned, measurable, and verifiable work.",
       "items": [
         [
           "0-7 days",
-          "F-001 management exposure - Network Security - low effort / medium change risk."
+          "Contain privileged exposure: restrict firewall management reachability, verify emergency access, enforce MFA, and assign accountable owners."
         ],
         [
           "0-30 days",
-          "F-002 policy reduction - Network Security + Application Owner - medium effort / medium change risk. Enforce MFA for privileged accounts."
+          "Reduce unnecessary trust: replace broad user-to-server access with approved application flows and validate dependencies before enforcement."
         ],
         [
           "30-60 days",
-          "Centralize security logging and verify administrative event coverage. Validate backup/recovery procedure."
+          "Strengthen visibility and recovery: centralize security telemetry, verify audit retention, test configuration restore, and document recovery ownership."
         ],
         [
           "Closure criteria",
@@ -215,11 +230,11 @@
         ],
         [
           "Evidence pack",
-          "Configuration evidence, approved change record, positive/negative tests, log proof, residual-risk statement and owner acceptance."
+          "Relevant configuration extract, approved change, positive and negative tests, audit evidence, residual-risk statement, and owner acceptance."
         ],
         [
           "Client outcome",
-          "Executive summary + technical findings + remediation backlog + target architecture + validation plan + reusable evidence."
+          "Executive assessment summary + technical findings register + risk-prioritized remediation backlog + architecture observations + validation plan + reusable closure evidence."
         ]
       ]
     }
