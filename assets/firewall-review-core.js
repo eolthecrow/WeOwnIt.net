@@ -351,7 +351,7 @@
   }
   function parsePaloCLI(text,XMLParser) {
     const contexts=new Map();let assumed=false,found=false;
-    const lists=new Set(['from','to','source','destination','service','application','source-user','category','hip-profiles','source-hip','destination-hip']);
+    const lists=new Set(['from','to','source','destination','service','application','source-user','category','hip-profiles','source-hip','destination-hip','tag']);
     for(const raw of text.split(/\r?\n/)){const line=raw.trim();if(!line||line.startsWith('#'))continue;
       const t=panTokens(line),cmd=t.shift(),rbIndex=t.findIndex(v=>['rulebase','pre-rulebase','post-rulebase'].includes(v));
       if(rbIndex<0||t[rbIndex+1]!=='security'||t[rbIndex+2]!=='rules')continue;
