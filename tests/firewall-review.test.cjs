@@ -22,6 +22,70 @@ except E.ParseError: print(json.dumps({'name':'parsererror','attrs':{},'text':'i
   }
 }
 const policy=(id,fields='')=>`config firewall policy\nedit ${id}\nset srcintf "guest"\nset dstintf "servers"\nset srcaddr "all"\nset dstaddr "all"\nset service "ALL"\nset action accept\nset schedule "always"\n${fields}\nnext\nend`;
+const ngfwSample=`config firewall security-policy
+    edit 2
+        set name "allow-QA-Facebook"
+        set srcintf "port18"
+        set dstintf "port17"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set application 15832
+        set groups "Dev" "QA"
+    next
+    edit 4
+        set name "allow-QA-Email"
+        set srcintf "port18"
+        set dstintf "port17"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set url-category 23
+        set groups "QA"
+    next
+end`;
+test('Fortinet NGFW: supplied security-policy example detected with criteria preserved',()=>{
+  for(const vendor of ['auto','fortinet']){
+    const r=inspect(ngfwSample,vendor);assert.equal(r.counts.rules,2);
+    assert.equal(r.policies[0].name,'allow-QA-Facebook');assert.deepEqual(r.policies[0].apps,['15832']);
+    assert.deepEqual(r.policies[0].users,['Dev','QA']);assert.deepEqual(r.policies[1].urlCategories,['23']);
+    assert.deepEqual(r.policies[0].service,[]);assert.equal(r.policies[0].logging,'unknown');assert.equal(r.policies[0].protection,'unknown');
+    assert.equal(r.counts.high,0);assert.equal(r.counts.low,2);assert.ok(r.warnings.some(w=>w.code==='fortinetNGFW'));
+    assert.ok(!codes(r).some(c=>['anyAny','broadAllow','potentialRedundancy','potentialConflict'].includes(c)));
+  }
+});
+test('Fortinet NGFW: explicit ALL service still excludes broad/overlap inference',()=>{
+  const s=ngfwSample.replaceAll('set schedule "always"','set schedule "always"\nset service "ALL"\nset logtraffic disable');
+  const r=inspect(s);assert.equal(r.counts.high,0);assert.equal(r.findings.filter(f=>f.code==='noLogging').length,2);
+  assert.ok(r.policies.every(p=>p.complex));assert.ok(!codes(r).includes('potentialRedundancy'));
+});
+test('Fortinet NGFW: regular and security rule IDs/order remain isolated in each VDOM',()=>{
+  const s=policy(2)+'\n'+ngfwSample+'\n'+policy(3);
+  const m=core.parse('config vdom\nedit A\n'+s+'\nnext\nedit B\n'+ngfwSample+'\nnext\nend');
+  assert.equal(m.rules.length,6);assert.deepEqual(m.scopes,['A','A/security-policy','B/security-policy']);
+  const n=core.parse(JSON.stringify(core.snapshot(m)));assert.deepEqual(core.diff(m,n),{added:[],removed:[],changed:[]});
+});
+test('Fortinet NGFW: JSON/XML snapshots retain categories and differences',()=>{
+  const m=core.parse(ngfwSample),changed=core.parse(ngfwSample.replace('url-category 23','url-category 24'));
+  assert.deepEqual(core.diff(m,changed).changed[0].changes.map(c=>c.field),['urlCategories']);
+  for(const s of [JSON.stringify(core.snapshot(m)),core.snapshotXML(m)]){
+    const n=core.parse(s,'auto',XMLParser);assert.deepEqual(core.snapshot(n).policies,core.snapshot(m).policies);assert.equal(core.analyze(n).counts.high,0);
+  }
+});
+test('Fortinet NGFW: legacy snapshots load; malformed new selectors rejected',()=>{
+  const s=core.snapshot(core.parse(policy(1)));for(const p of s.policies)for(const k of ['urlCategories','appCategories','appGroups','src6','dst6','inspectionProfiles'])delete p[k];
+  assert.equal(core.parse(JSON.stringify(s)).rules.length,1);
+  s.policies[0].urlCategories='23';rejects(JSON.stringify(s),'invalidSnapshot');
+  const xml=core.snapshotXML(core.parse(ngfwSample)).replace('<urlCategories>','<urlCategories></urlCategories><urlCategories>');rejects(xml,'invalidSnapshot');
+});
+test('Fortinet NGFW: categories, group names, IPv6 and profile references preserved without simulation',()=>{
+  const s=ngfwSample.replace('set application 15832','set application 15832\nset app-category 5 6\nset app-group "Business Apps"\nset users "alice"\nset srcaddr6 "IPv6 Clients"\nset dstaddr6 "all"\nset av-profile "AV & Inspection"');
+  const p=inspect(s).policies[0];assert.deepEqual(p.appCategories,['5','6']);assert.deepEqual(p.appGroups,['Business Apps']);assert.deepEqual(p.users,['Dev','QA','alice']);assert.deepEqual(p.src6,['IPv6 Clients']);assert.equal(p.protection,'on');
+  assert.equal(core.parse(core.snapshotXML(core.parse(s)),'auto',XMLParser).rules[0].inspectionProfiles[0],'av-profile:AV & Inspection');
+});
+test('Fortinet NGFW: malformed security-policy blocks rejected',()=>rejects(ngfwSample.replace(/end$/,''),'malformedCLI'));
 test('Fortinet: wide access and explicit settings are detected, disabled rules excluded',()=>{const r=inspect(demo.fortinet);assert.equal(r.counts.rules,4);assert.equal(r.counts.active,3);assert.equal(r.counts.high,1);assert.ok(codes(r).includes('potentialConflict'));assert.ok(!r.findings.some(f=>f.ruleId==='40'));});
 test('Fortinet: missing defaults remain unknown',()=>{const r=inspect(policy(1));assert.equal(r.policies[0].logging,'unknown');assert.equal(r.policies[0].protection,'unknown');assert.ok(!codes(r).includes('noLogging'));assert.ok(!codes(r).includes('noProtection'));});
 test('Fortinet: negated source is never treated as unrestricted',()=>{assert.ok(!codes(inspect(policy(1,'set srcaddr-negate enable'))).includes('anyAny'));});
@@ -62,6 +126,11 @@ test('Privacy: parsed report does not include unrelated passwords',()=>{const s=
 
 const fortJSON=(policies,extra={})=>JSON.stringify({http_method:'GET',status:'success',http_status:200,vdom:'root',path:'firewall',name:'policy',results:policies,...extra});
 const fortPolicy=(id=1)=>({policyid:id,name:'Wide access',srcintf:[{name:'any'}],dstintf:[{name:'any'}],srcaddr:[{name:'all'}],dstaddr:[{name:'all'}],service:[{name:'ALL'}],action:'accept',schedule:'always',logtraffic:'disable','utm-status':'disable'});
+test('Fortinet NGFW JSON: security-policy endpoint retains numeric IDs and identity selectors',()=>{
+  const p=fortPolicy(2);p.application=[{id:15832}];p['url-category']=[{id:23}];p.groups=[{name:'QA'}];delete p.service;
+  const r=inspect(fortJSON([p],{name:'security-policy'}));assert.equal(r.counts.rules,1);assert.equal(r.policies[0].scope,'root/security-policy');assert.deepEqual(r.policies[0].apps,['15832']);assert.deepEqual(r.policies[0].urlCategories,['23']);assert.deepEqual(r.policies[0].users,['QA']);assert.equal(r.policies[0].orderKnown,false);assert.equal(r.counts.high,0);
+  const mixed=inspect([fortJSON([fortPolicy(2)]),fortJSON([p],{name:'security-policy'})]);assert.equal(mixed.counts.rules,2);assert.equal(mixed.counts.scopes,2);
+});
 const paEntry=(name='Wide access')=>({'@name':name,'@location':'vsys','@vsys':'vsys1',from:{member:['any']},to:{member:['any']},source:{member:['any']},destination:{member:['any']},application:{member:['any']},service:{member:['any']},action:'allow','log-start':'no','log-end':'no'});
 const paCLI=(name='Wide access',extra='')=>['from','to','source','destination','application','service'].map(k=>`set rulebase security rules "${name}" ${k} any`).join('\n')+`\nset rulebase security rules "${name}" action allow\nset rulebase security rules "${name}" log-start no\nset rulebase security rules "${name}" log-end no\n`+extra;
 const paJSON=entry=>JSON.stringify({config:{devices:{entry:{'@name':'localhost.localdomain',vsys:{entry:{'@name':'vsys1',rulebase:{security:{rules:{entry:[entry]}}}}}}}}});

@@ -1,19 +1,21 @@
-# weownit Firewall Review 1.1
+# weownit Firewall Review 1.2
 
 Original browser implementation. No external analyzer/library, backend, configuration upload, analytics call or configuration persistence in the Firewall Review code. This component shares the existing Tools page with the other website tools.
 
 ## Accepted snapshots
 
-- Fortinet CLI: balanced FortiOS `config firewall policy` CLI, address/service objects and groups, VDOMs. FortiManager CLI `adom`/`pkg` scopes are kept separate. FortiManager JSON, binary/encrypted backups and installed-policy reconstruction are unsupported.
+- Fortinet CLI: balanced FortiOS `config firewall policy` and `config firewall security-policy` CLI, address/service objects and groups, VDOMs. NGFW policy-based rules preserve application IDs, application categories/groups, URL categories, users/groups, IPv6 address names and inspection profile references. Security policies use a separate `/security-policy` context to prevent collisions with regular policy IDs. Missing services remain unknown. Broad-access and overlap inference is skipped for NGFW security policies; IPS/application/category matching, application-default ports, identity, IPv6 reachability and pre-security-policy evaluation are not simulated. Explicit logging and description checks still run. Profile references indicate configured inspection, not validated protection. FortiManager CLI `adom`/`pkg` scopes are kept separate. FortiManager JSON, binary/encrypted backups and installed-policy reconstruction are unsupported.
 - Palo Alto Networks XML: PAN-OS `<config>` XML, optionally inside an XML API response. Local VSYS and Panorama/shared pre/post rulebases are parsed separately. Panorama inheritance/overrides, dynamic groups and application-default port expansion are unsupported.
 - Check Point: Management API access-rulebase JSON with embedded objects-dictionary, or related extracted rule/object JSON files selected together. Access sections are flattened within their layer; UIDs are resolved and pages deduplicated. No `.tar.gz`, ZIP, Gaia CLI, NAT or Threat Prevention analysis.
 
-- Fortinet JSON: FortiOS REST response wrappers with `path`, `name`, `vdom`, and array `results`. Supported endpoints: `firewall/policy`, `firewall/address`, `firewall/addrgrp`, `firewall.service/custom`, `firewall.service/group`. Select related files together, or use an array of response wrappers / `{ "responses": [...] }`. Raw policy arrays and FortiManager JSON are not supported. Duplicate identical entries are removed; conflicting duplicate entries are rejected. API array order is not treated as proof of effective rule order.
+- Fortinet JSON: FortiOS REST response wrappers with `path`, `name`, `vdom`, and array `results`. Supported endpoints: `firewall/policy`, `firewall/security-policy`, `firewall/address`, `firewall/addrgrp`, `firewall.service/custom`, `firewall.service/group`. Select related files together, or use an array of response wrappers / `{ "responses": [...] }`. Raw policy arrays and FortiManager JSON are not supported. Duplicate identical entries are removed; conflicting duplicate entries are rejected. API array order is not treated as proof of effective rule order.
 - Palo Alto Networks CLI: complete `set ... rulebase security rules` listings, including local VSYS, explicit `vsys` prefixes, Panorama `device-group` and `shared` pre/post rulebases. Relative local listings assume `vsys1`, with an explicit warning. Repeated selectors and bracket lists are merged. Change scripts (`delete`, `move`, etc.) are not accepted.
 - Palo Alto Networks JSON: configuration hierarchy under `config` (including XML API JSON wrappers), direct hierarchy, and named-key CLI JSON containers. REST `result.entry` security rules need `@location` and `@vsys` / `@device-group`. Panorama REST exports additionally need a top-level `resource` such as `Policies/SecurityPreRules` or `Policies/SecurityPostRules` to identify their rulebase. REST order is unknown; absent REST profiles remain unknown. Multiple PAN-OS JSON files are not merged.
 - Common review standard: JSON with `schema: "weownit.firewall-review.snapshot"`, `schemaVersion: 1`, vendor, sourceFormat, objects, warnings, and normalized policies; XML has root `firewall-review-snapshot` with schema/schema-version/vendor attributes. Both export formats can be reloaded. The JSON report includes this schema plus findings and comparison; findings are recomputed on reload. A snapshot preserves policy identifiers, contexts, normalized selectors, unknown/incomplete flags and coverage warnings. It excludes original admin secrets and unrelated configuration. It is **not** a vendor backup, restore file, cross-vendor migration configuration, or full network model. Check Point Gaia `show configuration` remains unsupported for access-policy review; use Management API / `mgmt_cli --format json` policy data.
 
 Each snapshot is limited to 5 MiB / 5,000 policies. Pairwise literal-selector checks run only within scopes with at most 350 active policies. HTML/JSON exports include the applicable scope warnings; the page previews 200 findings and 100 policies.
+
+Snapshot schema version 1 now includes optional selector arrays `urlCategories`, `appCategories`, `appGroups`, `src6`, `dst6` and `inspectionProfiles`. Older snapshots without these fields still load. New snapshots preserve these fields through JSON/XML reload and before/after comparison. NGFW scope and complexity flags prevent unsupported access/overlap verdicts after reload. Policy previews include applications, URL categories and users/groups; missing services are displayed as unknown.
 
 ## Checks
 
@@ -28,6 +30,9 @@ Before/after comparison uses policy context plus ID (or name if no UUID exists) 
 `node --test tests/firewall-review.test.cjs` from the repository root. Python 3 is needed by the test XML DOM adapter only; production uses the browser's native DOMParser. Browser smoke tests check native XML processing, demos, language changes, exports and error handling separately.
 
 ## Format references
+
+- [Fortinet NGFW security-policy CLI reference](https://docs.fortinet.com/document/fortigate/7.4.8/cli-reference/127930672/config-firewall-security-policy)
+- [Fortinet NGFW policy evaluation](https://docs.fortinet.com/document/fortigate/7.6.6/administration-guide/243446/ngfw-policy)
 
 - [Fortinet CLI policy reference](https://docs.fortinet.com/document/fortigate/8.0.0/cli-reference/333889629/config-firewall-policy)
 - [PAN-OS configuration XML API](https://docs.paloaltonetworks.com/ngfw/api/pan-os-xml-api-request-types-and-actions/configuration-api)

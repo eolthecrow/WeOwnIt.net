@@ -1,7 +1,7 @@
 /* weownit Firewall Review: static, local, conservative policy analysis. No network or storage APIs. */
 (function (root) {
   'use strict';
-  const VERSION = '1.1.0';
+  const VERSION = '1.2.0';
   const SCHEMA = 'weownit.firewall-review.snapshot';
   const MAX_BYTES = 5 * 1024 * 1024, MAX_RULES = 5000, PAIR_LIMIT = 350;
   const ANY = '__ANY__';
@@ -15,7 +15,7 @@
   const note = (model, code, detail = '') => { if (!model.warnings.some(w => w.code === code && w.detail === detail)) model.warnings.push({code, detail}); };
   function model(vendor) { return {version: VERSION, vendor, rules: [], warnings: [], scopes: [], format: '', objects: 0}; }
   function rule(data) {
-    return Object.assign({id:'', name:'', scope:'', order:0, orderKnown:true, action:'unknown', enabled:true, src:[], dst:[], service:[], from:[ANY], to:[ANY], apps:[ANY], users:[ANY], schedule:'always', vpn:'any', logging:'unknown', protection:'unknown', comment:'', negated:false, complex:false, unresolved:[], complete:true}, data);
+    return Object.assign({id:'', name:'', scope:'', order:0, orderKnown:true, action:'unknown', enabled:true, src:[], dst:[], service:[], from:[ANY], to:[ANY], apps:[ANY], users:[ANY], urlCategories:[], appCategories:[], appGroups:[], src6:[], dst6:[], inspectionProfiles:[], schedule:'always', vpn:'any', logging:'unknown', protection:'unknown', comment:'', negated:false, complex:false, unresolved:[], complete:true}, data);
   }
   function add(model, entry) {
     if (model.rules.length >= MAX_RULES) fail('tooManyRules');
@@ -55,7 +55,7 @@
       if (n.kind === 'edit' && n.managerContext) {scope += '/'+n.managerContext+':'+n.name;note(m,'managerScope');}
       if (n.kind === 'config' && n.name === 'vdom') for (const child of n.children) child.vdom = true;
       if (n.kind === 'config' && ['adom','pkg'].includes(n.name)) for (const child of n.children) child.managerContext = n.name;
-      if (n.kind === 'config' && ['firewall policy','firewall address','firewall addrgrp','firewall service custom','firewall service group'].includes(n.name)) {
+      if (n.kind === 'config' && ['firewall policy','firewall security-policy','firewall address','firewall addrgrp','firewall service custom','firewall service group'].includes(n.name)) {
         if (!scopes.has(scope)) scopes.set(scope, []); scopes.get(scope).push(n);
       }
       n.children.forEach(c => walk(c, scope));
@@ -85,11 +85,22 @@
         }
         return clean(result);
       }
-      for (const c of configs.filter(x=>x.name==='firewall policy')) for (const e of c.children.filter(x=>x.kind==='edit')) {
+      for (const c of configs.filter(x=>['firewall policy','firewall security-policy'].includes(x.name))) for (const e of c.children.filter(x=>x.kind==='edit')) {
         const p=e.props, get=k=>(p[k] || []).join(' ');
         const src=expand(p.srcaddr || [], addresses), dst=expand(p.dstaddr || [], addresses), service=expand(p.service || [], services);
         const log=get('logtraffic'), utm=get('utm-status');
+        const ngfw=c.name==='firewall security-policy';
+        const profiles=['av-profile','ips-sensor','webfilter-profile','dnsfilter-profile','emailfilter-profile','dlp-profile','file-filter-profile','application-list'].flatMap(k=>(p[k]||[]).map(v=>k+':'+v));
         add(m, rule({id:e.name,name:get('name') || 'Policy '+e.name,scope,src,dst,service,from:cliAny(p.srcintf || []),to:cliAny(p.dstintf || []),action:get('action') || 'deny',enabled:get('status') !== 'disable',logging:log==='disable'?'off':['all','utm'].includes(log)?'on':'unknown',protection:utm==='disable'?'off':utm==='enable'?'on':'unknown',comment:get('comments'),schedule:get('schedule') || 'unknown',users:clean(p.users || p.groups || [ANY]),negated:['srcaddr-negate','dstaddr-negate','service-negate'].some(k=>get(k)==='enable'),complex:['internet-service','internet-service-src','identity-based','match-vip-only'].some(k=>get(k)==='enable') || !!p['application-list'],complete:src.length>0 && dst.length>0 && service.length>0 && !!p.srcintf && !!p.dstintf}));
+        const r=m.rules[m.rules.length-1];
+        r.apps=clean(p.application?.length?p.application:[ANY]);
+        r.users=clean([...p.users||[],...p.groups||[]]);if(!r.users.length)r.users=[ANY];
+        r.urlCategories=clean(p['url-category']||[]);r.appCategories=clean(p['app-category']||[]);r.appGroups=clean(p['app-group']||[]);
+        r.src6=clean(p.srcaddr6||[]);r.dst6=clean(p.dstaddr6||[]);r.inspectionProfiles=clean(profiles);
+        // NGFW semantics require IPS/application/category/identity evaluation. Preserve criteria,
+        // but never infer broad access or shadowing from the L3/L4 fields alone.
+        if(ngfw){r.scope=scope+'/security-policy';r.order=m.rules.filter(x=>x.scope===r.scope).length;r.complex=true;r.protection=profiles.length?'on':'unknown';note(m,'fortinetNGFW');}
+        else if(r.urlCategories.length||r.appCategories.length||r.appGroups.length||r.src6.length||r.dst6.length)r.complex=true;
       }
     }
     if (!m.rules.length) fail('noFortinetRules');
@@ -194,6 +205,7 @@
   // JSON/XML snapshots are a versioned review schema, never a vendor restore file.
   const scalarFields=['id','name','scope','action','schedule','vpn','logging','protection','comment'];
   const selectorFields=['src','dst','service','from','to','apps','users','unresolved'];
+  const extraSelectors=['urlCategories','appCategories','appGroups','src6','dst6','inspectionProfiles'];
   const booleanFields=['enabled','negated','complex','complete','orderKnown'];
   const xmlEscape=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
   const plain=o=>!!o && typeof o==='object' && !Array.isArray(o);
@@ -206,12 +218,12 @@
   function snapshot(m) {
     return {schema:SCHEMA,schemaVersion:1,vendor:m.vendor,sourceFormat:m.sourceFormat||m.format,objects:m.objects,
       warnings:m.warnings.map(w=>({code:w.code,detail:w.detail||''})),
-      policies:m.rules.map(r=>Object.fromEntries([...scalarFields,...selectorFields,...booleanFields,'order'].map(k=>[k,r[k]])))};
+      policies:m.rules.map(r=>Object.fromEntries([...scalarFields,...selectorFields,...extraSelectors,...booleanFields,'order'].map(k=>[k,r[k]])))};
   }
   function snapshotXML(m) {
     const s=snapshot(m);
     return '<?xml version="1.0" encoding="UTF-8"?>\n<firewall-review-snapshot schema="'+SCHEMA+'" schema-version="1" vendor="'+s.vendor+'">\n'+
-      '<source-format>'+xmlEscape(s.sourceFormat)+'</source-format><objects>'+s.objects+'</objects>\n<warnings>'+s.warnings.map(w=>'<warning code="'+xmlEscape(w.code)+'">'+xmlEscape(w.detail)+'</warning>').join('')+'</warnings>\n<policies>'+s.policies.map(r=>'<policy>'+scalarFields.map(k=>'<'+k+'>'+xmlEscape(r[k])+'</'+k+'>').join('')+selectorFields.map(k=>'<'+k+'>'+r[k].map(v=>'<value>'+xmlEscape(v)+'</value>').join('')+'</'+k+'>').join('')+booleanFields.map(k=>'<'+k+'>'+r[k]+'</'+k+'>').join('')+'<order>'+r.order+'</order></policy>').join('\n')+'</policies>\n</firewall-review-snapshot>';
+      '<source-format>'+xmlEscape(s.sourceFormat)+'</source-format><objects>'+s.objects+'</objects>\n<warnings>'+s.warnings.map(w=>'<warning code="'+xmlEscape(w.code)+'">'+xmlEscape(w.detail)+'</warning>').join('')+'</warnings>\n<policies>'+s.policies.map(r=>'<policy>'+scalarFields.map(k=>'<'+k+'>'+xmlEscape(r[k])+'</'+k+'>').join('')+[...selectorFields,...extraSelectors].map(k=>'<'+k+'>'+r[k].map(v=>'<value>'+xmlEscape(v)+'</value>').join('')+'</'+k+'>').join('')+booleanFields.map(k=>'<'+k+'>'+r[k]+'</'+k+'>').join('')+'<order>'+r.order+'</order></policy>').join('\n')+'</policies>\n</firewall-review-snapshot>';
   }
   function snapshotModel(data,expectedVendor) {
     if(!plain(data)||data.schema!==SCHEMA||data.schemaVersion!==1||!['fortinet','paloalto','checkpoint'].includes(data.vendor))fail('invalidSnapshot');
@@ -224,9 +236,11 @@
     for(const p of data.policies) {
       if(!plain(p)||scalarFields.some(k=>typeof p[k]!=='string')||selectorFields.some(k=>!Array.isArray(p[k])||p[k].some(v=>typeof v!=='string'))||booleanFields.some(k=>typeof p[k]!=='boolean')||!p.id||!p.scope||!Number.isSafeInteger(p.order)||p.order<1)fail('invalidSnapshot');
       if(!['on','off','unknown'].includes(p.logging)||!['on','off','unknown'].includes(p.protection))fail('invalidSnapshot');
+      if(extraSelectors.some(k=>k in p&&(!Array.isArray(p[k])||p[k].some(v=>typeof v!=='string'))))fail('invalidSnapshot');
       const key=p.scope+'\u0000'+p.id;if(seen.has(key))fail('invalidSnapshot');seen.add(key);
       if(p.order!==(orders.get(p.scope)||0)+1)fail('invalidSnapshot');orders.set(p.scope,p.order);
-      const r=rule(Object.fromEntries([...scalarFields,...selectorFields,...booleanFields,'order'].map(k=>[k,Array.isArray(p[k])?clean(p[k]):p[k]])));
+      const r=rule(Object.fromEntries([...scalarFields,...selectorFields,...extraSelectors,...booleanFields,'order'].map(k=>[k,extraSelectors.includes(k)?clean(p[k]||[]):Array.isArray(p[k])?clean(p[k]):p[k]])));
+      if(r.urlCategories.length||r.appCategories.length||r.appGroups.length||r.src6.length||r.dst6.length||r.scope.endsWith('/security-policy'))r.complex=true;
       if(!r.src.length||!r.dst.length||!r.service.length||!r.from.length||!r.to.length||!r.apps.length||r.unresolved.length)r.complete=false;
       m.rules.push(r);
     }
@@ -242,6 +256,7 @@
     for(const p of children(child(e,'policies'),'policy')) {
       const r={};for(const k of scalarFields){if(children(p,k).length!==1)fail('invalidSnapshot');r[k]=child(p,k).textContent;}
       for(const k of selectorFields){if(children(p,k).length!==1)fail('invalidSnapshot');r[k]=children(child(p,k),'value').map(v=>v.textContent);}
+      for(const k of extraSelectors){if(children(p,k).length>1)fail('invalidSnapshot');if(child(p,k))r[k]=children(child(p,k),'value').map(v=>v.textContent);}
       for(const k of booleanFields){const value=txt(p,k);if(children(p,k).length!==1||!['true','false'].includes(value))fail('invalidSnapshot');r[k]=value==='true';}
       r.order=Number(txt(p,'order'));data.policies.push(r);
     }
@@ -250,11 +265,12 @@
   function fortResponses(data) {return Array.isArray(data)?data:plain(data)&&Array.isArray(data.responses)?data.responses:[data];}
   function parseFortinetJSON(texts) {
     const responses=texts.flatMap(t=>fortResponses(jsonRead(t))),scopes=new Map(),warnings=[];
-    const types={'firewall/policy':'firewall policy','firewall/address':'firewall address','firewall/addrgrp':'firewall addrgrp','firewall.service/custom':'firewall service custom','firewall.service/group':'firewall service group'};
+    const types={'firewall/policy':'firewall policy','firewall/security-policy':'firewall security-policy','firewall/address':'firewall address','firewall/addrgrp':'firewall addrgrp','firewall.service/custom':'firewall service custom','firewall.service/group':'firewall service group'};
     const fields=new Set(['name','srcintf','dstintf','srcaddr','dstaddr','service','action','status','logtraffic','utm-status','comments','schedule','users','groups','srcaddr-negate','dstaddr-negate','service-negate','internet-service','internet-service-src','identity-based','match-vip-only','application-list','subnet','member','protocol','protocol-number']);
     const quoted=v=>JSON.stringify(String(v));
+    for(const k of ['application','app-category','app-group','url-category','srcaddr6','dstaddr6','srcaddr6-negate','dstaddr6-negate','av-profile','ips-sensor','webfilter-profile','dnsfilter-profile','emailfilter-profile','dlp-profile','file-filter-profile'])fields.add(k);
     function values(key,value) {
-      if(Array.isArray(value))return value.map(v=>plain(v)?v.name:typeof v==='string'||typeof v==='number'?v:null).filter(v=>v!=null).map(String);
+      if(Array.isArray(value))return value.map(v=>plain(v)?v.name??v.id:typeof v==='string'||typeof v==='number'?v:null).filter(v=>v!=null).map(String);
       if(typeof value==='string')return key==='subnet'?value.trim().split(/\s+/):[value];
       return typeof value==='number'?[String(value)]:[];
     }
@@ -265,11 +281,11 @@
       const kind=types[r.path+'/'+r.name],scope=r.vdom;
       if(!scopes.has(scope))scopes.set(scope,new Map());const configs=scopes.get(scope);
       if(!configs.has(kind))configs.set(kind,new Map());const entries=configs.get(kind);
-      if(kind==='firewall policy')policyResponses++;
+      if(['firewall policy','firewall security-policy'].includes(kind))policyResponses++;
       if(r.limit_reached===true||r.limit_reached==='true')warnings.push('apiPagination');
       for(const p of r.results) {
         if(!plain(p))fail('unsupportedFortinetJSON');
-        const id=kind==='firewall policy'?p.policyid:p.name;if(typeof id!=='string'&&typeof id!=='number')fail('unsupportedFortinetJSON');
+        const id=['firewall policy','firewall security-policy'].includes(kind)?p.policyid:p.name;if(typeof id!=='string'&&typeof id!=='number')fail('unsupportedFortinetJSON');
         if(entries.has(String(id))) {if(JSON.stringify(entries.get(String(id)))!==JSON.stringify(p))fail('conflictingPages');continue;}
         entries.set(String(id),p);
       }
@@ -366,7 +382,7 @@
   function detect(text) {
     const s=text.trim(); if(/<firewall-review-snapshot\b/.test(s)||/"schema"\s*:\s*"weownit\.firewall-review\.snapshot"/.test(s))return 'snapshot';
     if(s.startsWith('<') && /<(config|response)\b/.test(s)) return 'paloalto';
-    if(/^[\s\S]*?config\s+(firewall policy|vdom)\b/m.test(s)) return 'fortinet';
+    if(/^[\s\S]*?config\s+(firewall\s+(?:policy|security-policy)|vdom)\b/m.test(s)) return 'fortinet';
     if(/^set\s+.*\b(?:rulebase|pre-rulebase|post-rulebase)\s+security\s+rules\b/m.test(s))return 'paloalto';
     if((s.startsWith('{')||s.startsWith('['))&&/"path"\s*:\s*"firewall(?:\.service)?"/.test(s)&&/"results"\s*:/.test(s))return 'fortinet';
     if((s.startsWith('{')||s.startsWith('['))&&(/"(?:rulebase|pre-rulebase|post-rulebase)"\s*:\s*\{/.test(s)||/"@(?:vsys|device-group)"\s*:/.test(s)))return 'paloalto';
@@ -392,7 +408,7 @@
   const allowed = r => ['accept','allow'].includes(r.action);
   function analyze(m) {
     const findings=[];
-    function finding(code,severity,r,related=null) {findings.push({code,severity,ruleId:r.id,ruleName:r.name,scope:r.scope,relatedId:related?.id || null,relatedName:related?.name || null,evidence:{source:r.src,destination:r.dst,service:r.service,from:r.from,to:r.to,application:r.apps,action:r.action,logging:r.logging,protection:r.protection}});}
+    function finding(code,severity,r,related=null) {findings.push({code,severity,ruleId:r.id,ruleName:r.name,scope:r.scope,relatedId:related?.id || null,relatedName:related?.name || null,evidence:{source:r.src,destination:r.dst,service:r.service,from:r.from,to:r.to,application:r.apps,users:r.users,...Object.fromEntries(extraSelectors.filter(k=>r[k].length).map(k=>[k,r[k]])),action:r.action,logging:r.logging,protection:r.protection}});}
     for(const r of m.rules) {
       if(!r.enabled) continue;
       if(allowed(r)) {
@@ -431,7 +447,7 @@
     const duplicateNames=new Set();for(const rs of [before.rules,after.rules]){const seen=new Set();for(const r of rs){const n=nameKey(r);if(seen.has(n))duplicateNames.add(n);seen.add(n);}}
     const key=r=>r.scope+'\u0000'+(before.vendor==='paloalto'&&!commonIds.has(r.scope+'\u0000'+r.id)&&!duplicateNames.has(nameKey(r))?'name:'+r.name:'id:'+r.id);
     const old=new Map(before.rules.map(r=>[key(r),r])), now=new Map(after.rules.map(r=>[key(r),r]));
-    const fields=['name','action','enabled','src','dst','service','from','to','apps','users','schedule','vpn','logging','protection','negated','complex','comment','order'];
+    const fields=['name','action','enabled','src','dst','service','from','to','apps','users',...extraSelectors,'schedule','vpn','logging','protection','negated','complex','comment','order'];
     const added=[],removed=[],changed=[];
     for(const [k,r] of now) {if(!old.has(k)) added.push(r);else {const a=old.get(k), changes=fields.filter(f=>(f!=='order'||a.orderKnown&&r.orderKnown)&&JSON.stringify(a[f])!==JSON.stringify(r[f])).map(field=>({field,before:a[field],after:r[field]}));if(changes.length) changed.push({id:r.id,name:r.name,scope:r.scope,changes});}}
     for(const [k,r] of old) if(!now.has(k)) removed.push(r);

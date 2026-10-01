@@ -13,7 +13,7 @@
     "demo": "Try a synthetic lab",
     "input": "Paste configuration or open local files",
     "file": "Local files (maximum 5 MB in total)",
-    "formatHint": "Fortinet: FortiOS CLI or FortiOS REST API JSON. Palo Alto: config XML/JSON or a full CLI set listing. Check Point: Management API JSON, also exported using mgmt_cli. Select related Fortinet API or Check Point object JSON files together.",
+    "formatHint": "Fortinet: FortiOS policy/security-policy CLI or FortiOS REST API JSON. Palo Alto: config XML/JSON or a full CLI set listing. Check Point: Management API JSON, also exported using mgmt_cli. Select related Fortinet API or Check Point object JSON files together.",
     "compare": "Compare with an earlier configuration (optional)",
     "before": "Earlier configuration — same vendor",
     "beforeFile": "Earlier local files",
@@ -48,6 +48,13 @@
     "from": "From",
     "to": "To",
     "application": "Application",
+    "users": "Users / groups",
+    "urlCategories": "URL categories",
+    "appCategories": "Application categories",
+    "appGroups": "Application groups",
+    "src6": "IPv6 source",
+    "dst6": "IPv6 destination",
+    "inspectionProfiles": "Inspection profile references",
     "action": "Action",
     "logging": "Logging",
     "protection": "Protection",
@@ -99,6 +106,7 @@
       "conflictingPages": "duplicate API pages contain conflicting policy data."
     },
     "warnings": {
+      "fortinetNGFW": "Fortinet NGFW policy-based: application IDs, URL/application categories and users/groups are retained as exported. Missing service fields stay unknown. Broad-access and overlap checks are skipped; application-default ports, IPS/category matching, identity, IPv6 and pre-security-policy evaluation are not simulated.",
       "managerScope": "FortiManager: ADOM/package scopes are separate. Global objects, dynamic mappings and the effective installed policy are not reconstructed.",
       "staticScope": "No live connectivity, NAT, routing, firmware/CVE, hit-count or full compliance validation. Any source means any configured source, not proven Internet exposure.",
       "fortinetDefaults": "Fortinet: omitted logging/protection fields remain unknown. Interface groups, IPv6, VIP/NAT and policy-based NGFW are not fully modeled.",
@@ -156,7 +164,7 @@
     "standardHint": "JSON and XML exported here share the Weownit review schema and can be reloaded for the same vendor. These are analysis snapshots, not device backups or migration configurations. Native XML/JSON formats are accepted only where listed below.",
     "nativeInputs": "Native inputs",
     "sharedInputs": "Shared review inputs",
-    "fortFormats": "FortiOS CLI · REST API JSON",
+    "fortFormats": "FortiOS policy/security-policy CLI · REST API JSON",
     "paloFormats": "Config XML · config JSON · CLI set · REST rule JSON",
     "cpFormats": "Management API JSON · mgmt_cli JSON output",
     "sharedFormats": "Weownit snapshot JSON / XML",
@@ -174,7 +182,7 @@
     "demo": "Încearcă un laborator demonstrativ",
     "input": "Lipește configurația sau deschide fișiere locale",
     "file": "Fișiere locale (maximum 5 MB în total)",
-    "formatHint": "Fortinet: CLI FortiOS sau JSON REST API FortiOS. Palo Alto: configurație XML/JSON sau export complet CLI set. Check Point: JSON Management API, inclusiv export prin mgmt_cli. Selectează împreună fișierele API Fortinet sau JSON-urile Check Point cu obiecte.",
+    "formatHint": "Fortinet: CLI FortiOS policy/security-policy sau JSON REST API FortiOS. Palo Alto: configurație XML/JSON sau export complet CLI set. Check Point: JSON Management API, inclusiv export prin mgmt_cli. Selectează împreună fișierele API Fortinet sau JSON-urile Check Point cu obiecte.",
     "compare": "Compară cu o configurație anterioară (opțional)",
     "before": "Configurația anterioară — același vendor",
     "beforeFile": "Fișiere locale anterioare",
@@ -209,6 +217,13 @@
     "from": "Din",
     "to": "Către",
     "application": "Aplicație",
+    "users": "Utilizatori / grupuri",
+    "urlCategories": "Categorii URL",
+    "appCategories": "Categorii de aplicații",
+    "appGroups": "Grupuri de aplicații",
+    "src6": "Sursă IPv6",
+    "dst6": "Destinație IPv6",
+    "inspectionProfiles": "Referințe profiluri de inspecție",
     "action": "Acțiune",
     "logging": "Logging",
     "protection": "Protecție",
@@ -260,6 +275,7 @@
       "conflictingPages": "paginile API duplicate conțin date de politici contradictorii."
     },
     "warnings": {
+      "fortinetNGFW": "Fortinet NGFW policy-based: se păstrează ID-urile aplicațiilor, categoriile URL/aplicații și utilizatorii/grupurile din export. Serviciile omise rămân necunoscute. Verificările de acces larg și suprapunere sunt omise; nu se simulează porturile application-default, IPS/categoriile, identitatea, IPv6 sau evaluarea pre-security-policy.",
       "managerScope": "FortiManager: ADOM-urile și pachetele sunt analizate separat. Obiectele globale, mapările dinamice și politica instalată efectiv nu sunt reconstruite.",
       "staticScope": "Nu validează conectivitatea, NAT, rutarea, firmware/CVE, hit count sau conformitatea completă. Sursa Any nu dovedește expunerea la Internet.",
       "fortinetDefaults": "Fortinet: câmpurile omise de logging/protecție rămân necunoscute. Grupurile de interfețe, IPv6, VIP/NAT și NGFW policy-based nu sunt modelate complet.",
@@ -317,7 +333,7 @@
     "standardHint": "JSON-ul și XML-ul exportate aici folosesc schema de revizie Weownit și pot fi reîncărcate pentru același vendor. Sunt snapshot-uri de analiză, nu backup-uri sau configurații de migrare. Formatele native acceptate sunt cele din tabel.",
     "nativeInputs": "Formate native",
     "sharedInputs": "Formate comune de revizie",
-    "fortFormats": "CLI FortiOS · JSON REST API",
+    "fortFormats": "CLI FortiOS policy/security-policy · JSON REST API",
     "paloFormats": "XML/JSON de configurație · CLI set · JSON REST reguli",
     "cpFormats": "JSON Management API · rezultat mgmt_cli JSON",
     "sharedFormats": "Snapshot Weownit JSON / XML",
@@ -335,7 +351,7 @@
     "demo": "Essayez un laboratoire de démonstration",
     "input": "Collez la configuration ou ouvrez des fichiers locaux",
     "file": "Fichiers locaux (5 Mo maximum au total)",
-    "formatHint": "Fortinet : CLI FortiOS ou JSON REST API FortiOS. Palo Alto : configuration XML/JSON ou export CLI set complet. Check Point : JSON Management API, également exporté par mgmt_cli. Sélectionnez ensemble les fichiers API Fortinet ou JSON Check Point associés.",
+    "formatHint": "Fortinet : CLI FortiOS policy/security-policy ou JSON REST API FortiOS. Palo Alto : configuration XML/JSON ou export CLI set complet. Check Point : JSON Management API, également exporté par mgmt_cli. Sélectionnez ensemble les fichiers API Fortinet ou JSON Check Point associés.",
     "compare": "Comparer avec une configuration antérieure (facultatif)",
     "before": "Configuration antérieure — même fournisseur",
     "beforeFile": "Fichiers locaux antérieurs",
@@ -370,6 +386,13 @@
     "from": "Depuis",
     "to": "Vers",
     "application": "Application",
+    "users": "Utilisateurs / groupes",
+    "urlCategories": "Catégories URL",
+    "appCategories": "Catégories d’applications",
+    "appGroups": "Groupes d’applications",
+    "src6": "Source IPv6",
+    "dst6": "Destination IPv6",
+    "inspectionProfiles": "Références des profils d’inspection",
     "action": "Action",
     "logging": "Journalisation",
     "protection": "Protection",
@@ -421,6 +444,7 @@
       "conflictingPages": "les pages API dupliquées contiennent des politiques contradictoires."
     },
     "warnings": {
+      "fortinetNGFW": "Fortinet NGFW policy-based : les ID d’applications, catégories URL/applications et utilisateurs/groupes sont conservés tels qu’exportés. Les services omis restent inconnus. Les contrôles d’accès large et de chevauchement sont ignorés ; ports application-default, IPS/catégories, identité, IPv6 et pre-security-policy ne sont pas simulés.",
       "managerScope": "FortiManager : ADOM/packages séparés. Objets globaux, mappings dynamiques et politique installée effective non reconstruits.",
       "staticScope": "Aucune validation de connectivité, NAT, routage, firmware/CVE, compteurs ou conformité complète. Une source Any ne prouve pas une exposition à Internet.",
       "fortinetDefaults": "Fortinet : les champs de journalisation/protection omis restent inconnus. Groupes d’interfaces, IPv6, VIP/NAT et NGFW policy-based ne sont pas entièrement modélisés.",
@@ -478,7 +502,7 @@
     "standardHint": "Les exports JSON et XML utilisent le schéma de revue Weownit et peuvent être rechargés pour le même fournisseur. Ce sont des snapshots d’analyse, pas des sauvegardes ni des configurations de migration. Les formats natifs acceptés sont indiqués ci-dessous.",
     "nativeInputs": "Formats natifs",
     "sharedInputs": "Formats communs de revue",
-    "fortFormats": "CLI FortiOS · JSON REST API",
+    "fortFormats": "CLI FortiOS policy/security-policy · JSON REST API",
     "paloFormats": "Configuration XML/JSON · CLI set · JSON REST des règles",
     "cpFormats": "JSON Management API · sortie mgmt_cli JSON",
     "sharedFormats": "Snapshot Weownit JSON / XML",
@@ -518,8 +542,8 @@
     $('fw-summary').innerHTML=['rules','high','medium','low'].map(k=>'<div class="fw-stat" data-tone="'+k+'"><strong>'+c[k]+'</strong><span>'+esc(t()[k])+'</span></div>').join('');
     $('fw-warnings').innerHTML=result.warnings.map(w=>'<li>'+esc(t().warnings[w.code]||w.code)+(w.code==='pairLimit'&&w.detail?' — '+esc(w.detail):'')+'</li>').join('');
     $('fw-diff').hidden=!comparison;$('fw-diff-content').innerHTML=diffHTML();renderFindings();
-    const cols=['rule','source','destination','service','action','logging'];
-    $('fw-policy-table').innerHTML='<table class="fw-table"><thead><tr>'+cols.map(k=>'<th>'+esc(t()[k])+'</th>').join('')+'</tr></thead><tbody>'+result.policies.slice(0,100).map(r=>'<tr><td>'+esc(r.name)+'<br><small>'+esc(r.id)+(r.enabled?'':' · '+esc(t().disabled))+'</small></td><td>'+esc(display(r.src))+'</td><td>'+esc(display(r.dst))+'</td><td>'+esc(display(r.service))+'</td><td>'+esc(r.action)+'</td><td>'+esc(display(r.logging))+'</td></tr>').join('')+'</tbody></table>';
+    const cols=['rule','source','destination','service','application','urlCategories','users','action','logging'];
+    $('fw-policy-table').innerHTML='<table class="fw-table"><thead><tr>'+cols.map(k=>'<th>'+esc(t()[k])+'</th>').join('')+'</tr></thead><tbody>'+result.policies.slice(0,100).map(r=>'<tr><td>'+esc(r.name)+'<br><small>'+esc(r.id)+(r.enabled?'':' · '+esc(t().disabled))+'</small></td><td>'+esc(display(r.src))+'</td><td>'+esc(display(r.dst))+'</td><td>'+esc(r.service.length?display(r.service):t().unknown)+'</td><td>'+esc(display(r.apps))+'</td><td>'+esc(r.urlCategories.length?display(r.urlCategories):'—')+'</td><td>'+esc(display(r.users))+'</td><td>'+esc(r.action)+'</td><td>'+esc(display(r.logging))+'</td></tr>').join('')+'</tbody></table>';
   }
   function translate() {
     document.querySelectorAll('[data-fw]').forEach(el=>{const value=t()[el.dataset.fw];if(typeof value==='string')el.textContent=value;});
