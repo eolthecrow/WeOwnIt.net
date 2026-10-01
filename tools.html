@@ -68,6 +68,7 @@
   <link rel="stylesheet" href="assets/chatbox.css?v=8">
   <link rel="stylesheet" href="assets/site.css?v=7">
   <link rel="stylesheet" href="assets/cve-risk-lens.css?v=2">
+  <link rel="stylesheet" href="assets/firewall-review.css?v=1">
   <script src="assets/i18n.js?v=2"></script>
 </head>
 <body>
@@ -129,6 +130,44 @@
       <div class="risk-results" hidden></div>
       <p class="risk-meta" data-risk="privacy">Only the CVE identifier is sent to public data sources.</p>
       <noscript><p>JavaScript is required for CVE Risk Lens. <a href="https://www.fortiguard.com/psirt">Fortinet PSIRT</a> · <a href="https://security.paloaltonetworks.com/">Palo Alto security advisories</a> · <a href="https://support.checkpoint.com/">Check Point support</a></p></noscript>
+    </div>
+  </section>
+
+  <section class="fw-section" id="firewall-review" aria-labelledby="fw-title">
+    <div class="wrap">
+      <div class="eyebrow" data-fw="eyebrow">03 / FIREWALL CONFIGURATION REVIEW</div>
+      <h2 class="tool-title" id="fw-title">Firewall Review.</h2>
+      <p class="fw-intro" data-fw="lead">Inspect firewall policies, review evidence and compare configurations. Fortinet, Palo Alto Networks and Check Point.</p>
+      <p class="fw-privacy" data-fw="privacy">Local analysis · No configuration upload · No account required</p>
+      <div class="fw-workspace">
+        <form id="fw-form">
+          <div class="fw-toolbar">
+            <div class="fw-control"><label for="fw-vendor" data-fw="vendor">Configuration format</label><select id="fw-vendor"><option value="auto" data-fw="auto">Detect automatically</option><option value="fortinet">Fortinet · FortiOS CLI</option><option value="paloalto">Palo Alto · PAN-OS XML</option><option value="checkpoint">Check Point · Management API JSON</option></select></div>
+            <div><span class="fw-label" data-fw="demo">Try a synthetic lab</span><div class="fw-demos"><button type="button" data-fw-demo="fortinet">Fortinet</button><button type="button" data-fw-demo="paloalto">Palo Alto</button><button type="button" data-fw-demo="checkpoint">Check Point</button></div></div>
+          </div>
+          <label class="fw-label" for="fw-input" data-fw="input">Paste configuration or open local files</label>
+          <textarea id="fw-input" spellcheck="false" autocomplete="off" autocapitalize="off" maxlength="5242880" aria-describedby="fw-format-hint fw-status" placeholder="FortiOS CLI / PAN-OS XML / Check Point JSON"></textarea>
+          <div class="fw-upload"><label for="fw-file" data-fw="file">Local files (maximum 5 MB in total)</label><input id="fw-file" type="file" accept=".conf,.txt,.xml,.json" multiple></div>
+          <p id="fw-format-hint" class="fw-hint" data-fw="formatHint">Fortinet: firewall policy CLI export, including VDOMs. Palo Alto: config XML, including Panorama rulebases. Check Point: extracted access-rulebase and objects JSON; select related JSON files together. Archives and Gaia CLI are not supported.</p>
+          <details class="fw-before" id="fw-before-panel"><summary data-fw="compare">Compare with an earlier configuration (optional)</summary><label class="fw-label" for="fw-before" data-fw="before">Earlier configuration — same vendor</label><textarea id="fw-before" spellcheck="false" autocomplete="off" autocapitalize="off" maxlength="5242880"></textarea><div class="fw-upload"><label for="fw-before-file" data-fw="beforeFile">Earlier local files</label><input id="fw-before-file" type="file" accept=".conf,.txt,.xml,.json" multiple></div><p class="fw-hint" data-fw="compareHint">Compares policy fields and order. It does not simulate routing, NAT or application availability.</p></details>
+          <div class="fw-input-actions"><button class="fw-primary" type="submit" data-fw="analyze">Review configuration</button><button id="fw-clear" type="button" data-fw="clear">Clear data</button></div>
+          <p id="fw-status" class="fw-status" role="status" aria-live="polite"></p>
+        </form>
+        <div id="fw-results" class="fw-results" hidden>
+          <div class="fw-result-head"><h3 id="fw-result-title"></h3><div class="fw-export"><button type="button" id="fw-export-html" data-fw="exportHTML">Download HTML report</button><button type="button" id="fw-export-json" data-fw="exportJSON">Download JSON</button></div></div>
+          <p id="fw-counts" class="fw-counts"></p>
+          <div id="fw-summary" class="fw-summary"></div>
+          <details class="fw-limits" open><summary data-fw="coverage">Coverage and analysis limits</summary><ul id="fw-warnings"></ul></details>
+          <div id="fw-diff" hidden><h3 data-fw="changes">Configuration changes</h3><div id="fw-diff-content"></div></div>
+          <h3 data-fw="findings">Findings to review</h3>
+          <div class="fw-filters"><select id="fw-severity" aria-label="Severity"><option value="all" data-fw="allSeverities">All priorities</option><option value="high" data-fw="high">High</option><option value="medium" data-fw="medium">Medium</option><option value="low" data-fw="low">Low</option></select><input id="fw-search" type="search" maxlength="200" aria-label="Search findings" placeholder="Search rule name or ID"></div>
+          <div id="fw-findings"></div>
+          <details><summary data-fw="policies">Parsed policies</summary><div id="fw-policy-table" class="fw-table-wrap"></div><p class="fw-hint" data-fw="tableLimit">The table shows up to 100 policies. The JSON report includes all parsed policies.</p></details>
+          <div class="fw-cta-box"><p data-fw="ctaText">Turn these findings into a validated remediation plan: expert review, controlled changes and verification.</p><a class="fw-cta" href="contact.html" data-fw="cta">Request a firewall review</a></div>
+        </div>
+      </div>
+      <p class="fw-hint" data-fw="scope">Static policy review, not a full security audit or a connectivity guarantee. Unsupported conditions and missing information are reported explicitly. Configurations are held in this page only until cleared or closed; reports are saved locally when requested.</p>
+      <noscript><p>JavaScript is required for local Firewall Review.</p></noscript>
     </div>
   </section>
 
@@ -308,6 +347,8 @@
 <script>window.NETWORK_SECURITY_CHAT_ENDPOINT="https://network-security-assistant.vlad-network-security.workers.dev/chat";</script>
 <script src="assets/chatbox.js?v=12" defer></script>
 <script type="module" src="assets/cve-risk-lens.js?v=1"></script>
+<script src="assets/firewall-review-core.js?v=1" defer></script>
+<script src="assets/firewall-review-demo.js?v=1" defer></script>
+<script src="assets/firewall-review.js?v=1" defer></script>
 </body>
 </html>
-
