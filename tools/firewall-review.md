@@ -1,4 +1,4 @@
-# WeOwnIT Firewall Review 1.1
+# weownit Firewall Review 1.1
 
 Original browser implementation. No external analyzer/library, backend, configuration upload, analytics call or configuration persistence in the Firewall Review code. This component shares the existing Tools page with the other website tools.
 

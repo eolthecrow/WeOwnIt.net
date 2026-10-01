@@ -78,7 +78,7 @@
       "tooLarge": "maximum 5 MB per snapshot.",
       "tooManyRules": "maximum 5,000 policies per snapshot.",
       "tooComplex": "the JSON structure exceeds the analysis limit.",
-      "unknownFormat": "use a supported native export or WeOwnIT review snapshot.",
+      "unknownFormat": "use a supported native export or weownit review snapshot.",
       "oneFile": "use one CLI/XML/PAN-OS JSON/snapshot file, or related Fortinet API/Check Point JSON files.",
       "malformedCLI": "the CLI export has incomplete config/edit blocks. Use a complete export.",
       "malformedXML": "the XML is not well formed.",
@@ -90,7 +90,7 @@
       "noCheckPointRules": "no Check Point access rules found. Include rulebase JSON.",
       "vendorMismatch": "both snapshots must use the same vendor.",
       "unexpected": "the input could not be processed. Verify the format.",
-      "invalidSnapshot": "invalid WeOwnIT snapshot schema, version or policy fields.",
+      "invalidSnapshot": "invalid weownit snapshot schema, version or policy fields.",
       "unsupportedFortinetJSON": "use FortiOS REST response wrappers with path, name, vdom and results; raw arrays and FortiManager JSON are unsupported.",
       "unsupportedPaloJSON": "use a supported PAN-OS configuration hierarchy or REST security-rule response.",
       "missingPaloContext": "the PAN-OS REST rules need location/context metadata. Panorama exports also need a resource field such as Policies/SecurityPreRules.",
@@ -110,7 +110,7 @@
       "incompleteRules": "Some policies have missing or unresolved criteria. Broad-access and overlap checks are skipped for those policies.",
       "complexRules": "Negated or complex conditions are excluded from broad-access and overlap checks.",
       "pairLimit": "Overlap checks are skipped for scopes with more than 350 active policies. Per-policy checks still run.",
-      "reviewSnapshot": "WeOwnIT review snapshot: normalized policy data only, not a complete vendor backup. Findings are recomputed; original coverage limits still apply.",
+      "reviewSnapshot": "weownit review snapshot: normalized policy data only, not a complete vendor backup. Findings are recomputed; original coverage limits still apply.",
       "apiSnapshot": "API exports: analysis covers supplied fields/objects only. Filters, omitted data and context can limit coverage.",
       "apiPagination": "The API export indicates more results. Include every page; analysis covers supplied policies only.",
       "apiOrder": "Policy order is not established for this API snapshot. Order-dependent overlap findings and order-change comparisons are skipped.",
@@ -153,15 +153,15 @@
     },
     "exportXML": "XML review snapshot",
     "standard": "One review standard across vendors",
-    "standardHint": "JSON and XML exported here share the WeOwnIT review schema and can be reloaded for the same vendor. These are analysis snapshots, not device backups or migration configurations. Native XML/JSON formats are accepted only where listed below.",
+    "standardHint": "JSON and XML exported here share the weownit review schema and can be reloaded for the same vendor. These are analysis snapshots, not device backups or migration configurations. Native XML/JSON formats are accepted only where listed below.",
     "nativeInputs": "Native inputs",
     "sharedInputs": "Shared review inputs",
     "fortFormats": "FortiOS CLI · REST API JSON",
     "paloFormats": "Config XML · config JSON · CLI set · REST rule JSON",
     "cpFormats": "Management API JSON · mgmt_cli JSON output",
-    "sharedFormats": "WeOwnIT snapshot JSON / XML",
+    "sharedFormats": "weownit snapshot JSON / XML",
     "extraDemos": "More native lab formats",
-    "inputPlaceholder": "Native CLI / XML / JSON, or a WeOwnIT review snapshot",
+    "inputPlaceholder": "Native CLI / XML / JSON, or a weownit review snapshot",
     "nativeGuide": "Export guidance",
     "exportGuide": "Use a complete policy export with its scope and related objects. Check Point: export every access-rulebase page and object dictionary using mgmt_cli with --format json. Palo Alto: configuration-mode show output in set, json or xml format. Fortinet JSON: retain each REST response wrapper, including path, name, vdom and results."
   },
@@ -239,7 +239,7 @@
       "tooLarge": "maximum 5 MB pentru fiecare configurație.",
       "tooManyRules": "maximum 5.000 de politici per configurație.",
       "tooComplex": "structura JSON depășește limita de analiză.",
-      "unknownFormat": "folosește un export nativ suportat sau un snapshot WeOwnIT.",
+      "unknownFormat": "folosește un export nativ suportat sau un snapshot weownit.",
       "oneFile": "folosește un fișier CLI/XML/JSON PAN-OS/snapshot sau fișiere JSON API Fortinet/Check Point aferente.",
       "malformedCLI": "exportul CLI are blocuri config/edit incomplete. Folosește un export complet.",
       "malformedXML": "XML-ul nu este valid.",
@@ -251,7 +251,7 @@
       "noCheckPointRules": "nu s-au găsit reguli de acces Check Point. Include JSON-ul rulebase.",
       "vendorMismatch": "ambele configurații trebuie să fie de la același vendor.",
       "unexpected": "datele nu au putut fi procesate. Verifică formatul.",
-      "invalidSnapshot": "schema, versiunea sau câmpurile snapshot-ului WeOwnIT nu sunt valide.",
+      "invalidSnapshot": "schema, versiunea sau câmpurile snapshot-ului weownit nu sunt valide.",
       "unsupportedFortinetJSON": "folosește răspunsuri REST FortiOS cu path, name, vdom și results; listele simple și JSON FortiManager nu sunt suportate.",
       "unsupportedPaloJSON": "folosește ierarhia de configurație PAN-OS sau un răspuns REST cu reguli de securitate.",
       "missingPaloContext": "regulile REST PAN-OS necesită metadate de context. Exporturile Panorama necesită și resource, de exemplu Policies/SecurityPreRules.",
@@ -271,7 +271,7 @@
       "incompleteRules": "Unele politici au criterii lipsă sau nerezolvate. Verificările de acces larg și suprapunere sunt omise pentru ele.",
       "complexRules": "Condițiile negate sau complexe sunt excluse din verificările de acces larg și suprapunere.",
       "pairLimit": "Verificările de suprapunere sunt omise în contexte cu peste 350 de politici active. Verificările individuale se execută.",
-      "reviewSnapshot": "Snapshot de revizie WeOwnIT: numai politici normalizate, nu backup complet al vendorului. Constatările se recalculează; limitele originale se păstrează.",
+      "reviewSnapshot": "Snapshot de revizie weownit: numai politici normalizate, nu backup complet al vendorului. Constatările se recalculează; limitele originale se păstrează.",
       "apiSnapshot": "Exporturi API: analiza acoperă numai câmpurile și obiectele furnizate. Filtrele, datele omise și contextul pot limita acoperirea.",
       "apiPagination": "Exportul API indică rezultate suplimentare. Include toate paginile; analiza acoperă numai politicile furnizate.",
       "apiOrder": "Ordinea politicilor nu este stabilită pentru acest snapshot API. Se omit constatările de suprapunere și comparațiile de ordine.",
@@ -314,15 +314,15 @@
     },
     "exportXML": "Snapshot XML de revizie",
     "standard": "Un standard de revizie pentru toți vendorii",
-    "standardHint": "JSON-ul și XML-ul exportate aici folosesc schema de revizie WeOwnIT și pot fi reîncărcate pentru același vendor. Sunt snapshot-uri de analiză, nu backup-uri sau configurații de migrare. Formatele native acceptate sunt cele din tabel.",
+    "standardHint": "JSON-ul și XML-ul exportate aici folosesc schema de revizie weownit și pot fi reîncărcate pentru același vendor. Sunt snapshot-uri de analiză, nu backup-uri sau configurații de migrare. Formatele native acceptate sunt cele din tabel.",
     "nativeInputs": "Formate native",
     "sharedInputs": "Formate comune de revizie",
     "fortFormats": "CLI FortiOS · JSON REST API",
     "paloFormats": "XML/JSON de configurație · CLI set · JSON REST reguli",
     "cpFormats": "JSON Management API · rezultat mgmt_cli JSON",
-    "sharedFormats": "Snapshot WeOwnIT JSON / XML",
+    "sharedFormats": "Snapshot weownit JSON / XML",
     "extraDemos": "Alte formate native de laborator",
-    "inputPlaceholder": "CLI / XML / JSON nativ sau snapshot de revizie WeOwnIT",
+    "inputPlaceholder": "CLI / XML / JSON nativ sau snapshot de revizie weownit",
     "nativeGuide": "Ghid pentru export",
     "exportGuide": "Folosește un export complet al politicilor, cu contextul și obiectele aferente. Check Point: exportă toate paginile access-rulebase și dicționarul de obiecte prin mgmt_cli cu --format json. Palo Alto: rezultatul show din modul de configurare, în format set, json sau xml. Fortinet JSON: păstrează wrapperul REST cu path, name, vdom și results."
   },
@@ -400,7 +400,7 @@
       "tooLarge": "5 Mo maximum par configuration.",
       "tooManyRules": "5 000 politiques maximum par configuration.",
       "tooComplex": "la structure JSON dépasse la limite d’analyse.",
-      "unknownFormat": "utilisez un export natif pris en charge ou un snapshot WeOwnIT.",
+      "unknownFormat": "utilisez un export natif pris en charge ou un snapshot weownit.",
       "oneFile": "utilisez un fichier CLI/XML/JSON PAN-OS/snapshot ou les fichiers JSON Fortinet API/Check Point associés.",
       "malformedCLI": "l’export CLI contient des blocs config/edit incomplets. Utilisez un export complet.",
       "malformedXML": "le XML est mal formé.",
@@ -412,7 +412,7 @@
       "noCheckPointRules": "aucune règle d’accès Check Point trouvée. Incluez le JSON rulebase.",
       "vendorMismatch": "les deux configurations doivent concerner le même fournisseur.",
       "unexpected": "les données n’ont pas pu être traitées. Vérifiez le format.",
-      "invalidSnapshot": "schéma, version ou champs du snapshot WeOwnIT invalides.",
+      "invalidSnapshot": "schéma, version ou champs du snapshot weownit invalides.",
       "unsupportedFortinetJSON": "utilisez les réponses REST FortiOS avec path, name, vdom et results ; listes simples et JSON FortiManager non pris en charge.",
       "unsupportedPaloJSON": "utilisez la hiérarchie PAN-OS ou une réponse REST de règles de sécurité.",
       "missingPaloContext": "les règles REST PAN-OS exigent les métadonnées de contexte. Panorama exige aussi resource, par exemple Policies/SecurityPreRules.",
@@ -432,7 +432,7 @@
       "incompleteRules": "Certaines politiques ont des critères absents ou non résolus. Les contrôles d’accès large et de chevauchement sont ignorés pour celles-ci.",
       "complexRules": "Les conditions négatives ou complexes sont exclues des contrôles d’accès large et de chevauchement.",
       "pairLimit": "Les contrôles de chevauchement sont ignorés au-delà de 350 politiques actives par contexte. Les contrôles individuels restent exécutés.",
-      "reviewSnapshot": "Snapshot de revue WeOwnIT : politiques normalisées uniquement, pas une sauvegarde complète. Les constats sont recalculés ; les limites initiales s’appliquent.",
+      "reviewSnapshot": "Snapshot de revue weownit : politiques normalisées uniquement, pas une sauvegarde complète. Les constats sont recalculés ; les limites initiales s’appliquent.",
       "apiSnapshot": "Exports API : seuls les champs et objets fournis sont analysés. Filtres, données omises et contexte peuvent limiter la couverture.",
       "apiPagination": "L’export API indique des résultats supplémentaires. Incluez toutes les pages ; seules les politiques fournies sont analysées.",
       "apiOrder": "L’ordre des politiques n’est pas établi pour ce snapshot API. Les constats de chevauchement et comparaisons d’ordre sont ignorés.",
@@ -475,15 +475,15 @@
     },
     "exportXML": "Snapshot XML de revue",
     "standard": "Un standard de revue pour tous les fournisseurs",
-    "standardHint": "Les exports JSON et XML utilisent le schéma de revue WeOwnIT et peuvent être rechargés pour le même fournisseur. Ce sont des snapshots d’analyse, pas des sauvegardes ni des configurations de migration. Les formats natifs acceptés sont indiqués ci-dessous.",
+    "standardHint": "Les exports JSON et XML utilisent le schéma de revue weownit et peuvent être rechargés pour le même fournisseur. Ce sont des snapshots d’analyse, pas des sauvegardes ni des configurations de migration. Les formats natifs acceptés sont indiqués ci-dessous.",
     "nativeInputs": "Formats natifs",
     "sharedInputs": "Formats communs de revue",
     "fortFormats": "CLI FortiOS · JSON REST API",
     "paloFormats": "Configuration XML/JSON · CLI set · JSON REST des règles",
     "cpFormats": "JSON Management API · sortie mgmt_cli JSON",
-    "sharedFormats": "Snapshot WeOwnIT JSON / XML",
+    "sharedFormats": "Snapshot weownit JSON / XML",
     "extraDemos": "Autres formats natifs de laboratoire",
-    "inputPlaceholder": "CLI / XML / JSON natif ou snapshot de revue WeOwnIT",
+    "inputPlaceholder": "CLI / XML / JSON natif ou snapshot de revue weownit",
     "nativeGuide": "Guide d’export",
     "exportGuide": "Utilisez un export complet des politiques avec leur contexte et les objets associés. Check Point : exportez toutes les pages access-rulebase et le dictionnaire d’objets via mgmt_cli avec --format json. Palo Alto : sortie show du mode configuration au format set, json ou xml. Fortinet JSON : conservez la réponse REST avec path, name, vdom et results."
   }
@@ -554,15 +554,15 @@
   function download(kind) {
     if(!result)return;
     let content,mime;
-    const report={tool:'WeOwnIT Firewall Review',version:core.VERSION,generatedAt:created,language,scope:t().scope,...result,comparison};
+    const report={tool:'weownit Firewall Review',version:core.VERSION,generatedAt:created,language,scope:t().scope,...result,comparison};
     if(kind==='json') {content=JSON.stringify({...report,...core.snapshot(currentModel)},null,2);mime='application/json';}
     else if(kind==='xml') {content=core.snapshotXML(currentModel);mime='application/xml';}
     else {
       const c=result.counts;
-      content='<!doctype html><html lang="'+language+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; style-src &#39;unsafe-inline&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;"><title>WeOwnIT Firewall Review</title><style>body{font:15px/1.6 system-ui,sans-serif;color:#16313b;max-width:1000px;margin:40px auto;padding:0 20px}h1,h2{line-height:1.2}.fw-finding{border:1px solid #ccd8dc;margin:12px 0;padding:14px}.fw-finding summary{font-weight:650}.fw-finding-body{margin-top:10px}.fw-badge{font-size:12px;margin-right:10px}.fw-rule-ref{display:block;color:#536971}.fw-evidence{display:grid;grid-template-columns:130px 1fr;gap:5px;margin:12px 0;font:13px monospace}.fw-evidence dd{margin:0;overflow-wrap:anywhere}.fw-diff-list{border:1px solid #ccd8dc;padding:12px;margin:10px 0}small{color:#536971}li{margin:6px 0}@media print{body{margin:0}.fw-finding{break-inside:avoid}details>div{display:block!important}}</style></head><body><h1>WeOwnIT · Firewall Review</h1><p>'+esc(names[result.vendor])+' · '+esc(result.format)+'</p><small>'+esc(t().generated)+': '+esc(created)+' · v'+core.VERSION+'</small><p>'+esc(t().rules)+': '+c.rules+' · '+esc(t().high)+': '+c.high+' · '+esc(t().medium)+': '+c.medium+' · '+esc(t().low)+': '+c.low+'</p><h2>'+esc(t().coverage)+'</h2><p>'+esc(t().scope)+'</p><ul>'+result.warnings.map(w=>'<li>'+esc(t().warnings[w.code]||w.code)+'</li>').join('')+'</ul>'+(comparison?'<h2>'+esc(t().changes)+'</h2>'+diffHTML(Infinity):'')+'<h2>'+esc(t().findings)+'</h2>'+result.findings.map(f=>findingHTML(f).replace('<details class="fw-finding">','<details class="fw-finding" open>')).join('')+(result.findings.length?'':'<p>'+esc(t().noFindings)+'</p>')+'</body></html>';mime='text/html';
+      content='<!doctype html><html lang="'+language+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; style-src &#39;unsafe-inline&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;"><title>weownit Firewall Review</title><style>body{font:15px/1.6 system-ui,sans-serif;color:#16313b;max-width:1000px;margin:40px auto;padding:0 20px}h1,h2{line-height:1.2}.fw-finding{border:1px solid #ccd8dc;margin:12px 0;padding:14px}.fw-finding summary{font-weight:650}.fw-finding-body{margin-top:10px}.fw-badge{font-size:12px;margin-right:10px}.fw-rule-ref{display:block;color:#536971}.fw-evidence{display:grid;grid-template-columns:130px 1fr;gap:5px;margin:12px 0;font:13px monospace}.fw-evidence dd{margin:0;overflow-wrap:anywhere}.fw-diff-list{border:1px solid #ccd8dc;padding:12px;margin:10px 0}small{color:#536971}li{margin:6px 0}@media print{body{margin:0}.fw-finding{break-inside:avoid}details>div{display:block!important}}</style></head><body><h1>weownit · Firewall Review</h1><p>'+esc(names[result.vendor])+' · '+esc(result.format)+'</p><small>'+esc(t().generated)+': '+esc(created)+' · v'+core.VERSION+'</small><p>'+esc(t().rules)+': '+c.rules+' · '+esc(t().high)+': '+c.high+' · '+esc(t().medium)+': '+c.medium+' · '+esc(t().low)+': '+c.low+'</p><h2>'+esc(t().coverage)+'</h2><p>'+esc(t().scope)+'</p><ul>'+result.warnings.map(w=>'<li>'+esc(t().warnings[w.code]||w.code)+'</li>').join('')+'</ul>'+(comparison?'<h2>'+esc(t().changes)+'</h2>'+diffHTML(Infinity):'')+'<h2>'+esc(t().findings)+'</h2>'+result.findings.map(f=>findingHTML(f).replace('<details class="fw-finding">','<details class="fw-finding" open>')).join('')+(result.findings.length?'':'<p>'+esc(t().noFindings)+'</p>')+'</body></html>';mime='text/html';
     }
     const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');
-    a.href=url;a.download='WeOwnIT_Firewall_Review_'+result.vendor+'_'+created.slice(0,10)+'.'+kind;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    a.href=url;a.download='weownit_Firewall_Review_'+result.vendor+'_'+created.slice(0,10)+'.'+kind;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
   $('fw-form').addEventListener('submit',analyze);$('fw-clear').addEventListener('click',clear);
   document.querySelectorAll('[data-fw-demo]').forEach(b=>b.addEventListener('click',()=>{clear();$('fw-vendor').value=b.dataset.fwVendor||b.dataset.fwDemo;$('fw-input').value=window.FirewallReviewDemos[b.dataset.fwDemo];analyze();}));

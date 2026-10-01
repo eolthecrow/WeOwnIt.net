@@ -1,6 +1,6 @@
 /* Synthetic fixtures only. No customer configurations. */
 window.FirewallReviewDemos = {
-fortinet: `# Synthetic WeOwnIT lab — FortiOS CLI
+fortinet: `# Synthetic weownit lab — FortiOS CLI
 config firewall address
     edit "Lab-Servers"
         set subnet 10.30.0.0 255.255.255.0

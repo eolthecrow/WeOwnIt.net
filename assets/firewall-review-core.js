@@ -1,4 +1,4 @@
-/* WeOwnIT Firewall Review: static, local, conservative policy analysis. No network or storage APIs. */
+/* weownit Firewall Review: static, local, conservative policy analysis. No network or storage APIs. */
 (function (root) {
   'use strict';
   const VERSION = '1.1.0';
@@ -245,7 +245,7 @@
       for(const k of booleanFields){const value=txt(p,k);if(children(p,k).length!==1||!['true','false'].includes(value))fail('invalidSnapshot');r[k]=value==='true';}
       r.order=Number(txt(p,'order'));data.policies.push(r);
     }
-    const m=snapshotModel(data,expectedVendor);m.format='WeOwnIT review snapshot XML';return m;
+    const m=snapshotModel(data,expectedVendor);m.format='weownit review snapshot XML';return m;
   }
   function fortResponses(data) {return Array.isArray(data)?data:plain(data)&&Array.isArray(data.responses)?data.responses:[data];}
   function parseFortinetJSON(texts) {
@@ -380,7 +380,7 @@
     if(detected.includes('snapshot')) {
       if(input.length!==1)fail('oneFile');const text=input[0].trim();
       if(text.startsWith('<'))return parseSnapshotXML(text,vendor,XMLParser);
-      const m=snapshotModel(jsonRead(text),vendor);m.format='WeOwnIT review snapshot JSON';return m;
+      const m=snapshotModel(jsonRead(text),vendor);m.format='weownit review snapshot JSON';return m;
     }
     vendor=vendor==='auto'?detected.find(Boolean):vendor;
     if(!vendor) fail('unknownFormat');
