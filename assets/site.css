@@ -93,6 +93,32 @@ header .global-nav-shell{
   gap:.7rem;
   flex:0 0 auto;
 }
+.global-nav-actions .lang-switch,
+.global-nav-actions .langs{
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+  border:1px solid var(--line-strong,var(--line));
+  padding:2px;
+}
+.global-nav-actions .lang-switch button,
+.global-nav-actions .langs button{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  min-width:30px;
+  min-height:30px;
+  padding:.35rem .45rem;
+  font-family:var(--mono);
+  font-size:.68rem;
+  cursor:pointer;
+}
+.global-nav-actions .lang-switch button[aria-pressed="true"],
+.global-nav-actions .langs button[aria-pressed="true"]{
+  background:var(--accent);
+  color:var(--bg);
+  font-weight:800;
+}
 .global-nav-cta{
   display:inline-flex;
   align-items:center;
