@@ -28,7 +28,7 @@
     :root { color-scheme: dark; --bg:#0a151c; --bg2:#0e1d25; --panel:#12232b; --line:#29404a; --line-strong:#507078; --ink:#f2f1e8; --muted:#a6b8ba; --quiet:#81969a; --accent:#6ce2c7; --accent-dark:#123b39; --amber:#f4bc79; --font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace }
     * { box-sizing:border-box }
     html { scroll-behavior:smooth }
-    body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:14.4px; line-height:1.55 }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); font-size:15px; line-height:1.58 }
     a { color:inherit; text-decoration:none }
     a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px }
     ::selection { background:var(--accent); color:var(--bg) }
@@ -41,25 +41,25 @@
     .mark img { width:34px; height:auto; max-height:34px; display:block; object-fit:contain }
     .brand span:last-child { max-width:135px }
     .rail-nav { display:grid; gap:.12rem }
-    .rail-nav a { display:flex; align-items:baseline; gap:.7rem; padding:.64rem .25rem; color:var(--muted); font-size:.819rem; transition:color .2s,transform .2s }
+    .rail-nav a { display:flex; align-items:baseline; gap:.7rem; padding:.64rem .25rem; color:var(--muted); font-size:.85rem; transition:color .2s,transform .2s }
     .rail-nav a:hover { color:var(--accent); transform:translateX(3px) }
-    .rail-nav span { font-family:var(--mono); font-size:.648rem; color:var(--quiet) }
-    .rail-foot { margin-top:auto; border-top:1px solid var(--line); padding-top:1.2rem; color:var(--quiet); font-size:.702rem; line-height:1.5 }
+    .rail-nav span { font-family:var(--mono); font-size:.7rem; color:var(--quiet) }
+    .rail-foot { margin-top:auto; border-top:1px solid var(--line); padding-top:1.2rem; color:var(--quiet); font-size:.75rem; line-height:1.55 }
     .rail-foot b { color:var(--muted); font-weight:600 }
     .main { min-width:0 }
-    .topline { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding:0 clamp(1.3rem,4vw,4rem); color:var(--muted); font-family:var(--mono); font-size:.648rem; text-transform:uppercase; letter-spacing:.13em }
+    .topline { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding:0 clamp(1.3rem,4vw,4rem); color:var(--muted); font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.13em }
     .topline-right { display:flex; align-items:center; gap:.62rem; color:var(--accent) }
     .topline-right::before { content:""; display:block; width:7px; height:7px; border-radius:50%; background:var(--accent) }
     .topline-tools { display:flex; align-items:center; gap:1rem }
     .lang-switch { display:inline-flex; align-items:center; border:1px solid var(--line-strong); padding:2px }
-    .lang-switch button { appearance:none; border:0; background:transparent; color:var(--muted); font:inherit; font-size:.612rem; letter-spacing:.08em; padding:.34rem .48rem; cursor:pointer; transition:background .2s,color .2s }
+    .lang-switch button { appearance:none; border:0; background:transparent; color:var(--muted); font:inherit; font-size:.68rem; letter-spacing:.08em; padding:.34rem .48rem; cursor:pointer; transition:background .2s,color .2s }
     .lang-switch button:hover { color:var(--ink) }
     .lang-switch button[aria-pressed="true"] { background:var(--accent); color:var(--bg); font-weight:750 }
     .lang-switch button:focus-visible { outline:2px solid var(--accent); outline-offset:3px }
     .hero { padding:clamp(3.4rem,7vw,7.5rem) clamp(1.3rem,4vw,4rem) clamp(3.6rem,6vw,6rem); display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); gap:clamp(2rem,5vw,5rem); position:relative; overflow:hidden; border-bottom:1px solid var(--line) }
     .hero::before { content:""; position:absolute; inset:0 0 auto auto; width:32%; height:100%; opacity:.22; pointer-events:none; background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),linear-gradient(to bottom,var(--line) 1px,transparent 1px); background-size:40px 40px; mask-image:linear-gradient(to left,#000,transparent) }
     .hero > * { position:relative }
-    .eyebrow { font-family:var(--mono); font-size:.684rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:.75rem; margin:0 0 1.5rem }
+    .eyebrow { font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:.75rem; margin:0 0 1.5rem }
     .eyebrow::before { content:""; width:25px; height:1px; background:currentColor; flex:none }
     h1,h2,h3,p { margin-top:0 }
     h1 { max-width:840px; font-size:clamp(2.925rem,6.12vw,6.66rem); line-height:.99; letter-spacing:-.075em; font-weight:670; margin:0 0 1.8rem }
@@ -72,10 +72,10 @@
     .button.secondary:hover { border-color:var(--accent); color:var(--accent); background:transparent }
     .arrow { font-size:1.008rem; line-height:1 }
     .hero-aside { align-self:end; background:var(--bg2); border:1px solid var(--line-strong); padding:1.35rem; max-width:370px; width:100%; box-shadow:10px 10px 0 rgba(7,16,21,.5) }
-    .aside-label,.micro { color:var(--accent); font-family:var(--mono); text-transform:uppercase; letter-spacing:.11em; font-size:.675rem }
+    .aside-label,.micro { color:var(--accent); font-family:var(--mono); text-transform:uppercase; letter-spacing:.11em; font-size:.72rem }
     .hero-aside p { font-size:1.242rem; line-height:1.27; font-weight:600; letter-spacing:-.035em; margin:1.05rem 0 1.35rem }
     .hero-aside ul { margin:0; padding:0; list-style:none; border-top:1px solid var(--line) }
-    .hero-aside li { display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; border-bottom:1px solid var(--line); font-size:.738rem; color:var(--muted) }
+    .hero-aside li { display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; border-bottom:1px solid var(--line); font-size:.8rem; color:var(--muted) }
     .hero-aside li span:first-child { font-family:var(--mono); color:var(--accent) }
     .section { padding:clamp(3.2rem,6vw,6rem) clamp(1.3rem,4vw,4rem); border-bottom:1px solid var(--line); scroll-margin-top:1rem }
     .section-head { display:flex; justify-content:space-between; align-items:end; gap:2rem; margin-bottom:2.1rem }
