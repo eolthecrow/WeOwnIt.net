@@ -127,24 +127,6 @@ header .global-nav-shell{
   color:var(--bg);
   font-weight:800;
 }
-.global-nav-cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:36px;
-  padding:.5rem .72rem;
-  border:1px solid var(--accent);
-  background:var(--accent);
-  color:#06201e;
-  font-size:.78rem;
-  font-weight:800;
-  white-space:nowrap;
-}
-.global-nav-cta:hover{background:#a1f0de;color:#06201e}
-.global-nav-cta[aria-current="page"]{
-  background:transparent;
-  color:var(--accent);
-}
 .global-nav-toggle{
   display:none;
   border:1px solid var(--line-strong);
@@ -195,12 +177,10 @@ header .global-nav-shell{
   .global-nav-links{grid-template-columns:1fr 1fr}
   .global-nav-links a{text-align:left;padding:.75rem .7rem}
   .global-nav-actions{
-    align-items:stretch;
-    justify-content:space-between;
+    align-items:center;
+    justify-content:flex-end;
     gap:.6rem;
-    flex-wrap:wrap;
   }
   .global-nav-actions .lang-switch,
   .global-nav-actions .langs{flex:0 0 auto}
-  .global-nav-cta{flex:1 1 150px}
 }
