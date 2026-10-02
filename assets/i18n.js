@@ -48,6 +48,11 @@
     ro: {privacy:"Politica de confidențialitate", skip:"Sari la conținut", language:"Limba", back:"← Contact"},
     fr: {privacy:"Confidentialité", skip:"Aller au contenu", language:"Langue", back:"← Contact"}
   };
+  const navigation = {
+    en: {services:"Services", tools:"Tools", store:"Store", about:"About", contact:"Contact", schedule:"Schedule ↗", menu:"Menu", primary:"Primary navigation"},
+    ro: {services:"Servicii", tools:"Instrumente", store:"Magazin", about:"Despre", contact:"Contact", schedule:"Programare ↗", menu:"Meniu", primary:"Navigație principală"},
+    fr: {services:"Services", tools:"Outils", store:"Boutique", about:"À propos", contact:"Contact", schedule:"Réserver ↗", menu:"Menu", primary:"Navigation principale"}
+  };
   function getInitialLanguage() {
     const explicit = normalizeLanguage(new URL(location.href).searchParams.get("lang"));
     if (explicit) return explicit;
@@ -95,6 +100,13 @@
     document.querySelectorAll(".skip, .site-skip").forEach(el=>el.textContent=text.skip);
     document.querySelectorAll(".lang-switch, .langs").forEach(el=>{el.setAttribute("role","group");el.setAttribute("aria-label",text.language);});
     document.querySelectorAll("[data-language-contact]").forEach(el=>el.textContent=text.back);
+    const nav=navigation[lang]||navigation.en;
+    document.querySelectorAll("[data-nav-label]").forEach(el=>{
+      const key=el.dataset.navLabel;
+      if(nav[key]!==undefined) el.textContent=nav[key];
+    });
+    document.querySelectorAll("[data-global-nav]").forEach(el=>el.setAttribute("aria-label",nav.primary));
+    document.querySelectorAll("[data-nav-toggle]").forEach(el=>el.setAttribute("aria-label",nav.menu));
     syncInternalLanguageLinks(lang);
   }
   function setLanguage(value) {
@@ -109,6 +121,23 @@
   let installed=false;
   function installLanguageNavigation() {
     if(installed)return; installed=true;
+    document.querySelectorAll("[data-nav-toggle]").forEach(button=>{
+      const panelId=button.getAttribute("aria-controls");
+      const panel=panelId?document.getElementById(panelId):null;
+      if(!panel)return;
+      const close=()=>{panel.classList.remove("is-open");button.setAttribute("aria-expanded","false");};
+      button.addEventListener("click",()=>{
+        const open=button.getAttribute("aria-expanded")==="true";
+        panel.classList.toggle("is-open",!open);
+        button.setAttribute("aria-expanded",String(!open));
+      });
+      panel.querySelectorAll("a[href]").forEach(link=>link.addEventListener("click",close));
+      document.addEventListener("keydown",event=>{if(event.key==="Escape")close();});
+      document.addEventListener("click",event=>{
+        if(button.getAttribute("aria-expanded")!=="true")return;
+        if(!button.contains(event.target)&&!panel.contains(event.target))close();
+      });
+    });
     document.addEventListener("click",event=>{
       if(event.target.closest?.("a[href]")) syncInternalLanguageLinks(normalizeLanguage(document.documentElement.lang)||"en");
     },true);
