@@ -23,6 +23,14 @@ header .nav-right{flex-shrink:0}
 
 
 /* Consistent internal-page navigation. */
+.global-header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(10,21,28,.965);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);
+}
 header .global-nav-shell{
   max-width:1320px;
   min-height:68px;
