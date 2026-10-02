@@ -20,3 +20,153 @@ header .nav-right{flex-shrink:0}
   .product{min-width:0}.product>*{min-width:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+
+/* Consistent internal-page navigation. */
+header .global-nav-shell{
+  max-width:1320px;
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.1rem;
+  position:relative;
+}
+.global-nav-shell .brand{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  flex:0 0 auto;
+  min-width:0;
+}
+.global-nav-shell .mark{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  flex:none;
+}
+.global-nav-shell .mark img{
+  width:34px;
+  height:auto;
+  max-height:34px;
+  display:block;
+  object-fit:contain;
+}
+.global-nav-panel{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:1rem;
+  flex:1 1 auto;
+  min-width:0;
+}
+.global-nav-links{
+  display:flex;
+  align-items:center;
+  gap:.1rem;
+  min-width:0;
+}
+.global-nav-links a{
+  position:relative;
+  padding:.7rem .62rem;
+  color:var(--muted);
+  font-size:.82rem;
+  font-weight:650;
+  white-space:nowrap;
+  transition:color .18s ease;
+}
+.global-nav-links a:hover{color:var(--ink)}
+.global-nav-links a[aria-current="page"]{color:var(--accent)}
+.global-nav-links a[aria-current="page"]::after{
+  content:"";
+  position:absolute;
+  left:.62rem;
+  right:.62rem;
+  bottom:.4rem;
+  height:1px;
+  background:var(--accent);
+}
+.global-nav-actions{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  flex:0 0 auto;
+}
+.global-nav-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:36px;
+  padding:.5rem .72rem;
+  border:1px solid var(--accent);
+  background:var(--accent);
+  color:#06201e;
+  font-size:.78rem;
+  font-weight:800;
+  white-space:nowrap;
+}
+.global-nav-cta:hover{background:#a1f0de;color:#06201e}
+.global-nav-cta[aria-current="page"]{
+  background:transparent;
+  color:var(--accent);
+}
+.global-nav-toggle{
+  display:none;
+  border:1px solid var(--line-strong);
+  background:transparent;
+  color:var(--ink);
+  min-height:40px;
+  padding:.5rem .7rem;
+  font:700 .78rem/1 var(--font);
+  cursor:pointer;
+}
+.global-nav-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.global-nav-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+@media(max-width:1040px){
+  header .global-nav-shell{min-height:64px}
+  .global-nav-toggle{display:inline-flex;align-items:center;justify-content:center;margin-left:auto}
+  .global-nav-panel{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    z-index:50;
+    padding:1rem 1.1rem 1.15rem;
+    background:rgba(10,21,28,.985);
+    border:1px solid var(--line);
+    box-shadow:0 18px 36px rgba(0,0,0,.28);
+  }
+  .global-nav-panel.is-open{display:grid;gap:1rem}
+  .global-nav-links{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.25rem}
+  .global-nav-links a{
+    padding:.7rem .5rem;
+    border:1px solid transparent;
+    text-align:center;
+  }
+  .global-nav-links a:hover{border-color:var(--line-strong)}
+  .global-nav-links a[aria-current="page"]{border-color:var(--accent)}
+  .global-nav-links a[aria-current="page"]::after{display:none}
+  .global-nav-actions{justify-content:flex-end}
+}
+@media(max-width:700px){
+  header .global-nav-shell{padding-top:.7rem;padding-bottom:.7rem;gap:.65rem}
+  .global-nav-shell .brand{font-size:.86rem}
+  .global-nav-shell .brand [data-brand]{max-width:145px;line-height:1.15}
+  .global-nav-shell .mark{width:34px;height:34px}
+  .global-nav-shell .mark img{width:30px;max-height:30px}
+  .global-nav-panel{padding:.8rem}
+  .global-nav-links{grid-template-columns:1fr 1fr}
+  .global-nav-links a{text-align:left;padding:.75rem .7rem}
+  .global-nav-actions{
+    align-items:stretch;
+    justify-content:space-between;
+    gap:.6rem;
+    flex-wrap:wrap;
+  }
+  .global-nav-actions .lang-switch,
+  .global-nav-actions .langs{flex:0 0 auto}
+  .global-nav-cta{flex:1 1 150px}
+}
