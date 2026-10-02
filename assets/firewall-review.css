@@ -2,3 +2,5 @@
 @media(max-width:700px){.fw-section{padding:2.5rem 0}.fw-workspace{padding:1rem}.fw-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.fw-stat:nth-child(2){border-right:0}.fw-stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.fw-evidence{grid-template-columns:1fr}.fw-evidence dd{margin-bottom:.5rem}.fw-toolbar{display:block}.fw-demos{margin-top:1rem}.fw-upload{display:block}.fw-input-actions{align-items:stretch}.fw-input-actions button{flex:1}.fw-section textarea{min-height:170px}}
 
 .fw-formats{border:1px solid var(--line);padding:.6rem 1rem;margin:0 0 1.2rem}.fw-formats h4{font-size:.8rem;margin:1rem 0 .5rem}.fw-formats .fw-table td{max-width:none}.fw-formats summary{font-weight:650}
+
+.fw-coverage-table{min-width:580px}.fw-coverage-table td:nth-child(2),.fw-coverage-table td:nth-child(3){font-variant-numeric:tabular-nums;text-align:center}.fw-table td details{margin-top:8px}.fw-table td details .fw-evidence{min-width:260px}.fw-diff-list pre{white-space:pre-wrap;overflow-wrap:anywhere}

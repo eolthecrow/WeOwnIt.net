@@ -68,7 +68,7 @@
   <link rel="stylesheet" href="assets/chatbox.css?v=8">
   <link rel="stylesheet" href="assets/site.css?v=7">
   <link rel="stylesheet" href="assets/cve-risk-lens.css?v=2">
-  <link rel="stylesheet" href="assets/firewall-review.css?v=2">
+  <link rel="stylesheet" href="assets/firewall-review.css?v=3">
   <script src="assets/i18n.js?v=2"></script>
 </head>
 <body>
@@ -158,7 +158,7 @@
           <div class="fw-result-head"><h3 id="fw-result-title"></h3><div class="fw-export"><button type="button" id="fw-export-html" data-fw="exportHTML">Download HTML report</button><button type="button" id="fw-export-json" data-fw="exportJSON">JSON report + reusable snapshot</button><button type="button" id="fw-export-xml" data-fw="exportXML">XML review snapshot</button></div></div>
           <p id="fw-counts" class="fw-counts"></p>
           <div id="fw-summary" class="fw-summary"></div>
-          <details class="fw-limits" open><summary data-fw="coverage">Coverage and analysis limits</summary><ul id="fw-warnings"></ul></details>
+          <details class="fw-limits" open><summary data-fw="coverage">Coverage and analysis limits</summary><div id="fw-coverage" class="fw-table-wrap"></div><ul id="fw-warnings"></ul></details>
           <div id="fw-diff" hidden><h3 data-fw="changes">Configuration changes</h3><div id="fw-diff-content"></div></div>
           <h3 data-fw="findings">Findings to review</h3>
           <div class="fw-filters"><select id="fw-severity" aria-label="Severity"><option value="all" data-fw="allSeverities">All priorities</option><option value="high" data-fw="high">High</option><option value="medium" data-fw="medium">Medium</option><option value="low" data-fw="low">Low</option></select><input id="fw-search" type="search" maxlength="200" aria-label="Search findings" placeholder="Search rule name or ID"></div>
@@ -348,8 +348,8 @@
 <script>window.NETWORK_SECURITY_CHAT_ENDPOINT="https://network-security-assistant.vlad-network-security.workers.dev/chat";</script>
 <script src="assets/chatbox.js?v=12" defer></script>
 <script type="module" src="assets/cve-risk-lens.js?v=brand-lowercase-20261001"></script>
-<script src="assets/firewall-review-core.js?v=4" defer></script>
+<script src="assets/firewall-review-core.js?v=5" defer></script>
 <script src="assets/firewall-review-demo.js?v=3" defer></script>
-<script src="assets/firewall-review.js?v=5" defer></script>
+<script src="assets/firewall-review.js?v=6" defer></script>
 </body>
 </html>

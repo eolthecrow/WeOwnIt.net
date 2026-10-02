@@ -167,3 +167,98 @@ test('Diff: Palo Alto UUID JSON and name-only CLI match',()=>{const e=paEntry();
 test('Diff: API order uncertainty skips reordered verdict',()=>{const a=core.parse(paJSON(paEntry()),'auto',XMLParser),b=core.parse(JSON.stringify({result:{entry:[paEntry()]}}),'paloalto',XMLParser);b.rules[0].order=9;assert.ok(!core.diff(a,b).changed.flatMap(r=>r.changes).some(c=>c.field==='order'));});
 test('Alternate native demos: Fortinet JSON and PAN-OS CLI/JSON work automatically',()=>{for(const key of ['fortinetJSON','paloaltoCLI','paloaltoJSON']){const r=inspect(demo[key]);assert.equal(r.counts.high,1);assert.equal(r.counts.rules,key==='fortinetJSON'?4:3);}});
 test('Native format comparison: demo policy fields equivalent across formats',()=>{for(const [a,b] of [['fortinet','fortinetJSON'],['paloalto','paloaltoCLI'],['paloalto','paloaltoJSON']])assert.deepEqual(core.diff(core.parse(demo[a],'auto',XMLParser),core.parse(demo[b],'auto',XMLParser)),{added:[],removed:[],changed:[]});});
+
+test('CLI: unclosed quotes rejected with the exact line; escaped quotes preserved',()=>{
+  const s=policy(1,'set name "Unclosed name');assert.throws(()=>core.parse(s),e=>e.code==='malformedCLI'&&e.line===10);
+  assert.equal(core.parse(policy(1,'set name "QA \\"quoted\\" name"')).rules[0].name,'QA "quoted" name');
+});
+test('Check Point: contradictory duplicate rules reject in either file order; key order is irrelevant',()=>{
+  const a=JSON.parse(demo.checkpoint);a.rulebase=a.rulebase.slice(0,1);a.total=1;
+  const b=JSON.parse(JSON.stringify(a));b.rulebase[0].action='cp-drop';
+  for(const pair of [[a,b],[b,a]])rejects(pair.map(JSON.stringify),'conflictingPages');
+  const reordered=Object.fromEntries(Object.entries(a).reverse());assert.equal(inspect([JSON.stringify(a),JSON.stringify(reordered)]).counts.rules,1);
+});
+test('Check Point: partial object references merge; contradictory object fields reject',()=>{
+  const j=JSON.parse(demo.checkpoint),o=j['objects-dictionary'].find(x=>x.type==='host')||j['objects-dictionary'][0];
+  const part={objects:[{uid:o.uid,type:o.type,name:o.name}]};assert.equal(inspect([JSON.stringify(j),JSON.stringify(part)]).counts.rules,3);
+  part.objects[0].name='Contradictory';rejects([JSON.stringify(part),JSON.stringify(j)],'conflictingPages');
+});
+test('Check Point: Content and direction preserved; broad/overlap inference omitted after JSON/XML reload',()=>{
+  const j=JSON.parse(demo.checkpoint);j.rulebase=j.rulebase.slice(-1);j.total=1;
+  j.rulebase[0].content=[{uid:'11111111-1111-1111-1111-111111111111',type:'data-type',name:'Credit Cards'}];j.rulebase[0]['content-direction']='up';j.rulebase[0]['content-negate']=true;
+  const m=core.parse(JSON.stringify(j));assert.deepEqual(m.rules[0].content,['Credit Cards']);assert.deepEqual(m.rules[0].contentDirection,['up']);
+  for(const source of [JSON.stringify(j),JSON.stringify(core.snapshot(m)),core.snapshotXML(m)]){const r=inspect(source);assert.equal(r.counts.high,0);assert.equal(r.coverage.checks.anyAny.skipped,1);assert.deepEqual(r.policies[0].contentNegation,['true']);assert.ok(!codes(r).includes('potentialConflict'));}
+});
+const customPort=(name,ports)=>`config firewall service custom\nedit "${name}"\nset tcp-portrange ${ports}\nnext\nend\n`+policy(1,`set service "${name}"\nset dstaddr "Server"\nset comments "Maintenance"\nset logtraffic all\nset utm-status enable`);
+test('Services: custom TCP administrative ports/ranges detected regardless of name; UDP excluded',()=>{
+  for(const port of ['22','21-23','3389','5900'])assert.ok(codes(inspect(customPort('MAINTENANCE-TCP',port))).includes('adminService'));
+  assert.ok(!codes(inspect(customPort('SSH','443'))).includes('adminService'));
+  assert.ok(!codes(inspect(customPort('MAINTENANCE-UDP','22').replace('tcp-portrange','udp-portrange'))).includes('adminService'));
+});
+test('Services: group expansion and JSON/XML snapshots preserve custom port evidence',()=>{
+  const s=customPort('MAINTENANCE-TCP','22').replace('config firewall policy','config firewall service group\nedit "Maintenance"\nset member "MAINTENANCE-TCP"\nnext\nend\nconfig firewall policy').replace('set service "MAINTENANCE-TCP"','set service "Maintenance"');
+  const m=core.parse(s);for(const src of [s,JSON.stringify(core.snapshot(m)),core.snapshotXML(m)]){const r=inspect(src);assert.ok(codes(r).includes('adminService'));assert.deepEqual(r.policies[0].servicePorts,['tcp:22']);}
+});
+test('Services: Fortinet REST custom service retains ports, excludes passwords',()=>{
+  const s=JSON.stringify([{path:'firewall.service',name:'custom',vdom:'root',results:[{name:'MAINTENANCE-TCP','tcp-portrange':'22',password:'SECRET'}]}, {path:'firewall',name:'policy',vdom:'root',results:[{policyid:1,name:'Maintenance',srcintf:[{name:'guest'}],dstintf:[{name:'servers'}],srcaddr:[{name:'all'}],dstaddr:[{name:'Server'}],service:[{name:'MAINTENANCE-TCP'}],action:'accept',schedule:'always'}]}]);
+  assert.ok(codes(inspect(s)).includes('adminService'));assert.ok(!JSON.stringify(core.snapshot(core.parse(s))).includes('SECRET'));
+});
+const addressConfig=subnet=>`config firewall address\nedit "Clients"\nset subnet ${subnet}\nset password "NEVER EXPORT"\nnext\nend\n`+policy(1,'set srcaddr "Clients"');
+test('Object diff: same-name subnet, group members and service ports are compared',()=>{
+  const a=core.parse(addressConfig('10.0.0.0 255.255.255.0')),b=core.parse(addressConfig('10.1.0.0 255.255.255.0')),d=core.diff(a,b);
+  assert.equal(d.changed.length,0);assert.equal(d.objectChanges.changed[0].name,'Clients');assert.deepEqual(d.objectChanges.changed[0].after.subnet,['10.1.0.0','255.255.255.0']);
+  assert.ok(core.diff(core.parse(customPort('Maintenance','22')),core.parse(customPort('Maintenance','443'))).objectChanges.changed.length);
+  const group='config firewall addrgrp\nedit Team\nset member Clients\nnext\nend\n';assert.ok(core.diff(core.parse(group+addressConfig('10.0.0.0 255.255.255.0')),core.parse(group.replace('member Clients','member Other')+addressConfig('10.0.0.0 255.255.255.0'))).objectChanges.changed.length);
+});
+test('Object snapshots: safe definitions survive JSON/XML; legacy snapshots explicitly limit diff',()=>{
+  const m=core.parse(addressConfig('10.0.0.0 255.255.255.0'));assert.ok(!JSON.stringify(core.snapshot(m)).includes('NEVER EXPORT'));
+  for(const source of [JSON.stringify(core.snapshot(m)),core.snapshotXML(m)]){const n=core.parse(source,'auto',XMLParser);assert.deepEqual(n.objectDefinitions,m.objectDefinitions);assert.deepEqual(core.diff(m,n),{added:[],removed:[],changed:[]});}
+  const legacy=core.snapshot(m);delete legacy.objectDefinitions;const n=core.parse(JSON.stringify(legacy));core.diff(n,m);assert.ok(m.warnings.some(w=>w.code==='objectDiffUnavailable'));
+  const bad=core.snapshot(m);bad.objectDefinitions[0].fields.password=['SECRET'];rejects(JSON.stringify(bad),'invalidSnapshot');
+});
+test('PAN-OS: object definition changes are equivalent between XML/config JSON/set CLI',()=>{
+  const base=demo.paloalto,xml=base.replace(/<config[^>]*>/,'<config><vsys><entry name="vsys1"><address><entry name="Clients"><ip-netmask>10.0.0.0/24</ip-netmask></entry></address><service><entry name="MAINTENANCE-TCP"><protocol><tcp><port>22</port></tcp></protocol></entry></service></entry></vsys>');
+  const m=core.parse(xml,'auto',XMLParser);assert.ok(m.objectDefinitions.find(d=>d.name==='Clients'));
+  const cli=demo.paloaltoCLI+'\nset address Clients ip-netmask 10.0.0.0/24\nset service MAINTENANCE-TCP protocol tcp port 22';
+  const n=core.parse(cli,'paloalto',XMLParser);assert.deepEqual(n.objectDefinitions,m.objectDefinitions);
+  const changed=core.parse(cli.replace('10.0.0.0/24','10.1.0.0/24'),'paloalto',XMLParser);assert.equal(core.diff(n,changed).objectChanges.changed[0].name,'Clients');
+});
+test('Coverage: counts reconcile and distinguish NGFW omissions, unknown flags and partial pages',()=>{
+  for(const source of [ngfwSample,policy(1),demo.checkpoint,customPort('Maintenance','22')]){const r=inspect(source);for(const c of Object.values(r.coverage.checks)){assert.equal(c.evaluated+c.skipped,r.counts.rules);assert.equal(Object.values(c.reasons).reduce((a,b)=>a+b,0),c.skipped);}}
+  assert.equal(inspect(ngfwSample).coverage.checks.anyAny.evaluated,0);assert.equal(inspect(ngfwSample).coverage.checks.noDescription.evaluated,2);
+  const j=JSON.parse(demo.checkpoint);j.total=10;const r=inspect(JSON.stringify(j));assert.equal(r.coverage.checks.overlap.reasons.unknownOrder,3);assert.ok(!codes(r).includes('potentialConflict'));
+});
+
+async function uiHarness(language='en'){
+  const vm=require('node:vm'),fs=require('node:fs'),path=require('node:path'),elements=new Map(),blobs=[];
+  const element=id=>{if(!elements.has(id))elements.set(id,{value:'',files:[],dataset:{},textContent:'',innerHTML:'',hidden:false,handlers:{},setAttribute(){},addEventListener(event,fn){this.handlers[event]=fn;},querySelectorAll(){return[];}});return elements.get(id);};
+  element('fw-vendor').value='auto';element('fw-severity').value='all';
+  const document={documentElement:{lang:language},getElementById:element,querySelectorAll:()=>[],handlers:{},addEventListener(event,fn){this.handlers[event]=fn;},body:{append(){}},createElement:()=>({click(){},remove(){}})};
+  const context=vm.createContext({window:{FirewallReview:core,FirewallReviewDemos:demo},document,Blob,URL:{createObjectURL(blob){blobs.push(blob);return 'blob:local';},revokeObjectURL(){}},setTimeout:fn=>{fn();return 0;}});
+  vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/firewall-review.js'),'utf8'),context);
+  return {element,document,blobs,async review(input,before=''){element('fw-input').value=input;element('fw-before').value=before;await element('fw-form').handlers.submit({preventDefault(){}});},async export(kind){element('fw-export-'+kind).handlers.click();return blobs.at(-1).text();}};
+}
+test('UI reports: all policies, content, coverage and object diffs exported; unsafe text escaped in EN/RO/FR',async()=>{
+  for(const lang of ['en','ro','fr']){
+    const ui=await uiHarness(lang),before=addressConfig('10.0.0.0 255.255.255.0'),after=addressConfig('10.1.0.0 255.255.255.0').replace('edit "Clients"','edit "Clients"');
+    await ui.review(after,before);assert.ok(ui.element('fw-coverage').innerHTML.includes('unknown')||ui.element('fw-coverage').innerHTML.includes('necunoscut')||ui.element('fw-coverage').innerHTML.includes('inconnue'));
+    assert.ok(ui.element('fw-diff-content').innerHTML.includes('10.1.0.0'));
+    const html=await ui.export('html');assert.ok(html.includes('fw-table'));assert.ok(html.includes('10.1.0.0'));assert.ok(html.includes('Policy 1'));assert.ok(html.includes('Content-Security-Policy'));
+    const json=JSON.parse(await ui.export('json'));assert.equal(json.version,'1.3.0');assert.ok(json.coverage);assert.ok(json.comparison.objectChanges);assert.ok(json.objectDefinitions.length);
+    await ui.review(policy(1,'set name "<script>alert(1)</script>"'));const escaped=await ui.export('html');assert.ok(!escaped.includes('<script>'));assert.ok(escaped.includes('&lt;script&gt;'));
+    await ui.review(policy(1,'set name "unclosed'));assert.ok(ui.element('fw-status').textContent.includes('10'));
+  }
+});
+test('HTML report: includes all parsed policies even beyond the 100-row UI preview',async()=>{
+  const ui=await uiHarness(),s=Array.from({length:102},(_,i)=>policy(i+1,'set comments "Documented"')).join('\n');await ui.review(s);
+  assert.ok(!ui.element('fw-policy-table').innerHTML.includes('Policy 102'));const html=await ui.export('html');assert.ok(html.includes('Policy 102'));
+});
+test('Check Point: custom service groups resolve TCP ports and object subnet changes',()=>{
+  const j=JSON.parse(demo.checkpoint),service=j['objects-dictionary'].find(x=>x.type==='service-tcp');service.name='MAINTENANCE-TCP';
+  const group={uid:'custom-service-group',type:'service-group',name:'Custom Group',members:[service.uid]};j['objects-dictionary'].push(group);j.rulebase[2].service=[group.uid];
+  assert.ok(codes(inspect(JSON.stringify(j))).includes('adminService'));
+  const old=core.parse(JSON.stringify(j));j['objects-dictionary'].find(x=>x.type==='network').subnet4='10.31.0.0';assert.ok(core.diff(old,core.parse(JSON.stringify(j))).objectChanges.changed.length);
+});
+test('PAN CLI object paths cannot mutate prototypes; unsupported metadata safely omitted',()=>{
+  const s=demo.paloaltoCLI+'\nset address Clients __proto__ hacked yes\nset address Clients description "Safe metadata"\nset address Clients ip-netmask 10.0.0.0/24';const m=core.parse(s,'paloalto',XMLParser);assert.equal({}.hacked,undefined);assert.ok(m.objectDefinitions.find(x=>x.name==='Clients'));
+});
