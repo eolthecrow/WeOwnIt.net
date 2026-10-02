@@ -78,20 +78,33 @@
     @media(max-width:780px){.nav{padding:1rem 0;align-items:flex-start}.back{display:none}.product{grid-template-columns:1fr}.product-side{border-left:0;border-top:1px solid var(--line)}}
   </style>
   <link rel="stylesheet" href="assets/chatbox.css?v=8">
-  <link rel="stylesheet" href="assets/site.css?v=7">
-  <script src="assets/i18n.js?v=2"></script>
+  <link rel="stylesheet" href="assets/site.css?v=8">
+  <script src="assets/i18n.js?v=3"></script>
 </head>
 <body>
 <a class="site-skip" href="#main">Skip to content</a>
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><img src="assets/va-symbol.svg?v=2" alt=""></span><span data-brand>Network & Security Consultant</span></a>
-    <div class="nav-right">
-      <a class="back" href="index.html">← Back to resources</a>
-      <div class="lang-switch" role="group" aria-label="Language">
-        <button type="button" data-lang="ro" aria-pressed="false">RO</button>
-        <button type="button" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+<header class="global-header">
+  <div class="wrap nav global-nav-shell">
+    <a class="brand" href="index.html" aria-label="Network & Security Consultant">
+      <span class="mark" aria-hidden="true"><img src="assets/va-symbol.svg?v=2" alt=""></span>
+      <span data-brand>Network &amp; Security Consultant</span>
+    </a>
+    <button class="global-nav-toggle" type="button" aria-expanded="false" aria-controls="global-navigation" data-nav-toggle data-nav-label="menu">Menu</button>
+    <div class="global-nav-panel" id="global-navigation" data-nav-panel>
+      <nav class="global-nav-links" data-global-nav aria-label="Primary navigation">
+        <a href="index.html#services" data-nav-label="services">Services</a>
+        <a href="tools.html" data-nav-label="tools">Tools</a>
+        <a href="store.html" data-nav-label="store" aria-current="page">Store</a>
+        <a href="about.html" data-nav-label="about">About</a>
+        <a href="contact.html" data-nav-label="contact">Contact</a>
+      </nav>
+      <div class="global-nav-actions">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="global-nav-cta" href="schedule.html" data-nav-label="schedule">Schedule ↗</a>
       </div>
     </div>
   </div>
@@ -630,7 +643,7 @@
   function apply(lang){
     const t=translations[lang]||translations.en;
     SiteI18n.setLanguage(lang);document.title=t.pageTitle;
-    q("[data-brand]").textContent=t.brand;q("[data-footer-brand]").textContent=t.brand;q(".back").textContent=t.back;
+    q("[data-brand]").textContent=t.brand;q("[data-footer-brand]").textContent=t.brand;
     q(".hero .eyebrow").textContent=t.eyebrow;q(".hero h1").innerHTML=t.title;q(".hero .lead").textContent=t.lead;
     q(".catalog-group-head .eyebrow").textContent=t.seriesLabel;
     q(".catalog-group-head h2").textContent=t.seriesTitle;
