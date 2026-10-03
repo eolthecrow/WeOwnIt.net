@@ -313,3 +313,36 @@ header .global-nav-shell{
 .site-back-to-top svg{width:15px;height:15px;display:block}
 @media(max-width:640px){.site-back-to-top{bottom:18px;width:34px;height:34px}.site-back-to-top svg{width:14px;height:14px}}
 @media(prefers-reduced-motion:reduce){.site-back-to-top{transition:none}}
+
+
+/* Borderless language selector across all global headers; keep it visually paired with Menu. */
+.global-nav-panel{flex:0 1 auto;margin-left:auto}
+.global-nav-shell{column-gap:.45rem}
+.global-nav-actions{gap:.3rem}
+.global-nav-actions .lang-switch,
+.global-nav-actions .langs{
+  border:0;
+  padding:0;
+  background:transparent;
+}
+.global-nav-actions .lang-switch button,
+.global-nav-actions .langs button{
+  min-width:29px;
+  min-height:32px;
+  padding:.25rem .38rem;
+  background:transparent;
+  color:var(--muted);
+  border:0;
+  border-bottom:1px solid transparent;
+}
+.global-nav-actions .lang-switch button[aria-pressed="true"],
+.global-nav-actions .langs button[aria-pressed="true"]{
+  background:transparent;
+  color:var(--accent);
+  border-bottom-color:var(--accent);
+  font-weight:800;
+}
+@media(max-width:1040px){
+  .global-nav-actions{margin-left:auto}
+  .global-nav-toggle{margin-left:.1rem}
+}
