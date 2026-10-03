@@ -156,24 +156,6 @@
 
   document.body.append(launcher,panel);
 
-  document.querySelectorAll(".site-back-to-top").forEach((el,i)=>{ if(i>0) el.remove(); });
-  const existingBackToTop=document.querySelector(".site-back-to-top");
-  const backToTop=existingBackToTop||document.createElement("button");
-  backToTop.className="site-back-to-top";
-  backToTop.type="button";
-  backToTop.setAttribute("aria-label","Back to top");
-  backToTop.setAttribute("title","Back to top");
-  backToTop.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6.5 14.5 5.5-5 5.5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  if(!existingBackToTop) document.body.appendChild(backToTop);
-
-  const updateBackToTop=()=>backToTop.classList.toggle("is-visible",window.scrollY>480);
-  window.addEventListener("scroll",updateBackToTop,{passive:true});
-  updateBackToTop();
-  backToTop.addEventListener("click",()=>{
-    const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({top:0,behavior:reduced?"auto":"smooth"});
-  });
-
   const messages=panel.querySelector(".va-chat-messages");
   const input=panel.querySelector("textarea");
   const send=panel.querySelector(".va-chat-send");
