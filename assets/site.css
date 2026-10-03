@@ -346,3 +346,18 @@ header .global-nav-shell{
   .global-nav-actions{margin-left:auto}
   .global-nav-toggle{margin-left:.1rem}
 }
+
+
+/* Keep the language selector directly beside Menu on global navigation pages. */
+@media(max-width:1040px){
+  .global-nav-shell{justify-content:flex-start}
+  .global-nav-panel{margin-left:auto}
+  .global-nav-actions{margin-left:0}
+  .global-nav-toggle{margin-left:0}
+}
+@media(max-width:700px){
+  .global-nav-shell{flex-wrap:nowrap}
+  .global-nav-actions{order:1;margin-left:auto;width:auto}
+  .global-nav-toggle{order:2;margin-left:0}
+  .global-nav-panel{order:3;position:absolute;top:100%;left:0;right:0;width:100%}
+}
