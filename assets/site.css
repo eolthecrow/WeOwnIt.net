@@ -168,14 +168,38 @@ header .global-nav-shell{
   .global-nav-actions{justify-content:flex-end}
 }
 @media(max-width:700px){
-  header .global-nav-shell{padding-top:.7rem;padding-bottom:.7rem;gap:.65rem}
+  .global-header{position:relative}
+  header .global-nav-shell{
+    padding-top:.7rem;
+    padding-bottom:.7rem;
+    gap:.65rem;
+    flex-wrap:wrap;
+    align-items:center;
+  }
   .global-nav-shell .brand{font-size:.86rem}
   .global-nav-shell .brand [data-brand]{max-width:145px;line-height:1.15}
   .global-nav-shell .mark{width:34px;height:34px}
   .global-nav-shell .mark img{width:30px;max-height:30px}
-  .global-nav-panel{padding:.8rem}
+  .global-nav-panel{
+    position:static;
+    flex:0 0 100%;
+    width:100%;
+    padding:.65rem 0 .15rem;
+    margin-top:.1rem;
+    border:0;
+    border-top:1px solid var(--line);
+    background:transparent;
+    box-shadow:none;
+  }
+  .global-nav-panel.is-open{gap:.65rem}
   .global-nav-links{grid-template-columns:1fr 1fr}
-  .global-nav-links a{text-align:left;padding:.75rem .7rem}
+  .global-nav-links a{
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    text-align:left;
+    padding:.75rem .7rem;
+  }
   .global-nav-actions{
     align-items:center;
     justify-content:flex-end;
