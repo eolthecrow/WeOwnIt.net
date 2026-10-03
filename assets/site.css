@@ -301,9 +301,10 @@ header .global-nav-shell{
 /* Discreet global back-to-top control. */
 .site-back-to-top{
   position:fixed;
-  left:50%;
-  right:auto;
-  bottom:24px;
+  left:auto;
+  right:14px;
+  top:50%;
+  bottom:auto;
   z-index:999;
   width:42px;
   height:42px;
@@ -318,15 +319,15 @@ header .global-nav-shell{
   cursor:pointer;
   opacity:0;
   visibility:hidden;
-  transform:translate(-50%,7px);
+  transform:translateY(calc(-50% + 7px));
   transition:opacity .18s ease,visibility .18s ease,transform .18s ease,border-color .18s ease,color .18s ease,background .18s ease;
 }
-.site-back-to-top.is-visible{opacity:.48;visibility:visible;transform:translate(-50%,0)}
+.site-back-to-top.is-visible{opacity:.48;visibility:visible;transform:translateY(-50%)}
 .site-back-to-top:hover{opacity:1;color:var(--accent,#6ce2c7);border-color:var(--accent,#6ce2c7);background:var(--panel,#12232b)}
 .site-back-to-top:focus-visible{opacity:1;outline:2px solid var(--accent,#6ce2c7);outline-offset:3px}
 .site-back-to-top svg{width:17px;height:17px;display:block}
 @media(max-width:640px){
-  .site-back-to-top{left:50%;right:auto;bottom:18px;width:38px;height:38px}
+  .site-back-to-top{left:auto;right:10px;top:50%;bottom:auto;width:38px;height:38px}
   .site-back-to-top svg{width:15px;height:15px}
 }
 @media(prefers-reduced-motion:reduce){.site-back-to-top{transition:none}}
